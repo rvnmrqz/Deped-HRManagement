@@ -38,6 +38,10 @@ namespace HumanResourceManagement
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            this.WindowState = FormWindowState.Maximized;
+
             TempHolder.mainForm = this;
             conn = new SqlConnection(getStringValue("sqlconstring"));
 
@@ -229,7 +233,10 @@ namespace HumanResourceManagement
                 while (reader.Read())
                 {
                     resultCount++;
-                    lblemployee_id_hidden.Text = reader[SQLbank.EMP_ID].ToString();
+
+                    TempHolder.searchedName = reader[SQLbank.EMP_FIRST_NAME].ToString();
+
+                   lblemployee_id_hidden.Text = reader[SQLbank.EMP_ID].ToString();
                     txtPlantillaNo.Text = reader[SQLbank.PLANTILLA_NO].ToString();
                     txtPositionTitle.Text = reader[SQLbank.POSITION_TITLE].ToString();
                     cmbSalaryGrade.Text = reader[SQLbank.SALARY_GRADE].ToString();
@@ -263,6 +270,7 @@ namespace HumanResourceManagement
                 else
                 {
                     showSearchResultMessage(null);
+                   
 
                     //load tab 1,2,3
                     TempHolder.uc_PersonalInfo.loadInfo(lblemployee_id_hidden.Text);
@@ -281,6 +289,7 @@ namespace HumanResourceManagement
         public void clearDisplay()
         {
             Console.WriteLine("Clear Display -Main");
+            TempHolder.clearSearchTempValues();
             pictureBox1.Invalidate();
             pictureBox1.Image = Properties.Resources.default_avatar;
 

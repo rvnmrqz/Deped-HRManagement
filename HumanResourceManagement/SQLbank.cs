@@ -53,12 +53,13 @@ namespace HumanResourceManagement
         public static string TBL_SERVICE_RECORDS = "tbl_service_records";
         //public static string ID = "id"; 
         //public static string SCHOOL_NAME = "school_name";
-        //public static string POSITION_TITLE = "position_title";
+        public static string DESIGNATION = "designation";
         // public static string STATUS = "status";
-        public static string BRANCH = "branch";
         public static string FROM_DATE = "from_date";
         public static string TO_DATE = "to_date";
-        //public static string REMARKS = "remarks";
+        public static string STATION = "station";
+        public static string BRANCH = "branch";
+        public static string CAUSE = "cause";
         public static string SALARY = "salary";
         public static string LAWOP = "lawop";
 

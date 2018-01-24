@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
+using Microsoft.Office.Interop;
+using Microsoft.Office.Interop.Excel;
+using System.Reflection;
 
 namespace HumanResourceManagement
 {
@@ -17,6 +20,12 @@ namespace HumanResourceManagement
         SqlConnection conn;
         SqlCommand cmd;
         SqlDataReader reader;
+
+        //excel
+        static Microsoft.Office.Interop.Excel.Application excelApp = null;
+        Workbook workbook = null;
+        Worksheet worksheet = null;
+
 
         private static UserControlServiceRecord _instance;
         public static UserControlServiceRecord Instance
@@ -43,7 +52,7 @@ namespace HumanResourceManagement
         //*******************APP CONFIG MANAGER*********************************
         private string getStringValue(string key)
         {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(System.Windows.Forms.Application.ExecutablePath);
             return config.AppSettings.Settings[key].Value.ToString();
 
         }
@@ -67,9 +76,6 @@ namespace HumanResourceManagement
         private void UserControlServiceRecord_Load(object sender, EventArgs e)
         {
             conn = new SqlConnection(getStringValue("sqlconstring"));
-
-         
-            
         }
 
         public void loadRecords(String employee_id)
@@ -79,35 +85,65 @@ namespace HumanResourceManagement
             //    Console.WriteLine("Loading Service Records of employee :" + employee_id);
              
                 openSQLConnection();
-                string qry = "SELECT * FROM " + SQLbank.TBL_SERVICE_RECORDS + " WHERE " + SQLbank.EMP_ID + " = " + employee_id+";";
+                string qry = "SELECT * FROM " + SQLbank.TBL_SERVICE_RECORDS + " WHERE " + SQLbank.EMP_ID + " = " + employee_id+" ;";
                 cmd = new SqlCommand(qry,conn);
                 reader = cmd.ExecuteReader();
                 int counter = 0;
                 while (reader.Read())
                 {
                     counter++;
-                    string id = reader[SQLbank.ID].ToString();
-                    string school = reader[SQLbank.SCHOOL_NAME].ToString();
-                    string branch = reader[SQLbank.BRANCH].ToString();
-                    string position = reader[SQLbank.POSITION_TITLE].ToString();
-                    string start = reader[SQLbank.FROM_DATE].ToString();
-                    string end = reader[SQLbank.TO_DATE].ToString();
+                    string id = reader[SQLbank.ID].ToString().Trim();
 
+                    string school = reader[SQLbank.SCHOOL_NAME].ToString().Trim();
+
+                    string start = reader[SQLbank.FROM_DATE].ToString().Trim();
+                    string end = reader[SQLbank.TO_DATE].ToString().Trim();
+                    string designation = reader[SQLbank.DESIGNATION].ToString().Trim();
+                    string status = reader[SQLbank.STATUS].ToString().Trim();
+                    string salary = reader[SQLbank.SALARY].ToString().Trim();
+
+                    string station = reader[SQLbank.STATION].ToString().Trim();
+                    string branch = reader[SQLbank.BRANCH].ToString().Trim() ;
+                    string cause = reader[SQLbank.CAUSE].ToString().Trim();
+               
                     DateTime st, ed;
                     if (DateTime.TryParse(start, out st)) start = st.ToString("MM/dd/yyyy");
                     if (DateTime.TryParse(end, out ed)) end =ed.ToString("MM/dd/yyyy");
-           
-
-                    string status = reader[SQLbank.STATUS].ToString();
-                    string remarks = reader[SQLbank.REMARKS].ToString();
-                    string salary = reader[SQLbank.SALARY].ToString();
+                 
                     string lawop = reader[SQLbank.LAWOP].ToString();
-                    datagridServiceRecords.Rows.Add(id, school, branch, position,start,end, status, remarks, salary, lawop);
+
+                    //searched temp values
+                    if (school.Length == 0) TempHolder.searchedLastSchool = "NONE";
+                    if (school.Length != 0 && !school.Equals("-do-")) TempHolder.searchedLastSchool = school;
+
+                    if (designation.Length == 0) TempHolder.searchedLastDesignation = "NONE";
+                    if (designation.Length != 0 && !designation.Equals("-do-")) TempHolder.searchedLastDesignation = designation;
+
+                    if (status.Length == 0) TempHolder.searchedLastStatus = "NONE";
+                    if (status.Length != 0 && !status.Equals("-do-")) TempHolder.searchedLastStatus = status;
+
+                    if (salary.Length == 0) TempHolder.searchedLastSalary = "NONE";
+                    if (salary.Length != 0 && !salary.Equals("-do-")) TempHolder.searchedLastSalary = salary;
+
+                    if (station.Length == 0) TempHolder.searchedLastStation = "NONE";
+                    if (station.Length != 0 && !station.Equals("-do-")) TempHolder.searchedLastStation = station;
+
+                    if (branch.Length == 0) TempHolder.searchedLastBranch = "NONE";
+                    if (branch.Length != 0 && !branch.Equals("-do-")) TempHolder.searchedLastBranch = branch;
+
+                    if (cause.Length == 0) TempHolder.searchedLastCause = "NONE";
+                    if (cause.Length != 0 && !cause.Equals("-do-")) TempHolder.searchedLastCause = cause;
+
+                    if (lawop.Length == 0) TempHolder.searchedLastLawop = "NONE";
+                    if (lawop.Length != 0 && !lawop.Equals("-do-")) TempHolder.searchedLastLawop = lawop;
+
+
+                    datagridServiceRecords.Rows.Add(id, school, start, end, designation, status, salary, station,branch,cause, lawop);
                 }
                 Console.WriteLine("Records found: " + counter);
 
                 btnAddRecord.Enabled = true;
-                btnPrint.Enabled = true;
+                btnExport.Enabled = true;
 
                 closeSQLConnection();
             }catch(Exception ee)
@@ -133,7 +169,7 @@ namespace HumanResourceManagement
             txtLAWOP.ResetText();
 
             btnAddRecord.Enabled = false;
-            btnPrint.Enabled = false;
+            btnExport.Enabled = false;
 
         }
 
@@ -169,7 +205,6 @@ namespace HumanResourceManagement
             lblRowsCount.Text = datagridServiceRecords.Rows.Count.ToString();
         }
 
-
         private void datagridServiceRecords_MouseClick(object sender, MouseEventArgs e)
         {
             /*if(e.Button == MouseButtons.Right)
@@ -194,7 +229,7 @@ namespace HumanResourceManagement
 
         private void lblRowsCount_TextChanged(object sender, EventArgs e)
         {
-            btnPrint.Enabled = lblRowsCount.Text.Length == 0 || lblRowsCount.Text.Trim().Equals("0");
+            btnExport.Enabled = lblRowsCount.Text.Length == 0 || lblRowsCount.Text.Trim().Equals("0");
         }
 
         private void btnAddRecord_Click(object sender, EventArgs e)
@@ -230,6 +265,41 @@ namespace HumanResourceManagement
                     }
                 }
             }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string templatePath = System.Windows.Forms.Application.StartupPath + "/template.xlsx";
+
+
+                if (excelApp == null) excelApp = new Microsoft.Office.Interop.Excel.Application();
+
+                workbook = excelApp.Workbooks.Open(templatePath);
+                worksheet = workbook.Sheets[1];
+
+                worksheet.Copy(Missing.Value, Missing.Value);   //creates a duplicate of the template but not yet saving it to the storage
+                worksheet = excelApp.Workbooks[2].Sheets[1]; //replacing the value of the variable from original template to duplicate
+
+
+                worksheet.Name = TempHolder.searchedName+"-ServiceRecord";
+
+                workbook.Close(); // closes the original template
+                excelApp.Visible = true; //makes the duplicate visible
+
+
+                //do population of cells here
+              //  worksheet.Cells[13, 2] = txtName.Text;
+
+
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine("\n Error Occured: " + ee.Message);
+                if (workbook != null) workbook.Close();
+            }
+
         }
     }
 }

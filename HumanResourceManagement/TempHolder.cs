@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,32 @@ namespace HumanResourceManagement
         public static MainForm mainForm;
 
         public static string picturePath = Application.StartupPath + "\\EmployeePictures\\";
+
+
+        //searching
+        public static string searchedName = "";
+        public static string searchedLastSchool = "";
+        public static string searchedLastDesignation = "";
+        public static string searchedLastStatus = "";
+        public static string searchedLastSalary = "";
+        public static string searchedLastStation = "";
+        public static string searchedLastBranch = "";
+        public static string searchedLastCause = "";
+        public static string searchedLastLawop = "";
+
+
+        public static void clearSearchTempValues()
+        {
+            searchedName = "";
+            searchedLastSchool = "";
+            searchedLastDesignation = "";
+            searchedLastStatus = "";
+            searchedLastSalary = "";
+            searchedLastStation = "";
+            searchedLastBranch = "";
+            searchedLastCause = "";
+            searchedLastLawop = "";
+    }
 
         //logged user
         public static string loggedUser_ID,username,password, fname,mname,lname,accountType,pictureFilename;
