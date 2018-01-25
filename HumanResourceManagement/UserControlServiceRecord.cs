@@ -82,8 +82,9 @@ namespace HumanResourceManagement
         {
             try
             {
-            //    Console.WriteLine("Loading Service Records of employee :" + employee_id);
-             
+                //    Console.WriteLine("Loading Service Records of employee :" + employee_id);
+                TempHolder.searchedEMpId = employee_id;
+
                 openSQLConnection();
                 string qry = "SELECT * FROM " + SQLbank.TBL_SERVICE_RECORDS + " WHERE " + SQLbank.EMP_ID + " = " + employee_id+" ;";
                 cmd = new SqlCommand(qry,conn);
@@ -111,34 +112,20 @@ namespace HumanResourceManagement
                     if (DateTime.TryParse(end, out ed)) end =ed.ToString("MM/dd/yyyy");
                  
                     string lawop = reader[SQLbank.LAWOP].ToString();
-
-                    //searched temp values
-                    if (school.Length == 0) TempHolder.searchedLastSchool = "NONE";
-                    if (school.Length != 0 && !school.Equals("-do-")) TempHolder.searchedLastSchool = school;
-
-                    if (designation.Length == 0) TempHolder.searchedLastDesignation = "NONE";
-                    if (designation.Length != 0 && !designation.Equals("-do-")) TempHolder.searchedLastDesignation = designation;
-
-                    if (status.Length == 0) TempHolder.searchedLastStatus = "NONE";
-                    if (status.Length != 0 && !status.Equals("-do-")) TempHolder.searchedLastStatus = status;
-
-                    if (salary.Length == 0) TempHolder.searchedLastSalary = "NONE";
-                    if (salary.Length != 0 && !salary.Equals("-do-")) TempHolder.searchedLastSalary = salary;
-
-                    if (station.Length == 0) TempHolder.searchedLastStation = "NONE";
-                    if (station.Length != 0 && !station.Equals("-do-")) TempHolder.searchedLastStation = station;
-
-                    if (branch.Length == 0) TempHolder.searchedLastBranch = "NONE";
-                    if (branch.Length != 0 && !branch.Equals("-do-")) TempHolder.searchedLastBranch = branch;
-
-                    if (cause.Length == 0) TempHolder.searchedLastCause = "NONE";
-                    if (cause.Length != 0 && !cause.Equals("-do-")) TempHolder.searchedLastCause = cause;
-
-                    if (lawop.Length == 0) TempHolder.searchedLastLawop = "NONE";
-                    if (lawop.Length != 0 && !lawop.Equals("-do-")) TempHolder.searchedLastLawop = lawop;
-
-
+                  
                     datagridServiceRecords.Rows.Add(id, school, start, end, designation, status, salary, station,branch,cause, lawop);
+                }
+
+                if (counter == 0)
+                {
+                    TempHolder.searchedLastSchool = "NONE";
+                    TempHolder.searchedLastDesignation = "NONE";
+                    TempHolder.searchedLastStatus = "NONE";
+                    TempHolder.searchedLastSalary = "0";
+                    TempHolder.searchedLastStation = "NONE";
+                    TempHolder.searchedLastBranch = "NONE";
+                    TempHolder.searchedLastCause = "NONE";
+                    TempHolder.searchedLastLawop = "NONE";
                 }
                 Console.WriteLine("Records found: " + counter);
 
@@ -151,6 +138,10 @@ namespace HumanResourceManagement
                 Console.WriteLine("Exception Encountered while displaying Service Records: " + ee.Message);
                 MessageBox.Show("An error occured while displaying info", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        public void addToTable(string id,string school, string start, string end, string designation, string status, string salary, string station, string branch, string cause, string lawop)
+        {
+            datagridServiceRecords.Rows.Add(id, school, start, end, designation, status, salary, station, branch, cause, lawop);
         }
 
         public void clearDisplay()
@@ -167,7 +158,6 @@ namespace HumanResourceManagement
             txtStatus.ResetText();
             txtSalary.ResetText();
             txtLAWOP.ResetText();
-
             btnAddRecord.Enabled = false;
             btnExport.Enabled = false;
 
@@ -198,33 +188,47 @@ namespace HumanResourceManagement
         private void datagridServiceRecords_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             lblRowsCount.Text = datagridServiceRecords.Rows.Count.ToString();
+
+            int lastIndex = datagridServiceRecords.Rows.Count-1;
+            string school = datagridServiceRecords.Rows[lastIndex].Cells[1].Value.ToString();
+            string from = datagridServiceRecords.Rows[lastIndex].Cells[2].Value.ToString();
+            string to = datagridServiceRecords.Rows[lastIndex].Cells[3].Value.ToString();
+            string designation= datagridServiceRecords.Rows[lastIndex].Cells[4].Value.ToString();
+            string status = datagridServiceRecords.Rows[lastIndex].Cells[5].Value.ToString();
+            string salary = datagridServiceRecords.Rows[lastIndex].Cells[6].Value.ToString();
+            string station = datagridServiceRecords.Rows[lastIndex].Cells[7].Value.ToString();
+            string branch = datagridServiceRecords.Rows[lastIndex].Cells[8].Value.ToString();
+            string cause = datagridServiceRecords.Rows[lastIndex].Cells[9].Value.ToString();
+            string lawop = datagridServiceRecords.Rows[lastIndex].Cells[10].Value.ToString();
+
+            if (school.Length == 0) TempHolder.searchedLastSchool = "NONE";
+            if (school.Length != 0 && !school.Equals("-do-")) TempHolder.searchedLastSchool = school;
+
+            if (designation.Length == 0) TempHolder.searchedLastDesignation = "NONE";
+            if (designation.Length != 0 && !designation.Equals("-do-")) TempHolder.searchedLastDesignation = designation;
+
+            if (status.Length == 0) TempHolder.searchedLastStatus = "NONE";
+            if (status.Length != 0 && !status.Equals("-do-")) TempHolder.searchedLastStatus = status;
+
+            if (salary.Length == 0) TempHolder.searchedLastSalary = "0";
+            if (salary.Length != 0 && !salary.Equals("-do-")) TempHolder.searchedLastSalary = salary;
+
+            if (station.Length == 0) TempHolder.searchedLastStation = "NONE";
+            if (station.Length != 0 && !station.Equals("-do-")) TempHolder.searchedLastStation = station;
+
+            if (branch.Length == 0) TempHolder.searchedLastBranch = "NONE";
+            if (branch.Length != 0 && !branch.Equals("-do-")) TempHolder.searchedLastBranch = branch;
+
+            if (cause.Length == 0) TempHolder.searchedLastCause = "NONE";
+            if (cause.Length != 0 && !cause.Equals("-do-")) TempHolder.searchedLastCause = cause;
+
+            if (lawop.Length == 0) TempHolder.searchedLastLawop = "NONE";
+            if (lawop.Length != 0 && !lawop.Equals("-do-")) TempHolder.searchedLastLawop = lawop;
         }
 
         private void datagridServiceRecords_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             lblRowsCount.Text = datagridServiceRecords.Rows.Count.ToString();
-        }
-
-        private void datagridServiceRecords_MouseClick(object sender, MouseEventArgs e)
-        {
-            /*if(e.Button == MouseButtons.Right)
-            {
-                //show context menu
-
-                ContextMenu m = new ContextMenu();
-                m.MenuItems.Add(new MenuItem("Cut"));
-                m.MenuItems.Add(new MenuItem("Copy"));
-                m.MenuItems.Add(new MenuItem("Paste"));
-
-                int currentMouseOverRow = datagridServiceRecords.HitTest(e.X, e.Y).RowIndex;
-                if (currentMouseOverRow >= 0)
-                {
-                    m.MenuItems.Add(new MenuItem(string.Format("Do something to row {0}", currentMouseOverRow.ToString())));
-                }
-
-                m.Show(datagridServiceRecords, new Point(e.X, e.Y));
-
-            }*/
         }
 
         private void lblRowsCount_TextChanged(object sender, EventArgs e)
@@ -238,32 +242,6 @@ namespace HumanResourceManagement
             {
                 AddServiceRecordDialog ad = new AddServiceRecordDialog();
                 ad.ShowDialog();
-            }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (Permissions.authorizedToUseFunction(Permissions.DELETE_SERVICE_RECORD))
-            {
-               if( MessageBox.Show("Delete selected Service Record?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                {
-                    //delete record
-                    try
-                    {
-                        openSQLConnection();
-                        string delSQL = "DELETE FROM " + SQLbank.TBL_SERVICE_RECORDS + " WHERE  " + SQLbank.ID + " = " + lblSelectedRowID.Text;
-                        Console.WriteLine("Delete Query: " + delSQL);
-                        cmd = new SqlCommand(delSQL, conn);
-                        cmd.ExecuteNonQuery();
-
-                        datagridServiceRecords.Rows.RemoveAt(datagridServiceRecords.CurrentCell.RowIndex);
-                        MessageBox.Show("Service Record Deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception ee)
-                    {
-                        Console.WriteLine("Deleting Error: " + ee.Message);
-                    }
-                }
             }
         }
 
@@ -299,6 +277,52 @@ namespace HumanResourceManagement
                 Console.WriteLine("\n Error Occured: " + ee.Message);
                 if (workbook != null) workbook.Close();
             }
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            deleteRow(true);
+        }
+
+        private void datagridServiceRecords_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            e.Cancel = !deleteRow(false);
+        }
+
+
+        private bool deleteRow(bool fromButtonEvent)
+        {
+            if (Permissions.authorizedToUseFunction(Permissions.DELETE_SERVICE_RECORD))
+            {
+                if (DialogResult.OK == MessageBox.Show("Delete selected Service Record?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question))
+                {
+                    //delete record
+                    try
+                    {
+                        openSQLConnection();
+                        string delSQL = "DELETE FROM " + SQLbank.TBL_SERVICE_RECORDS + " WHERE  " + SQLbank.ID + " = " + lblSelectedRowID.Text;
+                        Console.WriteLine("Delete Query: " + delSQL);
+                        cmd = new SqlCommand(delSQL, conn);
+                        cmd.ExecuteNonQuery();
+
+                        if(fromButtonEvent)datagridServiceRecords.Rows.RemoveAt(datagridServiceRecords.CurrentCell.RowIndex); //if false, user pressed from keyboard's delete button, no need to call this line, event will be doubled and may throw index outbound exception
+
+                        MessageBox.Show("Service Record Deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return true;
+                    }
+                    catch (Exception ee)
+                    {
+                        Console.WriteLine("Deleting Error: " + ee.Message);
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else return false;
 
         }
     }

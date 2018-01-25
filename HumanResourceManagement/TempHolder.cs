@@ -20,10 +20,11 @@ namespace HumanResourceManagement
 
         //searching
         public static string searchedName = "";
+        public static string searchedEMpId="";
         public static string searchedLastSchool = "";
         public static string searchedLastDesignation = "";
         public static string searchedLastStatus = "";
-        public static string searchedLastSalary = "";
+        public static string searchedLastSalary = "0";
         public static string searchedLastStation = "";
         public static string searchedLastBranch = "";
         public static string searchedLastCause = "";
@@ -32,11 +33,12 @@ namespace HumanResourceManagement
 
         public static void clearSearchTempValues()
         {
+            searchedEMpId = "";
             searchedName = "";
             searchedLastSchool = "";
             searchedLastDesignation = "";
             searchedLastStatus = "";
-            searchedLastSalary = "";
+            searchedLastSalary = "0";
             searchedLastStation = "";
             searchedLastBranch = "";
             searchedLastCause = "";
