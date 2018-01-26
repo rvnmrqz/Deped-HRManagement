@@ -44,29 +44,13 @@ namespace HumanResourceManagement
 
             TempHolder.mainForm = this;
             conn = new SqlConnection(getStringValue("sqlconstring"));
-
-            loadSalaryGradesAndSteps();
-          
+   
             loadTab2();
             loadTab1();
 
-           
             metroTabControl1.SelectedTab = tabPage1;
             txtEmplyeeNo.Select();
         }
-
-        private void loadSalaryGradesAndSteps()
-        {
-            for (int i = 0; i < TempHolder.salary_grade_list.Count; i++)
-            {
-                cmbSalaryGrade.Items.Add(TempHolder.salary_grade_list[i]);
-            }
-            for (int x = 0; x < TempHolder.steps_list.Count ; x++)
-            {
-                cmbSteps.Items.Add(TempHolder.steps_list[x]);
-            }
-        }
-
 
         //************************SERVER CONNECTION*************************
         private void openSQLConnection()
@@ -197,6 +181,8 @@ namespace HumanResourceManagement
         //******************************SEARCHING******************************
         private void metroTextBox1_KeyDown(object sender, KeyEventArgs e)
         {
+            char keyChar = (char)e.KeyCode;
+
             if (e.KeyData == Keys.Enter && txtEmplyeeNo.Text.Length > 0)
             {
                 search();
@@ -204,7 +190,7 @@ namespace HumanResourceManagement
             else if(e.KeyData == Keys.Enter && txtEmplyeeNo.Text.Length==0){
                 clearDisplay();
             }
-            else if (lblemployee_id_hidden.Text.Length > 0)
+            else if (lblemployee_id_hidden.Text.Length > 0 && Char.IsLetterOrDigit(keyChar))
             {
                 clearDisplay();
             }
@@ -238,18 +224,18 @@ namespace HumanResourceManagement
 
                    lblemployee_id_hidden.Text = reader[SQLbank.EMP_ID].ToString();
                     txtPlantillaNo.Text = reader[SQLbank.PLANTILLA_NO].ToString();
-                    txtPositionTitle.Text = reader[SQLbank.POSITION_TITLE].ToString();
-                    cmbSalaryGrade.Text = reader[SQLbank.SALARY_GRADE].ToString();
-                    cmbSteps.Text = reader[SQLbank.STEP].ToString();
+                    //txtPositionTitle.Text = reader[SQLbank.POSITION_TITLE].ToString();
+                    //cmbSalaryGrade.Text = reader[SQLbank.SALARY_GRADE].ToString();
+                    //cmbSteps.Text = reader[SQLbank.STEP].ToString();
 
-                    string dateOfOriginalAppointment = reader[SQLbank.DATE_OF_ORIGINAL_APPOINTMENT].ToString();
+               /*     string dateOfOriginalAppointment = reader[SQLbank.DATE_OF_ORIGINAL_APPOINTMENT].ToString();
                     if (dateOfOriginalAppointment.Length > 0)
                     {
                         DateTime dt;
                         if(DateTime.TryParse(dateOfOriginalAppointment,out dt)){
                             txtOriginalAppointment.Text = dt.ToString("MM/dd/yyyy");
                         }
-                    }
+                    }*/
 
                     string filename = reader[SQLbank.PICTUREFILENAME].ToString().Trim();
                     if (filename.Length > 0)
@@ -299,10 +285,9 @@ namespace HumanResourceManagement
             lblemployee_id_hidden.ResetText();
             txtPlantillaNo.ResetText();
             txtPositionTitle.ResetText();
-            cmbSalaryGrade.SelectedIndex = -1;
-            cmbSteps.SelectedIndex = -1;
-            txtOriginalAppointment.ResetText();
-           
+            txtSalaryGrade.ResetText();
+            txtStep.ResetText();
+            txtDateOfOriginalAppointment.ResetText(); 
 
             //tabs
             TempHolder.uc_PersonalInfo.clearDisplay();
@@ -329,9 +314,6 @@ namespace HumanResourceManagement
             txtEmplyeeNo.Enabled = !editmodeValue;
             txtPlantillaNo.Enabled = editmodeValue;
             txtPositionTitle.Enabled = editmodeValue;
-            cmbSalaryGrade.Enabled = editmodeValue;
-            cmbSteps.Enabled = editmodeValue;
-            txtOriginalAppointment.Enabled = editmodeValue;
             btnChoosePhoto.Visible = editmodeValue;
 
             TempHolder.uc_PersonalInfo.editMode(editmodeValue);
@@ -350,17 +332,11 @@ namespace HumanResourceManagement
                 {
                     openSQLConnection();
                     string updateSQL = "UPDATE " + SQLbank.TBL_EMPLOYEES + " SET " +
-                        SQLbank.PLANTILLA_NO + " = @PLANTILLA ," +
-                        SQLbank.POSITION_TITLE + " = @POSITION," +
-                        SQLbank.STEP + " = @STEP, " +
-                        SQLbank.DATE_OF_ORIGINAL_APPOINTMENT + " = @DOA " +
+                        SQLbank.PLANTILLA_NO + " = @PLANTILLA " +
                         " WHERE " + SQLbank.EMP_ID + " = " + lblemployee_id_hidden.Text;
 
                     cmd = new SqlCommand(updateSQL, conn);
                     cmd.Parameters.AddWithValue("@PLANTILLA", txtPlantillaNo.Text.Trim());
-                    cmd.Parameters.AddWithValue("@POSITION", txtPositionTitle.Text.Trim());
-                    cmd.Parameters.AddWithValue("@STEP", cmbSteps.Text);
-                    cmd.Parameters.AddWithValue("@DOA", txtOriginalAppointment.Text);
 
                     cmd.ExecuteNonQuery();
 
@@ -437,29 +413,7 @@ namespace HumanResourceManagement
                 MessageBox.Show("Designation must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-            if (cmbSalaryGrade.SelectedIndex == -1)
-            {
-                MessageBox.Show("Salary Grade must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (cmbSteps.SelectedIndex == -1)
-            {
-                MessageBox.Show("Salary Step must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (txtOriginalAppointment.Text.Length == 0)
-            {
-                MessageBox.Show("Date of Original Appointment must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-        
-            DateTime dt;
-            if (!DateTime.TryParse(txtOriginalAppointment.Text, out dt) || txtOriginalAppointment.Text.Length!=10)
-            {
-                MessageBox.Show("Invalid date for Original Appointment", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                
-                return false;
-            }
+
             return true;
         }
 
@@ -561,12 +515,6 @@ namespace HumanResourceManagement
         private void txtEmplyeeNo_TextChanged(object sender, EventArgs e)
         {
             if (txtEmplyeeNo.Text.Length == 0) showSearchResultMessage(null);
-        }
-
-        private void txtOriginalAppointment_KeyDown(object sender, KeyEventArgs e)
-        {
-            char keyChar = (char)e.KeyCode;
-            e.SuppressKeyPress = dateTimeTextKeyDownBoxChecker(txtOriginalAppointment, keyChar);
         }
 
         private void mainPanelLeft_Paint(object sender, PaintEventArgs e)

@@ -200,7 +200,7 @@ namespace HumanResourceManagement
                         +" OUTPUT INSERTED."+SQLbank.ID
                         +" VALUES(@EMPID,@SCHOOLNAME,@FROM,@TO,@DESIGNATION,@STATUS,@SALARY,@STATION,@BRANCH,@CAUSE,@LAWOP)";
                     cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@EMPID", TempHolder.searchedEMpId);
+                    cmd.Parameters.AddWithValue("@EMPID", TempHolder.searchedEmpID);
                     cmd.Parameters.AddWithValue("@SCHOOLNAME", txtSchoolName.Text);
                     cmd.Parameters.AddWithValue("@FROM", txtDateTo.Text);
                     cmd.Parameters.AddWithValue("@TO", txtDateTo.Text);
@@ -213,8 +213,8 @@ namespace HumanResourceManagement
                     cmd.Parameters.AddWithValue("@LAWOP", txtLAWOP.Text);
                     string lastinsertId = cmd.ExecuteScalar().ToString();
                     Console.WriteLine(lastinsertId);
-
-                    TempHolder.uc_ServiceRecord.addToTable(lastinsertId, txtSchoolName.Text, txtDateFrom.Text, txtDateTo.Text, txtDesignation.Text, cmbStatus.Text, txtSalary.Text, txtStation.Text, txtBranch.Text, txtCause.Text, txtLAWOP.Text);
+                    TempHolder.uc_ServiceRecord.loadRecords(TempHolder.searchedEmpID);
+                   // TempHolder.uc_ServiceRecord.addToTable(lastinsertId, txtSchoolName.Text, txtDateFrom.Text, txtDateTo.Text, txtDesignation.Text, cmbStatus.Text, txtSalary.Text, txtStation.Text, txtBranch.Text, txtCause.Text, txtLAWOP.Text);
                     MessageBox.Show("Successfully added");
                 }
                 catch (Exception ee)

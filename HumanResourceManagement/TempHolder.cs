@@ -17,11 +17,13 @@ namespace HumanResourceManagement
 
         public static string picturePath = Application.StartupPath + "\\EmployeePictures\\";
 
-
         //searching
         public static string searchedName = "";
-        public static string searchedEMpId="";
+        public static string searchedEmpID="";
         public static string searchedLastSchool = "";
+        public static string searchedOriginalAppointment = "";
+        public static string searchedFrom = "";
+        public static string searchedTo = "";
         public static string searchedLastDesignation = "";
         public static string searchedLastStatus = "";
         public static string searchedLastSalary = "0";
@@ -33,7 +35,8 @@ namespace HumanResourceManagement
 
         public static void clearSearchTempValues()
         {
-            searchedEMpId = "";
+            searchedEmpID = "";
+            searchedOriginalAppointment = "";
             searchedName = "";
             searchedLastSchool = "";
             searchedLastDesignation = "";

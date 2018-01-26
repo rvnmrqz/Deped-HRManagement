@@ -78,13 +78,16 @@ namespace HumanResourceManagement
             conn = new SqlConnection(getStringValue("sqlconstring"));
         }
 
+
+        //***********LOADING DATA*****************************
         public void loadRecords(String employee_id)
         {
             try
             {
                 //    Console.WriteLine("Loading Service Records of employee :" + employee_id);
-                TempHolder.searchedEMpId = employee_id;
-
+                TempHolder.searchedEmpID = employee_id;
+                clearDisplay();
+                
                 openSQLConnection();
                 string qry = "SELECT * FROM " + SQLbank.TBL_SERVICE_RECORDS + " WHERE " + SQLbank.EMP_ID + " = " + employee_id+" ;";
                 cmd = new SqlCommand(qry,conn);
@@ -138,10 +141,6 @@ namespace HumanResourceManagement
                 Console.WriteLine("Exception Encountered while displaying Service Records: " + ee.Message);
                 MessageBox.Show("An error occured while displaying info", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-        public void addToTable(string id,string school, string start, string end, string designation, string status, string salary, string station, string branch, string cause, string lawop)
-        {
-            datagridServiceRecords.Rows.Add(id, school, start, end, designation, status, salary, station, branch, cause, lawop);
         }
 
         public void clearDisplay()
@@ -289,7 +288,6 @@ namespace HumanResourceManagement
         {
             e.Cancel = !deleteRow(false);
         }
-
 
         private bool deleteRow(bool fromButtonEvent)
         {

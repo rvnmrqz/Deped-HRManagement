@@ -30,31 +30,20 @@ namespace HumanResourceManagement
         public static string ACCOUNT_NO = "account_no";
         public static string TIN_NO = "tin_no";
         public static string PHIC_NO = "phic_no";
-        public static string POSITION_TITLE = "position_title";
-        public static string SALARY_GRADE = "salary_grade";
         public static string SEX = "sex";
         public static string DATE_OF_BIRTH = "date_of_birth";
         public static string CIVIL_STATUS = "civil_status";
         public static string SCHOOL_NAME = "school_name";
-        public static string STEP = "step";
         public static string CLASSIFICATION = "classification";
         public static string ELIGIBILITY = "eligibility";
-        public static string STATUS = "status";
-        public static string DATE_OF_ORIGINAL_APPOINTMENT = "date_of_original_appointment";
-        public static string DATE_OF_LAST_PROMOTION = "date_of_last_promotion";
-        public static string DATE_OF_LAST_CONTINUOUS_APPOINTMENT = "date_of_last_continuos_appointment";
-        public static string START_DATE = "start_date";
-        public static string END_DATE = "end_date";
-        public static string REMARKS = "remarks";
         public static string PICTUREFILENAME = "picture_filename";
-
 
         //SERVICE RECORDS TABLE
         public static string TBL_SERVICE_RECORDS = "tbl_service_records";
         //public static string ID = "id"; 
         //public static string SCHOOL_NAME = "school_name";
         public static string DESIGNATION = "designation";
-        // public static string STATUS = "status";
+        public static string STATUS = "status";
         public static string FROM_DATE = "from_date";
         public static string TO_DATE = "to_date";
         public static string STATION = "station";
@@ -82,7 +71,7 @@ namespace HumanResourceManagement
         public static string MOD_SERVICE_REC = "modify_service_record";
         public static string ADD_SERVICE_REC = "add_service_record";
         public static string DEL_SERVICE_REC = "delete_service_record";
-        //********************************************************************
+       
 
 
         public static string TBL_CIVIL_STATUS = "sys_civil_status";

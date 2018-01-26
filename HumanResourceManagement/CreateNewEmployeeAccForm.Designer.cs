@@ -66,18 +66,8 @@
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.cmbCivilStatus = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel17 = new MetroFramework.Controls.MetroLabel();
-            this.employeeInfoGroup = new System.Windows.Forms.GroupBox();
-            this.panelEmployeeInfo = new System.Windows.Forms.Panel();
-            this.txtDateOfOriginalAppointment = new MetroFramework.Controls.MetroTextBox();
-            this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
-            this.cmbSteps = new MetroFramework.Controls.MetroComboBox();
-            this.cmbSalaryGrade = new MetroFramework.Controls.MetroComboBox();
-            this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel14 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel18 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel15 = new MetroFramework.Controls.MetroLabel();
             this.txtEmplyeeNo = new MetroFramework.Controls.MetroTextBox();
-            this.txtDesignation = new MetroFramework.Controls.MetroTextBox();
             this.btnChoosePhoto = new System.Windows.Forms.PictureBox();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.FormPanel = new System.Windows.Forms.Panel();
@@ -89,8 +79,6 @@
             this.panelAccountNumbers.SuspendLayout();
             this.personalInfoGroup.SuspendLayout();
             this.panelPersonalInfo.SuspendLayout();
-            this.employeeInfoGroup.SuspendLayout();
-            this.panelEmployeeInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnChoosePhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.FormPanel.SuspendLayout();
@@ -99,6 +87,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.metroLabel18);
+            this.panel1.Controls.Add(this.txtEmplyeeNo);
             this.panel1.Controls.Add(this.lblSystemCreationMessage);
             this.panel1.Controls.Add(this.lblPassword);
             this.panel1.Controls.Add(this.lblUsername);
@@ -108,21 +98,20 @@
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.accNoGroup);
             this.panel1.Controls.Add(this.personalInfoGroup);
-            this.panel1.Controls.Add(this.employeeInfoGroup);
             this.panel1.Controls.Add(this.btnChoosePhoto);
             this.panel1.Controls.Add(this.pictureBox);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(1, 27);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(827, 498);
+            this.panel1.Size = new System.Drawing.Size(828, 420);
             this.panel1.TabIndex = 0;
             // 
             // lblSystemCreationMessage
             // 
             this.lblSystemCreationMessage.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSystemCreationMessage.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblSystemCreationMessage.Location = new System.Drawing.Point(639, 240);
+            this.lblSystemCreationMessage.Location = new System.Drawing.Point(639, 231);
             this.lblSystemCreationMessage.Name = "lblSystemCreationMessage";
             this.lblSystemCreationMessage.Size = new System.Drawing.Size(152, 55);
             this.lblSystemCreationMessage.TabIndex = 113;
@@ -175,9 +164,9 @@
             this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(625, 423);
+            this.btnCancel.Location = new System.Drawing.Point(631, 342);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(182, 49);
+            this.btnCancel.Size = new System.Drawing.Size(171, 47);
             this.btnCancel.TabIndex = 19;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -188,9 +177,9 @@
             this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(625, 368);
+            this.btnSave.Location = new System.Drawing.Point(631, 289);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(182, 49);
+            this.btnSave.Size = new System.Drawing.Size(171, 47);
             this.btnSave.TabIndex = 18;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -199,7 +188,7 @@
             // accNoGroup
             // 
             this.accNoGroup.Controls.Add(this.panelAccountNumbers);
-            this.accNoGroup.Location = new System.Drawing.Point(20, 352);
+            this.accNoGroup.Location = new System.Drawing.Point(21, 273);
             this.accNoGroup.Name = "accNoGroup";
             this.accNoGroup.Size = new System.Drawing.Size(586, 132);
             this.accNoGroup.TabIndex = 3;
@@ -474,9 +463,9 @@
             // personalInfoGroup
             // 
             this.personalInfoGroup.Controls.Add(this.panelPersonalInfo);
-            this.personalInfoGroup.Location = new System.Drawing.Point(23, 20);
+            this.personalInfoGroup.Location = new System.Drawing.Point(24, 73);
             this.personalInfoGroup.Name = "personalInfoGroup";
-            this.personalInfoGroup.Size = new System.Drawing.Size(583, 158);
+            this.personalInfoGroup.Size = new System.Drawing.Size(583, 194);
             this.personalInfoGroup.TabIndex = 1;
             this.personalInfoGroup.TabStop = false;
             // 
@@ -497,7 +486,7 @@
             this.panelPersonalInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPersonalInfo.Location = new System.Drawing.Point(3, 16);
             this.panelPersonalInfo.Name = "panelPersonalInfo";
-            this.panelPersonalInfo.Size = new System.Drawing.Size(577, 139);
+            this.panelPersonalInfo.Size = new System.Drawing.Size(577, 175);
             this.panelPersonalInfo.TabIndex = 0;
             // 
             // txtDateOfBirth
@@ -516,7 +505,7 @@
             this.txtDateOfBirth.CustomButton.UseSelectable = true;
             this.txtDateOfBirth.CustomButton.Visible = false;
             this.txtDateOfBirth.Lines = new string[0];
-            this.txtDateOfBirth.Location = new System.Drawing.Point(10, 95);
+            this.txtDateOfBirth.Location = new System.Drawing.Point(10, 143);
             this.txtDateOfBirth.MaxLength = 10;
             this.txtDateOfBirth.Name = "txtDateOfBirth";
             this.txtDateOfBirth.PasswordChar = '\0';
@@ -538,7 +527,7 @@
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.metroLabel1.Location = new System.Drawing.Point(7, 14);
+            this.metroLabel1.Location = new System.Drawing.Point(7, 62);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(93, 19);
             this.metroLabel1.TabIndex = 99;
@@ -560,7 +549,7 @@
             this.txtFname.CustomButton.UseSelectable = true;
             this.txtFname.CustomButton.Visible = false;
             this.txtFname.Lines = new string[0];
-            this.txtFname.Location = new System.Drawing.Point(7, 36);
+            this.txtFname.Location = new System.Drawing.Point(7, 84);
             this.txtFname.MaxLength = 50;
             this.txtFname.Name = "txtFname";
             this.txtFname.PasswordChar = '\0';
@@ -579,7 +568,7 @@
             // 
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.metroLabel2.Location = new System.Drawing.Point(218, 14);
+            this.metroLabel2.Location = new System.Drawing.Point(218, 62);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(97, 19);
             this.metroLabel2.TabIndex = 100;
@@ -589,7 +578,7 @@
             // 
             this.metroLabel3.AutoSize = true;
             this.metroLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.metroLabel3.Location = new System.Drawing.Point(406, 14);
+            this.metroLabel3.Location = new System.Drawing.Point(406, 62);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(91, 19);
             this.metroLabel3.TabIndex = 101;
@@ -611,7 +600,7 @@
             this.txtMname.CustomButton.UseSelectable = true;
             this.txtMname.CustomButton.Visible = false;
             this.txtMname.Lines = new string[0];
-            this.txtMname.Location = new System.Drawing.Point(217, 36);
+            this.txtMname.Location = new System.Drawing.Point(217, 84);
             this.txtMname.MaxLength = 32767;
             this.txtMname.Name = "txtMname";
             this.txtMname.PasswordChar = '\0';
@@ -642,7 +631,7 @@
             this.txtLname.CustomButton.UseSelectable = true;
             this.txtLname.CustomButton.Visible = false;
             this.txtLname.Lines = new string[0];
-            this.txtLname.Location = new System.Drawing.Point(406, 36);
+            this.txtLname.Location = new System.Drawing.Point(406, 84);
             this.txtLname.MaxLength = 32767;
             this.txtLname.Name = "txtLname";
             this.txtLname.PasswordChar = '\0';
@@ -661,7 +650,7 @@
             // 
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.metroLabel4.Location = new System.Drawing.Point(218, 73);
+            this.metroLabel4.Location = new System.Drawing.Point(218, 121);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(69, 19);
             this.metroLabel4.TabIndex = 102;
@@ -676,7 +665,7 @@
             this.cmbGender.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.cmbGender.Location = new System.Drawing.Point(218, 95);
+            this.cmbGender.Location = new System.Drawing.Point(218, 143);
             this.cmbGender.Name = "cmbGender";
             this.cmbGender.Size = new System.Drawing.Size(131, 25);
             this.cmbGender.TabIndex = 97;
@@ -686,7 +675,7 @@
             // 
             this.metroLabel5.AutoSize = true;
             this.metroLabel5.BackColor = System.Drawing.Color.Transparent;
-            this.metroLabel5.Location = new System.Drawing.Point(7, 73);
+            this.metroLabel5.Location = new System.Drawing.Point(7, 121);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(110, 19);
             this.metroLabel5.TabIndex = 103;
@@ -698,7 +687,7 @@
             this.cmbCivilStatus.FormattingEnabled = true;
             this.cmbCivilStatus.IntegralHeight = false;
             this.cmbCivilStatus.ItemHeight = 19;
-            this.cmbCivilStatus.Location = new System.Drawing.Point(406, 95);
+            this.cmbCivilStatus.Location = new System.Drawing.Point(406, 143);
             this.cmbCivilStatus.Name = "cmbCivilStatus";
             this.cmbCivilStatus.Size = new System.Drawing.Size(122, 25);
             this.cmbCivilStatus.TabIndex = 98;
@@ -708,142 +697,21 @@
             // 
             this.metroLabel17.AutoSize = true;
             this.metroLabel17.BackColor = System.Drawing.Color.Transparent;
-            this.metroLabel17.Location = new System.Drawing.Point(406, 73);
+            this.metroLabel17.Location = new System.Drawing.Point(406, 121);
             this.metroLabel17.Name = "metroLabel17";
             this.metroLabel17.Size = new System.Drawing.Size(94, 19);
             this.metroLabel17.TabIndex = 104;
             this.metroLabel17.Text = "CIVIL STATUS *";
             // 
-            // employeeInfoGroup
-            // 
-            this.employeeInfoGroup.Controls.Add(this.panelEmployeeInfo);
-            this.employeeInfoGroup.Location = new System.Drawing.Point(23, 186);
-            this.employeeInfoGroup.Name = "employeeInfoGroup";
-            this.employeeInfoGroup.Size = new System.Drawing.Size(583, 160);
-            this.employeeInfoGroup.TabIndex = 2;
-            this.employeeInfoGroup.TabStop = false;
-            // 
-            // panelEmployeeInfo
-            // 
-            this.panelEmployeeInfo.Controls.Add(this.txtDateOfOriginalAppointment);
-            this.panelEmployeeInfo.Controls.Add(this.metroLabel12);
-            this.panelEmployeeInfo.Controls.Add(this.cmbSteps);
-            this.panelEmployeeInfo.Controls.Add(this.cmbSalaryGrade);
-            this.panelEmployeeInfo.Controls.Add(this.metroLabel13);
-            this.panelEmployeeInfo.Controls.Add(this.metroLabel14);
-            this.panelEmployeeInfo.Controls.Add(this.metroLabel18);
-            this.panelEmployeeInfo.Controls.Add(this.metroLabel15);
-            this.panelEmployeeInfo.Controls.Add(this.txtEmplyeeNo);
-            this.panelEmployeeInfo.Controls.Add(this.txtDesignation);
-            this.panelEmployeeInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelEmployeeInfo.Location = new System.Drawing.Point(3, 16);
-            this.panelEmployeeInfo.Name = "panelEmployeeInfo";
-            this.panelEmployeeInfo.Size = new System.Drawing.Size(577, 141);
-            this.panelEmployeeInfo.TabIndex = 0;
-            // 
-            // txtDateOfOriginalAppointment
-            // 
-            this.txtDateOfOriginalAppointment.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            // 
-            // 
-            // 
-            this.txtDateOfOriginalAppointment.CustomButton.Image = null;
-            this.txtDateOfOriginalAppointment.CustomButton.Location = new System.Drawing.Point(109, 1);
-            this.txtDateOfOriginalAppointment.CustomButton.Name = "";
-            this.txtDateOfOriginalAppointment.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txtDateOfOriginalAppointment.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtDateOfOriginalAppointment.CustomButton.TabIndex = 1;
-            this.txtDateOfOriginalAppointment.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtDateOfOriginalAppointment.CustomButton.UseSelectable = true;
-            this.txtDateOfOriginalAppointment.CustomButton.Visible = false;
-            this.txtDateOfOriginalAppointment.Lines = new string[0];
-            this.txtDateOfOriginalAppointment.Location = new System.Drawing.Point(218, 38);
-            this.txtDateOfOriginalAppointment.MaxLength = 10;
-            this.txtDateOfOriginalAppointment.Name = "txtDateOfOriginalAppointment";
-            this.txtDateOfOriginalAppointment.PasswordChar = '\0';
-            this.txtDateOfOriginalAppointment.PromptText = "mm/dd/yyyy";
-            this.txtDateOfOriginalAppointment.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtDateOfOriginalAppointment.SelectedText = "";
-            this.txtDateOfOriginalAppointment.SelectionLength = 0;
-            this.txtDateOfOriginalAppointment.SelectionStart = 0;
-            this.txtDateOfOriginalAppointment.ShortcutsEnabled = true;
-            this.txtDateOfOriginalAppointment.Size = new System.Drawing.Size(131, 23);
-            this.txtDateOfOriginalAppointment.TabIndex = 112;
-            this.txtDateOfOriginalAppointment.UseSelectable = true;
-            this.txtDateOfOriginalAppointment.WaterMark = "mm/dd/yyyy";
-            this.txtDateOfOriginalAppointment.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtDateOfOriginalAppointment.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.txtDateOfOriginalAppointment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDateOfOriginalAppointment_KeyDown);
-            // 
-            // metroLabel12
-            // 
-            this.metroLabel12.AutoSize = true;
-            this.metroLabel12.Location = new System.Drawing.Point(215, 17);
-            this.metroLabel12.Name = "metroLabel12";
-            this.metroLabel12.Size = new System.Drawing.Size(174, 19);
-            this.metroLabel12.TabIndex = 120;
-            this.metroLabel12.Text = "ORIGINAL APPOINTMENT *";
-            // 
-            // cmbSteps
-            // 
-            this.cmbSteps.FontSize = MetroFramework.MetroComboBoxSize.Small;
-            this.cmbSteps.FormattingEnabled = true;
-            this.cmbSteps.IntegralHeight = false;
-            this.cmbSteps.ItemHeight = 19;
-            this.cmbSteps.Location = new System.Drawing.Point(400, 101);
-            this.cmbSteps.Name = "cmbSteps";
-            this.cmbSteps.Size = new System.Drawing.Size(122, 25);
-            this.cmbSteps.TabIndex = 115;
-            this.cmbSteps.UseSelectable = true;
-            // 
-            // cmbSalaryGrade
-            // 
-            this.cmbSalaryGrade.FontSize = MetroFramework.MetroComboBoxSize.Small;
-            this.cmbSalaryGrade.FormattingEnabled = true;
-            this.cmbSalaryGrade.IntegralHeight = false;
-            this.cmbSalaryGrade.ItemHeight = 19;
-            this.cmbSalaryGrade.Location = new System.Drawing.Point(215, 101);
-            this.cmbSalaryGrade.Name = "cmbSalaryGrade";
-            this.cmbSalaryGrade.Size = new System.Drawing.Size(128, 25);
-            this.cmbSalaryGrade.TabIndex = 114;
-            this.cmbSalaryGrade.UseSelectable = true;
-            // 
-            // metroLabel13
-            // 
-            this.metroLabel13.AutoSize = true;
-            this.metroLabel13.Location = new System.Drawing.Point(400, 79);
-            this.metroLabel13.Name = "metroLabel13";
-            this.metroLabel13.Size = new System.Drawing.Size(48, 19);
-            this.metroLabel13.TabIndex = 119;
-            this.metroLabel13.Text = "STEP *";
-            // 
-            // metroLabel14
-            // 
-            this.metroLabel14.AutoSize = true;
-            this.metroLabel14.Location = new System.Drawing.Point(215, 79);
-            this.metroLabel14.Name = "metroLabel14";
-            this.metroLabel14.Size = new System.Drawing.Size(113, 19);
-            this.metroLabel14.TabIndex = 118;
-            this.metroLabel14.Text = "SALARY GRADE *";
-            // 
             // metroLabel18
             // 
             this.metroLabel18.AutoSize = true;
             this.metroLabel18.Enabled = false;
-            this.metroLabel18.Location = new System.Drawing.Point(7, 16);
+            this.metroLabel18.Location = new System.Drawing.Point(24, 21);
             this.metroLabel18.Name = "metroLabel18";
             this.metroLabel18.Size = new System.Drawing.Size(111, 19);
             this.metroLabel18.TabIndex = 116;
             this.metroLabel18.Text = "EMPLOYEE NO. *";
-            // 
-            // metroLabel15
-            // 
-            this.metroLabel15.AutoSize = true;
-            this.metroLabel15.Location = new System.Drawing.Point(9, 79);
-            this.metroLabel15.Name = "metroLabel15";
-            this.metroLabel15.Size = new System.Drawing.Size(102, 19);
-            this.metroLabel15.TabIndex = 117;
-            this.metroLabel15.Text = "DESIGNATION *";
             // 
             // txtEmplyeeNo
             // 
@@ -861,7 +729,7 @@
             this.txtEmplyeeNo.CustomButton.UseSelectable = true;
             this.txtEmplyeeNo.CustomButton.Visible = false;
             this.txtEmplyeeNo.Lines = new string[0];
-            this.txtEmplyeeNo.Location = new System.Drawing.Point(8, 38);
+            this.txtEmplyeeNo.Location = new System.Drawing.Point(25, 43);
             this.txtEmplyeeNo.MaxLength = 32767;
             this.txtEmplyeeNo.Name = "txtEmplyeeNo";
             this.txtEmplyeeNo.PasswordChar = '\0';
@@ -876,38 +744,6 @@
             this.txtEmplyeeNo.UseSelectable = true;
             this.txtEmplyeeNo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtEmplyeeNo.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // txtDesignation
-            // 
-            this.txtDesignation.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            // 
-            // 
-            // 
-            this.txtDesignation.CustomButton.Image = null;
-            this.txtDesignation.CustomButton.Location = new System.Drawing.Point(141, 1);
-            this.txtDesignation.CustomButton.Name = "";
-            this.txtDesignation.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txtDesignation.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtDesignation.CustomButton.TabIndex = 1;
-            this.txtDesignation.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtDesignation.CustomButton.UseSelectable = true;
-            this.txtDesignation.CustomButton.Visible = false;
-            this.txtDesignation.Lines = new string[0];
-            this.txtDesignation.Location = new System.Drawing.Point(9, 101);
-            this.txtDesignation.MaxLength = 32767;
-            this.txtDesignation.Name = "txtDesignation";
-            this.txtDesignation.PasswordChar = '\0';
-            this.txtDesignation.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtDesignation.SelectedText = "";
-            this.txtDesignation.SelectionLength = 0;
-            this.txtDesignation.SelectionStart = 0;
-            this.txtDesignation.ShortcutsEnabled = true;
-            this.txtDesignation.Size = new System.Drawing.Size(163, 23);
-            this.txtDesignation.TabIndex = 113;
-            this.txtDesignation.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtDesignation.UseSelectable = true;
-            this.txtDesignation.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtDesignation.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // btnChoosePhoto
             // 
@@ -941,7 +777,7 @@
             this.FormPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.FormPanel.Location = new System.Drawing.Point(1, 1);
             this.FormPanel.Name = "FormPanel";
-            this.FormPanel.Size = new System.Drawing.Size(827, 26);
+            this.FormPanel.Size = new System.Drawing.Size(828, 26);
             this.FormPanel.TabIndex = 1;
             this.FormPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FormPanel_MouseMove);
             // 
@@ -964,7 +800,7 @@
             this.lblFormExit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblFormExit.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFormExit.ForeColor = System.Drawing.Color.White;
-            this.lblFormExit.Location = new System.Drawing.Point(801, 1);
+            this.lblFormExit.Location = new System.Drawing.Point(802, 1);
             this.lblFormExit.Name = "lblFormExit";
             this.lblFormExit.Size = new System.Drawing.Size(19, 21);
             this.lblFormExit.TabIndex = 2;
@@ -976,7 +812,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(829, 526);
+            this.ClientSize = new System.Drawing.Size(830, 448);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.FormPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -995,9 +831,6 @@
             this.personalInfoGroup.ResumeLayout(false);
             this.panelPersonalInfo.ResumeLayout(false);
             this.panelPersonalInfo.PerformLayout();
-            this.employeeInfoGroup.ResumeLayout(false);
-            this.panelEmployeeInfo.ResumeLayout(false);
-            this.panelEmployeeInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnChoosePhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.FormPanel.ResumeLayout(false);
@@ -1014,7 +847,6 @@
         private System.Windows.Forms.Label lblFormExit;
         private System.Windows.Forms.PictureBox btnChoosePhoto;
         private System.Windows.Forms.PictureBox pictureBox;
-        private System.Windows.Forms.GroupBox employeeInfoGroup;
         private System.Windows.Forms.GroupBox accNoGroup;
         private System.Windows.Forms.GroupBox personalInfoGroup;
         private System.Windows.Forms.Button btnCancel;
@@ -1045,22 +877,13 @@
         private MetroFramework.Controls.MetroLabel metroLabel5;
         public MetroFramework.Controls.MetroComboBox cmbCivilStatus;
         private MetroFramework.Controls.MetroLabel metroLabel17;
-        private System.Windows.Forms.Panel panelEmployeeInfo;
-        private MetroFramework.Controls.MetroLabel metroLabel12;
-        public MetroFramework.Controls.MetroComboBox cmbSteps;
-        public MetroFramework.Controls.MetroComboBox cmbSalaryGrade;
-        private MetroFramework.Controls.MetroLabel metroLabel13;
-        private MetroFramework.Controls.MetroLabel metroLabel14;
         private MetroFramework.Controls.MetroLabel metroLabel18;
-        private MetroFramework.Controls.MetroLabel metroLabel15;
         private MetroFramework.Controls.MetroTextBox txtEmplyeeNo;
-        private MetroFramework.Controls.MetroTextBox txtDesignation;
         private System.Windows.Forms.Label lblPictureDirectory;
         private System.Windows.Forms.LinkLabel lblCreateSystemAccount;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblSystemCreationMessage;
         public MetroFramework.Controls.MetroTextBox txtDateOfBirth;
-        public MetroFramework.Controls.MetroTextBox txtDateOfOriginalAppointment;
     }
 }

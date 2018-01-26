@@ -38,12 +38,9 @@
             this.tab2_Panel = new System.Windows.Forms.Panel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.mainPanelLeft = new System.Windows.Forms.Panel();
-            this.txtOriginalAppointment = new MetroFramework.Controls.MetroTextBox();
             this.lblPictureDirectory = new System.Windows.Forms.Label();
             this.btnAddUser = new System.Windows.Forms.PictureBox();
             this.btnChoosePhoto = new System.Windows.Forms.PictureBox();
-            this.cmbSteps = new MetroFramework.Controls.MetroComboBox();
-            this.cmbSalaryGrade = new MetroFramework.Controls.MetroComboBox();
             this.lblemployee_id_hidden = new System.Windows.Forms.Label();
             this.txtPositionTitle = new MetroFramework.Controls.MetroTextBox();
             this.txtPlantillaNo = new MetroFramework.Controls.MetroTextBox();
@@ -75,6 +72,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.FormPanel = new System.Windows.Forms.Panel();
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            this.txtSalaryGrade = new MetroFramework.Controls.MetroTextBox();
+            this.txtStep = new MetroFramework.Controls.MetroTextBox();
+            this.txtDateOfOriginalAppointment = new MetroFramework.Controls.MetroTextBox();
             this.panel1.SuspendLayout();
             this.mainPanelRight.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
@@ -168,18 +168,18 @@
             // 
             // mainPanelLeft
             // 
-            this.mainPanelLeft.Controls.Add(this.txtOriginalAppointment);
+            this.mainPanelLeft.Controls.Add(this.txtDateOfOriginalAppointment);
+            this.mainPanelLeft.Controls.Add(this.txtStep);
+            this.mainPanelLeft.Controls.Add(this.metroLabel6);
+            this.mainPanelLeft.Controls.Add(this.txtSalaryGrade);
             this.mainPanelLeft.Controls.Add(this.lblPictureDirectory);
             this.mainPanelLeft.Controls.Add(this.btnAddUser);
             this.mainPanelLeft.Controls.Add(this.btnChoosePhoto);
-            this.mainPanelLeft.Controls.Add(this.cmbSteps);
-            this.mainPanelLeft.Controls.Add(this.cmbSalaryGrade);
             this.mainPanelLeft.Controls.Add(this.lblemployee_id_hidden);
             this.mainPanelLeft.Controls.Add(this.txtPositionTitle);
             this.mainPanelLeft.Controls.Add(this.txtPlantillaNo);
             this.mainPanelLeft.Controls.Add(this.txtEmplyeeNo);
             this.mainPanelLeft.Controls.Add(this.pictureBox1);
-            this.mainPanelLeft.Controls.Add(this.metroLabel6);
             this.mainPanelLeft.Controls.Add(this.metroLabel5);
             this.mainPanelLeft.Controls.Add(this.metroLabel4);
             this.mainPanelLeft.Controls.Add(this.metroLabel3);
@@ -192,41 +192,6 @@
             this.mainPanelLeft.Size = new System.Drawing.Size(278, 543);
             this.mainPanelLeft.TabIndex = 1;
             this.mainPanelLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanelLeft_Paint);
-            // 
-            // txtOriginalAppointment
-            // 
-            this.txtOriginalAppointment.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            // 
-            // 
-            // 
-            this.txtOriginalAppointment.CustomButton.Image = null;
-            this.txtOriginalAppointment.CustomButton.Location = new System.Drawing.Point(99, 1);
-            this.txtOriginalAppointment.CustomButton.Name = "";
-            this.txtOriginalAppointment.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txtOriginalAppointment.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtOriginalAppointment.CustomButton.TabIndex = 1;
-            this.txtOriginalAppointment.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtOriginalAppointment.CustomButton.UseSelectable = true;
-            this.txtOriginalAppointment.CustomButton.Visible = false;
-            this.txtOriginalAppointment.Enabled = false;
-            this.txtOriginalAppointment.Lines = new string[0];
-            this.txtOriginalAppointment.Location = new System.Drawing.Point(19, 473);
-            this.txtOriginalAppointment.MaxLength = 10;
-            this.txtOriginalAppointment.Name = "txtOriginalAppointment";
-            this.txtOriginalAppointment.PasswordChar = '\0';
-            this.txtOriginalAppointment.PromptText = "mm/dd/yyyy";
-            this.txtOriginalAppointment.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtOriginalAppointment.SelectedText = "";
-            this.txtOriginalAppointment.SelectionLength = 0;
-            this.txtOriginalAppointment.SelectionStart = 0;
-            this.txtOriginalAppointment.ShortcutsEnabled = true;
-            this.txtOriginalAppointment.Size = new System.Drawing.Size(121, 23);
-            this.txtOriginalAppointment.TabIndex = 122;
-            this.txtOriginalAppointment.UseSelectable = true;
-            this.txtOriginalAppointment.WaterMark = "mm/dd/yyyy";
-            this.txtOriginalAppointment.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtOriginalAppointment.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.txtOriginalAppointment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOriginalAppointment_KeyDown);
             // 
             // lblPictureDirectory
             // 
@@ -262,32 +227,6 @@
             this.metroToolTip1.SetToolTip(this.btnChoosePhoto, "Choose Photo");
             this.btnChoosePhoto.Visible = false;
             this.btnChoosePhoto.Click += new System.EventHandler(this.btnChoosePhoto_Click);
-            // 
-            // cmbSteps
-            // 
-            this.cmbSteps.Enabled = false;
-            this.cmbSteps.FontSize = MetroFramework.MetroComboBoxSize.Small;
-            this.cmbSteps.FormattingEnabled = true;
-            this.cmbSteps.IntegralHeight = false;
-            this.cmbSteps.ItemHeight = 19;
-            this.cmbSteps.Location = new System.Drawing.Point(19, 414);
-            this.cmbSteps.Name = "cmbSteps";
-            this.cmbSteps.Size = new System.Drawing.Size(121, 25);
-            this.cmbSteps.TabIndex = 4;
-            this.cmbSteps.UseSelectable = true;
-            // 
-            // cmbSalaryGrade
-            // 
-            this.cmbSalaryGrade.Enabled = false;
-            this.cmbSalaryGrade.FontSize = MetroFramework.MetroComboBoxSize.Small;
-            this.cmbSalaryGrade.FormattingEnabled = true;
-            this.cmbSalaryGrade.IntegralHeight = false;
-            this.cmbSalaryGrade.ItemHeight = 19;
-            this.cmbSalaryGrade.Location = new System.Drawing.Point(19, 362);
-            this.cmbSalaryGrade.Name = "cmbSalaryGrade";
-            this.cmbSalaryGrade.Size = new System.Drawing.Size(121, 25);
-            this.cmbSalaryGrade.TabIndex = 3;
-            this.cmbSalaryGrade.UseSelectable = true;
             // 
             // lblemployee_id_hidden
             // 
@@ -414,38 +353,38 @@
             // metroLabel6
             // 
             this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(19, 448);
+            this.metroLabel6.Location = new System.Drawing.Point(19, 343);
             this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(194, 19);
+            this.metroLabel6.Size = new System.Drawing.Size(184, 19);
             this.metroLabel6.TabIndex = 5;
-            this.metroLabel6.Text = "Date of Original Appointment *";
+            this.metroLabel6.Text = "Date of Original Appointment";
             // 
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(17, 392);
+            this.metroLabel5.Location = new System.Drawing.Point(19, 455);
             this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(45, 19);
+            this.metroLabel5.Size = new System.Drawing.Size(35, 19);
             this.metroLabel5.TabIndex = 4;
-            this.metroLabel5.Text = "Step *";
+            this.metroLabel5.Text = "Step";
             // 
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(19, 340);
+            this.metroLabel4.Location = new System.Drawing.Point(19, 399);
             this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(95, 19);
+            this.metroLabel4.Size = new System.Drawing.Size(85, 19);
             this.metroLabel4.TabIndex = 3;
-            this.metroLabel4.Text = "Salary Grade *";
+            this.metroLabel4.Text = "Salary Grade";
             // 
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
             this.metroLabel3.Location = new System.Drawing.Point(19, 289);
             this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(87, 19);
+            this.metroLabel3.Size = new System.Drawing.Size(77, 19);
             this.metroLabel3.TabIndex = 2;
-            this.metroLabel3.Text = "Designation *";
+            this.metroLabel3.Text = "Designation";
             // 
             // metroLabel2
             // 
@@ -663,6 +602,105 @@
             this.metroToolTip1.StyleManager = null;
             this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
+            // txtSalaryGrade
+            // 
+            this.txtSalaryGrade.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            // 
+            // 
+            // 
+            this.txtSalaryGrade.CustomButton.Image = null;
+            this.txtSalaryGrade.CustomButton.Location = new System.Drawing.Point(107, 1);
+            this.txtSalaryGrade.CustomButton.Name = "";
+            this.txtSalaryGrade.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtSalaryGrade.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtSalaryGrade.CustomButton.TabIndex = 1;
+            this.txtSalaryGrade.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtSalaryGrade.CustomButton.UseSelectable = true;
+            this.txtSalaryGrade.CustomButton.Visible = false;
+            this.txtSalaryGrade.Enabled = false;
+            this.txtSalaryGrade.Lines = new string[0];
+            this.txtSalaryGrade.Location = new System.Drawing.Point(19, 421);
+            this.txtSalaryGrade.MaxLength = 32767;
+            this.txtSalaryGrade.Name = "txtSalaryGrade";
+            this.txtSalaryGrade.PasswordChar = '\0';
+            this.txtSalaryGrade.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtSalaryGrade.SelectedText = "";
+            this.txtSalaryGrade.SelectionLength = 0;
+            this.txtSalaryGrade.SelectionStart = 0;
+            this.txtSalaryGrade.ShortcutsEnabled = true;
+            this.txtSalaryGrade.Size = new System.Drawing.Size(129, 23);
+            this.txtSalaryGrade.TabIndex = 75;
+            this.txtSalaryGrade.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtSalaryGrade.UseSelectable = true;
+            this.txtSalaryGrade.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtSalaryGrade.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // txtStep
+            // 
+            this.txtStep.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            // 
+            // 
+            // 
+            this.txtStep.CustomButton.Image = null;
+            this.txtStep.CustomButton.Location = new System.Drawing.Point(107, 1);
+            this.txtStep.CustomButton.Name = "";
+            this.txtStep.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtStep.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtStep.CustomButton.TabIndex = 1;
+            this.txtStep.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtStep.CustomButton.UseSelectable = true;
+            this.txtStep.CustomButton.Visible = false;
+            this.txtStep.Enabled = false;
+            this.txtStep.Lines = new string[0];
+            this.txtStep.Location = new System.Drawing.Point(19, 475);
+            this.txtStep.MaxLength = 32767;
+            this.txtStep.Name = "txtStep";
+            this.txtStep.PasswordChar = '\0';
+            this.txtStep.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtStep.SelectedText = "";
+            this.txtStep.SelectionLength = 0;
+            this.txtStep.SelectionStart = 0;
+            this.txtStep.ShortcutsEnabled = true;
+            this.txtStep.Size = new System.Drawing.Size(129, 23);
+            this.txtStep.TabIndex = 76;
+            this.txtStep.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtStep.UseSelectable = true;
+            this.txtStep.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtStep.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // txtDateOfOriginalAppointment
+            // 
+            this.txtDateOfOriginalAppointment.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            // 
+            // 
+            // 
+            this.txtDateOfOriginalAppointment.CustomButton.Image = null;
+            this.txtDateOfOriginalAppointment.CustomButton.Location = new System.Drawing.Point(107, 1);
+            this.txtDateOfOriginalAppointment.CustomButton.Name = "";
+            this.txtDateOfOriginalAppointment.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtDateOfOriginalAppointment.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtDateOfOriginalAppointment.CustomButton.TabIndex = 1;
+            this.txtDateOfOriginalAppointment.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtDateOfOriginalAppointment.CustomButton.UseSelectable = true;
+            this.txtDateOfOriginalAppointment.CustomButton.Visible = false;
+            this.txtDateOfOriginalAppointment.Enabled = false;
+            this.txtDateOfOriginalAppointment.Lines = new string[0];
+            this.txtDateOfOriginalAppointment.Location = new System.Drawing.Point(19, 365);
+            this.txtDateOfOriginalAppointment.MaxLength = 32767;
+            this.txtDateOfOriginalAppointment.Name = "txtDateOfOriginalAppointment";
+            this.txtDateOfOriginalAppointment.PasswordChar = '\0';
+            this.txtDateOfOriginalAppointment.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtDateOfOriginalAppointment.SelectedText = "";
+            this.txtDateOfOriginalAppointment.SelectionLength = 0;
+            this.txtDateOfOriginalAppointment.SelectionStart = 0;
+            this.txtDateOfOriginalAppointment.ShortcutsEnabled = true;
+            this.txtDateOfOriginalAppointment.Size = new System.Drawing.Size(129, 23);
+            this.txtDateOfOriginalAppointment.TabIndex = 77;
+            this.txtDateOfOriginalAppointment.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtDateOfOriginalAppointment.UseSelectable = true;
+            this.txtDateOfOriginalAppointment.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtDateOfOriginalAppointment.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -733,8 +771,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroLabel metroLabel2;
-        public MetroFramework.Controls.MetroComboBox cmbSalaryGrade;
-        public MetroFramework.Controls.MetroComboBox cmbSteps;
         private System.Windows.Forms.PictureBox btnChoosePhoto;
         private System.Windows.Forms.ToolStripMenuItem maintenanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accountsToolStripMenuItem;
@@ -743,6 +779,8 @@
         private System.Windows.Forms.PictureBox btnAddUser;
         private System.Windows.Forms.Label lblPictureDirectory;
         public MetroFramework.Controls.MetroTextBox txtEmplyeeNo;
-        public MetroFramework.Controls.MetroTextBox txtOriginalAppointment;
+        private MetroFramework.Controls.MetroTextBox txtDateOfOriginalAppointment;
+        private MetroFramework.Controls.MetroTextBox txtStep;
+        private MetroFramework.Controls.MetroTextBox txtSalaryGrade;
     }
 }

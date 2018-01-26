@@ -61,18 +61,6 @@ namespace HumanResourceManagement
             {
                 cmbCivilStatus.Items.Add(TempHolder.civil_status_list[i]);
             }
-
-            //LOAD SALARY GRADE
-            for (int i = 0; i < TempHolder.salary_grade_list.Count; i++)
-            {
-                cmbSalaryGrade.Items.Add(TempHolder.salary_grade_list[i]);
-            }
-
-            //LOAD STEPS
-            for (int i = 0; i < TempHolder.steps_list.Count; i++)
-            {
-                cmbSteps.Items.Add(TempHolder.steps_list[i]);
-            }
         }
 
 
@@ -118,17 +106,13 @@ namespace HumanResourceManagement
                                         SQLbank.SEX + "," + 
                                         SQLbank.DATE_OF_BIRTH + "," + 
                                         SQLbank.CIVIL_STATUS + "," +
-                                        SQLbank.POSITION_TITLE+","+
-                                        SQLbank.SALARY_GRADE+","+
-                                        SQLbank.STEP+","+
-                                        SQLbank.DATE_OF_ORIGINAL_APPOINTMENT+","+
                                         SQLbank.HDMF_NO + "," + 
                                         SQLbank.PHIC_NO + "," + 
                                         SQLbank.BP_NO + "," + 
                                         SQLbank.ACCOUNT_NO + "," + 
                                         SQLbank.TIN_NO + ") "+
                                         " OUTPUT INSERTED.EMP_ID "+ 
-                                        " VALUES(@EMPNO, @PLANTILLA, @LNAME, @FNAME, @MNAME, @SEX, @BIRTH, @CIVILSTAT,@POSITION,@SALARYGRADE,@STEP,@ORIGAPPOINTMENT, @HDMF, @PHIC, @BP, @ACC, @TIN)";
+                                        " VALUES(@EMPNO, @PLANTILLA, @LNAME, @FNAME, @MNAME, @SEX, @BIRTH, @CIVILSTAT, @HDMF, @PHIC, @BP, @ACC, @TIN)";
 
                     Console.WriteLine("Saving Query: " + savingSQL);
 
@@ -142,10 +126,6 @@ namespace HumanResourceManagement
                     cmd.Parameters.AddWithValue("@SEX", cmbGender.Text);
                     cmd.Parameters.AddWithValue("@BIRTH", txtDateOfBirth.Text);
                     cmd.Parameters.AddWithValue("@CIVILSTAT", cmbCivilStatus.Text); 
-                    cmd.Parameters.AddWithValue("@POSITION", txtDesignation.Text.Trim());
-                    cmd.Parameters.AddWithValue("@SALARYGRADE", cmbSalaryGrade.Text);
-                    cmd.Parameters.AddWithValue("@STEP", cmbSteps.Text);
-                    cmd.Parameters.AddWithValue("@ORIGAPPOINTMENT", txtDateOfOriginalAppointment.Text);
                     cmd.Parameters.AddWithValue("@HDMF", txthdmf.Text);
                     cmd.Parameters.AddWithValue("@PHIC", txtphic.Text.Trim());
                     cmd.Parameters.AddWithValue("@BP", txtBp.Text.Trim());
@@ -234,11 +214,6 @@ namespace HumanResourceManagement
             cmbCivilStatus.SelectedIndex = -1;
 
             txtEmplyeeNo.ResetText();
-            txtDateOfOriginalAppointment.ResetText();
-            txtDesignation.ResetText();
-            cmbSalaryGrade.SelectedIndex = -1;
-            cmbSteps.SelectedIndex = -1;
-
             txtAccNo.ResetText();
             txtPlantillaNo.ResetText();
             txthdmf.ResetText();
@@ -331,42 +306,6 @@ namespace HumanResourceManagement
                 {
                     Console.WriteLine("Cannot check the availability of the username: Exception: " + ee.Message);
                 }
-            }
-
-            if (txtDateOfOriginalAppointment.Text.Length == 0)
-            {
-                MessageBox.Show("Date of original appointment must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txtDateOfOriginalAppointment.Select();
-                return true;
-
-            }
-
-            if (!DateTime.TryParse(txtDateOfOriginalAppointment.Text, out dt))
-            {
-                MessageBox.Show("Invalid date for Original date of appointment", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txtDateOfOriginalAppointment.Select();
-                return true;
-            }
-
-            if (txtDesignation.Text.Length == 0)
-            {
-                MessageBox.Show("Designation must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txtDesignation.Select();
-                return true;
-            }
-
-            if (cmbSalaryGrade.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select a Salary grade", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                cmbSalaryGrade.DroppedDown = true;
-                return true;
-            }
-
-            if (cmbSteps.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select a Step", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                cmbSteps.DroppedDown = true;
-                return true;
             }
 
             if (txtAccNo.Text.Length == 0)
@@ -518,11 +457,6 @@ namespace HumanResourceManagement
             e.SuppressKeyPress = dateTimeTextKeyDownBoxChecker(txtDateOfBirth,keyChar);
         }
 
-        private void txtDateOfOriginalAppointment_KeyDown(object sender, KeyEventArgs e)
-        {
-            char keyChar = (char)e.KeyCode;
-            e.SuppressKeyPress = dateTimeTextKeyDownBoxChecker(txtDateOfOriginalAppointment, keyChar);
-        }
 
         private bool dateTimeTextKeyDownBoxChecker(MetroTextBox textbox,char keyChar)
         {
