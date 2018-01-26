@@ -72,7 +72,8 @@ namespace HumanResourceManagement
                 //load status in service record
                 loadServiceStatus();
 
-                //load schoolnames
+                //load cause
+                loadCause();
 
             }
             catch (Exception ee)
@@ -90,6 +91,7 @@ namespace HumanResourceManagement
             main.Show(); 
         }
 
+        //************************************************************************
         private void loadPermissions()
         {
             try
@@ -152,60 +154,34 @@ namespace HumanResourceManagement
                 TempHolder.steps_list.Clear();
 
                 openSQLConnection();
-                int start = 0, end = 0;
+                int SGstart, SGend = 0;
+                int Sstart = 0, Send = 0;
 
-                cmd = new SqlCommand("SELECT * FROM " + SQLbank.TBL_SALARY_GRADES + ";", conn);
+                cmd = new SqlCommand("SELECT * FROM " + SQLbank.SYS_VALUES + ";", conn);
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    string salaryGradeStart = reader[SQLbank.SYS_SALARY_GRADE_START].ToString();
+                    string salaryGradeEnd = reader[SQLbank.SYS_SALARY_GRADE_END].ToString();
+                    string stepStart = reader[SQLbank.SYS_STEP_START].ToString();
+                    string stepEnd = reader[SQLbank.SYS_STEP_END].ToString();
 
-                    string desc = reader[SQLbank.DESCRIPTION].ToString().Trim().ToLower();
-
-                    switch (desc)
+                    if (Int32.TryParse(salaryGradeStart, out SGstart) && Int32.TryParse(salaryGradeEnd, out SGend))
                     {
-                        case "salary_grades":
+                        for (int i = SGstart; i < SGend; i++)
+                        {
+                            TempHolder.salary_grade_list.Add(i.ToString());
+                        }
+                        Console.WriteLine("Salary Grade Loaded");
+                    }
 
-                            if (reader[SQLbank.VALUE_START].ToString().Trim().Length > 0)
-                            {
-                                start = Convert.ToInt32(reader[SQLbank.VALUE_START].ToString());
-                            }
-                            else start = 1;
-
-
-                            if (reader[SQLbank.VALUE_END].ToString().Trim().Length > 0)
-                            {
-                                end = Convert.ToInt32(reader[SQLbank.VALUE_END].ToString());
-                            }
-                            else end = 33;
-
-
-                            for (int i = start; i <= end; i++)
-                            {
-                                TempHolder.salary_grade_list.Add(i.ToString());
-                             
-                            }
-
-                            break;
-                        case "steps":
-                            if (reader[SQLbank.VALUE_START].ToString().Trim().Length > 0)
-                            {
-                                start = Convert.ToInt32(reader[SQLbank.VALUE_START].ToString());
-                            }
-                            else start = 1;
-
-
-                            if (reader[SQLbank.VALUE_END].ToString().Trim().Length > 0)
-                            {
-                                end = Convert.ToInt32(reader[SQLbank.VALUE_END].ToString());
-                            }
-                            else end = 8;
-
-                            for (int i = start; i <= end; i++)
-                            {
-                                TempHolder.steps_list.Add(i.ToString());
-                             
-                            }
-                            break;
+                    if (Int32.TryParse(stepStart, out Sstart) && Int32.TryParse(stepEnd, out Send))
+                    {
+                        for (int i = SGstart; i < SGend; i++)
+                        {
+                            TempHolder.steps_list.Add(i.ToString());
+                        }
+                        Console.WriteLine("Step Grade Loaded");
                     }
                 }
             }
@@ -222,12 +198,15 @@ namespace HumanResourceManagement
                 TempHolder.civil_status_list.Clear();
 
                 openSQLConnection();
-                string qry = "SELECT * FROM " + SQLbank.TBL_CIVIL_STATUS+";";
+                string qry = "SELECT "+SQLbank.SYS_CIVIL_STATUS+" FROM " + SQLbank.SYS_VALUES+";";
                 cmd = new SqlCommand(qry, conn);
 
                 reader = cmd.ExecuteReader();
-                while (reader.Read()) TempHolder.civil_status_list.Add(reader[SQLbank.CIVIL_DESCRIPTION].ToString());
-
+                while (reader.Read())
+                {
+                    string cs = reader[SQLbank.SYS_CIVIL_STATUS].ToString();
+                    if (cs.Length != 0) TempHolder.civil_status_list.Add(cs);
+                }
 
             }
             catch (Exception ee)
@@ -243,15 +222,40 @@ namespace HumanResourceManagement
                 TempHolder.status_list.Clear();
 
                 openSQLConnection();
-                string qry = "SELECT * FROM " + SQLbank.TBL_STATUS;
+                string qry = "SELECT "+SQLbank.SYS_STATUS+" FROM " + SQLbank.SYS_VALUES;
                 cmd = new SqlCommand(qry, conn);
                 reader = cmd.ExecuteReader();
-                while (reader.Read()) TempHolder.status_list.Add(reader[SQLbank.STATUS_DESC].ToString());
-
+                while (reader.Read())
+                {
+                    string stat = reader[SQLbank.SYS_STATUS].ToString();
+                    if (stat.Length != 0) TempHolder.status_list.Add(stat);
+                }
             }
             catch (Exception ee)
             {
                 Console.WriteLine("Faield to load service status"+ ee.Message);
+            }
+        }
+
+        private void loadCause()
+        {
+            try
+            {
+                TempHolder.cause_list.Clear();
+
+                openSQLConnection();
+                string qry = "SELECT " + SQLbank.SYS_CAUSE + " FROM " + SQLbank.SYS_VALUES;
+                cmd = new SqlCommand(qry, conn);
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string cause = reader[SQLbank.SYS_CAUSE].ToString();
+                    if (cause.Length != 0) TempHolder.cause_list.Add(cause);
+                }
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine("Faield to load service status" + ee.Message);
             }
         }
       

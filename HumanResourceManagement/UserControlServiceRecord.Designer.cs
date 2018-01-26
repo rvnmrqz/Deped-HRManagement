@@ -164,6 +164,7 @@
             this.Column1.HeaderText = "School";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
+            this.Column1.Visible = false;
             // 
             // Column3
             // 

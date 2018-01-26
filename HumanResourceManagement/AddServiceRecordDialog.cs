@@ -49,17 +49,24 @@ namespace HumanResourceManagement
         private void AddServiceRecordDialog_Load(object sender, EventArgs e)
         {
             conn = new SqlConnection(getStringValue("sqlconstring"));
-            loadStatus();
+            loadSystemValues();
             prepareDisplay();
            
        
         }
 
-        private void loadStatus()
+        private void loadSystemValues()
         {
+            //status
             for (int i = 0; i < TempHolder.status_list.Count; i++)
             {
                 cmbStatus.Items.Add(TempHolder.status_list[i]);
+            }
+
+            //cause
+            for (int i = 0; i < TempHolder.cause_list.Count; i++)
+            {
+                cmbCause.Items.Add(TempHolder.cause_list[i]);
             }
         }
 
@@ -73,7 +80,7 @@ namespace HumanResourceManagement
             txtSalary.Text = TempHolder.searchedLastSalary;
             txtStation.Text = TempHolder.searchedLastStation;
             txtBranch.Text = TempHolder.searchedLastBranch;
-            txtCause.Text = TempHolder.searchedLastCause;
+            cmbCause.Text = TempHolder.searchedLastCause;
             txtLAWOP.Text = TempHolder.searchedLastLawop;
         }
 
@@ -185,36 +192,50 @@ namespace HumanResourceManagement
                 try
                 {
                     openSQLConnection();
+
+
                     string sql = "INSERT INTO " + SQLbank.TBL_SERVICE_RECORDS + " ("
-                        +SQLbank.EMP_ID
-                        +","+SQLbank.SCHOOL_NAME
-                        +","+SQLbank.FROM_DATE
-                        +","+SQLbank.TO_DATE
-                        +","+SQLbank.DESIGNATION
-                        +","+SQLbank.STATUS
-                        +","+SQLbank.SALARY
-                        +","+SQLbank.STATION
-                        +","+SQLbank.BRANCH
-                        +","+SQLbank.CAUSE
-                        +","+SQLbank.LAWOP+")"
-                        +" OUTPUT INSERTED."+SQLbank.ID
-                        +" VALUES(@EMPID,@SCHOOLNAME,@FROM,@TO,@DESIGNATION,@STATUS,@SALARY,@STATION,@BRANCH,@CAUSE,@LAWOP)";
+                        + SQLbank.EMP_ID
+                        + "," + SQLbank.SCHOOL_NAME
+                        + "," + SQLbank.FROM_DATE;
+
+                    if (!chkPresent.Checked) sql += "," + SQLbank.TO_DATE;
+
+                    sql += "," + SQLbank.DESIGNATION
+                    + "," + SQLbank.STATUS
+                    + "," + SQLbank.SALARY
+                    + "," + SQLbank.STATION
+                    + "," + SQLbank.BRANCH
+                    + "," + SQLbank.CAUSE
+                    + "," + SQLbank.LAWOP + ")"
+                    + " OUTPUT INSERTED." + SQLbank.ID
+                    + " VALUES(@EMPID,@SCHOOLNAME,@FROM";
+
+                    if(!chkPresent.Checked) sql+=",@TO";
+
+                    sql+=",@DESIGNATION,@STATUS,@SALARY,@STATION,@BRANCH,@CAUSE,@LAWOP)";
+
                     cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@EMPID", TempHolder.searchedEmpID);
                     cmd.Parameters.AddWithValue("@SCHOOLNAME", txtSchoolName.Text);
-                    cmd.Parameters.AddWithValue("@FROM", txtDateTo.Text);
-                    cmd.Parameters.AddWithValue("@TO", txtDateTo.Text);
+                    cmd.Parameters.AddWithValue("@FROM", txtDateFrom.Text);
+
+                    if(!chkPresent.Checked) cmd.Parameters.AddWithValue("@TO", txtDateTo.Text);
+
                     cmd.Parameters.AddWithValue("@DESIGNATION", txtDesignation.Text);
                     cmd.Parameters.AddWithValue("@STATUS", cmbStatus.Text);
                     cmd.Parameters.AddWithValue("@SALARY", txtSalary.Text);
                     cmd.Parameters.AddWithValue("@STATION", txtStation.Text);
                     cmd.Parameters.AddWithValue("@BRANCH", txtBranch.Text);
-                    cmd.Parameters.AddWithValue("@CAUSE", txtCause.Text);
+                    cmd.Parameters.AddWithValue("@CAUSE", cmbCause.Text);
                     cmd.Parameters.AddWithValue("@LAWOP", txtLAWOP.Text);
+
+                    Console.WriteLine("Saving query: " + sql);
+
                     string lastinsertId = cmd.ExecuteScalar().ToString();
                     Console.WriteLine(lastinsertId);
                     TempHolder.uc_ServiceRecord.loadRecords(TempHolder.searchedEmpID);
-                   // TempHolder.uc_ServiceRecord.addToTable(lastinsertId, txtSchoolName.Text, txtDateFrom.Text, txtDateTo.Text, txtDesignation.Text, cmbStatus.Text, txtSalary.Text, txtStation.Text, txtBranch.Text, txtCause.Text, txtLAWOP.Text);
+                   
                     MessageBox.Show("Successfully added");
                 }
                 catch (Exception ee)
@@ -273,7 +294,7 @@ namespace HumanResourceManagement
                 showMessage("Salary must not be empty");
                 return false;
             }
-            if (txtCause.Text.Trim().Length == 0)
+            if (cmbCause.SelectedIndex==-1)
             {
                 showMessage("Cause must not be empty");
                 return false;
@@ -311,7 +332,17 @@ namespace HumanResourceManagement
 
         private void chkPresent_CheckedChanged(object sender, EventArgs e)
         {
-           
+            if (chkPresent.Checked)
+            {
+                txtDateTo.Enabled = false;
+                txtDateTo.Text = "PRESENT";
+            }
+            else
+            {
+                txtDateTo.ResetText();
+                txtDateTo.Enabled = true;
+                txtDateTo.Select();
+            }
         }
 
         private void txtDateFrom_KeyDown(object sender, KeyEventArgs e)

@@ -178,7 +178,8 @@ namespace HumanResourceManagement
 
         private void btnCancelEditing_Click(object sender, EventArgs e)
         {
-            TempHolder.mainForm.txtEmplyeeNo.Text = emp_id;
+            
+            TempHolder.mainForm.editMode(false);
             TempHolder.mainForm.search();
           
         }
@@ -201,6 +202,7 @@ namespace HumanResourceManagement
                             + SQLbank.DATE_OF_BIRTH + " = @DATEOFBIRTH , "
                             + SQLbank.CIVIL_STATUS + "= @CIVILSTATUS , "
                             + SQLbank.SEX + " = @SEX , "
+                            + SQLbank.PLANTILLA_NO+" = @PLANTILLA, "
                             + SQLbank.ACCOUNT_NO + "= @ACCOUNTNO , "
                             + SQLbank.HDMF_NO + " = @HDMFNO , "
                             + SQLbank.PHIC_NO + " = @PHICNO , "
@@ -210,38 +212,19 @@ namespace HumanResourceManagement
 
                         cmd = new SqlCommand(updateQry, conn);
 
-                        cmd.Parameters.Add("@LASTNAME", SqlDbType.VarChar);
-                        cmd.Parameters["@LASTNAME"].Value = txtLname.Text.Trim();
+                        cmd.Parameters.AddWithValue("@LASTNAME",txtLname.Text.Trim());
+                        cmd.Parameters.AddWithValue("@MIDDLENAME", txtMname.Text.Trim());
+                        cmd.Parameters.AddWithValue("@FIRSTNAME", txtFname.Text.Trim());
+                        cmd.Parameters.AddWithValue("@DATEOFBIRTH", txtDateOfBirth.Text.Trim());
+                        cmd.Parameters.AddWithValue("@CIVILSTATUS", cmbCivilStatus.Text.Trim());
+                        cmd.Parameters.AddWithValue("@SEX", cmbGender.Text.Trim());
+                        cmd.Parameters.AddWithValue("@PLANTILLA", txtPlantillaNo.Text.Trim());
+                        cmd.Parameters.AddWithValue("@ACCOUNTNO", txtAccNo.Text.Trim());
+                        cmd.Parameters.AddWithValue("@HDMFNO", txthdmf.Text.Trim());
+                        cmd.Parameters.AddWithValue("@PHICNO", txtphic.Text.Trim());
+                        cmd.Parameters.AddWithValue("@BPNO", txtBp.Text.Trim());
+                        cmd.Parameters.AddWithValue("@TINNO", txtTin.Text.Trim());
 
-                        cmd.Parameters.Add("@MIDDLENAME", SqlDbType.VarChar);
-                        cmd.Parameters["@MIDDLENAME"].Value = txtMname.Text.Trim();
-
-                        cmd.Parameters.Add("@FIRSTNAME", SqlDbType.VarChar);
-                        cmd.Parameters["@FIRSTNAME"].Value = txtFname.Text.Trim();
-
-                        cmd.Parameters.Add("@DATEOFBIRTH", SqlDbType.Date);
-                        cmd.Parameters["@DATEOFBIRTH"].Value = txtDateOfBirth.Text;
-
-                        cmd.Parameters.Add("@CIVILSTATUS", SqlDbType.VarChar);
-                        cmd.Parameters["@CIVILSTATUS"].Value = cmbCivilStatus.Text;
-
-                        cmd.Parameters.Add("@SEX", SqlDbType.VarChar);
-                        cmd.Parameters["@SEX"].Value = cmbGender.Text;
-
-                        cmd.Parameters.Add("@ACCOUNTNO", SqlDbType.VarChar);
-                        cmd.Parameters["@ACCOUNTNO"].Value = txtAccNo.Text.Trim();
-
-                        cmd.Parameters.Add("@HDMFNO", SqlDbType.VarChar);
-                        cmd.Parameters["@HDMFNO"].Value = txthdmf.Text.Trim();
-
-                        cmd.Parameters.Add("@PHICNO", SqlDbType.VarChar);
-                        cmd.Parameters["@PHICNO"].Value = txtphic.Text.Trim();
-
-                        cmd.Parameters.Add("@BPNO", SqlDbType.VarChar);
-                        cmd.Parameters["@BPNO"].Value = txtBp.Text.Trim();
-
-                        cmd.Parameters.Add("@TINNO", SqlDbType.VarChar);
-                        cmd.Parameters["@TINNO"].Value = txtTin.Text.Trim();
 
 
                         cmd.ExecuteNonQuery();
@@ -318,29 +301,36 @@ namespace HumanResourceManagement
                 cmbGender.DroppedDown = true;
                 return false;
             }
+            
+            if(txtPlantillaNo.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Plantilla number must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtPlantillaNo.Select();
+                return false;
+            }
 
-            if(txtAccNo.Text.Length == 0)
+            if(txtAccNo.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Account number must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtAccNo.Select();
                 return false;
             }
 
-            if(txthdmf.Text.Length == 0)
+            if(txthdmf.Text.Trim().Length == 0)
             {
                 MessageBox.Show("HDMF number must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txthdmf.Select();
                 return false;
             }
             
-            if(txtphic.Text.Length == 0)
+            if(txtphic.Text.Trim().Length == 0)
             {
                 MessageBox.Show("PHIC number must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtphic.Select();
                 return false;
             }
 
-            if(txtBp.Text.Length == 0)
+            if(txtBp.Text.Trim().Length == 0)
             {
                 MessageBox.Show("BP number must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtBp.Select();

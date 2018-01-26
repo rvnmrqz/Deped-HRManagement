@@ -78,7 +78,6 @@ namespace HumanResourceManagement
             conn = new SqlConnection(getStringValue("sqlconstring"));
         }
 
-
         //***********LOADING DATA*****************************
         public void loadRecords(String employee_id)
         {
@@ -89,7 +88,7 @@ namespace HumanResourceManagement
                 clearDisplay();
                 
                 openSQLConnection();
-                string qry = "SELECT * FROM " + SQLbank.TBL_SERVICE_RECORDS + " WHERE " + SQLbank.EMP_ID + " = " + employee_id+" ;";
+                string qry = "SELECT * FROM " + SQLbank.TBL_SERVICE_RECORDS + " WHERE " + SQLbank.EMP_ID + " = " + employee_id+"  ORDER BY "+SQLbank.FROM_DATE+";";
                 cmd = new SqlCommand(qry,conn);
                 reader = cmd.ExecuteReader();
                 int counter = 0;
@@ -187,48 +186,61 @@ namespace HumanResourceManagement
         private void datagridServiceRecords_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             lblRowsCount.Text = datagridServiceRecords.Rows.Count.ToString();
-
-            int lastIndex = datagridServiceRecords.Rows.Count-1;
-            string school = datagridServiceRecords.Rows[lastIndex].Cells[1].Value.ToString();
-            string from = datagridServiceRecords.Rows[lastIndex].Cells[2].Value.ToString();
-            string to = datagridServiceRecords.Rows[lastIndex].Cells[3].Value.ToString();
-            string designation= datagridServiceRecords.Rows[lastIndex].Cells[4].Value.ToString();
-            string status = datagridServiceRecords.Rows[lastIndex].Cells[5].Value.ToString();
-            string salary = datagridServiceRecords.Rows[lastIndex].Cells[6].Value.ToString();
-            string station = datagridServiceRecords.Rows[lastIndex].Cells[7].Value.ToString();
-            string branch = datagridServiceRecords.Rows[lastIndex].Cells[8].Value.ToString();
-            string cause = datagridServiceRecords.Rows[lastIndex].Cells[9].Value.ToString();
-            string lawop = datagridServiceRecords.Rows[lastIndex].Cells[10].Value.ToString();
-
-            if (school.Length == 0) TempHolder.searchedLastSchool = "NONE";
-            if (school.Length != 0 && !school.Equals("-do-")) TempHolder.searchedLastSchool = school;
-
-            if (designation.Length == 0) TempHolder.searchedLastDesignation = "NONE";
-            if (designation.Length != 0 && !designation.Equals("-do-")) TempHolder.searchedLastDesignation = designation;
-
-            if (status.Length == 0) TempHolder.searchedLastStatus = "NONE";
-            if (status.Length != 0 && !status.Equals("-do-")) TempHolder.searchedLastStatus = status;
-
-            if (salary.Length == 0) TempHolder.searchedLastSalary = "0";
-            if (salary.Length != 0 && !salary.Equals("-do-")) TempHolder.searchedLastSalary = salary;
-
-            if (station.Length == 0) TempHolder.searchedLastStation = "NONE";
-            if (station.Length != 0 && !station.Equals("-do-")) TempHolder.searchedLastStation = station;
-
-            if (branch.Length == 0) TempHolder.searchedLastBranch = "NONE";
-            if (branch.Length != 0 && !branch.Equals("-do-")) TempHolder.searchedLastBranch = branch;
-
-            if (cause.Length == 0) TempHolder.searchedLastCause = "NONE";
-            if (cause.Length != 0 && !cause.Equals("-do-")) TempHolder.searchedLastCause = cause;
-
-            if (lawop.Length == 0) TempHolder.searchedLastLawop = "NONE";
-            if (lawop.Length != 0 && !lawop.Equals("-do-")) TempHolder.searchedLastLawop = lawop;
+            detectLastRow();
         }
 
         private void datagridServiceRecords_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             lblRowsCount.Text = datagridServiceRecords.Rows.Count.ToString();
+            detectLastRow();
         }
+
+
+        public void detectLastRow()
+        {
+
+            int lastIndex = datagridServiceRecords.Rows.Count - 1;
+            if (lastIndex != -1)
+            {
+                string school = datagridServiceRecords.Rows[lastIndex].Cells[1].Value.ToString();
+                string from = datagridServiceRecords.Rows[lastIndex].Cells[2].Value.ToString();
+                string to = datagridServiceRecords.Rows[lastIndex].Cells[3].Value.ToString();
+                string designation = datagridServiceRecords.Rows[lastIndex].Cells[4].Value.ToString();
+                string status = datagridServiceRecords.Rows[lastIndex].Cells[5].Value.ToString();
+                string salary = datagridServiceRecords.Rows[lastIndex].Cells[6].Value.ToString();
+                string station = datagridServiceRecords.Rows[lastIndex].Cells[7].Value.ToString();
+                string branch = datagridServiceRecords.Rows[lastIndex].Cells[8].Value.ToString();
+                string cause = datagridServiceRecords.Rows[lastIndex].Cells[9].Value.ToString();
+                string lawop = datagridServiceRecords.Rows[lastIndex].Cells[10].Value.ToString();
+
+                if (school.Length == 0) TempHolder.searchedLastSchool = "NONE";
+                if (school.Length != 0 && !school.Equals("-do-")) TempHolder.searchedLastSchool = school;
+
+                if (designation.Length == 0) TempHolder.searchedLastDesignation = "NONE";
+                if (designation.Length != 0 && !designation.Equals("-do-")) TempHolder.searchedLastDesignation = designation;
+
+                if (status.Length == 0) TempHolder.searchedLastStatus = "NONE";
+                if (status.Length != 0 && !status.Equals("-do-")) TempHolder.searchedLastStatus = status;
+
+                if (salary.Length == 0) TempHolder.searchedLastSalary = "0";
+                if (salary.Length != 0 && !salary.Equals("-do-")) TempHolder.searchedLastSalary = salary;
+
+                if (station.Length == 0) TempHolder.searchedLastStation = "NONE";
+                if (station.Length != 0 && !station.Equals("-do-")) TempHolder.searchedLastStation = station;
+
+                if (branch.Length == 0) TempHolder.searchedLastBranch = "NONE";
+                if (branch.Length != 0 && !branch.Equals("-do-")) TempHolder.searchedLastBranch = branch;
+
+                if (cause.Length == 0) TempHolder.searchedLastCause = "NONE";
+                if (cause.Length != 0 && !cause.Equals("-do-")) TempHolder.searchedLastCause = cause;
+
+                if (lawop.Length == 0) TempHolder.searchedLastLawop = "NONE";
+                if (lawop.Length != 0 && !lawop.Equals("-do-")) TempHolder.searchedLastLawop = lawop;
+            }
+           
+        }
+
+   
 
         private void lblRowsCount_TextChanged(object sender, EventArgs e)
         {
@@ -267,7 +279,9 @@ namespace HumanResourceManagement
 
 
                 //do population of cells here
-              //  worksheet.Cells[13, 2] = txtName.Text;
+                worksheet.Cells[11, 2] = TempHolder.searchedLastSchool;
+                worksheet.Cells[12, 2] = TempHolder.searchedName;
+                
 
 
             }

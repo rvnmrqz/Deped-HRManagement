@@ -73,21 +73,15 @@ namespace HumanResourceManagement
         public static string DEL_SERVICE_REC = "delete_service_record";
        
 
-
-        public static string TBL_CIVIL_STATUS = "sys_civil_status";
-        public static string CIVIL_DESCRIPTION = "civil_description";
-
-        //SALARY GRADES
-        public static string TBL_SALARY_GRADES = "sys_salary_grade_and_steps";
-        public static string DESCRIPTION = "description";
-        public static string VALUE_START = "value_start";
-        public static string VALUE_END = "value_end";
-
-        //SERVICE STATUS 
-        public static string TBL_STATUS = "sys_status";
-        public static string STATUS_DESC = "status_desc";
-
+        //SYSTEM VALUES
+        public static string SYS_VALUES = "sys_values";
+        public static string SYS_CIVIL_STATUS = "civil_status";
+        public static string SYS_STATUS = "status";
+        public static string SYS_SALARY_GRADE_START = "salary_grade_start";
+        public static string SYS_SALARY_GRADE_END = "salary_grade_end";
+        public static string SYS_STEP_START = "step_start";
+        public static string SYS_STEP_END = "step_end";
+        public static string SYS_CAUSE = "cause";
        
-
     }
 }

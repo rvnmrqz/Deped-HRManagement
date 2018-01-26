@@ -164,28 +164,29 @@ namespace HumanResourceManagement
 
                     MessageBox.Show("New Employee Saved","Success",MessageBoxButtons.OK,MessageBoxIcon.Information);
 
-                    try
+                    if (lblSystemCreationMessage.Visible)
                     {
-                        //creation of system user acc
-                        string createSysAcc = "INSERT INTO " + SQLbank.TBL_USERS + "(" + SQLbank.USERNAME + "," + SQLbank.PASSWORD + "," + SQLbank.ROLE + "," + SQLbank.FNAME + "," + SQLbank.MNAME + "," + SQLbank.LNAME + "," + SQLbank.PICTUREFILENAME + ")" +
-                                        " VALUES (@USERNAME,@PASSWORD,@ROLE,@FNAME,@MNAME,@LNAME,@PICFILENAME)";
-                        cmd = new SqlCommand(createSysAcc, conn);
-                        cmd.Parameters.AddWithValue("@USERNAME", lblUsername.Text);
-                        cmd.Parameters.AddWithValue("@PASSWORD", encrypt(lblPassword.Text));
-                        cmd.Parameters.AddWithValue("@ROLE", "User");
-                        cmd.Parameters.AddWithValue("@FNAME", txtFname.Text);
-                        cmd.Parameters.AddWithValue("@MNAME", txtMname.Text);
-                        cmd.Parameters.AddWithValue("@LNAME", txtLname.Text);
-                        cmd.Parameters.AddWithValue("@PICFILENAME",filename);
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("New System Account Created", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        try
+                        {
+                            //creation of system user acc
+                            string createSysAcc = "INSERT INTO " + SQLbank.TBL_USERS + "(" + SQLbank.USERNAME + "," + SQLbank.PASSWORD + "," + SQLbank.ROLE + "," + SQLbank.FNAME + "," + SQLbank.MNAME + "," + SQLbank.LNAME + "," + SQLbank.PICTUREFILENAME + ")" +
+                                            " VALUES (@USERNAME,@PASSWORD,@ROLE,@FNAME,@MNAME,@LNAME,@PICFILENAME)";
+                            cmd = new SqlCommand(createSysAcc, conn);
+                            cmd.Parameters.AddWithValue("@USERNAME", lblUsername.Text);
+                            cmd.Parameters.AddWithValue("@PASSWORD", encrypt(lblPassword.Text));
+                            cmd.Parameters.AddWithValue("@ROLE", "User");
+                            cmd.Parameters.AddWithValue("@FNAME", txtFname.Text);
+                            cmd.Parameters.AddWithValue("@MNAME", txtMname.Text);
+                            cmd.Parameters.AddWithValue("@LNAME", txtLname.Text);
+                            cmd.Parameters.AddWithValue("@PICFILENAME", filename);
+                            cmd.ExecuteNonQuery();
+                            MessageBox.Show("New System Account Created", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ee)
+                        {
+                            Console.WriteLine("Creating system account error: " + ee.Message);
+                        }
                     }
-                    catch (Exception)
-                    {
-
-                        throw;
-                    }
-
                     clearDisplay();
 
                 }

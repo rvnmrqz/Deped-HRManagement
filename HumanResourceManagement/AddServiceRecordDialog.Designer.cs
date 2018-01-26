@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddServiceRecordDialog));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbCause = new MetroFramework.Controls.MetroComboBox();
             this.btnDone = new System.Windows.Forms.Button();
             this.txtDateTo = new MetroFramework.Controls.MetroTextBox();
             this.txtDateFrom = new MetroFramework.Controls.MetroTextBox();
@@ -54,7 +55,6 @@
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.txtLAWOP = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.txtCause = new MetroFramework.Controls.MetroTextBox();
             this.txtBranch = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
@@ -69,6 +69,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.cmbCause);
             this.panel1.Controls.Add(this.btnDone);
             this.panel1.Controls.Add(this.txtDateTo);
             this.panel1.Controls.Add(this.txtDateFrom);
@@ -93,7 +94,6 @@
             this.panel1.Controls.Add(this.metroLabel8);
             this.panel1.Controls.Add(this.txtLAWOP);
             this.panel1.Controls.Add(this.metroLabel2);
-            this.panel1.Controls.Add(this.txtCause);
             this.panel1.Controls.Add(this.txtBranch);
             this.panel1.Controls.Add(this.metroLabel3);
             this.panel1.Controls.Add(this.metroLabel4);
@@ -104,6 +104,16 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(3);
             this.panel1.Size = new System.Drawing.Size(514, 400);
             this.panel1.TabIndex = 0;
+            // 
+            // cmbCause
+            // 
+            this.cmbCause.FormattingEnabled = true;
+            this.cmbCause.ItemHeight = 23;
+            this.cmbCause.Location = new System.Drawing.Point(140, 284);
+            this.cmbCause.Name = "cmbCause";
+            this.cmbCause.Size = new System.Drawing.Size(241, 29);
+            this.cmbCause.TabIndex = 126;
+            this.cmbCause.UseSelectable = true;
             // 
             // btnDone
             // 
@@ -495,7 +505,7 @@
             this.txtLAWOP.CustomButton.Visible = false;
             this.txtLAWOP.Enabled = false;
             this.txtLAWOP.Lines = new string[0];
-            this.txtLAWOP.Location = new System.Drawing.Point(140, 313);
+            this.txtLAWOP.Location = new System.Drawing.Point(140, 319);
             this.txtLAWOP.MaxLength = 32767;
             this.txtLAWOP.Multiline = true;
             this.txtLAWOP.Name = "txtLAWOP";
@@ -522,37 +532,6 @@
             this.metroLabel2.Size = new System.Drawing.Size(65, 19);
             this.metroLabel2.TabIndex = 33;
             this.metroLabel2.Text = "BRANCH:";
-            // 
-            // txtCause
-            // 
-            this.txtCause.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            // 
-            // 
-            // 
-            this.txtCause.CustomButton.Image = null;
-            this.txtCause.CustomButton.Location = new System.Drawing.Point(219, 1);
-            this.txtCause.CustomButton.Name = "";
-            this.txtCause.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txtCause.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtCause.CustomButton.TabIndex = 1;
-            this.txtCause.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtCause.CustomButton.UseSelectable = true;
-            this.txtCause.CustomButton.Visible = false;
-            this.txtCause.Lines = new string[0];
-            this.txtCause.Location = new System.Drawing.Point(140, 284);
-            this.txtCause.MaxLength = 32767;
-            this.txtCause.Name = "txtCause";
-            this.txtCause.PasswordChar = '\0';
-            this.txtCause.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtCause.SelectedText = "";
-            this.txtCause.SelectionLength = 0;
-            this.txtCause.SelectionStart = 0;
-            this.txtCause.ShortcutsEnabled = true;
-            this.txtCause.Size = new System.Drawing.Size(241, 23);
-            this.txtCause.TabIndex = 38;
-            this.txtCause.UseSelectable = true;
-            this.txtCause.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtCause.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // txtBranch
             // 
@@ -716,7 +695,6 @@
         private MetroFramework.Controls.MetroTextBox txtBranch;
         private MetroFramework.Controls.MetroLabel metroLabel6;
         private MetroFramework.Controls.MetroLabel metroLabel5;
-        private MetroFramework.Controls.MetroTextBox txtCause;
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroTextBox txtSalary;
         private MetroFramework.Controls.MetroLabel metroLabel3;
@@ -737,5 +715,6 @@
         private System.Windows.Forms.Button btnDone;
         public MetroFramework.Controls.MetroTextBox txtDateTo;
         public MetroFramework.Controls.MetroTextBox txtDateFrom;
+        private MetroFramework.Controls.MetroComboBox cmbCause;
     }
 }

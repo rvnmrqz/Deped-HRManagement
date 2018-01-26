@@ -44,7 +44,7 @@ namespace HumanResourceManagement
 
             TempHolder.mainForm = this;
             conn = new SqlConnection(getStringValue("sqlconstring"));
-   
+
             loadTab2();
             loadTab1();
 
@@ -92,7 +92,7 @@ namespace HumanResourceManagement
 
         private void lblFormMaxMin_Click(object sender, EventArgs e)
         {
-            if(this.WindowState == FormWindowState.Maximized)
+            if (this.WindowState == FormWindowState.Maximized)
             {
                 this.WindowState = FormWindowState.Normal;
             }
@@ -100,7 +100,7 @@ namespace HumanResourceManagement
             {
                 this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
                 this.WindowState = FormWindowState.Maximized;
-                
+
             }
         }
 
@@ -112,7 +112,7 @@ namespace HumanResourceManagement
         //******************MENU STRIP ITEM CLICK EVENTS*********************
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-          
+
             MyAccountForm myAcc = new MyAccountForm();
             myAcc.ShowDialog();
         }
@@ -134,18 +134,17 @@ namespace HumanResourceManagement
         private void menuItemExit_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("You're about to close the program, continue?", "Closing", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if(dr == DialogResult.OK)  Application.Exit();
+            if (dr == DialogResult.OK) Application.Exit();
         }
 
         private void excelToSQLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Permissions.authorizedToUseFunction(Permissions.EXCEL_EXTRACTOR_PERMISSION)==null)
+            if (Permissions.authorizedToUseFunction(Permissions.EXCEL_EXTRACTOR_PERMISSION) == null)
             {
                 //show backup dialog then show excel extractor
             }
         }
 
-       
         //****************************TAB PAGES*********************************
         private void loadTab1()
         {
@@ -177,7 +176,6 @@ namespace HumanResourceManagement
             }
         }
 
-
         //******************************SEARCHING******************************
         private void metroTextBox1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -187,7 +185,8 @@ namespace HumanResourceManagement
             {
                 search();
             }
-            else if(e.KeyData == Keys.Enter && txtEmplyeeNo.Text.Length==0){
+            else if (e.KeyData == Keys.Enter && txtEmplyeeNo.Text.Length == 0)
+            {
                 clearDisplay();
             }
             else if (lblemployee_id_hidden.Text.Length > 0 && Char.IsLetterOrDigit(keyChar))
@@ -222,20 +221,8 @@ namespace HumanResourceManagement
 
                     TempHolder.searchedName = reader[SQLbank.EMP_FIRST_NAME].ToString();
 
-                   lblemployee_id_hidden.Text = reader[SQLbank.EMP_ID].ToString();
-                    txtPlantillaNo.Text = reader[SQLbank.PLANTILLA_NO].ToString();
-                    //txtPositionTitle.Text = reader[SQLbank.POSITION_TITLE].ToString();
-                    //cmbSalaryGrade.Text = reader[SQLbank.SALARY_GRADE].ToString();
-                    //cmbSteps.Text = reader[SQLbank.STEP].ToString();
-
-               /*     string dateOfOriginalAppointment = reader[SQLbank.DATE_OF_ORIGINAL_APPOINTMENT].ToString();
-                    if (dateOfOriginalAppointment.Length > 0)
-                    {
-                        DateTime dt;
-                        if(DateTime.TryParse(dateOfOriginalAppointment,out dt)){
-                            txtOriginalAppointment.Text = dt.ToString("MM/dd/yyyy");
-                        }
-                    }*/
+                    lblemployee_id_hidden.Text = reader[SQLbank.EMP_ID].ToString();
+                    //txtPlantillaNo.Text = reader[SQLbank.PLANTILLA_NO].ToString();
 
                     string filename = reader[SQLbank.PICTUREFILENAME].ToString().Trim();
                     if (filename.Length > 0)
@@ -256,7 +243,7 @@ namespace HumanResourceManagement
                 else
                 {
                     showSearchResultMessage(null);
-                   
+
 
                     //load tab 1,2,3
                     TempHolder.uc_PersonalInfo.loadInfo(lblemployee_id_hidden.Text);
@@ -278,16 +265,13 @@ namespace HumanResourceManagement
             TempHolder.clearSearchTempValues();
             pictureBox1.Invalidate();
             pictureBox1.Image = Properties.Resources.default_avatar;
-
             lblPictureDirectory.ResetText();
+            lblemployee_id_hidden.ResetText();
+            lblemployee_id_hidden.ResetText();
 
-            lblemployee_id_hidden.ResetText();
-            lblemployee_id_hidden.ResetText();
-            txtPlantillaNo.ResetText();
-            txtPositionTitle.ResetText();
-            txtSalaryGrade.ResetText();
-            txtStep.ResetText();
-            txtDateOfOriginalAppointment.ResetText(); 
+            txtSchoolName.ResetText();
+            txtDesignation.ResetText();
+            txtDateOfOriginalAppointment.ResetText();
 
             //tabs
             TempHolder.uc_PersonalInfo.clearDisplay();
@@ -308,12 +292,8 @@ namespace HumanResourceManagement
 
         public void editMode(bool editmodeValue)
         {
-            if (editmodeValue) txtPlantillaNo.Select();
-            else txtEmplyeeNo.Select();
-
             txtEmplyeeNo.Enabled = !editmodeValue;
-            txtPlantillaNo.Enabled = editmodeValue;
-            txtPositionTitle.Enabled = editmodeValue;
+            txtDesignation.Enabled = editmodeValue;
             btnChoosePhoto.Visible = editmodeValue;
 
             TempHolder.uc_PersonalInfo.editMode(editmodeValue);
@@ -326,54 +306,31 @@ namespace HumanResourceManagement
                 1 = save successful
                 0 = validation failed
             */
-            try
+
+            if (lblPictureDirectory.Text.Length != 0)
             {
-                if (fieldsAreValid())
+                string filename = lblemployee_id_hidden.Text + ".png";
+                if (copyFileToPictureFolder(filename))
                 {
-                    openSQLConnection();
-                    string updateSQL = "UPDATE " + SQLbank.TBL_EMPLOYEES + " SET " +
-                        SQLbank.PLANTILLA_NO + " = @PLANTILLA " +
-                        " WHERE " + SQLbank.EMP_ID + " = " + lblemployee_id_hidden.Text;
-
-                    cmd = new SqlCommand(updateSQL, conn);
-                    cmd.Parameters.AddWithValue("@PLANTILLA", txtPlantillaNo.Text.Trim());
-
-                    cmd.ExecuteNonQuery();
-
-                    if (lblPictureDirectory.Text.Length != 0)
+                    //picture is successfully copied
+                    //update the value of picture_filename column in the database
+                    try
                     {
-                        string filename = lblemployee_id_hidden.Text + ".png";
-                        if (copyFileToPictureFolder(filename))
-                        {
-                            //picture is successfully copied
-                            //update the value of picture_filename column in the database
-
-                            try
-                            {
-                                openSQLConnection();
-                                string updateqry = "UPDATE " + SQLbank.TBL_EMPLOYEES + " SET " + SQLbank.PICTUREFILENAME + "= @FILENAME WHERE " + SQLbank.EMP_ID + " = " + lblemployee_id_hidden.Text;
-                                cmd = new SqlCommand(updateqry, conn);
-                                cmd.Parameters.AddWithValue("@FILENAME", filename);
-                                cmd.ExecuteNonQuery();
-                            }
-                            catch (Exception ee)
-                            {
-                                MessageBox.Show("Failed update employee's picture info", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                Console.WriteLine("Saving updates in picture field error: " + ee.Message);
-                            }
-                        }
+                        openSQLConnection();
+                        string updateqry = "UPDATE " + SQLbank.TBL_EMPLOYEES + " SET " + SQLbank.PICTUREFILENAME + "= @FILENAME WHERE " + SQLbank.EMP_ID + " = " + lblemployee_id_hidden.Text;
+                        cmd = new SqlCommand(updateqry, conn);
+                        cmd.Parameters.AddWithValue("@FILENAME", filename);
+                        cmd.ExecuteNonQuery();
                     }
-
-                        return 1;
+                    catch (Exception ee)
+                    {
+                        MessageBox.Show("Failed update employee's picture info", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Console.WriteLine("Saving updates in picture field error: " + ee.Message);
+                        return -1;
+                    }
                 }
-                else return 0;
-           
             }
-            catch (Exception ee)
-            {
-                Console.WriteLine("Mainform - saveUpdates(), Exception: " + ee.Message);
-                return -1;
-            }
+            return 1;
         }
 
         private bool copyFileToPictureFolder(string imagefilename)
@@ -401,93 +358,15 @@ namespace HumanResourceManagement
             return true;
         }
 
-        protected bool fieldsAreValid()
-        {
-            if (txtPlantillaNo.Text.Length == 0)
-            {
-                MessageBox.Show("Plantilla number must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (txtPositionTitle.Text.Length == 0)
-            {
-                MessageBox.Show("Designation must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-
-            return true;
-        }
-
-        private bool dateTimeTextKeyDownBoxChecker(MetroTextBox textbox, char keyChar)
-        {
-            bool cancelEVent = true;
-
-            if (Char.IsNumber(keyChar) || Char.IsControl(keyChar))
-            {
-                Console.WriteLine("Key Not Blocked");
-                cancelEVent = false;
-
-                if (Char.IsNumber(keyChar))
-                {
-                    string textString = textbox.Text;
-                    int textlength = textbox.Text.Length;
-
-                    switch (textlength)
-                    {
-                        case 0:
-                            //do nothing
-                            break;
-                        case 1:
-                            int monthFirstDigit = Convert.ToInt32(textString.Substring(0, 1));
-                            if (monthFirstDigit > 1)
-                            {
-                                textbox.Text = "0" + textString;
-                                addSlash(textbox, 2);
-                            }
-                            break;
-                        case 2:
-                            addSlash(textbox, 2);
-                            break;
-                        case 4:
-                            int dayFirstDigit = Convert.ToInt32(textString.Substring(3, 1));
-                            if (dayFirstDigit > 3)
-                            {
-                                textbox.Text = textString.Insert(3, "0");
-                                addSlash(textbox, 5);
-                            }
-                            break;
-                        case 5:
-                            addSlash(textbox, 5);
-                            break;
-                        case 9:
-                            Console.WriteLine("Checking");
-                            //check if valid
-                            DateTime dt;
-                            if (!DateTime.TryParse(textbox.Text.ToString(), out dt))
-                            {
-                                MessageBox.Show("Invalid Date Value");
-                            }
-                            break;
-                    }
-                }
-            }
-            return cancelEVent;
-        }
-
-        private void addSlash(MetroTextBox textbox, int placeIndex)
-        {
-            string txtString = textbox.Text;
-            textbox.Text = txtString.Insert(placeIndex, "/");
-            textbox.SelectionStart = textbox.Text.Length;
-        }
 
         private void toolItem_SQLBackup_Click(object sender, EventArgs e)
         {
-            if (Permissions.authorizedToUseFunction(Permissions.SQL_BACKUP_PERMISSION)==null)
+            if (Permissions.authorizedToUseFunction(Permissions.SQL_BACKUP_PERMISSION) == null)
             {
 
             }
         }
-   
+
         private void btnChoosePhoto_Click(object sender, EventArgs e)
         {
             //browse pictures
