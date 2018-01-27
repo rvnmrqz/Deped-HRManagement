@@ -219,7 +219,9 @@ namespace HumanResourceManagement
                 {
                     resultCount++;
 
-                    TempHolder.searchedName = reader[SQLbank.EMP_FIRST_NAME].ToString();
+                    TempHolder.searchedName = reader[SQLbank.EMP_LAST_NAME].ToString().ToUpper()+"    "+reader[SQLbank.EMP_FIRST_NAME].ToString().ToUpper()+"    " + reader[SQLbank.EMP_MIDDLE_NAME].ToString().ToUpper();
+                    TempHolder.searchedSheetName = reader[SQLbank.EMP_FIRST_NAME].ToString();
+
 
                     lblemployee_id_hidden.Text = reader[SQLbank.EMP_ID].ToString();
                     //txtPlantillaNo.Text = reader[SQLbank.PLANTILLA_NO].ToString();

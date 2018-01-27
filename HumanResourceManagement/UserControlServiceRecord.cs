@@ -265,6 +265,8 @@ namespace HumanResourceManagement
 
                 if (excelApp == null) excelApp = new Microsoft.Office.Interop.Excel.Application();
 
+      
+
                 workbook = excelApp.Workbooks.Open(templatePath);
                 worksheet = workbook.Sheets[1];
 
@@ -272,7 +274,7 @@ namespace HumanResourceManagement
                 worksheet = excelApp.Workbooks[2].Sheets[1]; //replacing the value of the variable from original template to duplicate
 
 
-                worksheet.Name = TempHolder.searchedName+"-ServiceRecord";
+                worksheet.Name = TempHolder.searchedSheetName+"_ServiceRecord";
 
                 workbook.Close(); // closes the original template
                 excelApp.Visible = true; //makes the duplicate visible
