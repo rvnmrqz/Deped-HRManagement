@@ -179,8 +179,8 @@ namespace HumanResourceManagement
                 txtStatus.Text = datagridServiceRecords.Rows[selectedIndex].Cells[5].Value.ToString();
                 txtSalary.Text = datagridServiceRecords.Rows[selectedIndex].Cells[6].Value.ToString();
                 txtStation.Text = datagridServiceRecords.Rows[selectedIndex].Cells[7].Value.ToString();
-                txtCause.Text = datagridServiceRecords.Rows[selectedIndex].Cells[8].Value.ToString();
-                txtBranch.Text = datagridServiceRecords.Rows[selectedIndex].Cells[9].Value.ToString();
+                txtBranch.Text = datagridServiceRecords.Rows[selectedIndex].Cells[8].Value.ToString();
+                txtCause.Text = datagridServiceRecords.Rows[selectedIndex].Cells[9].Value.ToString();
                 txtLAWOP.Text = datagridServiceRecords.Rows[selectedIndex].Cells[10].Value.ToString();
                 btnDelete.Enabled = true;
             }
