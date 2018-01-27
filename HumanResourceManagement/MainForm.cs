@@ -67,7 +67,7 @@ namespace HumanResourceManagement
             if (conn.State == ConnectionState.Open) conn.Close();
         }
 
-        //*******************APP CONFIG MANAGER*********************************
+        //*******************APP CONFIG MANAGER************************************************
         private string getStringValue(string key)
         {
             Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
