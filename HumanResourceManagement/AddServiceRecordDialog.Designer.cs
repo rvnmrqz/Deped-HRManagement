@@ -62,25 +62,20 @@
             this.top_panel = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.lblExit = new System.Windows.Forms.Label();
+            this.panelChkBox = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.top_panel.SuspendLayout();
+            this.panelChkBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.panelChkBox);
             this.panel1.Controls.Add(this.cmbCause);
             this.panel1.Controls.Add(this.btnDone);
             this.panel1.Controls.Add(this.txtDateTo);
             this.panel1.Controls.Add(this.txtDateFrom);
-            this.panel1.Controls.Add(this.chkLawop);
-            this.panel1.Controls.Add(this.chkSalary);
-            this.panel1.Controls.Add(this.chkBranch);
-            this.panel1.Controls.Add(this.chkStation);
-            this.panel1.Controls.Add(this.chkStatus);
-            this.panel1.Controls.Add(this.chkDesignation);
-            this.panel1.Controls.Add(this.chkPresent);
-            this.panel1.Controls.Add(this.chkSchool);
             this.panel1.Controls.Add(this.cmbStatus);
             this.panel1.Controls.Add(this.metroLabel12);
             this.panel1.Controls.Add(this.txtSchoolName);
@@ -204,7 +199,7 @@
             this.chkLawop.AutoSize = true;
             this.chkLawop.Checked = true;
             this.chkLawop.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkLawop.Location = new System.Drawing.Point(387, 319);
+            this.chkLawop.Location = new System.Drawing.Point(3, 270);
             this.chkLawop.Name = "chkLawop";
             this.chkLawop.Size = new System.Drawing.Size(44, 17);
             this.chkLawop.TabIndex = 64;
@@ -217,7 +212,7 @@
             this.chkSalary.AutoSize = true;
             this.chkSalary.Checked = true;
             this.chkSalary.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSalary.Location = new System.Drawing.Point(387, 257);
+            this.chkSalary.Location = new System.Drawing.Point(3, 208);
             this.chkSalary.Name = "chkSalary";
             this.chkSalary.Size = new System.Drawing.Size(44, 17);
             this.chkSalary.TabIndex = 63;
@@ -230,7 +225,7 @@
             this.chkBranch.AutoSize = true;
             this.chkBranch.Checked = true;
             this.chkBranch.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBranch.Location = new System.Drawing.Point(387, 227);
+            this.chkBranch.Location = new System.Drawing.Point(3, 178);
             this.chkBranch.Name = "chkBranch";
             this.chkBranch.Size = new System.Drawing.Size(44, 17);
             this.chkBranch.TabIndex = 62;
@@ -243,7 +238,7 @@
             this.chkStation.AutoSize = true;
             this.chkStation.Checked = true;
             this.chkStation.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkStation.Location = new System.Drawing.Point(387, 200);
+            this.chkStation.Location = new System.Drawing.Point(3, 146);
             this.chkStation.Name = "chkStation";
             this.chkStation.Size = new System.Drawing.Size(44, 17);
             this.chkStation.TabIndex = 61;
@@ -256,7 +251,7 @@
             this.chkStatus.AutoSize = true;
             this.chkStatus.Checked = true;
             this.chkStatus.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkStatus.Location = new System.Drawing.Point(387, 166);
+            this.chkStatus.Location = new System.Drawing.Point(3, 115);
             this.chkStatus.Name = "chkStatus";
             this.chkStatus.Size = new System.Drawing.Size(44, 17);
             this.chkStatus.TabIndex = 60;
@@ -269,7 +264,7 @@
             this.chkDesignation.AutoSize = true;
             this.chkDesignation.Checked = true;
             this.chkDesignation.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDesignation.Location = new System.Drawing.Point(387, 135);
+            this.chkDesignation.Location = new System.Drawing.Point(3, 84);
             this.chkDesignation.Name = "chkDesignation";
             this.chkDesignation.Size = new System.Drawing.Size(44, 17);
             this.chkDesignation.TabIndex = 59;
@@ -282,7 +277,7 @@
             this.chkPresent.AutoSize = true;
             this.chkPresent.Checked = true;
             this.chkPresent.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkPresent.Location = new System.Drawing.Point(387, 52);
+            this.chkPresent.Location = new System.Drawing.Point(3, 6);
             this.chkPresent.Name = "chkPresent";
             this.chkPresent.Size = new System.Drawing.Size(62, 17);
             this.chkPresent.TabIndex = 58;
@@ -295,7 +290,7 @@
             this.chkSchool.AutoSize = true;
             this.chkSchool.Checked = true;
             this.chkSchool.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSchool.Location = new System.Drawing.Point(387, 83);
+            this.chkSchool.Location = new System.Drawing.Point(3, 32);
             this.chkSchool.Name = "chkSchool";
             this.chkSchool.Size = new System.Drawing.Size(44, 17);
             this.chkSchool.TabIndex = 57;
@@ -658,6 +653,21 @@
             this.lblExit.Text = "X";
             this.lblExit.Click += new System.EventHandler(this.lblExit_Click);
             // 
+            // panelChkBox
+            // 
+            this.panelChkBox.Controls.Add(this.chkSchool);
+            this.panelChkBox.Controls.Add(this.chkDesignation);
+            this.panelChkBox.Controls.Add(this.chkStatus);
+            this.panelChkBox.Controls.Add(this.chkStation);
+            this.panelChkBox.Controls.Add(this.chkBranch);
+            this.panelChkBox.Controls.Add(this.chkPresent);
+            this.panelChkBox.Controls.Add(this.chkLawop);
+            this.panelChkBox.Controls.Add(this.chkSalary);
+            this.panelChkBox.Location = new System.Drawing.Point(387, 51);
+            this.panelChkBox.Name = "panelChkBox";
+            this.panelChkBox.Size = new System.Drawing.Size(80, 296);
+            this.panelChkBox.TabIndex = 127;
+            // 
             // AddServiceRecordDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -677,6 +687,8 @@
             this.panel1.PerformLayout();
             this.top_panel.ResumeLayout(false);
             this.top_panel.PerformLayout();
+            this.panelChkBox.ResumeLayout(false);
+            this.panelChkBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -716,5 +728,6 @@
         public MetroFramework.Controls.MetroTextBox txtDateTo;
         public MetroFramework.Controls.MetroTextBox txtDateFrom;
         private MetroFramework.Controls.MetroComboBox cmbCause;
+        private System.Windows.Forms.Panel panelChkBox;
     }
 }

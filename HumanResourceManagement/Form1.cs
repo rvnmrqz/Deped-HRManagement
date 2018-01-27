@@ -305,6 +305,7 @@ namespace HumanResourceManagement
                 {
                     sqlSettingsForm = new SQLSettingsForm();
                     sqlSettingsForm.ShowDialog();
+                    sqlSettingsForm.BringToFront();
                 }
             }
             else lblConnectionMsg.Visible = false;

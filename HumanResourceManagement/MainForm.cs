@@ -261,6 +261,14 @@ namespace HumanResourceManagement
             }
         }
 
+        public void showOtherEmpInfo()
+        {
+                //added +"" just to avoid null
+                txtSchoolName.Text = TempHolder.searchedLastSchool + "";
+                txtDesignation.Text = TempHolder.searchedLastDesignation + "";
+                txtDateOfOriginalAppointment.Text = TempHolder.searchedOriginalAppointment + "";
+        }
+
         public void clearDisplay()
         {
             Console.WriteLine("Clear Display -Main");

@@ -22,38 +22,39 @@ namespace HumanResourceManagement
 
         public static string searchedSheetName = "";
 
-        public static string searchedName = "";
-        public static string searchedLastSchool = "";
-        public static string searchedOriginalAppointment = "";
-        public static string searchedBirthday = "";
-        public static string searchedBirthPlace  = "";
+        public static string searchedName;
+        public static string searchedLastSchool;
+        public static string searchedOriginalAppointment;
+        public static string searchedBirthday;
+        public static string searchedBirthPlace;
 
-        public static string searchedFrom = "";
-        public static string searchedTo = "";
-        public static string searchedLastDesignation = "";
-        public static string searchedLastStatus = "";
-        public static string searchedLastSalary = "0";
-        public static string searchedLastStation = "";
-        public static string searchedLastBranch = "";
-        public static string searchedLastCause = "";
-        public static string searchedLastLawop = "";
+        public static string searchedFrom;
+        public static string searchedTo;
+        public static string searchedLastDesignation;
+        public static string searchedLastStatus;
+        public static string searchedLastSalary;
+        public static string searchedLastStation;
+        public static string searchedLastBranch;
+        public static string searchedLastCause;
+        public static string searchedLastLawop;
 
 
         public static void clearSearchTempValues()
         {
-            searchedSheetName = "";
-            searchedEmpID = "";
-            searchedOriginalAppointment = "";
-            searchedName = "";
-            searchedLastSchool = "";
-            searchedLastDesignation = "";
-            searchedLastStatus = "";
-            searchedLastSalary = "0";
-            searchedLastStation = "";
-            searchedLastBranch = "";
-            searchedLastCause = "";
-            searchedLastLawop = "";
-    }
+            searchedEmpID = null;
+            searchedSheetName = null;
+
+            searchedName = null;
+            searchedOriginalAppointment = null;
+            searchedLastSchool = null;
+            searchedLastDesignation = null;
+            searchedLastStatus = null;
+            searchedLastSalary = null; 
+            searchedLastStation = null;
+            searchedLastBranch = null;
+            searchedLastCause = null;
+            searchedLastLawop = null;
+        }
 
         //logged user
         public static string loggedUser_ID,username,password, fname,mname,lname,accountType,pictureFilename;

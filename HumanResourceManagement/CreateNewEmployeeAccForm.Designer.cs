@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateNewEmployeeAccForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.metroLabel18 = new MetroFramework.Controls.MetroLabel();
             this.txtEmplyeeNo = new MetroFramework.Controls.MetroTextBox();
             this.lblSystemCreationMessage = new System.Windows.Forms.Label();
@@ -74,8 +75,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblFormExit = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.accNoGroup.SuspendLayout();
             this.panelAccountNumbers.SuspendLayout();
             this.personalInfoGroup.SuspendLayout();
@@ -83,7 +84,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnChoosePhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.FormPanel.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -108,15 +108,26 @@
             this.panel1.Size = new System.Drawing.Size(828, 404);
             this.panel1.TabIndex = 0;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.metroLabel18);
+            this.groupBox1.Controls.Add(this.txtEmplyeeNo);
+            this.groupBox1.Location = new System.Drawing.Point(27, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(580, 77);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            // 
             // metroLabel18
             // 
             this.metroLabel18.AutoSize = true;
             this.metroLabel18.Enabled = false;
+            this.metroLabel18.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.metroLabel18.Location = new System.Drawing.Point(11, 13);
             this.metroLabel18.Name = "metroLabel18";
-            this.metroLabel18.Size = new System.Drawing.Size(108, 19);
+            this.metroLabel18.Size = new System.Drawing.Size(142, 19);
             this.metroLabel18.TabIndex = 116;
-            this.metroLabel18.Text = "EMPLOYEE NO. :";
+            this.metroLabel18.Text = "EMPLOYEE NUMBER";
             // 
             // txtEmplyeeNo
             // 
@@ -135,7 +146,7 @@
             this.txtEmplyeeNo.CustomButton.Visible = false;
             this.txtEmplyeeNo.FontSize = MetroFramework.MetroTextBoxSize.Tall;
             this.txtEmplyeeNo.Lines = new string[0];
-            this.txtEmplyeeNo.Location = new System.Drawing.Point(11, 35);
+            this.txtEmplyeeNo.Location = new System.Drawing.Point(13, 35);
             this.txtEmplyeeNo.MaxLength = 20;
             this.txtEmplyeeNo.Name = "txtEmplyeeNo";
             this.txtEmplyeeNo.PasswordChar = '\0';
@@ -809,16 +820,6 @@
             this.lblFormExit.Text = "X";
             this.lblFormExit.Click += new System.EventHandler(this.lblFormExit_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.metroLabel18);
-            this.groupBox1.Controls.Add(this.txtEmplyeeNo);
-            this.groupBox1.Location = new System.Drawing.Point(27, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(580, 77);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            // 
             // CreateNewEmployeeAccForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -837,6 +838,8 @@
             this.Load += new System.EventHandler(this.CreateNewEmployeeAccForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.accNoGroup.ResumeLayout(false);
             this.panelAccountNumbers.ResumeLayout(false);
             this.panelAccountNumbers.PerformLayout();
@@ -847,8 +850,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.FormPanel.ResumeLayout(false);
             this.FormPanel.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -397,17 +397,16 @@ namespace HumanResourceManagement
             }
         }
 
-        private bool dateTimeTextKeyDownBoxChecker(MetroTextBox textbox, char keyChar)
+        private bool dateTimeTextKeyDownBoxChecker(MetroTextBox textbox, char keyChar, Keys keycode)
         {
             bool cancelEVent = true;
-            Console.WriteLine("Key: "+(Keys)keyChar+" KeyChar: "+keyChar);
 
-            if (Char.IsNumber(keyChar) || Char.IsControl(keyChar) || (Keys)keyChar == Keys.Back)
+            if (Char.IsNumber(keyChar) || Char.IsControl(keyChar) || (keycode >= Keys.NumPad0 && keycode <= Keys.NumPad9))
             {
                 Console.WriteLine("Key Not Blocked");
                 cancelEVent = false;
 
-                if (Char.IsNumber(keyChar))
+                if (Char.IsNumber(keyChar) || (keycode >= Keys.NumPad0 && keycode <= Keys.NumPad9))
                 {
                     string textString = textbox.Text;
                     int textlength = textbox.Text.Length;
@@ -468,7 +467,7 @@ namespace HumanResourceManagement
         private void txtDateOfBirth_KeyDown(object sender, KeyEventArgs e)
         {
             char keyChar = (char)e.KeyCode;
-            e.SuppressKeyPress = dateTimeTextKeyDownBoxChecker(txtDateOfBirth, keyChar);           
+            e.SuppressKeyPress = dateTimeTextKeyDownBoxChecker(txtDateOfBirth, keyChar,e.KeyCode);           
         }
 
         

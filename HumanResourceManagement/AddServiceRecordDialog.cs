@@ -72,6 +72,12 @@ namespace HumanResourceManagement
 
         private void prepareDisplay()
         {
+            if(TempHolder.searchedFrom==null)
+            {
+                //no records yet, it is original
+                cmbCause.Text = "Original";
+            }
+
             //prepare display
             txtDateFrom.Text = DateTime.Today.ToString("MM/dd/yyyy");
             txtSchoolName.Text = TempHolder.searchedLastSchool;
@@ -234,7 +240,15 @@ namespace HumanResourceManagement
 
                     string lastinsertId = cmd.ExecuteScalar().ToString();
                     Console.WriteLine(lastinsertId);
+
+                    //to reload and rearrange the list based on from date
                     TempHolder.uc_ServiceRecord.loadRecords(TempHolder.searchedEmpID);
+
+                    //to 
+                    foreach(CheckBox chk in panelChkBox.Controls)
+                    {
+                        chk.Checked = true;
+                    }
                    
                     MessageBox.Show("Successfully added");
                 }
@@ -294,6 +308,15 @@ namespace HumanResourceManagement
                 showMessage("Salary must not be empty");
                 return false;
             }
+            decimal dc;
+            if (Decimal.TryParse(txtSalary.Text, out dc))
+            {
+                txtSalary.Text = dc.ToString("F");
+            }
+            else {
+                showMessage("Invalid Salary");
+                return false;
+            }
             if (cmbCause.SelectedIndex==-1)
             {
                 showMessage("Cause must not be empty");
@@ -348,26 +371,26 @@ namespace HumanResourceManagement
         private void txtDateFrom_KeyDown(object sender, KeyEventArgs e)
         {
             char keyChar = (char)e.KeyCode;
-            e.SuppressKeyPress = dateTimeTextKeyDownBoxChecker(txtDateFrom, keyChar);
+            e.SuppressKeyPress = dateTimeTextKeyDownBoxChecker(txtDateFrom, keyChar,e.KeyCode);
         }
 
         private void txtDateTo_KeyDown(object sender, KeyEventArgs e)
         {
             char keyChar = (char)e.KeyCode;
-            e.SuppressKeyPress = dateTimeTextKeyDownBoxChecker(txtDateTo, keyChar);
+            e.SuppressKeyPress = dateTimeTextKeyDownBoxChecker(txtDateTo, keyChar, e.KeyCode);
         }
 
 
-        private bool dateTimeTextKeyDownBoxChecker(MetroTextBox textbox, char keyChar)
+        private bool dateTimeTextKeyDownBoxChecker(MetroTextBox textbox, char keyChar, Keys keycode)
         {
             bool cancelEVent = true;
 
-            if (Char.IsNumber(keyChar) || Char.IsControl(keyChar))
+            if (Char.IsNumber(keyChar) || Char.IsControl(keyChar) || (keycode >= Keys.NumPad0 && keycode <= Keys.NumPad9))
             {
                 Console.WriteLine("Key Not Blocked");
                 cancelEVent = false;
 
-                if (Char.IsNumber(keyChar))
+                if (Char.IsNumber(keyChar) || (keycode >= Keys.NumPad0 && keycode <= Keys.NumPad9))
                 {
                     string textString = textbox.Text;
                     int textlength = textbox.Text.Length;

@@ -105,14 +105,19 @@ namespace HumanResourceManagement
                     string status = reader[SQLbank.STATUS].ToString().Trim();
                     string salary = reader[SQLbank.SALARY].ToString().Trim();
 
+                    decimal dc;
+                    if (Decimal.TryParse(salary, out dc)) salary = dc.ToString("F");
+
                     string station = reader[SQLbank.STATION].ToString().Trim();
                     string branch = reader[SQLbank.BRANCH].ToString().Trim() ;
                     string cause = reader[SQLbank.CAUSE].ToString().Trim();
-               
+
                     DateTime st, ed;
                     if (DateTime.TryParse(start, out st)) start = st.ToString("MM/dd/yyyy");
                     if (DateTime.TryParse(end, out ed)) end =ed.ToString("MM/dd/yyyy");
-                 
+
+                    if (cause.ToLower().Contains("original")) TempHolder.searchedOriginalAppointment = start;
+
                     string lawop = reader[SQLbank.LAWOP].ToString();
                   
                     datagridServiceRecords.Rows.Add(id, school, start, end, designation, status, salary, station,branch,cause, lawop);
@@ -123,7 +128,7 @@ namespace HumanResourceManagement
                     TempHolder.searchedLastSchool = "NONE";
                     TempHolder.searchedLastDesignation = "NONE";
                     TempHolder.searchedLastStatus = "NONE";
-                    TempHolder.searchedLastSalary = "0";
+                    TempHolder.searchedLastSalary = "0.00";
                     TempHolder.searchedLastStation = "NONE";
                     TempHolder.searchedLastBranch = "NONE";
                     TempHolder.searchedLastCause = "NONE";
@@ -132,8 +137,6 @@ namespace HumanResourceManagement
                 Console.WriteLine("Records found: " + counter);
 
                 btnAddRecord.Enabled = true;
-                btnExport.Enabled = true;
-
                 closeSQLConnection();
             }catch(Exception ee)
             {
@@ -145,13 +148,13 @@ namespace HumanResourceManagement
         public void clearDisplay()
         {
             Console.WriteLine("ClearDisplay - tab2");
- 
+
             datagridServiceRecords.Rows.Clear();
 
             btnDelete.Enabled = false;
             txtSchoolName.ResetText();
             txtBranch.ResetText();
-            txtPosition.ResetText();
+            txtDesignation.ResetText();
 
             txtStatus.ResetText();
             txtSalary.ResetText();
@@ -163,24 +166,24 @@ namespace HumanResourceManagement
 
         private void datagridServiceRecords_SelectionChanged(object sender, EventArgs e)
         {
-            
-            int selectedIndex = datagridServiceRecords.CurrentCell.RowIndex;
 
-            lblSelectedRowID.Text = datagridServiceRecords.Rows[selectedIndex].Cells[0].Value.ToString();
+            if (datagridServiceRecords.Rows.Count > 0)
+            {
+                int selectedIndex = datagridServiceRecords.CurrentCell.RowIndex;
 
-            txtSchoolName.Text = datagridServiceRecords.Rows[selectedIndex].Cells[1].Value.ToString();
-            txtBranch.Text = datagridServiceRecords.Rows[selectedIndex].Cells[2].Value.ToString();
-            txtPosition.Text = datagridServiceRecords.Rows[selectedIndex].Cells[3].Value.ToString();
-            txtFrom.Text = datagridServiceRecords.Rows[selectedIndex].Cells[4].Value.ToString();
-            txtTo.Text = datagridServiceRecords.Rows[selectedIndex].Cells[5].Value.ToString();
-            txtStatus.Text = datagridServiceRecords.Rows[selectedIndex].Cells[6].Value.ToString();
-            txtRemarks.Text = datagridServiceRecords.Rows[selectedIndex].Cells[7].Value.ToString();
-            txtSalary.Text = datagridServiceRecords.Rows[selectedIndex].Cells[8].Value.ToString();
-            txtLAWOP.Text = datagridServiceRecords.Rows[selectedIndex].Cells[9].Value.ToString();
-
-            btnDelete.Enabled = true;
-            
-
+                lblSelectedRowID.Text = datagridServiceRecords.Rows[selectedIndex].Cells[0].Value.ToString();
+                txtSchoolName.Text = datagridServiceRecords.Rows[selectedIndex].Cells[1].Value.ToString();
+                txtFrom.Text = datagridServiceRecords.Rows[selectedIndex].Cells[2].Value.ToString();
+                txtTo.Text = datagridServiceRecords.Rows[selectedIndex].Cells[3].Value.ToString();
+                txtDesignation.Text = datagridServiceRecords.Rows[selectedIndex].Cells[4].Value.ToString();
+                txtStatus.Text = datagridServiceRecords.Rows[selectedIndex].Cells[5].Value.ToString();
+                txtSalary.Text = datagridServiceRecords.Rows[selectedIndex].Cells[6].Value.ToString();
+                txtStation.Text = datagridServiceRecords.Rows[selectedIndex].Cells[7].Value.ToString();
+                txtCause.Text = datagridServiceRecords.Rows[selectedIndex].Cells[8].Value.ToString();
+                txtBranch.Text = datagridServiceRecords.Rows[selectedIndex].Cells[9].Value.ToString();
+                txtLAWOP.Text = datagridServiceRecords.Rows[selectedIndex].Cells[10].Value.ToString();
+                btnDelete.Enabled = true;
+            }
         }
 
         private void datagridServiceRecords_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -195,10 +198,8 @@ namespace HumanResourceManagement
             detectLastRow();
         }
 
-
         public void detectLastRow()
         {
-
             int lastIndex = datagridServiceRecords.Rows.Count - 1;
             if (lastIndex != -1)
             {
@@ -213,6 +214,10 @@ namespace HumanResourceManagement
                 string cause = datagridServiceRecords.Rows[lastIndex].Cells[9].Value.ToString();
                 string lawop = datagridServiceRecords.Rows[lastIndex].Cells[10].Value.ToString();
 
+                DateTime dt;
+                if (DateTime.TryParse(from, out dt)) TempHolder.searchedFrom = dt.ToString("MM/dd/yyyy");
+                if (DateTime.TryParse(to, out dt)) TempHolder.searchedTo = dt.ToString("MM/dd/yyyy");
+
                 if (school.Length == 0) TempHolder.searchedLastSchool = "NONE";
                 if (school.Length != 0 && !school.Equals("-do-")) TempHolder.searchedLastSchool = school;
 
@@ -222,7 +227,7 @@ namespace HumanResourceManagement
                 if (status.Length == 0) TempHolder.searchedLastStatus = "NONE";
                 if (status.Length != 0 && !status.Equals("-do-")) TempHolder.searchedLastStatus = status;
 
-                if (salary.Length == 0) TempHolder.searchedLastSalary = "0";
+                if (salary.Length == 0) TempHolder.searchedLastSalary = "0.00";
                 if (salary.Length != 0 && !salary.Equals("-do-")) TempHolder.searchedLastSalary = salary;
 
                 if (station.Length == 0) TempHolder.searchedLastStation = "NONE";
@@ -236,15 +241,19 @@ namespace HumanResourceManagement
 
                 if (lawop.Length == 0) TempHolder.searchedLastLawop = "NONE";
                 if (lawop.Length != 0 && !lawop.Equals("-do-")) TempHolder.searchedLastLawop = lawop;
+
+                TempHolder.mainForm.showOtherEmpInfo();
             }
            
         }
 
-   
-
         private void lblRowsCount_TextChanged(object sender, EventArgs e)
         {
-            btnExport.Enabled = lblRowsCount.Text.Length == 0 || lblRowsCount.Text.Trim().Equals("0");
+            Console.WriteLine("Enable btnExport: " + (!(lblRowsCount.Text.Trim().Length == 0 || lblRowsCount.Text.Trim().Equals("0"))));
+            bool dgvNotEmpty = !(lblRowsCount.Text.Trim().Length == 0 || lblRowsCount.Text.Trim().Equals("0"));
+            btnExport.Enabled = dgvNotEmpty;
+            btnDelete.Enabled = dgvNotEmpty;
+
         }
 
         private void btnAddRecord_Click(object sender, EventArgs e)

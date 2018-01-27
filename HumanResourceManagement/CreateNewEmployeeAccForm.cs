@@ -455,20 +455,20 @@ namespace HumanResourceManagement
         private void txtDateOfBirht_KeyDown(object sender, KeyEventArgs e)
         {
             char keyChar = (char)e.KeyCode;
-            e.SuppressKeyPress = dateTimeTextKeyDownBoxChecker(txtDateOfBirth,keyChar);
+            e.SuppressKeyPress = dateTimeTextKeyDownBoxChecker(txtDateOfBirth,keyChar,e.KeyCode);
         }
 
 
-        private bool dateTimeTextKeyDownBoxChecker(MetroTextBox textbox,char keyChar)
+        private bool dateTimeTextKeyDownBoxChecker(MetroTextBox textbox,char keyChar, Keys keycode)
         {
             bool cancelEVent = true;
 
-            if (Char.IsNumber(keyChar) || Char.IsControl(keyChar))
+            if (Char.IsNumber(keyChar) || Char.IsControl(keyChar) || (keycode >= Keys.NumPad0 && keycode <= Keys.NumPad9))
             {
                 Console.WriteLine("Key Not Blocked");
                 cancelEVent = false;
 
-                if (Char.IsNumber(keyChar))
+                if (Char.IsNumber(keyChar) || (keycode >= Keys.NumPad0 && keycode <= Keys.NumPad9))
                 {
                     string textString = textbox.Text;
                     int textlength = textbox.Text.Length;
