@@ -403,7 +403,12 @@ namespace HumanResourceManagement
 
         private void txtEmplyeeNo_TextChanged(object sender, EventArgs e)
         {
-            if (txtEmplyeeNo.Text.Length == 0) showSearchResultMessage(null);
+            showSearchResultMessage(null);
+
+            if (lblemployee_id_hidden.Text.Length > 0 && !txtEmplyeeNo.Text.Equals(lblemployee_id_hidden.Text))
+            {
+                clearDisplay();
+            }
         }
 
         private void mainPanelLeft_Paint(object sender, PaintEventArgs e)

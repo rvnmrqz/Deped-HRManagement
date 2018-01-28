@@ -74,6 +74,8 @@ namespace HumanResourceManagement
 
         private void prepareDisplay()
         {
+            txtDateFrom.Text = DateTime.Today.ToString("MM/dd/yyyy");
+
             if (TempHolder.searchedFrom == null)
             {
                 //no records yet, it is original
@@ -195,8 +197,31 @@ namespace HumanResourceManagement
                 return false;
             }
 
-            //compare the date of last row to FROM value
-            //compare the value of FROM and TO if inverted
+          
+            //if chkTo is checked, and the FROM date is behind the date of last record, return false
+            if(chkPresent.Checked && TempHolder.searchedFrom != null)
+            {
+                DateTime dtLastFrom;
+                if(DateTime.TryParse(TempHolder.searchedFrom,out dtLastFrom))
+                {
+                    double dif = (dtStart - dtLastFrom).TotalDays;
+                    if (dif < 0)
+                    {
+                        showMessage("Cannot use Present as TO, FROM date is behind of last entry");
+                        return false;
+                    }else if (dif == 0)
+                    {
+                        showMessage("FROM date is same with the last entry");
+                        return false;
+                    }
+                }
+                else
+                {
+                    //cannot check last FROM, invalid format
+                    showMessage("Last entry's date from is in invalid format");
+                    return false;
+                }
+            }
            
             if (!chkPresent.Checked && !DateTime.TryParse(txtDateTo.Text, out dtEnd))
             {
@@ -225,6 +250,7 @@ namespace HumanResourceManagement
                     return false;
                 }
             }
+
 
 
             if (txtSchoolName.Text.Trim().Length == 0)
@@ -473,6 +499,17 @@ namespace HumanResourceManagement
             string txtString = textbox.Text;
             textbox.Text = txtString.Insert(placeIndex, "/");
             textbox.SelectionStart = textbox.Text.Length;
+        }
+
+        private void txtSalary_Validated(object sender, EventArgs e)
+        {
+
+            decimal salary;
+            if (Decimal.TryParse(txtSalary.Text, out salary))
+            {
+                txtSalary.Text = salary.ToString("N");
+
+            }
         }
     }
 }

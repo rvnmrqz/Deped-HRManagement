@@ -106,7 +106,7 @@ namespace HumanResourceManagement
                     string salary = reader[SQLbank.SALARY].ToString().Trim();
 
                     decimal dc;
-                    if (Decimal.TryParse(salary, out dc)) salary = dc.ToString("F");
+                    if (Decimal.TryParse(salary, out dc)) salary = dc.ToString("N");
 
                     string station = reader[SQLbank.STATION].ToString().Trim();
                     string branch = reader[SQLbank.BRANCH].ToString().Trim();

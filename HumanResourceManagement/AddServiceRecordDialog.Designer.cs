@@ -607,6 +607,7 @@
             this.txtSalary.UseSelectable = true;
             this.txtSalary.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtSalary.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtSalary.Validated += new System.EventHandler(this.txtSalary_Validated);
             // 
             // top_panel
             // 
