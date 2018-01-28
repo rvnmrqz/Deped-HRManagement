@@ -44,6 +44,7 @@ namespace HumanResourceManagement
             searchedEmpID = null;
             searchedSheetName = null;
             searchedName = null;
+            searchedBirthPlace = null;
             clearLastRecord();
         }
 

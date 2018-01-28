@@ -212,7 +212,7 @@
             this.cmbCause.Location = new System.Drawing.Point(140, 284);
             this.cmbCause.Name = "cmbCause";
             this.cmbCause.Size = new System.Drawing.Size(241, 29);
-            this.cmbCause.TabIndex = 126;
+            this.cmbCause.TabIndex = 9;
             this.cmbCause.UseSelectable = true;
             // 
             // btnDone
@@ -223,7 +223,7 @@
             this.btnDone.Location = new System.Drawing.Point(411, 363);
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(94, 28);
-            this.btnDone.TabIndex = 125;
+            this.btnDone.TabIndex = 11;
             this.btnDone.Text = "DONE";
             this.btnDone.UseVisualStyleBackColor = true;
             this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
@@ -257,7 +257,7 @@
             this.txtDateTo.SelectionStart = 0;
             this.txtDateTo.ShortcutsEnabled = true;
             this.txtDateTo.Size = new System.Drawing.Size(92, 23);
-            this.txtDateTo.TabIndex = 124;
+            this.txtDateTo.TabIndex = 2;
             this.txtDateTo.Text = "PRESENT";
             this.txtDateTo.UseSelectable = true;
             this.txtDateTo.WaterMark = "mm/dd/yyyy";
@@ -292,7 +292,7 @@
             this.txtDateFrom.SelectionStart = 0;
             this.txtDateFrom.ShortcutsEnabled = true;
             this.txtDateFrom.Size = new System.Drawing.Size(92, 23);
-            this.txtDateFrom.TabIndex = 123;
+            this.txtDateFrom.TabIndex = 1;
             this.txtDateFrom.UseSelectable = true;
             this.txtDateFrom.WaterMark = "mm/dd/yyyy";
             this.txtDateFrom.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -301,13 +301,12 @@
             // 
             // cmbStatus
             // 
-            this.cmbStatus.Enabled = false;
             this.cmbStatus.FormattingEnabled = true;
             this.cmbStatus.ItemHeight = 23;
             this.cmbStatus.Location = new System.Drawing.Point(140, 160);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(241, 29);
-            this.cmbStatus.TabIndex = 56;
+            this.cmbStatus.TabIndex = 5;
             this.cmbStatus.UseSelectable = true;
             // 
             // metroLabel12
@@ -336,7 +335,6 @@
             this.txtSchoolName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtSchoolName.CustomButton.UseSelectable = true;
             this.txtSchoolName.CustomButton.Visible = false;
-            this.txtSchoolName.Enabled = false;
             this.txtSchoolName.Lines = new string[0];
             this.txtSchoolName.Location = new System.Drawing.Point(140, 80);
             this.txtSchoolName.MaxLength = 300;
@@ -349,7 +347,7 @@
             this.txtSchoolName.SelectionStart = 0;
             this.txtSchoolName.ShortcutsEnabled = true;
             this.txtSchoolName.Size = new System.Drawing.Size(241, 45);
-            this.txtSchoolName.TabIndex = 25;
+            this.txtSchoolName.TabIndex = 3;
             this.txtSchoolName.UseSelectable = true;
             this.txtSchoolName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtSchoolName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -380,7 +378,6 @@
             this.txtDesignation.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtDesignation.CustomButton.UseSelectable = true;
             this.txtDesignation.CustomButton.Visible = false;
-            this.txtDesignation.Enabled = false;
             this.txtDesignation.Lines = new string[0];
             this.txtDesignation.Location = new System.Drawing.Point(140, 131);
             this.txtDesignation.MaxLength = 32767;
@@ -392,7 +389,7 @@
             this.txtDesignation.SelectionStart = 0;
             this.txtDesignation.ShortcutsEnabled = true;
             this.txtDesignation.Size = new System.Drawing.Size(241, 23);
-            this.txtDesignation.TabIndex = 30;
+            this.txtDesignation.TabIndex = 4;
             this.txtDesignation.UseSelectable = true;
             this.txtDesignation.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtDesignation.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -423,7 +420,6 @@
             this.txtStation.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtStation.CustomButton.UseSelectable = true;
             this.txtStation.CustomButton.Visible = false;
-            this.txtStation.Enabled = false;
             this.txtStation.Lines = new string[0];
             this.txtStation.Location = new System.Drawing.Point(140, 195);
             this.txtStation.MaxLength = 32767;
@@ -435,7 +431,7 @@
             this.txtStation.SelectionStart = 0;
             this.txtStation.ShortcutsEnabled = true;
             this.txtStation.Size = new System.Drawing.Size(241, 23);
-            this.txtStation.TabIndex = 55;
+            this.txtStation.TabIndex = 6;
             this.txtStation.UseSelectable = true;
             this.txtStation.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtStation.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -499,7 +495,6 @@
             this.txtLAWOP.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtLAWOP.CustomButton.UseSelectable = true;
             this.txtLAWOP.CustomButton.Visible = false;
-            this.txtLAWOP.Enabled = false;
             this.txtLAWOP.Lines = new string[0];
             this.txtLAWOP.Location = new System.Drawing.Point(140, 319);
             this.txtLAWOP.MaxLength = 32767;
@@ -512,7 +507,7 @@
             this.txtLAWOP.SelectionStart = 0;
             this.txtLAWOP.ShortcutsEnabled = true;
             this.txtLAWOP.Size = new System.Drawing.Size(241, 46);
-            this.txtLAWOP.TabIndex = 42;
+            this.txtLAWOP.TabIndex = 10;
             this.txtLAWOP.UseSelectable = true;
             this.txtLAWOP.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtLAWOP.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -544,7 +539,6 @@
             this.txtBranch.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtBranch.CustomButton.UseSelectable = true;
             this.txtBranch.CustomButton.Visible = false;
-            this.txtBranch.Enabled = false;
             this.txtBranch.Lines = new string[0];
             this.txtBranch.Location = new System.Drawing.Point(140, 225);
             this.txtBranch.MaxLength = 32767;
@@ -556,7 +550,7 @@
             this.txtBranch.SelectionStart = 0;
             this.txtBranch.ShortcutsEnabled = true;
             this.txtBranch.Size = new System.Drawing.Size(241, 23);
-            this.txtBranch.TabIndex = 34;
+            this.txtBranch.TabIndex = 7;
             this.txtBranch.UseSelectable = true;
             this.txtBranch.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtBranch.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -598,7 +592,6 @@
             this.txtSalary.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtSalary.CustomButton.UseSelectable = true;
             this.txtSalary.CustomButton.Visible = false;
-            this.txtSalary.Enabled = false;
             this.txtSalary.Lines = new string[0];
             this.txtSalary.Location = new System.Drawing.Point(140, 255);
             this.txtSalary.MaxLength = 32767;
@@ -610,7 +603,7 @@
             this.txtSalary.SelectionStart = 0;
             this.txtSalary.ShortcutsEnabled = true;
             this.txtSalary.Size = new System.Drawing.Size(241, 23);
-            this.txtSalary.TabIndex = 40;
+            this.txtSalary.TabIndex = 8;
             this.txtSalary.UseSelectable = true;
             this.txtSalary.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtSalary.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);

@@ -1,17 +1,17 @@
-﻿using System;
+﻿using Microsoft.Office.Interop;
+using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Configuration;
-using Microsoft.Office.Interop;
-using Microsoft.Office.Interop.Excel;
-using System.Reflection;
 
 namespace HumanResourceManagement
 {
@@ -86,10 +86,10 @@ namespace HumanResourceManagement
                 //    Console.WriteLine("Loading Service Records of employee :" + employee_id);
                 TempHolder.searchedEmpID = employee_id;
                 clearDisplay();
-                
+
                 openSQLConnection();
-                string qry = "SELECT * FROM " + SQLbank.TBL_SERVICE_RECORDS + " WHERE " + SQLbank.EMP_ID + " = " + employee_id+"  ORDER BY "+SQLbank.FROM_DATE+";";
-                cmd = new SqlCommand(qry,conn);
+                string qry = "SELECT * FROM " + SQLbank.TBL_SERVICE_RECORDS + " WHERE " + SQLbank.EMP_ID + " = " + employee_id + "  ORDER BY " + SQLbank.FROM_DATE + ";";
+                cmd = new SqlCommand(qry, conn);
                 reader = cmd.ExecuteReader();
                 int counter = 0;
                 while (reader.Read())
@@ -109,36 +109,36 @@ namespace HumanResourceManagement
                     if (Decimal.TryParse(salary, out dc)) salary = dc.ToString("F");
 
                     string station = reader[SQLbank.STATION].ToString().Trim();
-                    string branch = reader[SQLbank.BRANCH].ToString().Trim() ;
+                    string branch = reader[SQLbank.BRANCH].ToString().Trim();
                     string cause = reader[SQLbank.CAUSE].ToString().Trim();
 
                     DateTime st, ed;
                     if (DateTime.TryParse(start, out st)) start = st.ToString("MM/dd/yyyy");
-                    if (DateTime.TryParse(end, out ed)) end =ed.ToString("MM/dd/yyyy");
+                    if (DateTime.TryParse(end, out ed)) end = ed.ToString("MM/dd/yyyy");
+                    else
+                    {
+                        //not in correct format, or empty
+                        if (end.Trim().Length == 0) end = "PRESENT";
+                    }
+
 
                     if (cause.ToLower().Contains("original")) TempHolder.searchedOriginalAppointment = start;
 
                     string lawop = reader[SQLbank.LAWOP].ToString();
-                  
-                    datagridServiceRecords.Rows.Add(id, school, start, end, designation, status, salary, station,branch,cause, lawop);
+
+                    datagridServiceRecords.Rows.Add(id, school, start, end, designation, status, salary, station, branch, cause, lawop);
                 }
 
                 if (counter == 0)
                 {
-                    TempHolder.searchedLastSchool = "NONE";
-                    TempHolder.searchedLastDesignation = "NONE";
-                    TempHolder.searchedLastStatus = "NONE";
                     TempHolder.searchedLastSalary = "0.00";
-                    TempHolder.searchedLastStation = "NONE";
-                    TempHolder.searchedLastBranch = "NONE";
-                    TempHolder.searchedLastCause = "NONE";
-                    TempHolder.searchedLastLawop = "NONE";
                 }
                 Console.WriteLine("Records found: " + counter);
 
                 btnAddRecord.Enabled = true;
                 closeSQLConnection();
-            }catch(Exception ee)
+            }
+            catch (Exception ee)
             {
                 Console.WriteLine("Exception Encountered while displaying Service Records: " + ee.Message);
                 MessageBox.Show("An error occured while displaying info", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -147,22 +147,24 @@ namespace HumanResourceManagement
 
         public void clearDisplay()
         {
-            Console.WriteLine("ClearDisplay - tab2");
+            TempHolder.clearLastRecord();
 
-            datagridServiceRecords.Rows.Clear();
+            if (datagridServiceRecords.Rows.Count > 0) datagridServiceRecords.Rows.Clear();
 
             btnDelete.Enabled = false;
+           
             txtSchoolName.ResetText();
             txtStation.ResetText();
             txtBranch.ResetText();
             txtDesignation.ResetText();
             txtStatus.ResetText();
+            txtFrom.ResetText();
+            txtTo.ResetText();
             txtSalary.ResetText();
             txtCause.ResetText();
             txtLAWOP.ResetText();
-            btnAddRecord.Enabled = false;
             btnExport.Enabled = false;
-
+            btnAddRecord.Enabled = false;
         }
 
         private void datagridServiceRecords_SelectionChanged(object sender, EventArgs e)
@@ -175,7 +177,7 @@ namespace HumanResourceManagement
                 lblSelectedRowID.Text = datagridServiceRecords.Rows[selectedIndex].Cells[0].Value.ToString();
                 txtSchoolName.Text = datagridServiceRecords.Rows[selectedIndex].Cells[1].Value.ToString();
                 txtFrom.Text = datagridServiceRecords.Rows[selectedIndex].Cells[2].Value.ToString();
-                txtTo.Text = datagridServiceRecords.Rows[selectedIndex].Cells[3].Value.ToString();
+                txtTo.Text = datagridServiceRecords.Rows[selectedIndex].Cells[3].Value.ToString().Trim();
                 txtDesignation.Text = datagridServiceRecords.Rows[selectedIndex].Cells[4].Value.ToString();
                 txtStatus.Text = datagridServiceRecords.Rows[selectedIndex].Cells[5].Value.ToString();
                 txtSalary.Text = datagridServiceRecords.Rows[selectedIndex].Cells[6].Value.ToString();
@@ -185,6 +187,7 @@ namespace HumanResourceManagement
                 txtLAWOP.Text = datagridServiceRecords.Rows[selectedIndex].Cells[10].Value.ToString();
                 btnDelete.Enabled = true;
             }
+
         }
 
         private void datagridServiceRecords_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -196,6 +199,19 @@ namespace HumanResourceManagement
         private void datagridServiceRecords_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             lblRowsCount.Text = datagridServiceRecords.Rows.Count.ToString();
+
+            if (datagridServiceRecords.Rows.Count == 0)
+            {
+                txtSchoolName.ResetText();
+                txtStation.ResetText();
+                txtBranch.ResetText();
+                txtDesignation.ResetText();
+                txtStatus.ResetText();
+                txtSalary.ResetText();
+                txtCause.ResetText();
+                txtLAWOP.ResetText();
+                TempHolder.clearLastRecord();
+            }
             detectLastRow();
         }
 
@@ -219,37 +235,45 @@ namespace HumanResourceManagement
                 if (DateTime.TryParse(from, out dt)) TempHolder.searchedFrom = dt.ToString("MM/dd/yyyy");
                 if (DateTime.TryParse(to, out dt)) TempHolder.searchedTo = dt.ToString("MM/dd/yyyy");
 
-                if (school.Length == 0) TempHolder.searchedLastSchool = "NONE";
-                if (school.Length != 0 && !school.Equals("-do-")) TempHolder.searchedLastSchool = school;
-
-                if (designation.Length == 0) TempHolder.searchedLastDesignation = "NONE";
-                if (designation.Length != 0 && !designation.Equals("-do-")) TempHolder.searchedLastDesignation = designation;
-
-                if (status.Length == 0) TempHolder.searchedLastStatus = "NONE";
-                if (status.Length != 0 && !status.Equals("-do-")) TempHolder.searchedLastStatus = status;
-
+                if (school.Length != 0) TempHolder.searchedLastSchool = school;
+                if (designation.Length != 0) TempHolder.searchedLastDesignation = designation;
+                if (status.Length != 0) TempHolder.searchedLastStatus = status;
                 if (salary.Length == 0) TempHolder.searchedLastSalary = "0.00";
-                if (salary.Length != 0 && !salary.Equals("-do-")) TempHolder.searchedLastSalary = salary;
+                if (salary.Length != 0) TempHolder.searchedLastSalary = salary;
+                if (station.Length != 0) TempHolder.searchedLastStation = station;
+                if (branch.Length != 0) TempHolder.searchedLastBranch = branch;
+                if (cause.Length != 0) TempHolder.searchedLastCause = cause;
+                if (lawop.Length != 0) TempHolder.searchedLastLawop = lawop;
 
-                if (station.Length == 0) TempHolder.searchedLastStation = "NONE";
-                if (station.Length != 0 && !station.Equals("-do-")) TempHolder.searchedLastStation = station;
+              
+                    String searchValue = "original";
+                    int rowIndex = -1;
+                    foreach (DataGridViewRow row in datagridServiceRecords.Rows)
+                    {
+                        if (row.Cells[9].Value.ToString().ToLower().Contains(searchValue))
+                        {
+                            rowIndex = row.Index;
+                            break;
+                        }
+                    }
 
-                if (branch.Length == 0) TempHolder.searchedLastBranch = "NONE";
-                if (branch.Length != 0 && !branch.Equals("-do-")) TempHolder.searchedLastBranch = branch;
-
-                if (cause.Length == 0) TempHolder.searchedLastCause = "NONE";
-                if (cause.Length != 0 && !cause.Equals("-do-")) TempHolder.searchedLastCause = cause;
-
-                if (lawop.Length == 0) TempHolder.searchedLastLawop = "NONE";
-                if (lawop.Length != 0 && !lawop.Equals("-do-")) TempHolder.searchedLastLawop = lawop;
-
-                TempHolder.mainForm.showOtherEmpInfo();
+                if (rowIndex != -1)
+                {
+                    TempHolder.searchedOriginalAppointment = datagridServiceRecords.Rows[rowIndex].Cells[2].Value.ToString();
+                }
+                else
+                {
+                    TempHolder.searchedOriginalAppointment = null;
+                }
+                
             }
             else
             {
                 TempHolder.clearLastRecord();
             }
-           
+
+            TempHolder.mainForm.showOtherEmpInfo();
+
         }
 
         private void lblRowsCount_TextChanged(object sender, EventArgs e)
@@ -279,7 +303,7 @@ namespace HumanResourceManagement
 
                 if (excelApp == null) excelApp = new Microsoft.Office.Interop.Excel.Application();
 
-      
+
 
                 workbook = excelApp.Workbooks.Open(templatePath);
                 worksheet = workbook.Sheets[1];
@@ -288,7 +312,7 @@ namespace HumanResourceManagement
                 worksheet = excelApp.Workbooks[2].Sheets[1]; //replacing the value of the variable from original template to duplicate
 
 
-                worksheet.Name = TempHolder.searchedSheetName+"_ServiceRecord";
+                worksheet.Name = TempHolder.searchedSheetName + "_ServiceRecord";
 
                 workbook.Close(); // closes the original template
                 excelApp.Visible = true; //makes the duplicate visible
@@ -297,7 +321,7 @@ namespace HumanResourceManagement
                 //do population of cells here
                 worksheet.Cells[11, 2] = TempHolder.searchedLastSchool;
                 worksheet.Cells[12, 2] = TempHolder.searchedName;
-                
+
 
 
             }
@@ -334,7 +358,7 @@ namespace HumanResourceManagement
                         cmd = new SqlCommand(delSQL, conn);
                         cmd.ExecuteNonQuery();
 
-                        if(fromButtonEvent)datagridServiceRecords.Rows.RemoveAt(datagridServiceRecords.CurrentCell.RowIndex); //if false, user pressed from keyboard's delete button, no need to call this line, event will be doubled and may throw index outbound exception
+                        if (fromButtonEvent) datagridServiceRecords.Rows.RemoveAt(datagridServiceRecords.CurrentCell.RowIndex); //if false, user pressed from keyboard's delete button, no need to call this line, event will be doubled and may throw index outbound exception
 
                         MessageBox.Show("Service Record Deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return true;

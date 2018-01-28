@@ -65,12 +65,12 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.txtDateOfBirth = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
+            this.txtBirthPlace = new MetroFramework.Controls.MetroTextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.txtAge = new MetroFramework.Controls.MetroTextBox();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
-            this.txtPlaceOfBirth = new MetroFramework.Controls.MetroTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
@@ -100,8 +100,8 @@
             this.panel8.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.panel14.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -702,6 +702,59 @@
             this.metroLabel5.TabIndex = 44;
             this.metroLabel5.Text = "DATE OF BIRTH *";
             // 
+            // panel14
+            // 
+            this.panel14.Controls.Add(this.metroLabel13);
+            this.panel14.Controls.Add(this.txtBirthPlace);
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel14.Location = new System.Drawing.Point(3, 3);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(174, 66);
+            this.panel14.TabIndex = 6;
+            // 
+            // metroLabel13
+            // 
+            this.metroLabel13.AutoSize = true;
+            this.metroLabel13.BackColor = System.Drawing.Color.Transparent;
+            this.metroLabel13.Location = new System.Drawing.Point(4, 3);
+            this.metroLabel13.Name = "metroLabel13";
+            this.metroLabel13.Size = new System.Drawing.Size(88, 19);
+            this.metroLabel13.TabIndex = 46;
+            this.metroLabel13.Text = "BIRTH PLACE";
+            // 
+            // txtBirthPlace
+            // 
+            this.txtBirthPlace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBirthPlace.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            // 
+            // 
+            // 
+            this.txtBirthPlace.CustomButton.Image = null;
+            this.txtBirthPlace.CustomButton.Location = new System.Drawing.Point(139, 1);
+            this.txtBirthPlace.CustomButton.Name = "";
+            this.txtBirthPlace.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtBirthPlace.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtBirthPlace.CustomButton.TabIndex = 1;
+            this.txtBirthPlace.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtBirthPlace.CustomButton.UseSelectable = true;
+            this.txtBirthPlace.CustomButton.Visible = false;
+            this.txtBirthPlace.Lines = new string[0];
+            this.txtBirthPlace.Location = new System.Drawing.Point(4, 26);
+            this.txtBirthPlace.MaxLength = 32767;
+            this.txtBirthPlace.Name = "txtBirthPlace";
+            this.txtBirthPlace.PasswordChar = '\0';
+            this.txtBirthPlace.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtBirthPlace.SelectedText = "";
+            this.txtBirthPlace.SelectionLength = 0;
+            this.txtBirthPlace.SelectionStart = 0;
+            this.txtBirthPlace.ShortcutsEnabled = true;
+            this.txtBirthPlace.Size = new System.Drawing.Size(161, 23);
+            this.txtBirthPlace.TabIndex = 5;
+            this.txtBirthPlace.UseSelectable = true;
+            this.txtBirthPlace.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtBirthPlace.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
             // panel5
             // 
             this.panel5.Controls.Add(this.metroLabel6);
@@ -754,59 +807,6 @@
             this.txtAge.UseSelectable = true;
             this.txtAge.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtAge.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // panel14
-            // 
-            this.panel14.Controls.Add(this.metroLabel13);
-            this.panel14.Controls.Add(this.txtPlaceOfBirth);
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel14.Location = new System.Drawing.Point(3, 3);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(174, 66);
-            this.panel14.TabIndex = 6;
-            // 
-            // metroLabel13
-            // 
-            this.metroLabel13.AutoSize = true;
-            this.metroLabel13.BackColor = System.Drawing.Color.Transparent;
-            this.metroLabel13.Location = new System.Drawing.Point(4, 3);
-            this.metroLabel13.Name = "metroLabel13";
-            this.metroLabel13.Size = new System.Drawing.Size(110, 19);
-            this.metroLabel13.TabIndex = 46;
-            this.metroLabel13.Text = "BIRTH OF PLACE";
-            // 
-            // txtPlaceOfBirth
-            // 
-            this.txtPlaceOfBirth.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.txtPlaceOfBirth.CustomButton.Image = null;
-            this.txtPlaceOfBirth.CustomButton.Location = new System.Drawing.Point(139, 1);
-            this.txtPlaceOfBirth.CustomButton.Name = "";
-            this.txtPlaceOfBirth.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txtPlaceOfBirth.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtPlaceOfBirth.CustomButton.TabIndex = 1;
-            this.txtPlaceOfBirth.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtPlaceOfBirth.CustomButton.UseSelectable = true;
-            this.txtPlaceOfBirth.CustomButton.Visible = false;
-            this.txtPlaceOfBirth.Lines = new string[0];
-            this.txtPlaceOfBirth.Location = new System.Drawing.Point(4, 26);
-            this.txtPlaceOfBirth.MaxLength = 32767;
-            this.txtPlaceOfBirth.Name = "txtPlaceOfBirth";
-            this.txtPlaceOfBirth.PasswordChar = '\0';
-            this.txtPlaceOfBirth.ReadOnly = true;
-            this.txtPlaceOfBirth.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtPlaceOfBirth.SelectedText = "";
-            this.txtPlaceOfBirth.SelectionLength = 0;
-            this.txtPlaceOfBirth.SelectionStart = 0;
-            this.txtPlaceOfBirth.ShortcutsEnabled = true;
-            this.txtPlaceOfBirth.Size = new System.Drawing.Size(161, 23);
-            this.txtPlaceOfBirth.TabIndex = 5;
-            this.txtPlaceOfBirth.UseSelectable = true;
-            this.txtPlaceOfBirth.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtPlaceOfBirth.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // tableLayoutPanel1
             // 
@@ -1053,10 +1053,10 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.panel14.ResumeLayout(false);
             this.panel14.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -1125,6 +1125,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel panel14;
         private MetroFramework.Controls.MetroLabel metroLabel13;
-        public MetroFramework.Controls.MetroTextBox txtPlaceOfBirth;
+        public MetroFramework.Controls.MetroTextBox txtBirthPlace;
     }
 }

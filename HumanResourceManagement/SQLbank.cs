@@ -31,6 +31,7 @@ namespace HumanResourceManagement
         public static string TIN_NO = "tin_no";
         public static string PHIC_NO = "phic_no";
         public static string SEX = "sex";
+        public static string BIRTH_PLACE = "birth_place";
         public static string DATE_OF_BIRTH = "date_of_birth";
         public static string CIVIL_STATUS = "civil_status";
         public static string SCHOOL_NAME = "school_name";

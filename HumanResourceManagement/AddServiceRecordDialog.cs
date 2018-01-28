@@ -79,16 +79,20 @@ namespace HumanResourceManagement
                 //no records yet, it is original
                 cmbCause.Text = "Original";
             }
-            else if (TempHolder.searchedFrom == null && TempHolder.searchedLastCause.ToLower().Contains("original"))
+            else if (TempHolder.searchedFrom != null && TempHolder.searchedLastCause.ToLower().Contains("original"))
             {
+                //there is already an entry and it is the original appointment
                 cmbCause.SelectedIndex = -1;
             }
             else cmbCause.Text = TempHolder.searchedLastCause;
 
             //prepare display
-            foreach(CheckBox chk in panelChkBox.Controls)
+            if (TempHolder.searchedFrom != null)
             {
-                chk.Checked = true;
+                foreach (CheckBox chk in panelChkBox.Controls)
+                {
+                    chk.Checked = true;
+                }
             }
         }
 

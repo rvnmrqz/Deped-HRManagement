@@ -73,7 +73,7 @@ namespace HumanResourceManagement
             if (conn.State == ConnectionState.Open) conn.Close();
         }
 
-        //*****************************************************************
+        //****************LOADING INFO*************************************************
 
         private void loadCivilStatus()
         {
@@ -114,6 +114,8 @@ namespace HumanResourceManagement
                     else if (reader[SQLbank.SEX].ToString().Trim().Length == 0) cmbGender.SelectedIndex = -1; //no gender specified
                     else cmbGender.SelectedIndex = 0; //it is male
 
+                    txtBirthPlace.Text = reader[SQLbank.BIRTH_PLACE].ToString();
+
                     string dateofbirth = reader[SQLbank.DATE_OF_BIRTH].ToString();
                     DateTime dt;
                     if(DateTime.TryParse(dateofbirth,out dt))
@@ -122,6 +124,7 @@ namespace HumanResourceManagement
                     }
                 
                     cmbCivilStatus.Text = reader[SQLbank.CIVIL_STATUS].ToString();
+                    txtPlantillaNo.Text = reader[SQLbank.PLANTILLA_NO].ToString();
                     txthdmf.Text = reader[SQLbank.HDMF_NO].ToString();
                     txtphic.Text = reader[SQLbank.PHIC_NO].ToString();
                     txtBp.Text = reader[SQLbank.BP_NO].ToString();
@@ -149,7 +152,7 @@ namespace HumanResourceManagement
             txtLname.ResetText();
             cmbGender.SelectedIndex = -1;
             cmbCivilStatus.SelectedIndex = -1;
-            txtPlaceOfBirth.ResetText();
+            txtBirthPlace.ResetText();
             txtDateOfBirth.ResetText();
             txtAge.ResetText();
             txtPlantillaNo.ResetText();
@@ -159,15 +162,7 @@ namespace HumanResourceManagement
             txtAccNo.ResetText();
             txtTin.ResetText();
         }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            if (Permissions.authorizedToUseFunction(Permissions.MODIFY_EMPLOYEE_INFO_PERMISSION))
-            {
-                TempHolder.mainForm.editMode(true);
-            }           
-        }
-
+        //****************SAVING/EDITING***********************************************
         public void editMode(bool editmode)
         {
             btnEdit.Visible = !editmode;
@@ -178,12 +173,20 @@ namespace HumanResourceManagement
          
         }
 
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (Permissions.authorizedToUseFunction(Permissions.MODIFY_EMPLOYEE_INFO_PERMISSION))
+            {
+                TempHolder.mainForm.editMode(true);
+            }
+        }
+
         private void btnCancelEditing_Click(object sender, EventArgs e)
         {
-            
+
             TempHolder.mainForm.editMode(false);
             TempHolder.mainForm.search();
-          
+
         }
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
@@ -201,6 +204,7 @@ namespace HumanResourceManagement
                             + SQLbank.EMP_LAST_NAME + " = @LASTNAME , "
                             + SQLbank.EMP_MIDDLE_NAME + " = @MIDDLENAME , "
                             + SQLbank.EMP_FIRST_NAME + " = @FIRSTNAME , "
+                            + SQLbank.BIRTH_PLACE + " = @BIRTHPLACE, "
                             + SQLbank.DATE_OF_BIRTH + " = @DATEOFBIRTH , "
                             + SQLbank.CIVIL_STATUS + "= @CIVILSTATUS , "
                             + SQLbank.SEX + " = @SEX , "
@@ -217,6 +221,7 @@ namespace HumanResourceManagement
                         cmd.Parameters.AddWithValue("@LASTNAME",txtLname.Text.Trim());
                         cmd.Parameters.AddWithValue("@MIDDLENAME", txtMname.Text.Trim());
                         cmd.Parameters.AddWithValue("@FIRSTNAME", txtFname.Text.Trim());
+                        cmd.Parameters.AddWithValue("@BIRTHPLACE", txtBirthPlace.Text.Trim());
                         cmd.Parameters.AddWithValue("@DATEOFBIRTH", txtDateOfBirth.Text.Trim());
                         cmd.Parameters.AddWithValue("@CIVILSTATUS", cmbCivilStatus.Text.Trim());
                         cmd.Parameters.AddWithValue("@SEX", cmbGender.Text.Trim());
@@ -358,6 +363,7 @@ namespace HumanResourceManagement
 
             return age;
         }
+        //****************************************************************************
 
         private void btnRemoveEmpAcc_Click(object sender, EventArgs e)
         {
