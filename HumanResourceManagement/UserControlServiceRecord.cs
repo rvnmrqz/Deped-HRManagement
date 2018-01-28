@@ -131,7 +131,7 @@ namespace HumanResourceManagement
 
                 if (counter == 0)
                 {
-                    TempHolder.searchedLastSalary = "0.00";
+                    TempHolder.lastSalary = "0.00";
                 }
                 Console.WriteLine("Records found: " + counter);
 
@@ -152,7 +152,7 @@ namespace HumanResourceManagement
             if (datagridServiceRecords.Rows.Count > 0) datagridServiceRecords.Rows.Clear();
 
             btnDelete.Enabled = false;
-           
+
             txtSchoolName.ResetText();
             txtStation.ResetText();
             txtBranch.ResetText();
@@ -220,6 +220,7 @@ namespace HumanResourceManagement
             int lastIndex = datagridServiceRecords.Rows.Count - 1;
             if (lastIndex != -1)
             {
+                TempHolder.lastServiceRecordId = datagridServiceRecords.Rows[lastIndex].Cells[0].Value.ToString();
                 string school = datagridServiceRecords.Rows[lastIndex].Cells[1].Value.ToString();
                 string from = datagridServiceRecords.Rows[lastIndex].Cells[2].Value.ToString();
                 string to = datagridServiceRecords.Rows[lastIndex].Cells[3].Value.ToString();
@@ -232,30 +233,37 @@ namespace HumanResourceManagement
                 string lawop = datagridServiceRecords.Rows[lastIndex].Cells[10].Value.ToString();
 
                 DateTime dt;
-                if (DateTime.TryParse(from, out dt)) TempHolder.searchedFrom = dt.ToString("MM/dd/yyyy");
-                if (DateTime.TryParse(to, out dt)) TempHolder.searchedTo = dt.ToString("MM/dd/yyyy");
+                if (DateTime.TryParse(from, out dt)) TempHolder.lastFrom = dt.ToString("MM/dd/yyyy");
+                if (DateTime.TryParse(to, out dt))
+                {
+                    TempHolder.lastTo = dt.ToString("MM/dd/yyyy");
+                    TempHolder.lastIsPresent = false;
+                }
+                else if (to.ToLower().Equals("present")) TempHolder.lastIsPresent = true;
+
+                Console.WriteLine("LastIsPresent: " + TempHolder.lastIsPresent + "\t To value: " + to);
+
 
                 if (school.Length != 0) TempHolder.searchedLastSchool = school;
-                if (designation.Length != 0) TempHolder.searchedLastDesignation = designation;
-                if (status.Length != 0) TempHolder.searchedLastStatus = status;
-                if (salary.Length == 0) TempHolder.searchedLastSalary = "0.00";
-                if (salary.Length != 0) TempHolder.searchedLastSalary = salary;
-                if (station.Length != 0) TempHolder.searchedLastStation = station;
-                if (branch.Length != 0) TempHolder.searchedLastBranch = branch;
-                if (cause.Length != 0) TempHolder.searchedLastCause = cause;
-                if (lawop.Length != 0) TempHolder.searchedLastLawop = lawop;
+                if (designation.Length != 0) TempHolder.lastDesignation = designation;
+                if (status.Length != 0) TempHolder.lastStatus = status;
+                if (salary.Length == 0) TempHolder.lastSalary = "0.00";
+                if (salary.Length != 0) TempHolder.lastSalary = salary;
+                if (station.Length != 0) TempHolder.lastStation = station;
+                if (branch.Length != 0) TempHolder.lastBranch = branch;
+                if (cause.Length != 0) TempHolder.lastCause = cause;
+                if (lawop.Length != 0) TempHolder.lastLAWOP = lawop;
 
-              
-                    String searchValue = "original";
-                    int rowIndex = -1;
-                    foreach (DataGridViewRow row in datagridServiceRecords.Rows)
+                String searchValue = "original";
+                int rowIndex = -1;
+                foreach (DataGridViewRow row in datagridServiceRecords.Rows)
+                {
+                    if (row.Cells[9].Value.ToString().ToLower().Contains(searchValue))
                     {
-                        if (row.Cells[9].Value.ToString().ToLower().Contains(searchValue))
-                        {
-                            rowIndex = row.Index;
-                            break;
-                        }
+                        rowIndex = row.Index;
+                        break;
                     }
+                }
 
                 if (rowIndex != -1)
                 {
@@ -265,7 +273,7 @@ namespace HumanResourceManagement
                 {
                     TempHolder.searchedOriginalAppointment = null;
                 }
-                
+
             }
             else
             {

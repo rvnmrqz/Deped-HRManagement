@@ -76,20 +76,20 @@ namespace HumanResourceManagement
         {
             txtDateFrom.Text = DateTime.Today.ToString("MM/dd/yyyy");
 
-            if (TempHolder.searchedFrom == null)
+            if (TempHolder.lastFrom == null)
             {
                 //no records yet, it is original
                 cmbCause.Text = "Original";
             }
-            else if (TempHolder.searchedFrom != null && TempHolder.searchedLastCause.ToLower().Contains("original"))
+            else if (TempHolder.lastFrom != null && TempHolder.lastCause.ToLower().Contains("original"))
             {
                 //there is already an entry and it is the original appointment
                 cmbCause.SelectedIndex = -1;
             }
-            else cmbCause.Text = TempHolder.searchedLastCause;
+            else cmbCause.Text = TempHolder.lastCause;
 
             //prepare display
-            if (TempHolder.searchedFrom != null)
+            if (TempHolder.lastFrom != null)
             {
                 foreach (CheckBox chk in panelChkBox.Controls)
                 {
@@ -123,6 +123,11 @@ namespace HumanResourceManagement
 
         //************************SAVING*************************************************
         private void btnDone_Click(object sender, EventArgs e)
+        {
+            addNewRecord();
+        }
+
+        private void addNewRecord()
         {
             if (isInputValid())
             {
@@ -169,7 +174,23 @@ namespace HumanResourceManagement
                     Console.WriteLine("Saving query: " + sql);
 
                     string lastinsertId = cmd.ExecuteScalar().ToString();
-                    Console.WriteLine(lastinsertId);
+
+                    if (chkPresent.Checked && TempHolder.lastIsPresent)
+                    {
+                        try
+                        {
+                            //update last record
+                            DateTime dtFrom = DateTime.Parse(txtDateFrom.Text);
+                            DateTime dtOldTo = dtFrom.AddDays(-1);
+                            updateLastRecordTo(dtOldTo.ToString("MM/dd/yyyy"));
+
+                        }
+                        catch(Exception ee)
+                        {
+                            Console.WriteLine("Generating TO datetime value Failed: "+ee.Message);
+                        }
+                     
+                    }
 
                     //to reload and rearrange the list based on from date
                     TempHolder.uc_ServiceRecord.loadRecords(TempHolder.searchedEmpID);
@@ -186,6 +207,24 @@ namespace HumanResourceManagement
             }
         }
 
+        private void updateLastRecordTo(string toDate)
+        {
+            try
+            {
+                openSQLConnection();
+                string updateSql = "UPDATE " + SQLbank.TBL_SERVICE_RECORDS + " SET " + SQLbank.TO_DATE + " = @DATE WHERE " + SQLbank.ID + " = " + TempHolder.lastServiceRecordId;
+                cmd = new SqlCommand(updateSql, conn);
+                cmd.Parameters.AddWithValue("@DATE",toDate);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Updated Last Record's To. ID: " + TempHolder.lastServiceRecordId);
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine("Failed to update Last Record's TO, Exception: " + ee.Message);
+            }
+        }
+   
+
         private bool isInputValid()
         {
          
@@ -199,10 +238,10 @@ namespace HumanResourceManagement
 
           
             //if chkTo is checked, and the FROM date is behind the date of last record, return false
-            if(chkPresent.Checked && TempHolder.searchedFrom != null)
+            if(chkPresent.Checked && TempHolder.lastFrom != null)
             {
                 DateTime dtLastFrom;
-                if(DateTime.TryParse(TempHolder.searchedFrom,out dtLastFrom))
+                if(DateTime.TryParse(TempHolder.lastFrom,out dtLastFrom))
                 {
                     double dif = (dtStart - dtLastFrom).TotalDays;
                     if (dif < 0)
@@ -211,7 +250,7 @@ namespace HumanResourceManagement
                         return false;
                     }else if (dif == 0)
                     {
-                        showMessage("FROM date is same with the last entry");
+                        showMessage("FROM's Date is the same as the last entry");
                         return false;
                     }
                 }
@@ -334,7 +373,7 @@ namespace HumanResourceManagement
             }
             else {
                 txtDesignation.Enabled = false;
-                txtDesignation.Text = TempHolder.searchedLastDesignation;
+                txtDesignation.Text = TempHolder.lastDesignation;
             }
         }
 
@@ -347,7 +386,7 @@ namespace HumanResourceManagement
             }
             else {
                 cmbStatus.Enabled = false;
-                cmbStatus.Text = TempHolder.searchedLastStatus;
+                cmbStatus.Text = TempHolder.lastStatus;
             }
         }
 
@@ -360,7 +399,7 @@ namespace HumanResourceManagement
             }
             else {
                 txtStation.Enabled = false;
-                txtStation.Text = TempHolder.searchedLastStation;
+                txtStation.Text = TempHolder.lastStation;
             }
         }
 
@@ -373,7 +412,7 @@ namespace HumanResourceManagement
             }
             else {
                 txtBranch.Enabled = false;
-                txtBranch.Text = TempHolder.searchedLastBranch;
+                txtBranch.Text = TempHolder.lastBranch;
             }
         }
         
@@ -386,11 +425,9 @@ namespace HumanResourceManagement
             }
             else {
                 txtLAWOP.Enabled = false;
-                txtLAWOP.Text = TempHolder.searchedLastLawop;
+                txtLAWOP.Text = TempHolder.lastLAWOP;
             }
         }
-
-      
 
         private void hotspo(object sender, EventArgs e)
         {
@@ -406,7 +443,7 @@ namespace HumanResourceManagement
             }
             else {
                 txtSalary.Enabled = false;
-                txtSalary.Text = TempHolder.searchedLastSalary;
+                txtSalary.Text = TempHolder.lastSalary;
             }
         }
 
@@ -444,7 +481,6 @@ namespace HumanResourceManagement
 
             if (Char.IsNumber(keyChar) || Char.IsControl(keyChar) || (keycode >= Keys.NumPad0 && keycode <= Keys.NumPad9))
             {
-                Console.WriteLine("Key Not Blocked");
                 cancelEVent = false;
 
                 if (Char.IsNumber(keyChar) || (keycode >= Keys.NumPad0 && keycode <= Keys.NumPad9))

@@ -265,7 +265,7 @@ namespace HumanResourceManagement
         {
                 //added +"" just to avoid null
                 txtSchoolName.Text = TempHolder.searchedLastSchool + "";
-                txtDesignation.Text = TempHolder.searchedLastDesignation + "";
+                txtDesignation.Text = TempHolder.lastDesignation + "";
                 txtDateOfOriginalAppointment.Text = TempHolder.searchedOriginalAppointment + "";
         }
 

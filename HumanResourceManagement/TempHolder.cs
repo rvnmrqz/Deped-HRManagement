@@ -19,7 +19,6 @@ namespace HumanResourceManagement
 
         //searching
         public static string searchedEmpID = "";
-
         public static string searchedSheetName = "";
 
         public static string searchedName;
@@ -28,15 +27,17 @@ namespace HumanResourceManagement
         public static string searchedBirthday;
         public static string searchedBirthPlace;
 
-        public static string searchedFrom;
-        public static string searchedTo;
-        public static string searchedLastDesignation;
-        public static string searchedLastStatus;
-        public static string searchedLastSalary;
-        public static string searchedLastStation;
-        public static string searchedLastBranch;
-        public static string searchedLastCause;
-        public static string searchedLastLawop;
+        public static string lastServiceRecordId;
+        public static bool lastIsPresent;
+        public static string lastFrom;
+        public static string lastTo;
+        public static string lastDesignation;
+        public static string lastStatus;
+        public static string lastSalary;
+        public static string lastStation;
+        public static string lastBranch;
+        public static string lastCause;
+        public static string lastLAWOP;
 
 
         public static void clearSearchTempValues()
@@ -50,17 +51,20 @@ namespace HumanResourceManagement
 
         public static void clearLastRecord()
         {
-            searchedFrom = null;
-            searchedTo = null;
+            Console.WriteLine("ClearLastRecord");
+            lastServiceRecordId = null;
+            lastIsPresent = false;
+            lastFrom = null;
+            lastTo = null;
             searchedOriginalAppointment = null;
             searchedLastSchool = null;
-            searchedLastDesignation = null;
-            searchedLastStatus = null;
-            searchedLastSalary = null;
-            searchedLastStation = null;
-            searchedLastBranch = null;
-            searchedLastCause = null;
-            searchedLastLawop = null;
+            lastDesignation = null;
+            lastStatus = null;
+            lastSalary = null;
+            lastStation = null;
+            lastBranch = null;
+            lastCause = null;
+            lastLAWOP = null;
         }
 
         //logged user
