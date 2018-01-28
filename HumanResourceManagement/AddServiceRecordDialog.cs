@@ -46,6 +46,8 @@ namespace HumanResourceManagement
             }
         }
 
+        //************************INITIAL LOAD*******************************************
+
         private void AddServiceRecordDialog_Load(object sender, EventArgs e)
         {
             conn = new SqlConnection(getStringValue("sqlconstring"));
@@ -72,25 +74,25 @@ namespace HumanResourceManagement
 
         private void prepareDisplay()
         {
-            if(TempHolder.searchedFrom==null)
+            if (TempHolder.searchedFrom == null)
             {
                 //no records yet, it is original
                 cmbCause.Text = "Original";
             }
+            else if (TempHolder.searchedFrom == null && TempHolder.searchedLastCause.ToLower().Contains("original"))
+            {
+                cmbCause.SelectedIndex = -1;
+            }
+            else cmbCause.Text = TempHolder.searchedLastCause;
 
             //prepare display
-            txtDateFrom.Text = DateTime.Today.ToString("MM/dd/yyyy");
-            txtSchoolName.Text = TempHolder.searchedLastSchool;
-            txtDesignation.Text = TempHolder.searchedLastDesignation;
-            cmbStatus.Text = TempHolder.searchedLastStatus;
-            txtSalary.Text = TempHolder.searchedLastSalary;
-            txtStation.Text = TempHolder.searchedLastStation;
-            txtBranch.Text = TempHolder.searchedLastBranch;
-            cmbCause.Text = TempHolder.searchedLastCause;
-            txtLAWOP.Text = TempHolder.searchedLastLawop;
+            foreach(CheckBox chk in panelChkBox.Controls)
+            {
+                chk.Checked = true;
+            }
         }
 
-        //************************SERVER CONNECTION*************************
+        //************************SERVER CONNECTION**************************************
         private void openSQLConnection()
         {
             if (conn != null)
@@ -105,13 +107,180 @@ namespace HumanResourceManagement
             if (conn.State == ConnectionState.Open) conn.Close();
         }
 
-        //*******************APP CONFIG MANAGER*********************************
+        //*******************APP CONFIG MANAGER******************************************
         private string getStringValue(string key)
         {
             Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
             return config.AppSettings.Settings[key].Value.ToString();
 
         }
+
+        //************************SAVING*************************************************
+        private void btnDone_Click(object sender, EventArgs e)
+        {
+            if (isInputValid())
+            {
+                try
+                {
+                    openSQLConnection();
+
+                    string sql = "INSERT INTO " + SQLbank.TBL_SERVICE_RECORDS + " ("
+                        + SQLbank.EMP_ID
+                        + "," + SQLbank.SCHOOL_NAME
+                        + "," + SQLbank.FROM_DATE;
+
+                    if (!chkPresent.Checked) sql += "," + SQLbank.TO_DATE;
+
+                    sql += "," + SQLbank.DESIGNATION
+                    + "," + SQLbank.STATUS
+                    + "," + SQLbank.SALARY
+                    + "," + SQLbank.STATION
+                    + "," + SQLbank.BRANCH
+                    + "," + SQLbank.CAUSE
+                    + "," + SQLbank.LAWOP + ")"
+                    + " OUTPUT INSERTED." + SQLbank.ID
+                    + " VALUES(@EMPID,@SCHOOLNAME,@FROM";
+
+                    if (!chkPresent.Checked) sql += ",@TO";
+
+                    sql += ",@DESIGNATION,@STATUS,@SALARY,@STATION,@BRANCH,@CAUSE,@LAWOP)";
+
+                    cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@EMPID", TempHolder.searchedEmpID);
+                    cmd.Parameters.AddWithValue("@SCHOOLNAME", txtSchoolName.Text);
+                    cmd.Parameters.AddWithValue("@FROM", txtDateFrom.Text);
+
+                    if (!chkPresent.Checked) cmd.Parameters.AddWithValue("@TO", txtDateTo.Text);
+
+                    cmd.Parameters.AddWithValue("@DESIGNATION", txtDesignation.Text);
+                    cmd.Parameters.AddWithValue("@STATUS", cmbStatus.Text);
+                    cmd.Parameters.AddWithValue("@SALARY", txtSalary.Text);
+                    cmd.Parameters.AddWithValue("@STATION", txtStation.Text);
+                    cmd.Parameters.AddWithValue("@BRANCH", txtBranch.Text);
+                    cmd.Parameters.AddWithValue("@CAUSE", cmbCause.Text);
+                    cmd.Parameters.AddWithValue("@LAWOP", txtLAWOP.Text);
+
+                    Console.WriteLine("Saving query: " + sql);
+
+                    string lastinsertId = cmd.ExecuteScalar().ToString();
+                    Console.WriteLine(lastinsertId);
+
+                    //to reload and rearrange the list based on from date
+                    TempHolder.uc_ServiceRecord.loadRecords(TempHolder.searchedEmpID);
+
+                    prepareDisplay();
+
+                    MessageBox.Show("Successfully added");
+                }
+                catch (Exception ee)
+                {
+                    Console.WriteLine("\nAdding Service Record Exception: " + ee.Message);
+                    MessageBox.Show("Adding Service Record Failed", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private bool isInputValid()
+        {
+         
+            DateTime dtStart = DateTime.Now, dtEnd = DateTime.Now;
+         
+            if (!DateTime.TryParse(txtDateFrom.Text, out dtStart))
+            {
+                showMessage("Invalid date for FROM");
+                return false;
+            }
+
+            //compare the date of last row to FROM value
+            //compare the value of FROM and TO if inverted
+           
+            if (!chkPresent.Checked && !DateTime.TryParse(txtDateTo.Text, out dtEnd))
+            {
+                showMessage("Invalid date for TO");
+                return false;
+            }
+
+
+            double totalDaysBetween = (dtEnd - dtStart).TotalDays;
+           
+            if (!chkPresent.Checked &&  totalDaysBetween < 0)
+            {
+                //date TO value is less than FROM
+                // eg. FROM = 08/27/2018 and TO = 08/26/2018
+                //returns -1 for total days
+                showMessage("Value of FROM and TO is in opposite order");
+                return false;
+            }
+           
+            if(totalDaysBetween == 0)
+            {
+                DialogResult dr = MessageBox.Show("FROM and TO is within the same day, Continue saving?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dr == DialogResult.No)
+                {
+                    //cancel saving
+                    return false;
+                }
+            }
+
+
+            if (txtSchoolName.Text.Trim().Length == 0)
+            {
+                showMessage("School name must not be empty");
+                return false;
+            }
+            if (txtDesignation.Text.Trim().Length == 0)
+            {
+                showMessage("Designation must not be empty");
+                return false;
+            }
+            if (cmbStatus.SelectedIndex == -1)
+            {
+                showMessage("Status must not be empty");
+                return false;
+            }
+            if (txtStation.Text.Trim().Length == 0)
+            {
+                showMessage("Station must not be empty");
+                return false;
+            }
+            if (txtBranch.Text.Trim().Length == 0)
+            {
+                showMessage("Branch must not be empty");
+                return false;
+            }
+            if (txtSalary.Text.Trim().Length == 0)
+            {
+                showMessage("Salary must not be empty");
+                return false;
+            }
+            decimal dc;
+            if (Decimal.TryParse(txtSalary.Text, out dc))
+            {
+                txtSalary.Text = dc.ToString("F");
+            }
+            else {
+                showMessage("Invalid Salary");
+                return false;
+            }
+            if (cmbCause.SelectedIndex == -1)
+            {
+                showMessage("Cause must not be empty");
+                return false;
+            }
+            if (txtLAWOP.Text.Trim().Length == 0)
+            {
+                showMessage("LAWOP must not be empty");
+                return false;
+            }
+            return true;
+        }
+
+        private void showMessage(string msg)
+        {
+            MessageBox.Show(msg, "Oops", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        //********************************************************************************
 
         private void chkSchool_CheckedChanged(object sender, EventArgs e)
         {
@@ -187,153 +356,11 @@ namespace HumanResourceManagement
             }
             else {
                 txtLAWOP.Enabled = false;
-                txtLAWOP.Text = TempHolder.searchedLastSalary;
+                txtLAWOP.Text = TempHolder.searchedLastLawop;
             }
         }
 
-        private void btnDone_Click(object sender, EventArgs e)
-        {
-            if (isInputValid())
-            {
-                try
-                {
-                    openSQLConnection();
-
-
-                    string sql = "INSERT INTO " + SQLbank.TBL_SERVICE_RECORDS + " ("
-                        + SQLbank.EMP_ID
-                        + "," + SQLbank.SCHOOL_NAME
-                        + "," + SQLbank.FROM_DATE;
-
-                    if (!chkPresent.Checked) sql += "," + SQLbank.TO_DATE;
-
-                    sql += "," + SQLbank.DESIGNATION
-                    + "," + SQLbank.STATUS
-                    + "," + SQLbank.SALARY
-                    + "," + SQLbank.STATION
-                    + "," + SQLbank.BRANCH
-                    + "," + SQLbank.CAUSE
-                    + "," + SQLbank.LAWOP + ")"
-                    + " OUTPUT INSERTED." + SQLbank.ID
-                    + " VALUES(@EMPID,@SCHOOLNAME,@FROM";
-
-                    if(!chkPresent.Checked) sql+=",@TO";
-
-                    sql+=",@DESIGNATION,@STATUS,@SALARY,@STATION,@BRANCH,@CAUSE,@LAWOP)";
-
-                    cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@EMPID", TempHolder.searchedEmpID);
-                    cmd.Parameters.AddWithValue("@SCHOOLNAME", txtSchoolName.Text);
-                    cmd.Parameters.AddWithValue("@FROM", txtDateFrom.Text);
-
-                    if(!chkPresent.Checked) cmd.Parameters.AddWithValue("@TO", txtDateTo.Text);
-
-                    cmd.Parameters.AddWithValue("@DESIGNATION", txtDesignation.Text);
-                    cmd.Parameters.AddWithValue("@STATUS", cmbStatus.Text);
-                    cmd.Parameters.AddWithValue("@SALARY", txtSalary.Text);
-                    cmd.Parameters.AddWithValue("@STATION", txtStation.Text);
-                    cmd.Parameters.AddWithValue("@BRANCH", txtBranch.Text);
-                    cmd.Parameters.AddWithValue("@CAUSE", cmbCause.Text);
-                    cmd.Parameters.AddWithValue("@LAWOP", txtLAWOP.Text);
-
-                    Console.WriteLine("Saving query: " + sql);
-
-                    string lastinsertId = cmd.ExecuteScalar().ToString();
-                    Console.WriteLine(lastinsertId);
-
-                    //to reload and rearrange the list based on from date
-                    TempHolder.uc_ServiceRecord.loadRecords(TempHolder.searchedEmpID);
-
-                    //to 
-                    foreach(CheckBox chk in panelChkBox.Controls)
-                    {
-                        chk.Checked = true;
-                    }
-                   
-                    MessageBox.Show("Successfully added");
-                }
-                catch (Exception ee)
-                {
-                    Console.WriteLine("\nAdding Service Record Exception: " + ee.Message);
-                    MessageBox.Show("Adding Service Record Failed", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private bool isInputValid()
-        {
-            DateTime dt;
-            if(!DateTime.TryParse(txtDateFrom.Text,out dt))
-            {
-                showMessage("Invalid date for FROM");
-                return false;
-            }
-
-            //compare the date of last row to FROM value
-            //compare the value of FROM and TO if inverted
-
-            if(!chkPresent.Checked && !DateTime.TryParse(txtDateTo.Text,out dt))
-            {
-                showMessage("Invalid date for TO");
-                return false;
-            }
-
-            if (txtSchoolName.Text.Trim().Length == 0)
-            {
-                showMessage("School name must not be empty");
-                return false;
-            }
-            if (txtDesignation.Text.Trim().Length == 0)
-            {
-                showMessage("Designation must not be empty");
-                return false;
-            }
-            if (cmbStatus.SelectedIndex == -1)
-            {
-                showMessage("Status must not be empty");
-                return false;
-            }
-            if (txtStation.Text.Trim().Length == 0)
-            {
-                showMessage("Station must not be empty");
-                return false;
-            }
-            if(txtBranch.Text.Trim().Length ==0)
-            {
-                showMessage("Branch must not be empty");
-                return false;
-            }
-            if (txtSalary.Text.Trim().Length == 0)
-            {
-                showMessage("Salary must not be empty");
-                return false;
-            }
-            decimal dc;
-            if (Decimal.TryParse(txtSalary.Text, out dc))
-            {
-                txtSalary.Text = dc.ToString("F");
-            }
-            else {
-                showMessage("Invalid Salary");
-                return false;
-            }
-            if (cmbCause.SelectedIndex==-1)
-            {
-                showMessage("Cause must not be empty");
-                return false;
-            }
-            if(txtLAWOP.Text.Trim().Length == 0)
-            {
-                showMessage("LAWOP must not be empty");
-                return false;
-            }
-            return true;
-        }
-
-        private void showMessage(string msg)
-        {
-            MessageBox.Show(msg, "Oops", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
+      
 
         private void hotspo(object sender, EventArgs e)
         {

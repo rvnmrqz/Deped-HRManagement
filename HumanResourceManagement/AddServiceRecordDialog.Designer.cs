@@ -30,18 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddServiceRecordDialog));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panelChkBox = new System.Windows.Forms.Panel();
+            this.chkSchool = new System.Windows.Forms.CheckBox();
+            this.chkDesignation = new System.Windows.Forms.CheckBox();
+            this.chkStatus = new System.Windows.Forms.CheckBox();
+            this.chkStation = new System.Windows.Forms.CheckBox();
+            this.chkBranch = new System.Windows.Forms.CheckBox();
+            this.chkPresent = new System.Windows.Forms.CheckBox();
+            this.chkLawop = new System.Windows.Forms.CheckBox();
+            this.chkSalary = new System.Windows.Forms.CheckBox();
             this.cmbCause = new MetroFramework.Controls.MetroComboBox();
             this.btnDone = new System.Windows.Forms.Button();
             this.txtDateTo = new MetroFramework.Controls.MetroTextBox();
             this.txtDateFrom = new MetroFramework.Controls.MetroTextBox();
-            this.chkLawop = new System.Windows.Forms.CheckBox();
-            this.chkSalary = new System.Windows.Forms.CheckBox();
-            this.chkBranch = new System.Windows.Forms.CheckBox();
-            this.chkStation = new System.Windows.Forms.CheckBox();
-            this.chkStatus = new System.Windows.Forms.CheckBox();
-            this.chkDesignation = new System.Windows.Forms.CheckBox();
-            this.chkPresent = new System.Windows.Forms.CheckBox();
-            this.chkSchool = new System.Windows.Forms.CheckBox();
             this.cmbStatus = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
             this.txtSchoolName = new MetroFramework.Controls.MetroTextBox();
@@ -62,10 +63,9 @@
             this.top_panel = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.lblExit = new System.Windows.Forms.Label();
-            this.panelChkBox = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
-            this.top_panel.SuspendLayout();
             this.panelChkBox.SuspendLayout();
+            this.top_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -99,6 +99,111 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(3);
             this.panel1.Size = new System.Drawing.Size(514, 400);
             this.panel1.TabIndex = 0;
+            // 
+            // panelChkBox
+            // 
+            this.panelChkBox.Controls.Add(this.chkSchool);
+            this.panelChkBox.Controls.Add(this.chkDesignation);
+            this.panelChkBox.Controls.Add(this.chkStatus);
+            this.panelChkBox.Controls.Add(this.chkStation);
+            this.panelChkBox.Controls.Add(this.chkBranch);
+            this.panelChkBox.Controls.Add(this.chkPresent);
+            this.panelChkBox.Controls.Add(this.chkLawop);
+            this.panelChkBox.Controls.Add(this.chkSalary);
+            this.panelChkBox.Location = new System.Drawing.Point(387, 51);
+            this.panelChkBox.Name = "panelChkBox";
+            this.panelChkBox.Size = new System.Drawing.Size(80, 296);
+            this.panelChkBox.TabIndex = 127;
+            // 
+            // chkSchool
+            // 
+            this.chkSchool.AutoSize = true;
+            this.chkSchool.Location = new System.Drawing.Point(3, 32);
+            this.chkSchool.Name = "chkSchool";
+            this.chkSchool.Size = new System.Drawing.Size(44, 17);
+            this.chkSchool.TabIndex = 57;
+            this.chkSchool.Text = "-do-";
+            this.chkSchool.UseVisualStyleBackColor = true;
+            this.chkSchool.CheckedChanged += new System.EventHandler(this.chkSchool_CheckedChanged);
+            // 
+            // chkDesignation
+            // 
+            this.chkDesignation.AutoSize = true;
+            this.chkDesignation.Location = new System.Drawing.Point(3, 84);
+            this.chkDesignation.Name = "chkDesignation";
+            this.chkDesignation.Size = new System.Drawing.Size(44, 17);
+            this.chkDesignation.TabIndex = 59;
+            this.chkDesignation.Text = "-do-";
+            this.chkDesignation.UseVisualStyleBackColor = true;
+            this.chkDesignation.CheckedChanged += new System.EventHandler(this.chkDesignation_CheckedChanged);
+            // 
+            // chkStatus
+            // 
+            this.chkStatus.AutoSize = true;
+            this.chkStatus.Location = new System.Drawing.Point(3, 115);
+            this.chkStatus.Name = "chkStatus";
+            this.chkStatus.Size = new System.Drawing.Size(44, 17);
+            this.chkStatus.TabIndex = 60;
+            this.chkStatus.Text = "-do-";
+            this.chkStatus.UseVisualStyleBackColor = true;
+            this.chkStatus.CheckedChanged += new System.EventHandler(this.chkStatus_CheckedChanged);
+            // 
+            // chkStation
+            // 
+            this.chkStation.AutoSize = true;
+            this.chkStation.Location = new System.Drawing.Point(3, 146);
+            this.chkStation.Name = "chkStation";
+            this.chkStation.Size = new System.Drawing.Size(44, 17);
+            this.chkStation.TabIndex = 61;
+            this.chkStation.Text = "-do-";
+            this.chkStation.UseVisualStyleBackColor = true;
+            this.chkStation.CheckedChanged += new System.EventHandler(this.chkStation_CheckedChanged);
+            // 
+            // chkBranch
+            // 
+            this.chkBranch.AutoSize = true;
+            this.chkBranch.Location = new System.Drawing.Point(3, 178);
+            this.chkBranch.Name = "chkBranch";
+            this.chkBranch.Size = new System.Drawing.Size(44, 17);
+            this.chkBranch.TabIndex = 62;
+            this.chkBranch.Text = "-do-";
+            this.chkBranch.UseVisualStyleBackColor = true;
+            this.chkBranch.CheckedChanged += new System.EventHandler(this.chkBranch_CheckedChanged);
+            // 
+            // chkPresent
+            // 
+            this.chkPresent.AutoSize = true;
+            this.chkPresent.Checked = true;
+            this.chkPresent.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkPresent.Location = new System.Drawing.Point(3, 6);
+            this.chkPresent.Name = "chkPresent";
+            this.chkPresent.Size = new System.Drawing.Size(62, 17);
+            this.chkPresent.TabIndex = 58;
+            this.chkPresent.Text = "Present";
+            this.chkPresent.UseVisualStyleBackColor = true;
+            this.chkPresent.CheckedChanged += new System.EventHandler(this.chkPresent_CheckedChanged);
+            // 
+            // chkLawop
+            // 
+            this.chkLawop.AutoSize = true;
+            this.chkLawop.Location = new System.Drawing.Point(3, 270);
+            this.chkLawop.Name = "chkLawop";
+            this.chkLawop.Size = new System.Drawing.Size(44, 17);
+            this.chkLawop.TabIndex = 64;
+            this.chkLawop.Text = "-do-";
+            this.chkLawop.UseVisualStyleBackColor = true;
+            this.chkLawop.CheckedChanged += new System.EventHandler(this.chkLawop_CheckedChanged);
+            // 
+            // chkSalary
+            // 
+            this.chkSalary.AutoSize = true;
+            this.chkSalary.Location = new System.Drawing.Point(3, 208);
+            this.chkSalary.Name = "chkSalary";
+            this.chkSalary.Size = new System.Drawing.Size(44, 17);
+            this.chkSalary.TabIndex = 63;
+            this.chkSalary.Text = "-do-";
+            this.chkSalary.UseVisualStyleBackColor = true;
+            this.chkSalary.CheckedChanged += new System.EventHandler(this.chkSalary_CheckedChanged);
             // 
             // cmbCause
             // 
@@ -193,110 +298,6 @@
             this.txtDateFrom.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtDateFrom.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.txtDateFrom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDateFrom_KeyDown);
-            // 
-            // chkLawop
-            // 
-            this.chkLawop.AutoSize = true;
-            this.chkLawop.Checked = true;
-            this.chkLawop.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkLawop.Location = new System.Drawing.Point(3, 270);
-            this.chkLawop.Name = "chkLawop";
-            this.chkLawop.Size = new System.Drawing.Size(44, 17);
-            this.chkLawop.TabIndex = 64;
-            this.chkLawop.Text = "-do-";
-            this.chkLawop.UseVisualStyleBackColor = true;
-            this.chkLawop.CheckedChanged += new System.EventHandler(this.chkLawop_CheckedChanged);
-            // 
-            // chkSalary
-            // 
-            this.chkSalary.AutoSize = true;
-            this.chkSalary.Checked = true;
-            this.chkSalary.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSalary.Location = new System.Drawing.Point(3, 208);
-            this.chkSalary.Name = "chkSalary";
-            this.chkSalary.Size = new System.Drawing.Size(44, 17);
-            this.chkSalary.TabIndex = 63;
-            this.chkSalary.Text = "-do-";
-            this.chkSalary.UseVisualStyleBackColor = true;
-            this.chkSalary.CheckedChanged += new System.EventHandler(this.chkSalary_CheckedChanged);
-            // 
-            // chkBranch
-            // 
-            this.chkBranch.AutoSize = true;
-            this.chkBranch.Checked = true;
-            this.chkBranch.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBranch.Location = new System.Drawing.Point(3, 178);
-            this.chkBranch.Name = "chkBranch";
-            this.chkBranch.Size = new System.Drawing.Size(44, 17);
-            this.chkBranch.TabIndex = 62;
-            this.chkBranch.Text = "-do-";
-            this.chkBranch.UseVisualStyleBackColor = true;
-            this.chkBranch.CheckedChanged += new System.EventHandler(this.chkBranch_CheckedChanged);
-            // 
-            // chkStation
-            // 
-            this.chkStation.AutoSize = true;
-            this.chkStation.Checked = true;
-            this.chkStation.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkStation.Location = new System.Drawing.Point(3, 146);
-            this.chkStation.Name = "chkStation";
-            this.chkStation.Size = new System.Drawing.Size(44, 17);
-            this.chkStation.TabIndex = 61;
-            this.chkStation.Text = "-do-";
-            this.chkStation.UseVisualStyleBackColor = true;
-            this.chkStation.CheckedChanged += new System.EventHandler(this.chkStation_CheckedChanged);
-            // 
-            // chkStatus
-            // 
-            this.chkStatus.AutoSize = true;
-            this.chkStatus.Checked = true;
-            this.chkStatus.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkStatus.Location = new System.Drawing.Point(3, 115);
-            this.chkStatus.Name = "chkStatus";
-            this.chkStatus.Size = new System.Drawing.Size(44, 17);
-            this.chkStatus.TabIndex = 60;
-            this.chkStatus.Text = "-do-";
-            this.chkStatus.UseVisualStyleBackColor = true;
-            this.chkStatus.CheckedChanged += new System.EventHandler(this.chkStatus_CheckedChanged);
-            // 
-            // chkDesignation
-            // 
-            this.chkDesignation.AutoSize = true;
-            this.chkDesignation.Checked = true;
-            this.chkDesignation.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDesignation.Location = new System.Drawing.Point(3, 84);
-            this.chkDesignation.Name = "chkDesignation";
-            this.chkDesignation.Size = new System.Drawing.Size(44, 17);
-            this.chkDesignation.TabIndex = 59;
-            this.chkDesignation.Text = "-do-";
-            this.chkDesignation.UseVisualStyleBackColor = true;
-            this.chkDesignation.CheckedChanged += new System.EventHandler(this.chkDesignation_CheckedChanged);
-            // 
-            // chkPresent
-            // 
-            this.chkPresent.AutoSize = true;
-            this.chkPresent.Checked = true;
-            this.chkPresent.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkPresent.Location = new System.Drawing.Point(3, 6);
-            this.chkPresent.Name = "chkPresent";
-            this.chkPresent.Size = new System.Drawing.Size(62, 17);
-            this.chkPresent.TabIndex = 58;
-            this.chkPresent.Text = "Present";
-            this.chkPresent.UseVisualStyleBackColor = true;
-            this.chkPresent.CheckedChanged += new System.EventHandler(this.chkPresent_CheckedChanged);
-            // 
-            // chkSchool
-            // 
-            this.chkSchool.AutoSize = true;
-            this.chkSchool.Checked = true;
-            this.chkSchool.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSchool.Location = new System.Drawing.Point(3, 32);
-            this.chkSchool.Name = "chkSchool";
-            this.chkSchool.Size = new System.Drawing.Size(44, 17);
-            this.chkSchool.TabIndex = 57;
-            this.chkSchool.Text = "-do-";
-            this.chkSchool.UseVisualStyleBackColor = true;
-            this.chkSchool.CheckedChanged += new System.EventHandler(this.chkSchool_CheckedChanged);
             // 
             // cmbStatus
             // 
@@ -653,21 +654,6 @@
             this.lblExit.Text = "X";
             this.lblExit.Click += new System.EventHandler(this.lblExit_Click);
             // 
-            // panelChkBox
-            // 
-            this.panelChkBox.Controls.Add(this.chkSchool);
-            this.panelChkBox.Controls.Add(this.chkDesignation);
-            this.panelChkBox.Controls.Add(this.chkStatus);
-            this.panelChkBox.Controls.Add(this.chkStation);
-            this.panelChkBox.Controls.Add(this.chkBranch);
-            this.panelChkBox.Controls.Add(this.chkPresent);
-            this.panelChkBox.Controls.Add(this.chkLawop);
-            this.panelChkBox.Controls.Add(this.chkSalary);
-            this.panelChkBox.Location = new System.Drawing.Point(387, 51);
-            this.panelChkBox.Name = "panelChkBox";
-            this.panelChkBox.Size = new System.Drawing.Size(80, 296);
-            this.panelChkBox.TabIndex = 127;
-            // 
             // AddServiceRecordDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -685,10 +671,10 @@
             this.Load += new System.EventHandler(this.AddServiceRecordDialog_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.top_panel.ResumeLayout(false);
-            this.top_panel.PerformLayout();
             this.panelChkBox.ResumeLayout(false);
             this.panelChkBox.PerformLayout();
+            this.top_panel.ResumeLayout(false);
+            this.top_panel.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -149,8 +149,10 @@ namespace HumanResourceManagement
             txtLname.ResetText();
             cmbGender.SelectedIndex = -1;
             cmbCivilStatus.SelectedIndex = -1;
+            txtPlaceOfBirth.ResetText();
             txtDateOfBirth.ResetText();
             txtAge.ResetText();
+            txtPlantillaNo.ResetText();
             txthdmf.ResetText();
             txtphic.ResetText();
             txtBp.ResetText();

@@ -43,13 +43,19 @@ namespace HumanResourceManagement
         {
             searchedEmpID = null;
             searchedSheetName = null;
-
             searchedName = null;
+            clearLastRecord();
+        }
+
+        public static void clearLastRecord()
+        {
+            searchedFrom = null;
+            searchedTo = null;
             searchedOriginalAppointment = null;
             searchedLastSchool = null;
             searchedLastDesignation = null;
             searchedLastStatus = null;
-            searchedLastSalary = null; 
+            searchedLastSalary = null;
             searchedLastStation = null;
             searchedLastBranch = null;
             searchedLastCause = null;

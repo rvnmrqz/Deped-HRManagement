@@ -153,11 +153,12 @@ namespace HumanResourceManagement
 
             btnDelete.Enabled = false;
             txtSchoolName.ResetText();
+            txtStation.ResetText();
             txtBranch.ResetText();
             txtDesignation.ResetText();
-
             txtStatus.ResetText();
             txtSalary.ResetText();
+            txtCause.ResetText();
             txtLAWOP.ResetText();
             btnAddRecord.Enabled = false;
             btnExport.Enabled = false;
@@ -243,6 +244,10 @@ namespace HumanResourceManagement
                 if (lawop.Length != 0 && !lawop.Equals("-do-")) TempHolder.searchedLastLawop = lawop;
 
                 TempHolder.mainForm.showOtherEmpInfo();
+            }
+            else
+            {
+                TempHolder.clearLastRecord();
             }
            
         }
