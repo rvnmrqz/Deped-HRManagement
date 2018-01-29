@@ -151,7 +151,7 @@
             // chkStation
             // 
             this.chkStation.AutoSize = true;
-            this.chkStation.Location = new System.Drawing.Point(3, 146);
+            this.chkStation.Location = new System.Drawing.Point(3, 174);
             this.chkStation.Name = "chkStation";
             this.chkStation.Size = new System.Drawing.Size(44, 17);
             this.chkStation.TabIndex = 61;
@@ -162,7 +162,7 @@
             // chkBranch
             // 
             this.chkBranch.AutoSize = true;
-            this.chkBranch.Location = new System.Drawing.Point(3, 178);
+            this.chkBranch.Location = new System.Drawing.Point(3, 206);
             this.chkBranch.Name = "chkBranch";
             this.chkBranch.Size = new System.Drawing.Size(44, 17);
             this.chkBranch.TabIndex = 62;
@@ -197,7 +197,7 @@
             // chkSalary
             // 
             this.chkSalary.AutoSize = true;
-            this.chkSalary.Location = new System.Drawing.Point(3, 208);
+            this.chkSalary.Location = new System.Drawing.Point(3, 146);
             this.chkSalary.Name = "chkSalary";
             this.chkSalary.Size = new System.Drawing.Size(44, 17);
             this.chkSalary.TabIndex = 63;
@@ -421,7 +421,7 @@
             this.txtStation.CustomButton.UseSelectable = true;
             this.txtStation.CustomButton.Visible = false;
             this.txtStation.Lines = new string[0];
-            this.txtStation.Location = new System.Drawing.Point(140, 195);
+            this.txtStation.Location = new System.Drawing.Point(140, 223);
             this.txtStation.MaxLength = 32767;
             this.txtStation.Name = "txtStation";
             this.txtStation.PasswordChar = '\0';
@@ -474,7 +474,7 @@
             this.metroLabel8.AutoSize = true;
             this.metroLabel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.metroLabel8.Enabled = false;
-            this.metroLabel8.Location = new System.Drawing.Point(23, 198);
+            this.metroLabel8.Location = new System.Drawing.Point(23, 226);
             this.metroLabel8.Name = "metroLabel8";
             this.metroLabel8.Size = new System.Drawing.Size(62, 19);
             this.metroLabel8.TabIndex = 54;
@@ -518,7 +518,7 @@
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.metroLabel2.Enabled = false;
-            this.metroLabel2.Location = new System.Drawing.Point(24, 227);
+            this.metroLabel2.Location = new System.Drawing.Point(24, 255);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(65, 19);
             this.metroLabel2.TabIndex = 33;
@@ -540,7 +540,7 @@
             this.txtBranch.CustomButton.UseSelectable = true;
             this.txtBranch.CustomButton.Visible = false;
             this.txtBranch.Lines = new string[0];
-            this.txtBranch.Location = new System.Drawing.Point(140, 225);
+            this.txtBranch.Location = new System.Drawing.Point(140, 253);
             this.txtBranch.MaxLength = 32767;
             this.txtBranch.Name = "txtBranch";
             this.txtBranch.PasswordChar = '\0';
@@ -571,7 +571,7 @@
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.metroLabel4.Enabled = false;
-            this.metroLabel4.Location = new System.Drawing.Point(24, 255);
+            this.metroLabel4.Location = new System.Drawing.Point(24, 195);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(60, 19);
             this.metroLabel4.TabIndex = 39;
@@ -593,7 +593,7 @@
             this.txtSalary.CustomButton.UseSelectable = true;
             this.txtSalary.CustomButton.Visible = false;
             this.txtSalary.Lines = new string[0];
-            this.txtSalary.Location = new System.Drawing.Point(140, 255);
+            this.txtSalary.Location = new System.Drawing.Point(140, 195);
             this.txtSalary.MaxLength = 32767;
             this.txtSalary.Name = "txtSalary";
             this.txtSalary.PasswordChar = '\0';

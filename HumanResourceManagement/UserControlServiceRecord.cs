@@ -83,7 +83,7 @@ namespace HumanResourceManagement
         {
             try
             {
-                //    Console.WriteLine("Loading Service Records of employee :" + employee_id);
+               Console.WriteLine("Loading Service Records of employee :" + employee_id);
                 TempHolder.searchedEmpID = employee_id;
                 clearDisplay();
 
@@ -202,6 +202,8 @@ namespace HumanResourceManagement
 
             if (datagridServiceRecords.Rows.Count == 0)
             {
+                txtFrom.ResetText();
+                txtTo.ResetText();
                 txtSchoolName.ResetText();
                 txtStation.ResetText();
                 txtBranch.ResetText();
@@ -240,9 +242,6 @@ namespace HumanResourceManagement
                     TempHolder.lastIsPresent = false;
                 }
                 else if (to.ToLower().Equals("present")) TempHolder.lastIsPresent = true;
-
-                Console.WriteLine("LastIsPresent: " + TempHolder.lastIsPresent + "\t To value: " + to);
-
 
                 if (school.Length != 0) TempHolder.searchedLastSchool = school;
                 if (designation.Length != 0) TempHolder.lastDesignation = designation;
@@ -286,7 +285,6 @@ namespace HumanResourceManagement
 
         private void lblRowsCount_TextChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("Enable btnExport: " + (!(lblRowsCount.Text.Trim().Length == 0 || lblRowsCount.Text.Trim().Equals("0"))));
             bool dgvNotEmpty = !(lblRowsCount.Text.Trim().Length == 0 || lblRowsCount.Text.Trim().Equals("0"));
             btnExport.Enabled = dgvNotEmpty;
             btnDelete.Enabled = dgvNotEmpty;
@@ -329,7 +327,30 @@ namespace HumanResourceManagement
                 //do population of cells here
                 worksheet.Cells[11, 2] = TempHolder.searchedLastSchool;
                 worksheet.Cells[12, 2] = TempHolder.searchedName;
+                worksheet.Cells[14, 2] = TempHolder.searchedBirthday+"     "+TempHolder.searchedBirthPlace;
+           
 
+
+                //transferring of data grid to excel sheets
+                int wsRow = 23, wsCol = 1;
+                int wsLastRow = 1, wsLastCol = 1;    
+
+                for (int row = 0; row < datagridServiceRecords.Rows.Count; row++)
+                {
+                    for (int col = 2; col < datagridServiceRecords.Columns.Count; col++)
+                    {
+                        worksheet.Cells[wsRow, wsCol] = datagridServiceRecords.Rows[row].Cells[col].Value.ToString();
+                        worksheet.Cells[wsRow,wsCol].Borders.LineStyle = XlLineStyle.xlContinuous;
+
+                        wsCol++;
+                    }
+
+                    wsLastCol = wsCol;
+                    wsLastRow = wsRow;
+
+                    wsRow++;
+                    wsCol = 1;
+                }
 
 
             }

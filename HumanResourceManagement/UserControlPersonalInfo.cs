@@ -115,14 +115,16 @@ namespace HumanResourceManagement
                     else cmbGender.SelectedIndex = 0; //it is male
 
                     txtBirthPlace.Text = reader[SQLbank.BIRTH_PLACE].ToString();
-
+         
                     string dateofbirth = reader[SQLbank.DATE_OF_BIRTH].ToString();
                     DateTime dt;
                     if(DateTime.TryParse(dateofbirth,out dt))
                     {
                         txtDateOfBirth.Text = dt.ToString("MM/dd/yyyy");
                     }
-                
+
+            
+
                     cmbCivilStatus.Text = reader[SQLbank.CIVIL_STATUS].ToString();
                     txtPlantillaNo.Text = reader[SQLbank.PLANTILLA_NO].ToString();
                     txthdmf.Text = reader[SQLbank.HDMF_NO].ToString();
@@ -398,6 +400,7 @@ namespace HumanResourceManagement
             if(DateTime.TryParse(txtDateOfBirth.Text,out dt) && txtDateOfBirth.Text.Length==10)
             {
                 txtAge.Text = calculateAge(dt)+"";
+                TempHolder.searchedBirthday = txtDateOfBirth.Text;
             }
             else
             {
@@ -478,6 +481,10 @@ namespace HumanResourceManagement
             e.SuppressKeyPress = dateTimeTextKeyDownBoxChecker(txtDateOfBirth, keyChar,e.KeyCode);           
         }
 
-        
+        private void txtBirthPlace_TextChanged(object sender, EventArgs e)
+        {
+            if (txtBirthPlace.Text.Length > 0) TempHolder.searchedBirthPlace = txtBirthPlace.Text;
+
+        }
     }
 }

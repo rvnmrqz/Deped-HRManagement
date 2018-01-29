@@ -197,7 +197,8 @@ namespace HumanResourceManagement
 
                     prepareDisplay();
 
-                    MessageBox.Show("Successfully added");
+                    MessageBox.Show("New entry successfully added","Saved",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    txtDateFrom.Select();
                 }
                 catch (Exception ee)
                 {
@@ -216,7 +217,7 @@ namespace HumanResourceManagement
                 cmd = new SqlCommand(updateSql, conn);
                 cmd.Parameters.AddWithValue("@DATE",toDate);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Updated Last Record's To. ID: " + TempHolder.lastServiceRecordId);
+               // MessageBox.Show("Updated Last Record's To. ID: " + TempHolder.lastServiceRecordId);
             }
             catch (Exception ee)
             {
@@ -307,16 +308,6 @@ namespace HumanResourceManagement
                 showMessage("Status must not be empty");
                 return false;
             }
-            if (txtStation.Text.Trim().Length == 0)
-            {
-                showMessage("Station must not be empty");
-                return false;
-            }
-            if (txtBranch.Text.Trim().Length == 0)
-            {
-                showMessage("Branch must not be empty");
-                return false;
-            }
             if (txtSalary.Text.Trim().Length == 0)
             {
                 showMessage("Salary must not be empty");
@@ -331,6 +322,18 @@ namespace HumanResourceManagement
                 showMessage("Invalid Salary");
                 return false;
             }
+
+            if (txtStation.Text.Trim().Length == 0)
+            {
+                showMessage("Station must not be empty");
+                return false;
+            }
+            if (txtBranch.Text.Trim().Length == 0)
+            {
+                showMessage("Branch must not be empty");
+                return false;
+            }
+          
             if (cmbCause.SelectedIndex == -1)
             {
                 showMessage("Cause must not be empty");
@@ -473,7 +476,6 @@ namespace HumanResourceManagement
             char keyChar = (char)e.KeyCode;
             e.SuppressKeyPress = dateTimeTextKeyDownBoxChecker(txtDateTo, keyChar, e.KeyCode);
         }
-
 
         private bool dateTimeTextKeyDownBoxChecker(MetroTextBox textbox, char keyChar, Keys keycode)
         {
