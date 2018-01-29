@@ -17,6 +17,22 @@ namespace HumanResourceManagement
 
         public static string picturePath = Application.StartupPath + "\\EmployeePictures\\";
 
+        //selectedRow (doubleclicked)
+        public static bool editMode = false;
+        public static string selectedIndex;
+        public static string selectedId;
+        public static string selectedSchool;
+        public static string selectedFrom;
+        public static string selectedTo;
+        public static string selectedDesignation;
+        public static string selectedStatus;
+        public static string selectedSalary;
+        public static string selectedStation;
+        public static string selectedBranch;
+        public static string selectedCause;
+        public static string selectedLawop;
+
+
         //searching
         public static string searchedEmpID = "";
         public static string searchedSheetName = "";

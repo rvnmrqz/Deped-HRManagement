@@ -52,9 +52,29 @@ namespace HumanResourceManagement
         {
             conn = new SqlConnection(getStringValue("sqlconstring"));
             loadSystemValues();
-            prepareDisplay();
-           
-       
+
+            if (TempHolder.editMode)
+            {
+                //display double clicked row
+                lblFormTitle.Text = "Edit Serivce Record";
+
+                chkPresent.Checked = false;
+                txtSchoolName.Text = TempHolder.selectedSchool;
+                txtDateFrom.Text = TempHolder.selectedFrom;
+                txtDateTo.Text = TempHolder.selectedTo;
+                txtDesignation.Text = TempHolder.selectedDesignation;
+                cmbStatus.Text = TempHolder.selectedStatus;
+                txtSalary.Text = TempHolder.selectedSalary;
+                txtStation.Text = TempHolder.selectedStation;
+                txtBranch.Text = TempHolder.selectedBranch;
+                cmbCause.Text = TempHolder.selectedCause;
+                txtLAWOP.Text = TempHolder.selectedLawop;
+            }else
+            {
+                //default
+                lblFormTitle.Text = "Add Serivce Record";
+                prepareDisplay();
+            }
         }
 
         private void loadSystemValues()
@@ -124,7 +144,14 @@ namespace HumanResourceManagement
         //************************SAVING*************************************************
         private void btnDone_Click(object sender, EventArgs e)
         {
-            addNewRecord();
+            if (TempHolder.editMode)
+            {
+                updateExistingEntry();
+            }
+            else
+            {
+                addNewRecord();
+            }
         }
 
         private void addNewRecord()
@@ -208,6 +235,51 @@ namespace HumanResourceManagement
             }
         }
 
+        private void updateExistingEntry()
+        {
+            try
+            {
+                openSQLConnection();
+
+                string sql = "UPDATE " + SQLbank.TBL_SERVICE_RECORDS + " SET " + SQLbank.SCHOOL_NAME + "= @SCHOOL , " +
+                    SQLbank.FROM_DATE + " = @FROM , " +
+                    SQLbank.TO_DATE + " = @TO , " +
+                    SQLbank.DESIGNATION + " = @DESIGNATION , " +
+                    SQLbank.STATUS + " = @STATUS , " +
+                    SQLbank.SALARY + " = @SALARY , " +
+                    SQLbank.STATION + " = @STATION , " +
+                    SQLbank.BRANCH + " = @BRANCH , " +
+                    SQLbank.CAUSE + " = @CAUSE , " +
+                    SQLbank.LAWOP + " = @LAWOP WHERE " + SQLbank.ID + " = " + TempHolder.selectedId;
+
+                cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@SCHOOL", txtSchoolName.Text.Trim());
+                cmd.Parameters.AddWithValue("@FROM", txtDateFrom.Text.Trim());
+                cmd.Parameters.AddWithValue("@TO", txtDateTo.Text.Trim());
+                cmd.Parameters.AddWithValue("@DESIGNATION", txtDesignation.Text.Trim());
+                cmd.Parameters.AddWithValue("@STATUS", cmbStatus.Text.Trim());
+                cmd.Parameters.AddWithValue("@SALARY", txtSalary.Text);
+                cmd.Parameters.AddWithValue("@STATION", txtStation.Text.Trim());
+                cmd.Parameters.AddWithValue("@BRANCH", txtBranch.Text.Trim());
+                cmd.Parameters.AddWithValue("@CAUSE", cmbCause.Text.Trim());
+                cmd.Parameters.AddWithValue("@LAWOP", txtLAWOP.Text.Trim());
+
+                Console.WriteLine(cmd.CommandText);
+
+                cmd.ExecuteNonQuery();
+
+                TempHolder.uc_ServiceRecord.loadRecords(TempHolder.searchedEmpID);
+
+                MessageBox.Show("Update Successful", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show("Failed to updated entry\n"+ee.Message, "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void updateLastRecordTo(string toDate)
         {
             try
@@ -225,7 +297,6 @@ namespace HumanResourceManagement
             }
         }
    
-
         private bool isInputValid()
         {
          
@@ -548,6 +619,11 @@ namespace HumanResourceManagement
                 txtSalary.Text = salary.ToString("N");
 
             }
+        }
+
+        private void AddServiceRecordDialog_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            TempHolder.editMode = false;
         }
     }
 }

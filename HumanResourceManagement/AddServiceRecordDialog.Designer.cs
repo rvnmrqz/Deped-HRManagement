@@ -61,7 +61,7 @@
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.txtSalary = new MetroFramework.Controls.MetroTextBox();
             this.top_panel = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblFormTitle = new System.Windows.Forms.Label();
             this.lblExit = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panelChkBox.SuspendLayout();
@@ -612,7 +612,7 @@
             // top_panel
             // 
             this.top_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(87)))), ((int)(((byte)(155)))));
-            this.top_panel.Controls.Add(this.label7);
+            this.top_panel.Controls.Add(this.lblFormTitle);
             this.top_panel.Controls.Add(this.lblExit);
             this.top_panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.top_panel.Location = new System.Drawing.Point(2, 2);
@@ -621,17 +621,17 @@
             this.top_panel.TabIndex = 77;
             this.top_panel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_panel_MouseMove);
             // 
-            // label7
+            // lblFormTitle
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(5, 5);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(141, 16);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Add/Edit Service Record";
-            this.label7.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_panel_MouseMove);
+            this.lblFormTitle.AutoSize = true;
+            this.lblFormTitle.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFormTitle.ForeColor = System.Drawing.Color.White;
+            this.lblFormTitle.Location = new System.Drawing.Point(5, 5);
+            this.lblFormTitle.Name = "lblFormTitle";
+            this.lblFormTitle.Size = new System.Drawing.Size(141, 16);
+            this.lblFormTitle.TabIndex = 12;
+            this.lblFormTitle.Text = "Add/Edit Service Record";
+            this.lblFormTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_panel_MouseMove);
             // 
             // lblExit
             // 
@@ -662,6 +662,7 @@
             this.Padding = new System.Windows.Forms.Padding(2);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddServiceRecordDialog";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddServiceRecordDialog_FormClosed);
             this.Load += new System.EventHandler(this.AddServiceRecordDialog_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -693,7 +694,7 @@
         private MetroFramework.Controls.MetroTextBox txtLAWOP;
         private MetroFramework.Controls.MetroLabel metroLabel7;
         private System.Windows.Forms.Panel top_panel;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblFormTitle;
         private System.Windows.Forms.Label lblExit;
         private MetroFramework.Controls.MetroComboBox cmbStatus;
         private System.Windows.Forms.CheckBox chkSchool;

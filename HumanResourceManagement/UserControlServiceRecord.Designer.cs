@@ -150,6 +150,7 @@
             this.datagridServiceRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datagridServiceRecords.Size = new System.Drawing.Size(800, 264);
             this.datagridServiceRecords.TabIndex = 1;
+            this.datagridServiceRecords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridServiceRecords_CellDoubleClick);
             this.datagridServiceRecords.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.datagridServiceRecords_RowsAdded);
             this.datagridServiceRecords.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.datagridServiceRecords_RowsRemoved);
             this.datagridServiceRecords.SelectionChanged += new System.EventHandler(this.datagridServiceRecords_SelectionChanged);
@@ -799,6 +800,7 @@
             this.Column6.HeaderText = "id";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
+            this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Column6.Visible = false;
             // 
             // Column1
@@ -806,6 +808,7 @@
             this.Column1.HeaderText = "School";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Column1.Visible = false;
             // 
             // Column3
@@ -813,42 +816,49 @@
             this.Column3.HeaderText = "Start";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
+            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "End";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
+            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Designation";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Column10
             // 
             this.Column10.HeaderText = "Status";
             this.Column10.Name = "Column10";
             this.Column10.ReadOnly = true;
+            this.Column10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Column7
             // 
             this.Column7.HeaderText = "Salary";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
+            this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "Station/ Place ABS";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
+            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Column9
             // 
             this.Column9.HeaderText = "Branch";
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
+            this.Column9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Column9.Visible = false;
             // 
             // Column11
@@ -856,12 +866,14 @@
             this.Column11.HeaderText = "Cause";
             this.Column11.Name = "Column11";
             this.Column11.ReadOnly = true;
+            this.Column11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Column8
             // 
             this.Column8.HeaderText = "LAWOP";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
+            this.Column8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // UserControlServiceRecord
             // 

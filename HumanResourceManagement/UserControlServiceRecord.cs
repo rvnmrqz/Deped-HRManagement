@@ -133,12 +133,7 @@ namespace HumanResourceManagement
                 {
                     TempHolder.lastSalary = "0.00";
                 }
-                else
-                {
-                    int lastIndex = datagridServiceRecords.Rows.Count - 1;
-                    datagridServiceRecords.Rows[lastIndex].Selected = true;
-                    datagridServiceRecords.FirstDisplayedScrollingRowIndex = lastIndex;
-                }
+              
                 Console.WriteLine("Records found: " + counter);
 
                 btnAddRecord.Enabled = true;
@@ -315,26 +310,22 @@ namespace HumanResourceManagement
 
                 if (excelApp == null) excelApp = new Microsoft.Office.Interop.Excel.Application();
 
-
-
                 workbook = excelApp.Workbooks.Open(templatePath);
                 worksheet = workbook.Sheets[1];
 
+                //copying existing template
                 worksheet.Copy(Missing.Value, Missing.Value);   //creates a duplicate of the template but not yet saving it to the storage
                 worksheet = excelApp.Workbooks[2].Sheets[1]; //replacing the value of the variable from original template to duplicate
-
+                workbook.Close(); // closes the original template
 
                 worksheet.Name = TempHolder.searchedSheetName + "_ServiceRecord";
-
-                workbook.Close(); // closes the original template
-             
-
-
+                
                 //do population of cells here
                 worksheet.Cells[11, 2] = TempHolder.searchedLastSchool;
                 worksheet.Cells[12, 2] = TempHolder.searchedName;
                 worksheet.Cells[14, 2] = TempHolder.searchedBirthday+"     "+TempHolder.searchedBirthPlace;
-           
+
+                excelApp.Visible = true; //makes the duplicate visible
 
 
                 //transferring of data grid to excel sheets
@@ -347,23 +338,19 @@ namespace HumanResourceManagement
                     {
                         worksheet.Cells[wsRow, wsCol] = datagridServiceRecords.Rows[row].Cells[col].Value.ToString();
                         worksheet.Cells[wsRow,wsCol].Borders.LineStyle = XlLineStyle.xlContinuous;
-
                         wsCol++;
                     }
-
                     wsLastCol = wsCol;
                     wsLastRow = wsRow;
-
                     wsRow++;
                     wsCol = 1;
                 }
-                excelApp.Visible = true; //makes the duplicate visible
-
+               
             }
             catch (Exception ee)
             {
                 Console.WriteLine("\n Error Occured: " + ee.Message);
-               
+                MessageBox.Show("An error occured while exporting to excel", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -411,6 +398,27 @@ namespace HumanResourceManagement
             }
             else return false;
 
+        }
+
+        private void datagridServiceRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int selectedIndex = e.RowIndex;
+            
+            TempHolder.selectedId =  datagridServiceRecords.Rows[selectedIndex].Cells[0].Value.ToString();
+            TempHolder.selectedSchool = datagridServiceRecords.Rows[selectedIndex].Cells[1].Value.ToString();
+            TempHolder.selectedFrom = datagridServiceRecords.Rows[selectedIndex].Cells[2].Value.ToString();
+            TempHolder.selectedTo = datagridServiceRecords.Rows[selectedIndex].Cells[3].Value.ToString();
+            TempHolder.selectedDesignation = datagridServiceRecords.Rows[selectedIndex].Cells[4].Value.ToString();
+            TempHolder.selectedStatus = datagridServiceRecords.Rows[selectedIndex].Cells[5].Value.ToString();
+            TempHolder.selectedSalary = datagridServiceRecords.Rows[selectedIndex].Cells[6].Value.ToString();
+            TempHolder.selectedStation = datagridServiceRecords.Rows[selectedIndex].Cells[7].Value.ToString();
+            TempHolder.selectedBranch = datagridServiceRecords.Rows[selectedIndex].Cells[8].Value.ToString();
+            TempHolder.selectedCause = datagridServiceRecords.Rows[selectedIndex].Cells[9].Value.ToString();
+            TempHolder.selectedLawop = datagridServiceRecords.Rows[selectedIndex].Cells[10].Value.ToString();
+
+            TempHolder.editMode = true;
+            AddServiceRecordDialog asr = new AddServiceRecordDialog();
+            asr.ShowDialog();
         }
     }
 }

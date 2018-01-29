@@ -232,7 +232,7 @@ namespace HumanResourceManagement
                         //user has picture
                         try
                         {
-                            pictureBox1.Image = Image.FromFile(@TempHolder.picturePath + filename);
+                            pictureBox1.Image =GetImage(@TempHolder.picturePath + filename);
                         }
                         catch (Exception ee)
                         {
@@ -286,6 +286,16 @@ namespace HumanResourceManagement
             //tabs
             TempHolder.uc_PersonalInfo.clearDisplay();
             TempHolder.uc_ServiceRecord.clearDisplay();
+        }
+
+        public static Image GetImage(string path)
+        {
+            Image img;
+            using (Image temp = Image.FromFile(path))
+            {
+                img = new Bitmap(temp);
+            }
+            return img;
         }
 
         private void showSearchResultMessage(string msg)
@@ -358,8 +368,9 @@ namespace HumanResourceManagement
                 File.Copy(lblPictureDirectory.Text, (pictureFolderPath + imagefilename), true);
 
             }
-            catch (Exception)
+            catch (Exception ee)
             {
+                Console.WriteLine("Copying Exception : " + ee.Message);
                 MessageBox.Show("An error occured while copying the user's image", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
