@@ -133,6 +133,12 @@ namespace HumanResourceManagement
                 {
                     TempHolder.lastSalary = "0.00";
                 }
+                else
+                {
+                    int lastIndex = datagridServiceRecords.Rows.Count - 1;
+                    datagridServiceRecords.Rows[lastIndex].Selected = true;
+                    datagridServiceRecords.FirstDisplayedScrollingRowIndex = lastIndex;
+                }
                 Console.WriteLine("Records found: " + counter);
 
                 btnAddRecord.Enabled = true;
@@ -321,7 +327,7 @@ namespace HumanResourceManagement
                 worksheet.Name = TempHolder.searchedSheetName + "_ServiceRecord";
 
                 workbook.Close(); // closes the original template
-                excelApp.Visible = true; //makes the duplicate visible
+             
 
 
                 //do population of cells here
@@ -351,13 +357,13 @@ namespace HumanResourceManagement
                     wsRow++;
                     wsCol = 1;
                 }
-
+                excelApp.Visible = true; //makes the duplicate visible
 
             }
             catch (Exception ee)
             {
                 Console.WriteLine("\n Error Occured: " + ee.Message);
-                if (workbook != null) workbook.Close();
+               
             }
 
         }

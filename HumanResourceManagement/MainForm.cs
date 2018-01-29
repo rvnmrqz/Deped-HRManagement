@@ -303,7 +303,6 @@ namespace HumanResourceManagement
         public void editMode(bool editmodeValue)
         {
             txtEmplyeeNo.Enabled = !editmodeValue;
-            txtDesignation.Enabled = editmodeValue;
             btnChoosePhoto.Visible = editmodeValue;
 
             TempHolder.uc_PersonalInfo.editMode(editmodeValue);
