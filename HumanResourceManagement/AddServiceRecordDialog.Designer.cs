@@ -45,7 +45,6 @@
             this.txtDateFrom = new MetroFramework.Controls.MetroTextBox();
             this.cmbStatus = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
-            this.txtSchoolName = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
             this.txtDesignation = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
@@ -63,6 +62,7 @@
             this.top_panel = new System.Windows.Forms.Panel();
             this.lblFormTitle = new System.Windows.Forms.Label();
             this.lblExit = new System.Windows.Forms.Label();
+            this.txtSchoolName = new MetroFramework.Controls.MetroTextBox();
             this.panel1.SuspendLayout();
             this.panelChkBox.SuspendLayout();
             this.top_panel.SuspendLayout();
@@ -78,7 +78,6 @@
             this.panel1.Controls.Add(this.txtDateFrom);
             this.panel1.Controls.Add(this.cmbStatus);
             this.panel1.Controls.Add(this.metroLabel12);
-            this.panel1.Controls.Add(this.txtSchoolName);
             this.panel1.Controls.Add(this.metroLabel13);
             this.panel1.Controls.Add(this.txtDesignation);
             this.panel1.Controls.Add(this.metroLabel6);
@@ -87,6 +86,7 @@
             this.panel1.Controls.Add(this.metroLabel1);
             this.panel1.Controls.Add(this.metroLabel5);
             this.panel1.Controls.Add(this.metroLabel8);
+            this.panel1.Controls.Add(this.txtSchoolName);
             this.panel1.Controls.Add(this.txtLAWOP);
             this.panel1.Controls.Add(this.metroLabel2);
             this.panel1.Controls.Add(this.txtBranch);
@@ -211,7 +211,7 @@
             this.cmbCause.ItemHeight = 23;
             this.cmbCause.Location = new System.Drawing.Point(140, 284);
             this.cmbCause.Name = "cmbCause";
-            this.cmbCause.Size = new System.Drawing.Size(241, 29);
+            this.cmbCause.Size = new System.Drawing.Size(240, 29);
             this.cmbCause.TabIndex = 9;
             this.cmbCause.UseSelectable = true;
             // 
@@ -243,10 +243,9 @@
             this.txtDateTo.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtDateTo.CustomButton.UseSelectable = true;
             this.txtDateTo.CustomButton.Visible = false;
-            this.txtDateTo.Enabled = false;
             this.txtDateTo.Lines = new string[] {
         "PRESENT"};
-            this.txtDateTo.Location = new System.Drawing.Point(284, 51);
+            this.txtDateTo.Location = new System.Drawing.Point(288, 51);
             this.txtDateTo.MaxLength = 10;
             this.txtDateTo.Name = "txtDateTo";
             this.txtDateTo.PasswordChar = '\0';
@@ -305,7 +304,7 @@
             this.cmbStatus.ItemHeight = 23;
             this.cmbStatus.Location = new System.Drawing.Point(140, 160);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(241, 29);
+            this.cmbStatus.Size = new System.Drawing.Size(240, 29);
             this.cmbStatus.TabIndex = 5;
             this.cmbStatus.UseSelectable = true;
             // 
@@ -319,38 +318,6 @@
             this.metroLabel12.Size = new System.Drawing.Size(107, 19);
             this.metroLabel12.TabIndex = 24;
             this.metroLabel12.Text = "SCHOOL NAME:";
-            // 
-            // txtSchoolName
-            // 
-            this.txtSchoolName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            // 
-            // 
-            // 
-            this.txtSchoolName.CustomButton.Image = null;
-            this.txtSchoolName.CustomButton.Location = new System.Drawing.Point(197, 1);
-            this.txtSchoolName.CustomButton.Name = "";
-            this.txtSchoolName.CustomButton.Size = new System.Drawing.Size(43, 43);
-            this.txtSchoolName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtSchoolName.CustomButton.TabIndex = 1;
-            this.txtSchoolName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtSchoolName.CustomButton.UseSelectable = true;
-            this.txtSchoolName.CustomButton.Visible = false;
-            this.txtSchoolName.Lines = new string[0];
-            this.txtSchoolName.Location = new System.Drawing.Point(140, 80);
-            this.txtSchoolName.MaxLength = 300;
-            this.txtSchoolName.Multiline = true;
-            this.txtSchoolName.Name = "txtSchoolName";
-            this.txtSchoolName.PasswordChar = '\0';
-            this.txtSchoolName.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtSchoolName.SelectedText = "";
-            this.txtSchoolName.SelectionLength = 0;
-            this.txtSchoolName.SelectionStart = 0;
-            this.txtSchoolName.ShortcutsEnabled = true;
-            this.txtSchoolName.Size = new System.Drawing.Size(241, 45);
-            this.txtSchoolName.TabIndex = 3;
-            this.txtSchoolName.UseSelectable = true;
-            this.txtSchoolName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtSchoolName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel13
             // 
@@ -648,6 +615,39 @@
             this.lblExit.Text = "X";
             this.lblExit.Click += new System.EventHandler(this.lblExit_Click);
             // 
+            // txtSchoolName
+            // 
+            this.txtSchoolName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            // 
+            // 
+            // 
+            this.txtSchoolName.CustomButton.Image = null;
+            this.txtSchoolName.CustomButton.Location = new System.Drawing.Point(199, 2);
+            this.txtSchoolName.CustomButton.Name = "";
+            this.txtSchoolName.CustomButton.Size = new System.Drawing.Size(39, 39);
+            this.txtSchoolName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtSchoolName.CustomButton.TabIndex = 1;
+            this.txtSchoolName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtSchoolName.CustomButton.UseSelectable = true;
+            this.txtSchoolName.CustomButton.Visible = false;
+            this.txtSchoolName.Lines = new string[0];
+            this.txtSchoolName.Location = new System.Drawing.Point(140, 81);
+            this.txtSchoolName.MaxLength = 32767;
+            this.txtSchoolName.Multiline = true;
+            this.txtSchoolName.Name = "txtSchoolName";
+            this.txtSchoolName.PasswordChar = '\0';
+            this.txtSchoolName.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtSchoolName.SelectedText = "";
+            this.txtSchoolName.SelectionLength = 0;
+            this.txtSchoolName.SelectionStart = 0;
+            this.txtSchoolName.ShortcutsEnabled = true;
+            this.txtSchoolName.Size = new System.Drawing.Size(241, 44);
+            this.txtSchoolName.TabIndex = 10;
+            this.txtSchoolName.UseSelectable = true;
+            this.txtSchoolName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtSchoolName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtSchoolName.Click += new System.EventHandler(this.hotspo);
+            // 
             // AddServiceRecordDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -678,7 +678,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private MetroFramework.Controls.MetroLabel metroLabel12;
-        private MetroFramework.Controls.MetroTextBox txtSchoolName;
         private MetroFramework.Controls.MetroLabel metroLabel13;
         private MetroFramework.Controls.MetroTextBox txtDesignation;
         private MetroFramework.Controls.MetroTextBox txtStation;
@@ -710,5 +709,6 @@
         public MetroFramework.Controls.MetroTextBox txtDateFrom;
         private MetroFramework.Controls.MetroComboBox cmbCause;
         private System.Windows.Forms.Panel panelChkBox;
+        private MetroFramework.Controls.MetroTextBox txtSchoolName;
     }
 }

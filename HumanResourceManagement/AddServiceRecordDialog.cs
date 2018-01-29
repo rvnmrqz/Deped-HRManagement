@@ -57,7 +57,9 @@ namespace HumanResourceManagement
             {
                 //display double clicked row
                 lblFormTitle.Text = "Edit Serivce Record";
-
+                txtDateFrom.Enabled = false;
+                txtDateTo.Enabled = false;
+                chkPresent.Enabled = false;
                 chkPresent.Checked = false;
                 txtSchoolName.Text = TempHolder.selectedSchool;
                 txtDateFrom.Text = TempHolder.selectedFrom;
@@ -73,6 +75,7 @@ namespace HumanResourceManagement
             {
                 //default
                 lblFormTitle.Text = "Add Serivce Record";
+           
                 prepareDisplay();
             }
         }
@@ -242,8 +245,6 @@ namespace HumanResourceManagement
                 openSQLConnection();
 
                 string sql = "UPDATE " + SQLbank.TBL_SERVICE_RECORDS + " SET " + SQLbank.SCHOOL_NAME + "= @SCHOOL , " +
-                    SQLbank.FROM_DATE + " = @FROM , " +
-                    SQLbank.TO_DATE + " = @TO , " +
                     SQLbank.DESIGNATION + " = @DESIGNATION , " +
                     SQLbank.STATUS + " = @STATUS , " +
                     SQLbank.SALARY + " = @SALARY , " +
@@ -254,8 +255,6 @@ namespace HumanResourceManagement
 
                 cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@SCHOOL", txtSchoolName.Text.Trim());
-                cmd.Parameters.AddWithValue("@FROM", txtDateFrom.Text.Trim());
-                cmd.Parameters.AddWithValue("@TO", txtDateTo.Text.Trim());
                 cmd.Parameters.AddWithValue("@DESIGNATION", txtDesignation.Text.Trim());
                 cmd.Parameters.AddWithValue("@STATUS", cmbStatus.Text.Trim());
                 cmd.Parameters.AddWithValue("@SALARY", txtSalary.Text);
@@ -299,71 +298,73 @@ namespace HumanResourceManagement
    
         private bool isInputValid()
         {
-         
-            DateTime dtStart = DateTime.Now, dtEnd = DateTime.Now;
-         
-            if (!DateTime.TryParse(txtDateFrom.Text, out dtStart))
-            {
-                showMessage("Invalid date for FROM");
-                return false;
-            }
 
-          
-            //if chkTo is checked, and the FROM date is behind the date of last record, return false
-            if(chkPresent.Checked && TempHolder.lastFrom != null)
+            if (!TempHolder.editMode)
             {
-                DateTime dtLastFrom;
-                if(DateTime.TryParse(TempHolder.lastFrom,out dtLastFrom))
+                DateTime dtStart = DateTime.Now, dtEnd = DateTime.Now;
+
+                if (!DateTime.TryParse(txtDateFrom.Text, out dtStart))
                 {
-                    double dif = (dtStart - dtLastFrom).TotalDays;
-                    if (dif < 0)
+                    showMessage("Invalid date for FROM");
+                    return false;
+                }
+
+
+                //if chkTo is checked, and the FROM date is behind the date of last record, return false
+                if (chkPresent.Checked && TempHolder.lastFrom != null)
+                {
+                    DateTime dtLastFrom;
+                    if (DateTime.TryParse(TempHolder.lastFrom, out dtLastFrom))
                     {
-                        showMessage("Cannot use Present as TO, FROM date is behind of last entry");
-                        return false;
-                    }else if (dif == 0)
+                        double dif = (dtStart - dtLastFrom).TotalDays;
+                        if (dif < 0)
+                        {
+                            showMessage("Cannot use Present as TO, FROM date is behind of last entry");
+                            return false;
+                        }
+                        else if (dif == 0)
+                        {
+                            showMessage("FROM's Date is the same as the last entry");
+                            return false;
+                        }
+                    }
+                    else
                     {
-                        showMessage("FROM's Date is the same as the last entry");
+                        //cannot check last FROM, invalid format
+                        showMessage("Last entry's date from is in invalid format");
                         return false;
                     }
                 }
-                else
+
+                if (!chkPresent.Checked && !DateTime.TryParse(txtDateTo.Text, out dtEnd))
                 {
-                    //cannot check last FROM, invalid format
-                    showMessage("Last entry's date from is in invalid format");
+                    showMessage("Invalid date for TO");
                     return false;
                 }
-            }
-           
-            if (!chkPresent.Checked && !DateTime.TryParse(txtDateTo.Text, out dtEnd))
-            {
-                showMessage("Invalid date for TO");
-                return false;
-            }
 
 
-            double totalDaysBetween = (dtEnd - dtStart).TotalDays;
-           
-            if (!chkPresent.Checked &&  totalDaysBetween < 0)
-            {
-                //date TO value is less than FROM
-                // eg. FROM = 08/27/2018 and TO = 08/26/2018
-                //returns -1 for total days
-                showMessage("Value of FROM and TO is in opposite order");
-                return false;
-            }
-           
-            if(totalDaysBetween == 0)
-            {
-                DialogResult dr = MessageBox.Show("FROM and TO is within the same day, Continue saving?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dr == DialogResult.No)
+                double totalDaysBetween = (dtEnd - dtStart).TotalDays;
+
+                if (!chkPresent.Checked && totalDaysBetween < 0)
                 {
-                    //cancel saving
+                    //date TO value is less than FROM
+                    // eg. FROM = 08/27/2018 and TO = 08/26/2018
+                    //returns -1 for total days
+                    showMessage("Value of FROM and TO is in opposite order");
                     return false;
                 }
+
+                if (totalDaysBetween == 0)
+                {
+                    DialogResult dr = MessageBox.Show("FROM and TO is within the same day, Continue saving?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dr == DialogResult.No)
+                    {
+                        //cancel saving
+                        return false;
+                    }
+                }
             }
-
-
-
+          
             if (txtSchoolName.Text.Trim().Length == 0)
             {
                 showMessage("School name must not be empty");
@@ -523,16 +524,19 @@ namespace HumanResourceManagement
 
         private void chkPresent_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkPresent.Checked)
+            if (!TempHolder.editMode)
             {
-                txtDateTo.Enabled = false;
-                txtDateTo.Text = "PRESENT";
-            }
-            else
-            {
-                txtDateTo.ResetText();
-                txtDateTo.Enabled = true;
-                txtDateTo.Select();
+                if (chkPresent.Checked)
+                {
+                    txtDateTo.Enabled = false;
+                    txtDateTo.Text = "PRESENT";
+                }
+                else
+                {
+                    txtDateTo.ResetText();
+                    txtDateTo.Enabled = true;
+                    txtDateTo.Select();
+                }
             }
         }
 
