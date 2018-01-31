@@ -402,23 +402,31 @@ namespace HumanResourceManagement
 
         private void datagridServiceRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            int selectedIndex = e.RowIndex;
-            
-            TempHolder.selectedId =  datagridServiceRecords.Rows[selectedIndex].Cells[0].Value.ToString();
-            TempHolder.selectedSchool = datagridServiceRecords.Rows[selectedIndex].Cells[1].Value.ToString();
-            TempHolder.selectedFrom = datagridServiceRecords.Rows[selectedIndex].Cells[2].Value.ToString();
-            TempHolder.selectedTo = datagridServiceRecords.Rows[selectedIndex].Cells[3].Value.ToString();
-            TempHolder.selectedDesignation = datagridServiceRecords.Rows[selectedIndex].Cells[4].Value.ToString();
-            TempHolder.selectedStatus = datagridServiceRecords.Rows[selectedIndex].Cells[5].Value.ToString();
-            TempHolder.selectedSalary = datagridServiceRecords.Rows[selectedIndex].Cells[6].Value.ToString();
-            TempHolder.selectedStation = datagridServiceRecords.Rows[selectedIndex].Cells[7].Value.ToString();
-            TempHolder.selectedBranch = datagridServiceRecords.Rows[selectedIndex].Cells[8].Value.ToString();
-            TempHolder.selectedCause = datagridServiceRecords.Rows[selectedIndex].Cells[9].Value.ToString();
-            TempHolder.selectedLawop = datagridServiceRecords.Rows[selectedIndex].Cells[10].Value.ToString();
+            if (Permissions.authorizedToUseFunction(Permissions.MODIFY_SERVICE_RECORD))
+            {
+                int selectedIndex = e.RowIndex;
 
-            TempHolder.editMode = true;
-            AddServiceRecordDialog asr = new AddServiceRecordDialog();
-            asr.ShowDialog();
+                TempHolder.selectedId = datagridServiceRecords.Rows[selectedIndex].Cells[0].Value.ToString();
+                TempHolder.selectedSchool = datagridServiceRecords.Rows[selectedIndex].Cells[1].Value.ToString();
+                TempHolder.selectedFrom = datagridServiceRecords.Rows[selectedIndex].Cells[2].Value.ToString();
+                TempHolder.selectedTo = datagridServiceRecords.Rows[selectedIndex].Cells[3].Value.ToString();
+                TempHolder.selectedDesignation = datagridServiceRecords.Rows[selectedIndex].Cells[4].Value.ToString();
+                TempHolder.selectedStatus = datagridServiceRecords.Rows[selectedIndex].Cells[5].Value.ToString();
+                TempHolder.selectedSalary = datagridServiceRecords.Rows[selectedIndex].Cells[6].Value.ToString();
+                TempHolder.selectedStation = datagridServiceRecords.Rows[selectedIndex].Cells[7].Value.ToString();
+                TempHolder.selectedBranch = datagridServiceRecords.Rows[selectedIndex].Cells[8].Value.ToString();
+                TempHolder.selectedCause = datagridServiceRecords.Rows[selectedIndex].Cells[9].Value.ToString();
+                TempHolder.selectedLawop = datagridServiceRecords.Rows[selectedIndex].Cells[10].Value.ToString();
+
+                TempHolder.editMode = true;
+                AddServiceRecordDialog asr = new AddServiceRecordDialog();
+                asr.ShowDialog();
+            }
+        }
+
+        private void txtFrom_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

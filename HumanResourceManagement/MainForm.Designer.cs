@@ -36,7 +36,6 @@
             this.tab1_panel = new System.Windows.Forms.Panel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tab2_Panel = new System.Windows.Forms.Panel();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.mainPanelLeft = new System.Windows.Forms.Panel();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.txtDateOfOriginalAppointment = new MetroFramework.Controls.MetroTextBox();
@@ -111,7 +110,6 @@
             // 
             this.metroTabControl1.Controls.Add(this.tabPage1);
             this.metroTabControl1.Controls.Add(this.tabPage2);
-            this.metroTabControl1.Controls.Add(this.tabPage3);
             this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl1.Name = "metroTabControl1";
@@ -153,14 +151,6 @@
             this.tab2_Panel.Name = "tab2_Panel";
             this.tab2_Panel.Size = new System.Drawing.Size(743, 501);
             this.tab2_Panel.TabIndex = 0;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 38);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(743, 501);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Leaves";
             // 
             // mainPanelLeft
             // 
@@ -293,11 +283,12 @@
             // 
             // btnChoosePhoto
             // 
+            this.btnChoosePhoto.BackgroundImage = global::HumanResourceManagement.Properties.Resources.gallery_48_48;
+            this.btnChoosePhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnChoosePhoto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnChoosePhoto.Image = global::HumanResourceManagement.Properties.Resources.if_picture_173070;
-            this.btnChoosePhoto.Location = new System.Drawing.Point(198, 153);
+            this.btnChoosePhoto.Location = new System.Drawing.Point(180, 139);
             this.btnChoosePhoto.Name = "btnChoosePhoto";
-            this.btnChoosePhoto.Size = new System.Drawing.Size(32, 32);
+            this.btnChoosePhoto.Size = new System.Drawing.Size(48, 48);
             this.btnChoosePhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.btnChoosePhoto.TabIndex = 72;
             this.btnChoosePhoto.TabStop = false;
@@ -455,7 +446,7 @@
             // 
             this.toolStripMenuItem1.Image = global::HumanResourceManagement.Properties.Resources.if_user_309035;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(139, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(168, 22);
             this.toolStripMenuItem1.Text = "My Account";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -463,20 +454,21 @@
             // 
             this.menuItem_Lougout.Image = global::HumanResourceManagement.Properties.Resources.if_sign_out_1608410;
             this.menuItem_Lougout.Name = "menuItem_Lougout";
-            this.menuItem_Lougout.Size = new System.Drawing.Size(139, 22);
+            this.menuItem_Lougout.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F4)));
+            this.menuItem_Lougout.Size = new System.Drawing.Size(168, 22);
             this.menuItem_Lougout.Text = "Log-out";
             this.menuItem_Lougout.Click += new System.EventHandler(this.menuItem_Lougout_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(136, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(165, 6);
             // 
             // menuItemExit
             // 
             this.menuItemExit.Image = global::HumanResourceManagement.Properties.Resources.if_060_Off_183189;
             this.menuItemExit.Name = "menuItemExit";
-            this.menuItemExit.Size = new System.Drawing.Size(139, 22);
+            this.menuItemExit.Size = new System.Drawing.Size(168, 22);
             this.menuItemExit.Text = "Exit";
             this.menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
             // 
@@ -519,21 +511,21 @@
             // 
             this.accountsToolStripMenuItem.Image = global::HumanResourceManagement.Properties.Resources.accounts;
             this.accountsToolStripMenuItem.Name = "accountsToolStripMenuItem";
-            this.accountsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.accountsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.accountsToolStripMenuItem.Text = "Accounts";
             // 
             // schoolsToolStripMenuItem
             // 
             this.schoolsToolStripMenuItem.Image = global::HumanResourceManagement.Properties.Resources.if_commerical_building_103266;
             this.schoolsToolStripMenuItem.Name = "schoolsToolStripMenuItem";
-            this.schoolsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.schoolsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.schoolsToolStripMenuItem.Text = "Schools";
             // 
             // sQLSettingsToolStripMenuItem
             // 
             this.sQLSettingsToolStripMenuItem.Image = global::HumanResourceManagement.Properties.Resources.if_settings_326699;
             this.sQLSettingsToolStripMenuItem.Name = "sQLSettingsToolStripMenuItem";
-            this.sQLSettingsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.sQLSettingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.sQLSettingsToolStripMenuItem.Text = "SQL Settings";
             // 
             // lblFormExit
@@ -664,7 +656,6 @@
         private MetroFramework.Controls.MetroTabControl metroTabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;

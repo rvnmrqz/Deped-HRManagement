@@ -122,6 +122,8 @@ namespace HumanResourceManagement
 
         private void enableInputs(bool value)
         {
+            btnChangePhoto.Visible = value;
+            btnChangePhoto.Enabled = value;
             pictureBox1.Enabled = value;
             txtFirstname.Enabled = value;
             txtMiddleInitial.Enabled = value;
@@ -456,5 +458,9 @@ namespace HumanResourceManagement
             removePhoto();
         }
 
+        private void btnChangePhoto_Click(object sender, EventArgs e)
+        {
+            browsePhoto();
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddServiceRecordDialog));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelChkBox = new System.Windows.Forms.Panel();
@@ -53,6 +54,7 @@
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
+            this.txtSchoolName = new MetroFramework.Controls.MetroTextBox();
             this.txtLAWOP = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.txtBranch = new MetroFramework.Controls.MetroTextBox();
@@ -62,7 +64,7 @@
             this.top_panel = new System.Windows.Forms.Panel();
             this.lblFormTitle = new System.Windows.Forms.Label();
             this.lblExit = new System.Windows.Forms.Label();
-            this.txtSchoolName = new MetroFramework.Controls.MetroTextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.panelChkBox.SuspendLayout();
             this.top_panel.SuspendLayout();
@@ -118,55 +120,60 @@
             // chkSchool
             // 
             this.chkSchool.AutoSize = true;
-            this.chkSchool.Location = new System.Drawing.Point(3, 32);
+            this.chkSchool.Location = new System.Drawing.Point(3, 35);
             this.chkSchool.Name = "chkSchool";
             this.chkSchool.Size = new System.Drawing.Size(44, 17);
             this.chkSchool.TabIndex = 57;
             this.chkSchool.Text = "-do-";
+            this.toolTip1.SetToolTip(this.chkSchool, "Same as the last entry");
             this.chkSchool.UseVisualStyleBackColor = true;
             this.chkSchool.CheckedChanged += new System.EventHandler(this.chkSchool_CheckedChanged);
             // 
             // chkDesignation
             // 
             this.chkDesignation.AutoSize = true;
-            this.chkDesignation.Location = new System.Drawing.Point(3, 84);
+            this.chkDesignation.Location = new System.Drawing.Point(3, 63);
             this.chkDesignation.Name = "chkDesignation";
             this.chkDesignation.Size = new System.Drawing.Size(44, 17);
             this.chkDesignation.TabIndex = 59;
             this.chkDesignation.Text = "-do-";
+            this.toolTip1.SetToolTip(this.chkDesignation, "Same as the last entry");
             this.chkDesignation.UseVisualStyleBackColor = true;
             this.chkDesignation.CheckedChanged += new System.EventHandler(this.chkDesignation_CheckedChanged);
             // 
             // chkStatus
             // 
             this.chkStatus.AutoSize = true;
-            this.chkStatus.Location = new System.Drawing.Point(3, 115);
+            this.chkStatus.Location = new System.Drawing.Point(3, 94);
             this.chkStatus.Name = "chkStatus";
             this.chkStatus.Size = new System.Drawing.Size(44, 17);
             this.chkStatus.TabIndex = 60;
             this.chkStatus.Text = "-do-";
+            this.toolTip1.SetToolTip(this.chkStatus, "Same as the last entry");
             this.chkStatus.UseVisualStyleBackColor = true;
             this.chkStatus.CheckedChanged += new System.EventHandler(this.chkStatus_CheckedChanged);
             // 
             // chkStation
             // 
             this.chkStation.AutoSize = true;
-            this.chkStation.Location = new System.Drawing.Point(3, 174);
+            this.chkStation.Location = new System.Drawing.Point(3, 153);
             this.chkStation.Name = "chkStation";
             this.chkStation.Size = new System.Drawing.Size(44, 17);
             this.chkStation.TabIndex = 61;
             this.chkStation.Text = "-do-";
+            this.toolTip1.SetToolTip(this.chkStation, "Same as the last entry");
             this.chkStation.UseVisualStyleBackColor = true;
             this.chkStation.CheckedChanged += new System.EventHandler(this.chkStation_CheckedChanged);
             // 
             // chkBranch
             // 
             this.chkBranch.AutoSize = true;
-            this.chkBranch.Location = new System.Drawing.Point(3, 206);
+            this.chkBranch.Location = new System.Drawing.Point(3, 185);
             this.chkBranch.Name = "chkBranch";
             this.chkBranch.Size = new System.Drawing.Size(44, 17);
             this.chkBranch.TabIndex = 62;
             this.chkBranch.Text = "-do-";
+            this.toolTip1.SetToolTip(this.chkBranch, "Same as the last entry");
             this.chkBranch.UseVisualStyleBackColor = true;
             this.chkBranch.CheckedChanged += new System.EventHandler(this.chkBranch_CheckedChanged);
             // 
@@ -186,22 +193,24 @@
             // chkLawop
             // 
             this.chkLawop.AutoSize = true;
-            this.chkLawop.Location = new System.Drawing.Point(3, 270);
+            this.chkLawop.Location = new System.Drawing.Point(3, 252);
             this.chkLawop.Name = "chkLawop";
             this.chkLawop.Size = new System.Drawing.Size(44, 17);
             this.chkLawop.TabIndex = 64;
             this.chkLawop.Text = "-do-";
+            this.toolTip1.SetToolTip(this.chkLawop, "Same as the last entry");
             this.chkLawop.UseVisualStyleBackColor = true;
             this.chkLawop.CheckedChanged += new System.EventHandler(this.chkLawop_CheckedChanged);
             // 
             // chkSalary
             // 
             this.chkSalary.AutoSize = true;
-            this.chkSalary.Location = new System.Drawing.Point(3, 146);
+            this.chkSalary.Location = new System.Drawing.Point(3, 125);
             this.chkSalary.Name = "chkSalary";
             this.chkSalary.Size = new System.Drawing.Size(44, 17);
             this.chkSalary.TabIndex = 63;
             this.chkSalary.Text = "-do-";
+            this.toolTip1.SetToolTip(this.chkSalary, "Same as the last entry");
             this.chkSalary.UseVisualStyleBackColor = true;
             this.chkSalary.CheckedChanged += new System.EventHandler(this.chkSalary_CheckedChanged);
             // 
@@ -209,7 +218,7 @@
             // 
             this.cmbCause.FormattingEnabled = true;
             this.cmbCause.ItemHeight = 23;
-            this.cmbCause.Location = new System.Drawing.Point(140, 284);
+            this.cmbCause.Location = new System.Drawing.Point(140, 263);
             this.cmbCause.Name = "cmbCause";
             this.cmbCause.Size = new System.Drawing.Size(240, 29);
             this.cmbCause.TabIndex = 9;
@@ -302,7 +311,7 @@
             // 
             this.cmbStatus.FormattingEnabled = true;
             this.cmbStatus.ItemHeight = 23;
-            this.cmbStatus.Location = new System.Drawing.Point(140, 160);
+            this.cmbStatus.Location = new System.Drawing.Point(140, 139);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(240, 29);
             this.cmbStatus.TabIndex = 5;
@@ -324,7 +333,7 @@
             this.metroLabel13.AutoSize = true;
             this.metroLabel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.metroLabel13.Enabled = false;
-            this.metroLabel13.Location = new System.Drawing.Point(23, 135);
+            this.metroLabel13.Location = new System.Drawing.Point(23, 114);
             this.metroLabel13.Name = "metroLabel13";
             this.metroLabel13.Size = new System.Drawing.Size(95, 19);
             this.metroLabel13.TabIndex = 29;
@@ -346,7 +355,7 @@
             this.txtDesignation.CustomButton.UseSelectable = true;
             this.txtDesignation.CustomButton.Visible = false;
             this.txtDesignation.Lines = new string[0];
-            this.txtDesignation.Location = new System.Drawing.Point(140, 131);
+            this.txtDesignation.Location = new System.Drawing.Point(140, 110);
             this.txtDesignation.MaxLength = 32767;
             this.txtDesignation.Name = "txtDesignation";
             this.txtDesignation.PasswordChar = '\0';
@@ -388,7 +397,7 @@
             this.txtStation.CustomButton.UseSelectable = true;
             this.txtStation.CustomButton.Visible = false;
             this.txtStation.Lines = new string[0];
-            this.txtStation.Location = new System.Drawing.Point(140, 223);
+            this.txtStation.Location = new System.Drawing.Point(140, 202);
             this.txtStation.MaxLength = 32767;
             this.txtStation.Name = "txtStation";
             this.txtStation.PasswordChar = '\0';
@@ -419,7 +428,7 @@
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.metroLabel1.Enabled = false;
-            this.metroLabel1.Location = new System.Drawing.Point(23, 164);
+            this.metroLabel1.Location = new System.Drawing.Point(23, 143);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(54, 19);
             this.metroLabel1.TabIndex = 31;
@@ -430,7 +439,7 @@
             this.metroLabel5.AutoSize = true;
             this.metroLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.metroLabel5.Enabled = false;
-            this.metroLabel5.Location = new System.Drawing.Point(23, 288);
+            this.metroLabel5.Location = new System.Drawing.Point(23, 267);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(53, 19);
             this.metroLabel5.TabIndex = 37;
@@ -441,11 +450,43 @@
             this.metroLabel8.AutoSize = true;
             this.metroLabel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.metroLabel8.Enabled = false;
-            this.metroLabel8.Location = new System.Drawing.Point(23, 226);
+            this.metroLabel8.Location = new System.Drawing.Point(23, 205);
             this.metroLabel8.Name = "metroLabel8";
             this.metroLabel8.Size = new System.Drawing.Size(62, 19);
             this.metroLabel8.TabIndex = 54;
             this.metroLabel8.Text = "STATION:";
+            // 
+            // txtSchoolName
+            // 
+            this.txtSchoolName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            // 
+            // 
+            // 
+            this.txtSchoolName.CustomButton.Image = null;
+            this.txtSchoolName.CustomButton.Location = new System.Drawing.Point(219, 1);
+            this.txtSchoolName.CustomButton.Name = "";
+            this.txtSchoolName.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtSchoolName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtSchoolName.CustomButton.TabIndex = 1;
+            this.txtSchoolName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtSchoolName.CustomButton.UseSelectable = true;
+            this.txtSchoolName.CustomButton.Visible = false;
+            this.txtSchoolName.Lines = new string[0];
+            this.txtSchoolName.Location = new System.Drawing.Point(140, 81);
+            this.txtSchoolName.MaxLength = 32767;
+            this.txtSchoolName.Name = "txtSchoolName";
+            this.txtSchoolName.PasswordChar = '\0';
+            this.txtSchoolName.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtSchoolName.SelectedText = "";
+            this.txtSchoolName.SelectionLength = 0;
+            this.txtSchoolName.SelectionStart = 0;
+            this.txtSchoolName.ShortcutsEnabled = true;
+            this.txtSchoolName.Size = new System.Drawing.Size(241, 23);
+            this.txtSchoolName.TabIndex = 10;
+            this.txtSchoolName.UseSelectable = true;
+            this.txtSchoolName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtSchoolName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtSchoolName.Click += new System.EventHandler(this.hotspo);
             // 
             // txtLAWOP
             // 
@@ -463,7 +504,7 @@
             this.txtLAWOP.CustomButton.UseSelectable = true;
             this.txtLAWOP.CustomButton.Visible = false;
             this.txtLAWOP.Lines = new string[0];
-            this.txtLAWOP.Location = new System.Drawing.Point(140, 319);
+            this.txtLAWOP.Location = new System.Drawing.Point(140, 298);
             this.txtLAWOP.MaxLength = 32767;
             this.txtLAWOP.Multiline = true;
             this.txtLAWOP.Name = "txtLAWOP";
@@ -485,7 +526,7 @@
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.metroLabel2.Enabled = false;
-            this.metroLabel2.Location = new System.Drawing.Point(24, 255);
+            this.metroLabel2.Location = new System.Drawing.Point(24, 234);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(65, 19);
             this.metroLabel2.TabIndex = 33;
@@ -507,7 +548,7 @@
             this.txtBranch.CustomButton.UseSelectable = true;
             this.txtBranch.CustomButton.Visible = false;
             this.txtBranch.Lines = new string[0];
-            this.txtBranch.Location = new System.Drawing.Point(140, 253);
+            this.txtBranch.Location = new System.Drawing.Point(140, 232);
             this.txtBranch.MaxLength = 32767;
             this.txtBranch.Name = "txtBranch";
             this.txtBranch.PasswordChar = '\0';
@@ -527,7 +568,7 @@
             this.metroLabel3.AutoSize = true;
             this.metroLabel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.metroLabel3.Enabled = false;
-            this.metroLabel3.Location = new System.Drawing.Point(24, 317);
+            this.metroLabel3.Location = new System.Drawing.Point(24, 296);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(49, 19);
             this.metroLabel3.TabIndex = 41;
@@ -538,7 +579,7 @@
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.metroLabel4.Enabled = false;
-            this.metroLabel4.Location = new System.Drawing.Point(24, 195);
+            this.metroLabel4.Location = new System.Drawing.Point(24, 174);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(60, 19);
             this.metroLabel4.TabIndex = 39;
@@ -560,7 +601,7 @@
             this.txtSalary.CustomButton.UseSelectable = true;
             this.txtSalary.CustomButton.Visible = false;
             this.txtSalary.Lines = new string[0];
-            this.txtSalary.Location = new System.Drawing.Point(140, 195);
+            this.txtSalary.Location = new System.Drawing.Point(140, 174);
             this.txtSalary.MaxLength = 32767;
             this.txtSalary.Name = "txtSalary";
             this.txtSalary.PasswordChar = '\0';
@@ -614,39 +655,6 @@
             this.lblExit.TabIndex = 0;
             this.lblExit.Text = "X";
             this.lblExit.Click += new System.EventHandler(this.lblExit_Click);
-            // 
-            // txtSchoolName
-            // 
-            this.txtSchoolName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            // 
-            // 
-            // 
-            this.txtSchoolName.CustomButton.Image = null;
-            this.txtSchoolName.CustomButton.Location = new System.Drawing.Point(199, 2);
-            this.txtSchoolName.CustomButton.Name = "";
-            this.txtSchoolName.CustomButton.Size = new System.Drawing.Size(39, 39);
-            this.txtSchoolName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtSchoolName.CustomButton.TabIndex = 1;
-            this.txtSchoolName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtSchoolName.CustomButton.UseSelectable = true;
-            this.txtSchoolName.CustomButton.Visible = false;
-            this.txtSchoolName.Lines = new string[0];
-            this.txtSchoolName.Location = new System.Drawing.Point(140, 81);
-            this.txtSchoolName.MaxLength = 32767;
-            this.txtSchoolName.Multiline = true;
-            this.txtSchoolName.Name = "txtSchoolName";
-            this.txtSchoolName.PasswordChar = '\0';
-            this.txtSchoolName.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtSchoolName.SelectedText = "";
-            this.txtSchoolName.SelectionLength = 0;
-            this.txtSchoolName.SelectionStart = 0;
-            this.txtSchoolName.ShortcutsEnabled = true;
-            this.txtSchoolName.Size = new System.Drawing.Size(241, 44);
-            this.txtSchoolName.TabIndex = 10;
-            this.txtSchoolName.UseSelectable = true;
-            this.txtSchoolName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtSchoolName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.txtSchoolName.Click += new System.EventHandler(this.hotspo);
             // 
             // AddServiceRecordDialog
             // 
@@ -710,5 +718,6 @@
         private MetroFramework.Controls.MetroComboBox cmbCause;
         private System.Windows.Forms.Panel panelChkBox;
         private MetroFramework.Controls.MetroTextBox txtSchoolName;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

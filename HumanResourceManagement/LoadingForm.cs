@@ -75,6 +75,9 @@ namespace HumanResourceManagement
                 //load cause
                 loadCause();
 
+                //loads school names 
+                loadSchools();
+
             }
             catch (Exception ee)
             {
@@ -196,7 +199,7 @@ namespace HumanResourceManagement
             try
             {
                 TempHolder.civil_status_list.Clear();
-
+                int ctr = 0;
                 openSQLConnection();
                 string qry = "SELECT "+SQLbank.SYS_CIVIL_STATUS+" FROM " + SQLbank.SYS_VALUES+";";
                 cmd = new SqlCommand(qry, conn);
@@ -205,8 +208,14 @@ namespace HumanResourceManagement
                 while (reader.Read())
                 {
                     string cs = reader[SQLbank.SYS_CIVIL_STATUS].ToString();
-                    if (cs.Length != 0) TempHolder.civil_status_list.Add(cs);
+                    if (cs.Length != 0)
+                    {
+                        TempHolder.civil_status_list.Add(cs);
+                        ctr++;
+                    }
                 }
+
+                Console.WriteLine(ctr + " civil status loaded");
 
             }
             catch (Exception ee)
@@ -220,7 +229,7 @@ namespace HumanResourceManagement
             try
             {
                 TempHolder.status_list.Clear();
-
+                int ctr = 0;
                 openSQLConnection();
                 string qry = "SELECT "+SQLbank.SYS_STATUS+" FROM " + SQLbank.SYS_VALUES;
                 cmd = new SqlCommand(qry, conn);
@@ -228,8 +237,13 @@ namespace HumanResourceManagement
                 while (reader.Read())
                 {
                     string stat = reader[SQLbank.SYS_STATUS].ToString();
-                    if (stat.Length != 0) TempHolder.status_list.Add(stat);
+                    if (stat.Length != 0)
+                    {
+                        TempHolder.status_list.Add(stat);
+                        ctr++;
+                    }
                 }
+                Console.WriteLine(ctr + " service status loaded");
             }
             catch (Exception ee)
             {
@@ -242,7 +256,7 @@ namespace HumanResourceManagement
             try
             {
                 TempHolder.cause_list.Clear();
-
+                int ctr = 0;
                 openSQLConnection();
                 string qry = "SELECT " + SQLbank.SYS_CAUSE + " FROM " + SQLbank.SYS_VALUES;
                 cmd = new SqlCommand(qry, conn);
@@ -250,12 +264,46 @@ namespace HumanResourceManagement
                 while (reader.Read())
                 {
                     string cause = reader[SQLbank.SYS_CAUSE].ToString();
-                    if (cause.Length != 0) TempHolder.cause_list.Add(cause);
+                    if (cause.Length != 0)
+                    {
+                        TempHolder.cause_list.Add(cause);
+                        ctr++;
+                    }
                 }
+                Console.WriteLine(ctr + " cause loaded");
             }
             catch (Exception ee)
             {
-                Console.WriteLine("Faield to load service status" + ee.Message);
+                Console.WriteLine("Faield to load cause" + ee.Message);
+            }
+        }
+
+        private void loadSchools()
+        {
+            try
+            {
+                TempHolder.schoolCollection.Clear();
+                int ctr = 0;
+                openSQLConnection();
+                string qry = "SELECT " + SQLbank.SCHOOL_NAME + " FROM tbl_schools";
+                cmd = new SqlCommand(qry, conn);
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string schname = reader[SQLbank.SCHOOL_NAME].ToString();
+                    if (schname.Length != 0)
+                    {
+                        TempHolder.schoolCollection.Add(schname);
+                        ctr++;
+                    }
+
+                }
+
+                Console.WriteLine(ctr + " schools loaded");
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine("Faield to load school names" + ee.Message);
             }
         }
       

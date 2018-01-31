@@ -96,8 +96,8 @@ namespace HumanResourceManagement
         public static List<string> steps_list = new List<string>();
         public static List<string> status_list = new List<string>();
         public static List<string> cause_list = new List<string>();
-        public static List<string> school_name_list = new List<string>();
-
+        public static AutoCompleteStringCollection schoolCollection = new AutoCompleteStringCollection();
+   
 
   
 

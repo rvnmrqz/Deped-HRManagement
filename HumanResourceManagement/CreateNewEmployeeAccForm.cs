@@ -105,6 +105,7 @@ namespace HumanResourceManagement
                                         SQLbank.EMP_MIDDLE_NAME + "," + 
                                         SQLbank.SEX + "," + 
                                         SQLbank.DATE_OF_BIRTH + "," + 
+                                        SQLbank.BIRTH_PLACE + "," +
                                         SQLbank.CIVIL_STATUS + "," +
                                         SQLbank.HDMF_NO + "," + 
                                         SQLbank.PHIC_NO + "," + 
@@ -112,9 +113,9 @@ namespace HumanResourceManagement
                                         SQLbank.ACCOUNT_NO + "," + 
                                         SQLbank.TIN_NO + ") "+
                                         " OUTPUT INSERTED.EMP_ID "+ 
-                                        " VALUES(@EMPNO, @PLANTILLA, @LNAME, @FNAME, @MNAME, @SEX, @BIRTH, @CIVILSTAT, @HDMF, @PHIC, @BP, @ACC, @TIN)";
+                                        " VALUES(@EMPNO, @PLANTILLA, @LNAME, @FNAME, @MNAME, @SEX, @BIRTH, @BIRTHPLACE @CIVILSTAT, @HDMF, @PHIC, @BP, @ACC, @TIN)";
 
-                    Console.WriteLine("Saving Query: " + savingSQL);
+            
 
                     cmd = new SqlCommand(savingSQL, conn);
 
@@ -125,6 +126,7 @@ namespace HumanResourceManagement
                     cmd.Parameters.AddWithValue("@MNAME", txtMname.Text.Trim());
                     cmd.Parameters.AddWithValue("@SEX", cmbGender.Text);
                     cmd.Parameters.AddWithValue("@BIRTH", txtDateOfBirth.Text);
+                    cmd.Parameters.AddWithValue("@BIRTHPLACE", txtBirthPlace.Text);
                     cmd.Parameters.AddWithValue("@CIVILSTAT", cmbCivilStatus.Text); 
                     cmd.Parameters.AddWithValue("@HDMF", txthdmf.Text);
                     cmd.Parameters.AddWithValue("@PHIC", txtphic.Text.Trim());
@@ -226,7 +228,40 @@ namespace HumanResourceManagement
         
         private bool hasInputProblem()
         {
-           
+            if (txtEmplyeeNo.Text.Length == 0)
+            {
+                MessageBox.Show("Employee no. must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtEmplyeeNo.Select();
+                return true;
+            }
+
+            if (txtEmplyeeNo.Text.Length > 0 && !usernameAvailable)
+            {
+                //check the availability of the username
+                try
+                {
+                    openSQLConnection();
+                    string sql = "SELECT " + SQLbank.EMP_ID + " FROM " + SQLbank.TBL_EMPLOYEES + " WHERE " + SQLbank.EMPLOYEE_NO + " = @EMPNO";
+                    cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@EMPNO", txtEmplyeeNo.Text.Trim());
+                    string empid = cmd.ExecuteScalar().ToString();
+                    Console.WriteLine("\n\n" + empid + "\n\n");
+                    if (empid.Length == 0) usernameAvailable = true;
+                    else
+                    {
+                        usernameAvailable = false;
+                        MessageBox.Show("Employee No. is already used", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return true;
+                    }
+
+                }
+                catch (Exception ee)
+                {
+                    Console.WriteLine("Cannot check the availability of the username: Exception: " + ee.Message);
+                }
+            }
+
+
             if (txtFname.Text.Length == 0)
             {
                 MessageBox.Show("First name must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -276,38 +311,7 @@ namespace HumanResourceManagement
                 return true;
             }
 
-            if (txtEmplyeeNo.Text.Length == 0)
-            {
-                MessageBox.Show("Employee no. must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txtEmplyeeNo.Select();
-                return true;
-            }
-            
-            if(txtEmplyeeNo.Text.Length>0 && !usernameAvailable)
-            {
-                //check the availability of the username
-                try
-                {
-                    openSQLConnection();
-                    string sql = "SELECT " + SQLbank.EMP_ID + " FROM "+SQLbank.TBL_EMPLOYEES+" WHERE " + SQLbank.EMPLOYEE_NO + " = @EMPNO";
-                    cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@EMPNO", txtEmplyeeNo.Text.Trim());
-                    string empid = cmd.ExecuteScalar().ToString();
-                    Console.WriteLine("\n\n"+empid+"\n\n");
-                    if (empid.Length == 0) usernameAvailable = true;
-                    else
-                    {
-                        usernameAvailable = false;
-                        MessageBox.Show("Employee No. is already used", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        return true;
-                    }
-
-                }
-                catch (Exception ee)
-                {
-                    Console.WriteLine("Cannot check the availability of the username: Exception: " + ee.Message);
-                }
-            }
+          
 
             if (txtAccNo.Text.Length == 0)
             {
@@ -350,6 +354,7 @@ namespace HumanResourceManagement
             return false;
         }
 
+        //*********************************************************************
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -457,7 +462,6 @@ namespace HumanResourceManagement
             char keyChar = (char)e.KeyCode;
             e.SuppressKeyPress = dateTimeTextKeyDownBoxChecker(txtDateOfBirth,keyChar,e.KeyCode);
         }
-
 
         private bool dateTimeTextKeyDownBoxChecker(MetroTextBox textbox,char keyChar, Keys keycode)
         {

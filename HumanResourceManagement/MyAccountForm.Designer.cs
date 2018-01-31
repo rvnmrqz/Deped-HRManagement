@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblFormExit = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnChangePhoto = new System.Windows.Forms.PictureBox();
             this.lblUploadedPicturePath = new System.Windows.Forms.Label();
             this.lblPictureFilename = new System.Windows.Forms.Label();
             this.lblAccountType = new System.Windows.Forms.Label();
@@ -51,14 +52,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtFirstname = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changePhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearPhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.FormPanel.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnChangePhoto)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // FormPanel
@@ -102,6 +104,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnChangePhoto);
             this.panel1.Controls.Add(this.lblUploadedPicturePath);
             this.panel1.Controls.Add(this.lblPictureFilename);
             this.panel1.Controls.Add(this.lblAccountType);
@@ -124,6 +127,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(597, 227);
             this.panel1.TabIndex = 2;
+            // 
+            // btnChangePhoto
+            // 
+            this.btnChangePhoto.BackColor = System.Drawing.Color.Transparent;
+            this.btnChangePhoto.Image = global::HumanResourceManagement.Properties.Resources.gallery_48_48;
+            this.btnChangePhoto.Location = new System.Drawing.Point(190, 176);
+            this.btnChangePhoto.Name = "btnChangePhoto";
+            this.btnChangePhoto.Size = new System.Drawing.Size(38, 38);
+            this.btnChangePhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnChangePhoto.TabIndex = 76;
+            this.btnChangePhoto.TabStop = false;
+            this.btnChangePhoto.Visible = false;
+            this.btnChangePhoto.Click += new System.EventHandler(this.btnChangePhoto_Click);
             // 
             // lblUploadedPicturePath
             // 
@@ -299,18 +315,6 @@
             this.label2.TabIndex = 15;
             this.label2.Text = "First";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.ContextMenuStrip = this.contextMenuStrip1;
-            this.pictureBox1.Enabled = false;
-            this.pictureBox1.Image = global::HumanResourceManagement.Properties.Resources.default_avatar;
-            this.pictureBox1.Location = new System.Drawing.Point(11, 11);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -333,6 +337,18 @@
             this.clearPhotoToolStripMenuItem.Text = "Clear Photo";
             this.clearPhotoToolStripMenuItem.Click += new System.EventHandler(this.clearPhotoToolStripMenuItem_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.ContextMenuStrip = this.contextMenuStrip1;
+            this.pictureBox1.Enabled = false;
+            this.pictureBox1.Image = global::HumanResourceManagement.Properties.Resources.default_avatar;
+            this.pictureBox1.Location = new System.Drawing.Point(11, 11);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
             // MyAccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -351,8 +367,9 @@
             this.FormPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnChangePhoto)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -372,7 +389,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtFirstname;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnOkay;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button btnEditCancel;
@@ -383,5 +399,7 @@
         private System.Windows.Forms.ToolStripMenuItem changePhotoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearPhotoToolStripMenuItem;
         private System.Windows.Forms.Label lblUploadedPicturePath;
+        private System.Windows.Forms.PictureBox btnChangePhoto;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -203,6 +203,10 @@
     <None Include="Resources\add_user.png" />
     <None Include="Resources\excel.png" />
     <None Include="Resources\done.png" />
+    <None Include="Resources\deped-teachers-1.jpg" />
+    <None Include="Resources\black key.png" />
+    <None Include="Resources\gallery.png" />
+    <None Include="Resources\gallery 48_48.png" />
     <Content Include="Resources\hide password.png" />
     <None Include="Resources\printer.png" />
     <None Include="Resources\lock.png" />

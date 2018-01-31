@@ -57,6 +57,7 @@ namespace HumanResourceManagement
             {
                 //display double clicked row
                 lblFormTitle.Text = "Edit Serivce Record";
+                panelChkBox.Enabled = false;
                 txtDateFrom.Enabled = false;
                 txtDateTo.Enabled = false;
                 chkPresent.Enabled = false;
@@ -71,17 +72,22 @@ namespace HumanResourceManagement
                 txtBranch.Text = TempHolder.selectedBranch;
                 cmbCause.Text = TempHolder.selectedCause;
                 txtLAWOP.Text = TempHolder.selectedLawop;
-            }else
+            }
+            else
             {
                 //default
                 lblFormTitle.Text = "Add Serivce Record";
-           
+
                 prepareDisplay();
             }
         }
 
         private void loadSystemValues()
         {
+            txtSchoolName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            txtSchoolName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            txtSchoolName.AutoCompleteCustomSource = TempHolder.schoolCollection;
+
             //status
             for (int i = 0; i < TempHolder.status_list.Count; i++)
             {
@@ -147,95 +153,98 @@ namespace HumanResourceManagement
         //************************SAVING*************************************************
         private void btnDone_Click(object sender, EventArgs e)
         {
-            if (TempHolder.editMode)
+            if (isInputValid())
             {
-                updateExistingEntry();
+                if (TempHolder.editMode)
+                {
+                    updateExistingEntry();
+                }
+                else
+                {
+                    addNewRecord();
+                }
             }
-            else
-            {
-                addNewRecord();
-            }
+
         }
 
         private void addNewRecord()
         {
-            if (isInputValid())
+
+            try
             {
-                try
+                openSQLConnection();
+
+                string sql = "INSERT INTO " + SQLbank.TBL_SERVICE_RECORDS + " ("
+                    + SQLbank.EMP_ID
+                    + "," + SQLbank.SCHOOL_NAME
+                    + "," + SQLbank.FROM_DATE;
+
+                if (!chkPresent.Checked) sql += "," + SQLbank.TO_DATE;
+
+                sql += "," + SQLbank.DESIGNATION
+                + "," + SQLbank.STATUS
+                + "," + SQLbank.SALARY
+                + "," + SQLbank.STATION
+                + "," + SQLbank.BRANCH
+                + "," + SQLbank.CAUSE
+                + "," + SQLbank.LAWOP + ")"
+                + " OUTPUT INSERTED." + SQLbank.ID
+                + " VALUES(@EMPID,@SCHOOLNAME,@FROM";
+
+                if (!chkPresent.Checked) sql += ",@TO";
+
+                sql += ",@DESIGNATION,@STATUS,@SALARY,@STATION,@BRANCH,@CAUSE,@LAWOP)";
+
+                cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@EMPID", TempHolder.searchedEmpID);
+                cmd.Parameters.AddWithValue("@SCHOOLNAME", txtSchoolName.Text);
+                cmd.Parameters.AddWithValue("@FROM", txtDateFrom.Text);
+
+                if (!chkPresent.Checked) cmd.Parameters.AddWithValue("@TO", txtDateTo.Text);
+
+                cmd.Parameters.AddWithValue("@DESIGNATION", txtDesignation.Text);
+                cmd.Parameters.AddWithValue("@STATUS", cmbStatus.Text);
+                cmd.Parameters.AddWithValue("@SALARY", txtSalary.Text);
+                cmd.Parameters.AddWithValue("@STATION", txtStation.Text);
+                cmd.Parameters.AddWithValue("@BRANCH", txtBranch.Text);
+                cmd.Parameters.AddWithValue("@CAUSE", cmbCause.Text);
+                cmd.Parameters.AddWithValue("@LAWOP", txtLAWOP.Text);
+
+                Console.WriteLine("Saving query: " + sql);
+
+                string lastinsertId = cmd.ExecuteScalar().ToString();
+
+                if (chkPresent.Checked && TempHolder.lastIsPresent)
                 {
-                    openSQLConnection();
-
-                    string sql = "INSERT INTO " + SQLbank.TBL_SERVICE_RECORDS + " ("
-                        + SQLbank.EMP_ID
-                        + "," + SQLbank.SCHOOL_NAME
-                        + "," + SQLbank.FROM_DATE;
-
-                    if (!chkPresent.Checked) sql += "," + SQLbank.TO_DATE;
-
-                    sql += "," + SQLbank.DESIGNATION
-                    + "," + SQLbank.STATUS
-                    + "," + SQLbank.SALARY
-                    + "," + SQLbank.STATION
-                    + "," + SQLbank.BRANCH
-                    + "," + SQLbank.CAUSE
-                    + "," + SQLbank.LAWOP + ")"
-                    + " OUTPUT INSERTED." + SQLbank.ID
-                    + " VALUES(@EMPID,@SCHOOLNAME,@FROM";
-
-                    if (!chkPresent.Checked) sql += ",@TO";
-
-                    sql += ",@DESIGNATION,@STATUS,@SALARY,@STATION,@BRANCH,@CAUSE,@LAWOP)";
-
-                    cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@EMPID", TempHolder.searchedEmpID);
-                    cmd.Parameters.AddWithValue("@SCHOOLNAME", txtSchoolName.Text);
-                    cmd.Parameters.AddWithValue("@FROM", txtDateFrom.Text);
-
-                    if (!chkPresent.Checked) cmd.Parameters.AddWithValue("@TO", txtDateTo.Text);
-
-                    cmd.Parameters.AddWithValue("@DESIGNATION", txtDesignation.Text);
-                    cmd.Parameters.AddWithValue("@STATUS", cmbStatus.Text);
-                    cmd.Parameters.AddWithValue("@SALARY", txtSalary.Text);
-                    cmd.Parameters.AddWithValue("@STATION", txtStation.Text);
-                    cmd.Parameters.AddWithValue("@BRANCH", txtBranch.Text);
-                    cmd.Parameters.AddWithValue("@CAUSE", cmbCause.Text);
-                    cmd.Parameters.AddWithValue("@LAWOP", txtLAWOP.Text);
-
-                    Console.WriteLine("Saving query: " + sql);
-
-                    string lastinsertId = cmd.ExecuteScalar().ToString();
-
-                    if (chkPresent.Checked && TempHolder.lastIsPresent)
+                    try
                     {
-                        try
-                        {
-                            //update last record
-                            DateTime dtFrom = DateTime.Parse(txtDateFrom.Text);
-                            DateTime dtOldTo = dtFrom.AddDays(-1);
-                            updateLastRecordTo(dtOldTo.ToString("MM/dd/yyyy"));
+                        //update last record
+                        DateTime dtFrom = DateTime.Parse(txtDateFrom.Text);
+                        DateTime dtOldTo = dtFrom.AddDays(-1);
+                        updateLastRecordTo(dtOldTo.ToString("MM/dd/yyyy"));
 
-                        }
-                        catch(Exception ee)
-                        {
-                            Console.WriteLine("Generating TO datetime value Failed: "+ee.Message);
-                        }
-                     
+                    }
+                    catch (Exception ee)
+                    {
+                        Console.WriteLine("Generating TO datetime value Failed: " + ee.Message);
                     }
 
-                    //to reload and rearrange the list based on from date
-                    TempHolder.uc_ServiceRecord.loadRecords(TempHolder.searchedEmpID);
-
-                    prepareDisplay();
-
-                    MessageBox.Show("New entry successfully added","Saved",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                    txtDateFrom.Select();
                 }
-                catch (Exception ee)
-                {
-                    Console.WriteLine("\nAdding Service Record Exception: " + ee.Message);
-                    MessageBox.Show("Adding Service Record Failed", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+
+                //to reload and rearrange the list based on from date
+                TempHolder.uc_ServiceRecord.loadRecords(TempHolder.searchedEmpID);
+
+                prepareDisplay();
+
+                MessageBox.Show("New entry successfully added", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtDateFrom.Select();
             }
+            catch (Exception ee)
+            {
+                Console.WriteLine("\nAdding Service Record Exception: " + ee.Message);
+                MessageBox.Show("Adding Service Record Failed", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void updateExistingEntry()
@@ -275,7 +284,7 @@ namespace HumanResourceManagement
             }
             catch (Exception ee)
             {
-                MessageBox.Show("Failed to updated entry\n"+ee.Message, "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed to updated entry\n" + ee.Message, "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -286,16 +295,16 @@ namespace HumanResourceManagement
                 openSQLConnection();
                 string updateSql = "UPDATE " + SQLbank.TBL_SERVICE_RECORDS + " SET " + SQLbank.TO_DATE + " = @DATE WHERE " + SQLbank.ID + " = " + TempHolder.lastServiceRecordId;
                 cmd = new SqlCommand(updateSql, conn);
-                cmd.Parameters.AddWithValue("@DATE",toDate);
+                cmd.Parameters.AddWithValue("@DATE", toDate);
                 cmd.ExecuteNonQuery();
-               // MessageBox.Show("Updated Last Record's To. ID: " + TempHolder.lastServiceRecordId);
+                // MessageBox.Show("Updated Last Record's To. ID: " + TempHolder.lastServiceRecordId);
             }
             catch (Exception ee)
             {
                 Console.WriteLine("Failed to update Last Record's TO, Exception: " + ee.Message);
             }
         }
-   
+
         private bool isInputValid()
         {
 
@@ -364,7 +373,7 @@ namespace HumanResourceManagement
                     }
                 }
             }
-          
+
             if (txtSchoolName.Text.Trim().Length == 0)
             {
                 showMessage("School name must not be empty");
@@ -405,7 +414,7 @@ namespace HumanResourceManagement
                 showMessage("Branch must not be empty");
                 return false;
             }
-          
+
             if (cmbCause.SelectedIndex == -1)
             {
                 showMessage("Cause must not be empty");
@@ -490,7 +499,7 @@ namespace HumanResourceManagement
                 txtBranch.Text = TempHolder.lastBranch;
             }
         }
-        
+
         private void chkLawop_CheckedChanged(object sender, EventArgs e)
         {
             if (!chkLawop.Checked)
@@ -543,7 +552,7 @@ namespace HumanResourceManagement
         private void txtDateFrom_KeyDown(object sender, KeyEventArgs e)
         {
             char keyChar = (char)e.KeyCode;
-            e.SuppressKeyPress = dateTimeTextKeyDownBoxChecker(txtDateFrom, keyChar,e.KeyCode);
+            e.SuppressKeyPress = dateTimeTextKeyDownBoxChecker(txtDateFrom, keyChar, e.KeyCode);
         }
 
         private void txtDateTo_KeyDown(object sender, KeyEventArgs e)
