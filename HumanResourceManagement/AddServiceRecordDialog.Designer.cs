@@ -486,7 +486,6 @@
             this.txtSchoolName.UseSelectable = true;
             this.txtSchoolName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtSchoolName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.txtSchoolName.Click += new System.EventHandler(this.hotspo);
             // 
             // txtLAWOP
             // 
@@ -519,7 +518,6 @@
             this.txtLAWOP.UseSelectable = true;
             this.txtLAWOP.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtLAWOP.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.txtLAWOP.Click += new System.EventHandler(this.hotspo);
             // 
             // metroLabel2
             // 

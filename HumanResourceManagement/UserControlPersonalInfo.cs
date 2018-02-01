@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 using MetroFramework.Controls;
+using System.IO;
 
 namespace HumanResourceManagement
 {
@@ -381,6 +382,14 @@ namespace HumanResourceManagement
                         string delSQL = "DELETE FROM " + SQLbank.TBL_EMPLOYEES + " WHERE " + SQLbank.EMP_ID + " = " + emp_id;
                         cmd = new SqlCommand(delSQL, conn);
                         cmd.ExecuteNonQuery();
+
+                        if (TempHolder.searchedPictureFilename != null)
+                        {
+                            if (File.Exists(TempHolder.searchedPictureFilename))
+                            {
+                                File.Delete(TempHolder.searchedPictureFilename);
+                            }
+                        }
                         MessageBox.Show("Employee Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         TempHolder.mainForm.clearDisplay();
 

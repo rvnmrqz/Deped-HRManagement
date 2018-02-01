@@ -77,7 +77,6 @@ namespace HumanResourceManagement
             {
                 //default
                 lblFormTitle.Text = "Add Serivce Record";
-
                 prepareDisplay();
             }
         }
@@ -511,11 +510,6 @@ namespace HumanResourceManagement
                 txtLAWOP.Enabled = false;
                 txtLAWOP.Text = TempHolder.lastLAWOP;
             }
-        }
-
-        private void hotspo(object sender, EventArgs e)
-        {
-
         }
 
         private void chkSalary_CheckedChanged(object sender, EventArgs e)

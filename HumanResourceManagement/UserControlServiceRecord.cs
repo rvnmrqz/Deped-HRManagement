@@ -164,6 +164,7 @@ namespace HumanResourceManagement
             txtSalary.ResetText();
             txtCause.ResetText();
             txtLAWOP.ResetText();
+            btnEdit.Enabled = false;
             btnExport.Enabled = false;
             btnAddRecord.Enabled = false;
         }
@@ -187,7 +188,9 @@ namespace HumanResourceManagement
                 txtCause.Text = datagridServiceRecords.Rows[selectedIndex].Cells[9].Value.ToString();
                 txtLAWOP.Text = datagridServiceRecords.Rows[selectedIndex].Cells[10].Value.ToString();
                 btnDelete.Enabled = true;
+                btnEdit.Enabled = true;
             }
+          
 
         }
 
@@ -330,6 +333,7 @@ namespace HumanResourceManagement
 
                 //transferring of data grid to excel sheets
                 int wsRow = 23, wsCol = 1;
+                int wsFirstRow = wsRow, wsFirstCol = wsCol;
                 int wsLastRow = 1, wsLastCol = 1;    
 
                 for (int row = 0; row < datagridServiceRecords.Rows.Count; row++)
@@ -337,7 +341,7 @@ namespace HumanResourceManagement
                     for (int col = 2; col < datagridServiceRecords.Columns.Count; col++)
                     {
                         worksheet.Cells[wsRow, wsCol] = datagridServiceRecords.Rows[row].Cells[col].Value.ToString();
-                        worksheet.Cells[wsRow,wsCol].Borders.LineStyle = XlLineStyle.xlContinuous;
+                        //worksheet.Cells[wsRow,wsCol].Borders.LineStyle = XlLineStyle.xlContinuous;
                         wsCol++;
                     }
                     wsLastCol = wsCol;
@@ -345,7 +349,19 @@ namespace HumanResourceManagement
                     wsRow++;
                     wsCol = 1;
                 }
-               
+
+                //add reference
+                string bottomMsg = "    Issued in compliance with Executive Order No. 54 dated August 10, 1954 and in accordance with circular number 58 dated August 1954 of the System.";
+
+                worksheet.Range[worksheet.Cells[wsFirstRow, wsFirstCol], worksheet.Cells[wsLastRow, --wsLastCol]].Borders.LineStyle = XlLineStyle.xlContinuous;
+                worksheet.Cells[++wsLastRow, wsFirstCol] = bottomMsg;
+
+
+                worksheet.Range[worksheet.Cells[(wsLastRow), wsFirstCol], worksheet.Cells[(++wsLastRow), (wsLastCol)]].Merge();
+                worksheet.Range[worksheet.Cells[(wsLastRow), wsFirstCol], worksheet.Cells[(wsLastRow), (wsLastCol)]].Rows.WrapText = true;
+                worksheet.Range[worksheet.Cells[(wsLastRow), wsFirstCol], worksheet.Cells[(wsLastRow), (wsLastCol)]].Cells.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
+
+                Console.WriteLine("Range: [" + (wsLastRow) + "," + wsFirstCol + "],[" + (wsLastRow) + "," + (wsLastCol) + "]");
             }
             catch (Exception ee)
             {
@@ -402,9 +418,14 @@ namespace HumanResourceManagement
 
         private void datagridServiceRecords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            editRow(e.RowIndex);
+        }
+
+        private void editRow(int selectedIndex)
+        {
             if (Permissions.authorizedToUseFunction(Permissions.MODIFY_SERVICE_RECORD))
             {
-                int selectedIndex = e.RowIndex;
+               
 
                 TempHolder.selectedId = datagridServiceRecords.Rows[selectedIndex].Cells[0].Value.ToString();
                 TempHolder.selectedSchool = datagridServiceRecords.Rows[selectedIndex].Cells[1].Value.ToString();
@@ -427,6 +448,11 @@ namespace HumanResourceManagement
         private void txtFrom_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            editRow(datagridServiceRecords.CurrentCell.RowIndex);
         }
     }
 }

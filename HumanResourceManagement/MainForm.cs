@@ -227,12 +227,14 @@ namespace HumanResourceManagement
                     //txtPlantillaNo.Text = reader[SQLbank.PLANTILLA_NO].ToString();
 
                     string filename = reader[SQLbank.PICTUREFILENAME].ToString().Trim();
+
                     if (filename.Length > 0)
                     {
                         //user has picture
                         try
                         {
-                            pictureBox1.Image =GetImage(@TempHolder.picturePath + filename);
+                            pictureBox1.Image =GetImage(TempHolder.picturePath + filename);
+                            TempHolder.searchedPictureFilename = TempHolder.picturePath + filename;
                         }
                         catch (Exception ee)
                         {
@@ -275,7 +277,7 @@ namespace HumanResourceManagement
             TempHolder.clearSearchTempValues();
             pictureBox1.Invalidate();
             pictureBox1.Image = Properties.Resources.default_avatar;
-            lblPictureDirectory.ResetText();
+            lblUploadedPicture.ResetText();
             lblemployee_id_hidden.ResetText();
             lblemployee_id_hidden.ResetText();
 
@@ -326,7 +328,7 @@ namespace HumanResourceManagement
                 0 = validation failed
             */
 
-            if (lblPictureDirectory.Text.Length != 0)
+            if (lblUploadedPicture.Text.Length != 0)
             {
                 string filename = lblemployee_id_hidden.Text + ".png";
                 if (copyFileToPictureFolder(filename))
@@ -365,7 +367,7 @@ namespace HumanResourceManagement
                 }
 
                 //copy file
-                File.Copy(lblPictureDirectory.Text, (pictureFolderPath + imagefilename), true);
+                File.Copy(lblUploadedPicture.Text, (pictureFolderPath + imagefilename), true);
 
             }
             catch (Exception ee)
@@ -397,7 +399,7 @@ namespace HumanResourceManagement
                 // display image in picture box  
                 pictureBox1.Image = new Bitmap(opendlg.FileName);
                 // image file path  
-                lblPictureDirectory.Text = opendlg.FileName;
+                lblUploadedPicture.Text = opendlg.FileName;
             }
 
         }

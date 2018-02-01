@@ -35,6 +35,7 @@ namespace HumanResourceManagement
 
         //searching
         public static string searchedEmpID = "";
+        public static string searchedPictureFilename;
         public static string searchedSheetName = "";
 
         public static string searchedName;
@@ -59,6 +60,7 @@ namespace HumanResourceManagement
         public static void clearSearchTempValues()
         {
             searchedEmpID = null;
+            searchedPictureFilename = null;
             searchedSheetName = null;
             searchedName = null;
             searchedBirthPlace = null;

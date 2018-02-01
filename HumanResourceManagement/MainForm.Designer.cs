@@ -41,7 +41,7 @@
             this.txtDateOfOriginalAppointment = new MetroFramework.Controls.MetroTextBox();
             this.txtSchoolName = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
-            this.lblPictureDirectory = new System.Windows.Forms.Label();
+            this.lblUploadedPicture = new System.Windows.Forms.Label();
             this.btnAddUser = new System.Windows.Forms.PictureBox();
             this.btnChoosePhoto = new System.Windows.Forms.PictureBox();
             this.lblemployee_id_hidden = new System.Windows.Forms.Label();
@@ -158,7 +158,7 @@
             this.mainPanelLeft.Controls.Add(this.txtDateOfOriginalAppointment);
             this.mainPanelLeft.Controls.Add(this.txtSchoolName);
             this.mainPanelLeft.Controls.Add(this.metroLabel4);
-            this.mainPanelLeft.Controls.Add(this.lblPictureDirectory);
+            this.mainPanelLeft.Controls.Add(this.lblUploadedPicture);
             this.mainPanelLeft.Controls.Add(this.btnAddUser);
             this.mainPanelLeft.Controls.Add(this.btnChoosePhoto);
             this.mainPanelLeft.Controls.Add(this.lblemployee_id_hidden);
@@ -260,14 +260,14 @@
             this.metroLabel4.TabIndex = 79;
             this.metroLabel4.Text = "School Name";
             // 
-            // lblPictureDirectory
+            // lblUploadedPicture
             // 
-            this.lblPictureDirectory.AutoSize = true;
-            this.lblPictureDirectory.Location = new System.Drawing.Point(9, 4);
-            this.lblPictureDirectory.Name = "lblPictureDirectory";
-            this.lblPictureDirectory.Size = new System.Drawing.Size(0, 13);
-            this.lblPictureDirectory.TabIndex = 74;
-            this.lblPictureDirectory.Visible = false;
+            this.lblUploadedPicture.AutoSize = true;
+            this.lblUploadedPicture.Location = new System.Drawing.Point(9, 4);
+            this.lblUploadedPicture.Name = "lblUploadedPicture";
+            this.lblUploadedPicture.Size = new System.Drawing.Size(0, 13);
+            this.lblUploadedPicture.TabIndex = 74;
+            this.lblUploadedPicture.Visible = false;
             // 
             // btnAddUser
             // 
@@ -511,21 +511,21 @@
             // 
             this.accountsToolStripMenuItem.Image = global::HumanResourceManagement.Properties.Resources.accounts;
             this.accountsToolStripMenuItem.Name = "accountsToolStripMenuItem";
-            this.accountsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.accountsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.accountsToolStripMenuItem.Text = "Accounts";
             // 
             // schoolsToolStripMenuItem
             // 
             this.schoolsToolStripMenuItem.Image = global::HumanResourceManagement.Properties.Resources.if_commerical_building_103266;
             this.schoolsToolStripMenuItem.Name = "schoolsToolStripMenuItem";
-            this.schoolsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.schoolsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.schoolsToolStripMenuItem.Text = "Schools";
             // 
             // sQLSettingsToolStripMenuItem
             // 
             this.sQLSettingsToolStripMenuItem.Image = global::HumanResourceManagement.Properties.Resources.if_settings_326699;
             this.sQLSettingsToolStripMenuItem.Name = "sQLSettingsToolStripMenuItem";
-            this.sQLSettingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sQLSettingsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.sQLSettingsToolStripMenuItem.Text = "SQL Settings";
             // 
             // lblFormExit
@@ -674,7 +674,7 @@
         private System.Windows.Forms.ToolStripMenuItem schoolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sQLSettingsToolStripMenuItem;
         private System.Windows.Forms.PictureBox btnAddUser;
-        private System.Windows.Forms.Label lblPictureDirectory;
+        private System.Windows.Forms.Label lblUploadedPicture;
         public MetroFramework.Controls.MetroTextBox txtEmplyeeNo;
         private MetroFramework.Controls.MetroTextBox txtDateOfOriginalAppointment;
         private MetroFramework.Controls.MetroTextBox txtSchoolName;

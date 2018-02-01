@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlServiceRecord));
             this.datagridServiceRecords = new MetroFramework.Controls.MetroGrid();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,33 +61,34 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.txtStatus = new MetroFramework.Controls.MetroTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtFrom = new MetroFramework.Controls.MetroTextBox();
+            this.txtTo = new MetroFramework.Controls.MetroTextBox();
+            this.txtLAWOP = new MetroFramework.Controls.MetroTextBox();
+            this.txtSalary = new MetroFramework.Controls.MetroTextBox();
+            this.txtCause = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.lblSelectedRowID = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAddRecord = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtCause = new MetroFramework.Controls.MetroTextBox();
-            this.txtSalary = new MetroFramework.Controls.MetroTextBox();
-            this.txtLAWOP = new MetroFramework.Controls.MetroTextBox();
-            this.txtTo = new MetroFramework.Controls.MetroTextBox();
-            this.txtFrom = new MetroFramework.Controls.MetroTextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnEdit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.datagridServiceRecords)).BeginInit();
             this.panel1.SuspendLayout();
             this.dgvContextMenu.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // datagridServiceRecords
@@ -489,6 +491,28 @@
             this.panel2.Size = new System.Drawing.Size(471, 161);
             this.panel2.TabIndex = 73;
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.tableLayoutPanel3.Controls.Add(this.txtStatus, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.txtSchoolName, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.txtStation, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.txtDesignation, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.txtBranch, 0, 4);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(112, 17);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 5;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(356, 133);
+            this.tableLayoutPanel3.TabIndex = 55;
+            // 
             // txtStatus
             // 
             // 
@@ -537,154 +561,26 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(796, 167);
             this.tableLayoutPanel1.TabIndex = 75;
             // 
-            // lblSelectedRowID
+            // panel3
             // 
-            this.lblSelectedRowID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblSelectedRowID.AutoSize = true;
-            this.lblSelectedRowID.Location = new System.Drawing.Point(11, 468);
-            this.lblSelectedRowID.Name = "lblSelectedRowID";
-            this.lblSelectedRowID.Size = new System.Drawing.Size(0, 13);
-            this.lblSelectedRowID.TabIndex = 76;
-            this.lblSelectedRowID.Visible = false;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Enabled = false;
-            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(57)))), ((int)(((byte)(58)))));
-            this.btnDelete.Image = global::HumanResourceManagement.Properties.Resources.delete1;
-            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDelete.Location = new System.Drawing.Point(438, 452);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(128, 30);
-            this.btnDelete.TabIndex = 56;
-            this.btnDelete.Text = "Delete Record";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnAddRecord
-            // 
-            this.btnAddRecord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddRecord.Enabled = false;
-            this.btnAddRecord.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnAddRecord.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnAddRecord.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnAddRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddRecord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(57)))), ((int)(((byte)(58)))));
-            this.btnAddRecord.Image = global::HumanResourceManagement.Properties.Resources.add1;
-            this.btnAddRecord.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddRecord.Location = new System.Drawing.Point(572, 452);
-            this.btnAddRecord.Name = "btnAddRecord";
-            this.btnAddRecord.Size = new System.Drawing.Size(128, 30);
-            this.btnAddRecord.TabIndex = 48;
-            this.btnAddRecord.Text = "Add Record";
-            this.btnAddRecord.UseVisualStyleBackColor = true;
-            this.btnAddRecord.Click += new System.EventHandler(this.btnAddRecord_Click);
-            // 
-            // btnExport
-            // 
-            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExport.Enabled = false;
-            this.btnExport.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(57)))), ((int)(((byte)(58)))));
-            this.btnExport.Image = global::HumanResourceManagement.Properties.Resources.excel;
-            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExport.Location = new System.Drawing.Point(706, 452);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(102, 30);
-            this.btnExport.TabIndex = 77;
-            this.btnExport.Text = "Export";
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.tableLayoutPanel3.Controls.Add(this.txtStatus, 0, 2);
-            this.tableLayoutPanel3.Controls.Add(this.txtSchoolName, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.txtStation, 0, 3);
-            this.tableLayoutPanel3.Controls.Add(this.txtDesignation, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.txtBranch, 0, 4);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(112, 17);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 5;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(356, 133);
-            this.tableLayoutPanel3.TabIndex = 55;
-            // 
-            // metroLabel7
-            // 
-            this.metroLabel7.AutoSize = true;
-            this.metroLabel7.BackColor = System.Drawing.SystemColors.Control;
-            this.metroLabel7.Enabled = false;
-            this.metroLabel7.Location = new System.Drawing.Point(5, 43);
-            this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(29, 19);
-            this.metroLabel7.TabIndex = 44;
-            this.metroLabel7.Text = "TO:";
-            // 
-            // metroLabel3
-            // 
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.metroLabel3.Enabled = false;
-            this.metroLabel3.Location = new System.Drawing.Point(5, 127);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(49, 19);
-            this.metroLabel3.TabIndex = 41;
-            this.metroLabel3.Text = "LWOP:";
-            // 
-            // metroLabel4
-            // 
-            this.metroLabel4.AutoSize = true;
-            this.metroLabel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.metroLabel4.Enabled = false;
-            this.metroLabel4.Location = new System.Drawing.Point(5, 72);
-            this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(60, 19);
-            this.metroLabel4.TabIndex = 39;
-            this.metroLabel4.Text = "SALARY:";
-            // 
-            // metroLabel5
-            // 
-            this.metroLabel5.AutoSize = true;
-            this.metroLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.metroLabel5.Enabled = false;
-            this.metroLabel5.Location = new System.Drawing.Point(5, 101);
-            this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(53, 19);
-            this.metroLabel5.TabIndex = 37;
-            this.metroLabel5.Text = "CAUSE:";
-            // 
-            // metroLabel6
-            // 
-            this.metroLabel6.AutoSize = true;
-            this.metroLabel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.metroLabel6.Enabled = false;
-            this.metroLabel6.Location = new System.Drawing.Point(5, 17);
-            this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(50, 19);
-            this.metroLabel6.TabIndex = 35;
-            this.metroLabel6.Text = "FROM:";
+            this.panel3.Controls.Add(this.tableLayoutPanel2);
+            this.panel3.Controls.Add(this.metroLabel6);
+            this.panel3.Controls.Add(this.metroLabel5);
+            this.panel3.Controls.Add(this.metroLabel4);
+            this.panel3.Controls.Add(this.metroLabel3);
+            this.panel3.Controls.Add(this.metroLabel7);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(480, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(313, 161);
+            this.panel3.TabIndex = 74;
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 239F));
             this.tableLayoutPanel2.Controls.Add(this.txtFrom, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtTo, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.txtLAWOP, 0, 4);
@@ -700,134 +596,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(239, 132);
             this.tableLayoutPanel2.TabIndex = 45;
-            // 
-            // txtCause
-            // 
-            // 
-            // 
-            // 
-            this.txtCause.CustomButton.Image = null;
-            this.txtCause.CustomButton.Location = new System.Drawing.Point(215, 2);
-            this.txtCause.CustomButton.Name = "";
-            this.txtCause.CustomButton.Size = new System.Drawing.Size(15, 15);
-            this.txtCause.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtCause.CustomButton.TabIndex = 1;
-            this.txtCause.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtCause.CustomButton.UseSelectable = true;
-            this.txtCause.CustomButton.Visible = false;
-            this.txtCause.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCause.Enabled = false;
-            this.txtCause.Lines = new string[0];
-            this.txtCause.Location = new System.Drawing.Point(3, 81);
-            this.txtCause.MaxLength = 32767;
-            this.txtCause.Name = "txtCause";
-            this.txtCause.PasswordChar = '\0';
-            this.txtCause.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtCause.SelectedText = "";
-            this.txtCause.SelectionLength = 0;
-            this.txtCause.SelectionStart = 0;
-            this.txtCause.ShortcutsEnabled = true;
-            this.txtCause.Size = new System.Drawing.Size(233, 20);
-            this.txtCause.TabIndex = 38;
-            this.txtCause.UseSelectable = true;
-            this.txtCause.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtCause.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // txtSalary
-            // 
-            // 
-            // 
-            // 
-            this.txtSalary.CustomButton.Image = null;
-            this.txtSalary.CustomButton.Location = new System.Drawing.Point(215, 2);
-            this.txtSalary.CustomButton.Name = "";
-            this.txtSalary.CustomButton.Size = new System.Drawing.Size(15, 15);
-            this.txtSalary.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtSalary.CustomButton.TabIndex = 1;
-            this.txtSalary.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtSalary.CustomButton.UseSelectable = true;
-            this.txtSalary.CustomButton.Visible = false;
-            this.txtSalary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSalary.Enabled = false;
-            this.txtSalary.Lines = new string[0];
-            this.txtSalary.Location = new System.Drawing.Point(3, 55);
-            this.txtSalary.MaxLength = 32767;
-            this.txtSalary.Name = "txtSalary";
-            this.txtSalary.PasswordChar = '\0';
-            this.txtSalary.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtSalary.SelectedText = "";
-            this.txtSalary.SelectionLength = 0;
-            this.txtSalary.SelectionStart = 0;
-            this.txtSalary.ShortcutsEnabled = true;
-            this.txtSalary.Size = new System.Drawing.Size(233, 20);
-            this.txtSalary.TabIndex = 40;
-            this.txtSalary.UseSelectable = true;
-            this.txtSalary.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtSalary.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // txtLAWOP
-            // 
-            // 
-            // 
-            // 
-            this.txtLAWOP.CustomButton.Image = null;
-            this.txtLAWOP.CustomButton.Location = new System.Drawing.Point(213, 2);
-            this.txtLAWOP.CustomButton.Name = "";
-            this.txtLAWOP.CustomButton.Size = new System.Drawing.Size(17, 17);
-            this.txtLAWOP.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtLAWOP.CustomButton.TabIndex = 1;
-            this.txtLAWOP.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtLAWOP.CustomButton.UseSelectable = true;
-            this.txtLAWOP.CustomButton.Visible = false;
-            this.txtLAWOP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtLAWOP.Enabled = false;
-            this.txtLAWOP.Lines = new string[0];
-            this.txtLAWOP.Location = new System.Drawing.Point(3, 107);
-            this.txtLAWOP.MaxLength = 32767;
-            this.txtLAWOP.Name = "txtLAWOP";
-            this.txtLAWOP.PasswordChar = '\0';
-            this.txtLAWOP.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtLAWOP.SelectedText = "";
-            this.txtLAWOP.SelectionLength = 0;
-            this.txtLAWOP.SelectionStart = 0;
-            this.txtLAWOP.ShortcutsEnabled = true;
-            this.txtLAWOP.Size = new System.Drawing.Size(233, 22);
-            this.txtLAWOP.TabIndex = 42;
-            this.txtLAWOP.UseSelectable = true;
-            this.txtLAWOP.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtLAWOP.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // txtTo
-            // 
-            // 
-            // 
-            // 
-            this.txtTo.CustomButton.Image = null;
-            this.txtTo.CustomButton.Location = new System.Drawing.Point(215, 2);
-            this.txtTo.CustomButton.Name = "";
-            this.txtTo.CustomButton.Size = new System.Drawing.Size(15, 15);
-            this.txtTo.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtTo.CustomButton.TabIndex = 1;
-            this.txtTo.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtTo.CustomButton.UseSelectable = true;
-            this.txtTo.CustomButton.Visible = false;
-            this.txtTo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtTo.Enabled = false;
-            this.txtTo.Lines = new string[0];
-            this.txtTo.Location = new System.Drawing.Point(3, 29);
-            this.txtTo.MaxLength = 32767;
-            this.txtTo.Name = "txtTo";
-            this.txtTo.PasswordChar = '\0';
-            this.txtTo.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtTo.SelectedText = "";
-            this.txtTo.SelectionLength = 0;
-            this.txtTo.SelectionStart = 0;
-            this.txtTo.ShortcutsEnabled = true;
-            this.txtTo.Size = new System.Drawing.Size(233, 20);
-            this.txtTo.TabIndex = 46;
-            this.txtTo.UseSelectable = true;
-            this.txtTo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtTo.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // txtFrom
             // 
@@ -862,25 +630,279 @@
             this.txtFrom.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.txtFrom.Click += new System.EventHandler(this.txtFrom_Click);
             // 
-            // panel3
+            // txtTo
             // 
-            this.panel3.Controls.Add(this.tableLayoutPanel2);
-            this.panel3.Controls.Add(this.metroLabel6);
-            this.panel3.Controls.Add(this.metroLabel5);
-            this.panel3.Controls.Add(this.metroLabel4);
-            this.panel3.Controls.Add(this.metroLabel3);
-            this.panel3.Controls.Add(this.metroLabel7);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(480, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(313, 161);
-            this.panel3.TabIndex = 74;
+            // 
+            // 
+            // 
+            this.txtTo.CustomButton.Image = null;
+            this.txtTo.CustomButton.Location = new System.Drawing.Point(215, 2);
+            this.txtTo.CustomButton.Name = "";
+            this.txtTo.CustomButton.Size = new System.Drawing.Size(15, 15);
+            this.txtTo.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtTo.CustomButton.TabIndex = 1;
+            this.txtTo.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtTo.CustomButton.UseSelectable = true;
+            this.txtTo.CustomButton.Visible = false;
+            this.txtTo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtTo.Enabled = false;
+            this.txtTo.Lines = new string[0];
+            this.txtTo.Location = new System.Drawing.Point(3, 29);
+            this.txtTo.MaxLength = 32767;
+            this.txtTo.Name = "txtTo";
+            this.txtTo.PasswordChar = '\0';
+            this.txtTo.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtTo.SelectedText = "";
+            this.txtTo.SelectionLength = 0;
+            this.txtTo.SelectionStart = 0;
+            this.txtTo.ShortcutsEnabled = true;
+            this.txtTo.Size = new System.Drawing.Size(233, 20);
+            this.txtTo.TabIndex = 46;
+            this.txtTo.UseSelectable = true;
+            this.txtTo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtTo.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // txtLAWOP
+            // 
+            // 
+            // 
+            // 
+            this.txtLAWOP.CustomButton.Image = null;
+            this.txtLAWOP.CustomButton.Location = new System.Drawing.Point(213, 2);
+            this.txtLAWOP.CustomButton.Name = "";
+            this.txtLAWOP.CustomButton.Size = new System.Drawing.Size(17, 17);
+            this.txtLAWOP.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtLAWOP.CustomButton.TabIndex = 1;
+            this.txtLAWOP.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtLAWOP.CustomButton.UseSelectable = true;
+            this.txtLAWOP.CustomButton.Visible = false;
+            this.txtLAWOP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLAWOP.Enabled = false;
+            this.txtLAWOP.Lines = new string[0];
+            this.txtLAWOP.Location = new System.Drawing.Point(3, 107);
+            this.txtLAWOP.MaxLength = 32767;
+            this.txtLAWOP.Name = "txtLAWOP";
+            this.txtLAWOP.PasswordChar = '\0';
+            this.txtLAWOP.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtLAWOP.SelectedText = "";
+            this.txtLAWOP.SelectionLength = 0;
+            this.txtLAWOP.SelectionStart = 0;
+            this.txtLAWOP.ShortcutsEnabled = true;
+            this.txtLAWOP.Size = new System.Drawing.Size(233, 22);
+            this.txtLAWOP.TabIndex = 42;
+            this.txtLAWOP.UseSelectable = true;
+            this.txtLAWOP.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtLAWOP.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // txtSalary
+            // 
+            // 
+            // 
+            // 
+            this.txtSalary.CustomButton.Image = null;
+            this.txtSalary.CustomButton.Location = new System.Drawing.Point(215, 2);
+            this.txtSalary.CustomButton.Name = "";
+            this.txtSalary.CustomButton.Size = new System.Drawing.Size(15, 15);
+            this.txtSalary.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtSalary.CustomButton.TabIndex = 1;
+            this.txtSalary.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtSalary.CustomButton.UseSelectable = true;
+            this.txtSalary.CustomButton.Visible = false;
+            this.txtSalary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSalary.Enabled = false;
+            this.txtSalary.Lines = new string[0];
+            this.txtSalary.Location = new System.Drawing.Point(3, 55);
+            this.txtSalary.MaxLength = 32767;
+            this.txtSalary.Name = "txtSalary";
+            this.txtSalary.PasswordChar = '\0';
+            this.txtSalary.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtSalary.SelectedText = "";
+            this.txtSalary.SelectionLength = 0;
+            this.txtSalary.SelectionStart = 0;
+            this.txtSalary.ShortcutsEnabled = true;
+            this.txtSalary.Size = new System.Drawing.Size(233, 20);
+            this.txtSalary.TabIndex = 40;
+            this.txtSalary.UseSelectable = true;
+            this.txtSalary.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtSalary.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // txtCause
+            // 
+            // 
+            // 
+            // 
+            this.txtCause.CustomButton.Image = null;
+            this.txtCause.CustomButton.Location = new System.Drawing.Point(215, 2);
+            this.txtCause.CustomButton.Name = "";
+            this.txtCause.CustomButton.Size = new System.Drawing.Size(15, 15);
+            this.txtCause.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtCause.CustomButton.TabIndex = 1;
+            this.txtCause.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtCause.CustomButton.UseSelectable = true;
+            this.txtCause.CustomButton.Visible = false;
+            this.txtCause.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCause.Enabled = false;
+            this.txtCause.Lines = new string[0];
+            this.txtCause.Location = new System.Drawing.Point(3, 81);
+            this.txtCause.MaxLength = 32767;
+            this.txtCause.Name = "txtCause";
+            this.txtCause.PasswordChar = '\0';
+            this.txtCause.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtCause.SelectedText = "";
+            this.txtCause.SelectionLength = 0;
+            this.txtCause.SelectionStart = 0;
+            this.txtCause.ShortcutsEnabled = true;
+            this.txtCause.Size = new System.Drawing.Size(233, 20);
+            this.txtCause.TabIndex = 38;
+            this.txtCause.UseSelectable = true;
+            this.txtCause.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtCause.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // metroLabel6
+            // 
+            this.metroLabel6.AutoSize = true;
+            this.metroLabel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.metroLabel6.Enabled = false;
+            this.metroLabel6.Location = new System.Drawing.Point(5, 17);
+            this.metroLabel6.Name = "metroLabel6";
+            this.metroLabel6.Size = new System.Drawing.Size(50, 19);
+            this.metroLabel6.TabIndex = 35;
+            this.metroLabel6.Text = "FROM:";
+            // 
+            // metroLabel5
+            // 
+            this.metroLabel5.AutoSize = true;
+            this.metroLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.metroLabel5.Enabled = false;
+            this.metroLabel5.Location = new System.Drawing.Point(5, 101);
+            this.metroLabel5.Name = "metroLabel5";
+            this.metroLabel5.Size = new System.Drawing.Size(53, 19);
+            this.metroLabel5.TabIndex = 37;
+            this.metroLabel5.Text = "CAUSE:";
+            // 
+            // metroLabel4
+            // 
+            this.metroLabel4.AutoSize = true;
+            this.metroLabel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.metroLabel4.Enabled = false;
+            this.metroLabel4.Location = new System.Drawing.Point(5, 72);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(60, 19);
+            this.metroLabel4.TabIndex = 39;
+            this.metroLabel4.Text = "SALARY:";
+            // 
+            // metroLabel3
+            // 
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.metroLabel3.Enabled = false;
+            this.metroLabel3.Location = new System.Drawing.Point(5, 127);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(49, 19);
+            this.metroLabel3.TabIndex = 41;
+            this.metroLabel3.Text = "LWOP:";
+            // 
+            // metroLabel7
+            // 
+            this.metroLabel7.AutoSize = true;
+            this.metroLabel7.BackColor = System.Drawing.SystemColors.Control;
+            this.metroLabel7.Enabled = false;
+            this.metroLabel7.Location = new System.Drawing.Point(5, 43);
+            this.metroLabel7.Name = "metroLabel7";
+            this.metroLabel7.Size = new System.Drawing.Size(29, 19);
+            this.metroLabel7.TabIndex = 44;
+            this.metroLabel7.Text = "TO:";
+            // 
+            // lblSelectedRowID
+            // 
+            this.lblSelectedRowID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblSelectedRowID.AutoSize = true;
+            this.lblSelectedRowID.Location = new System.Drawing.Point(11, 468);
+            this.lblSelectedRowID.Name = "lblSelectedRowID";
+            this.lblSelectedRowID.Size = new System.Drawing.Size(0, 13);
+            this.lblSelectedRowID.TabIndex = 76;
+            this.lblSelectedRowID.Visible = false;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.Enabled = false;
+            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(57)))), ((int)(((byte)(58)))));
+            this.btnDelete.Image = global::HumanResourceManagement.Properties.Resources.delete1;
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDelete.Location = new System.Drawing.Point(599, 453);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(102, 30);
+            this.btnDelete.TabIndex = 56;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnAddRecord
+            // 
+            this.btnAddRecord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddRecord.Enabled = false;
+            this.btnAddRecord.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnAddRecord.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnAddRecord.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnAddRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddRecord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(57)))), ((int)(((byte)(58)))));
+            this.btnAddRecord.Image = global::HumanResourceManagement.Properties.Resources.add1;
+            this.btnAddRecord.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddRecord.Location = new System.Drawing.Point(383, 452);
+            this.btnAddRecord.Name = "btnAddRecord";
+            this.btnAddRecord.Size = new System.Drawing.Size(102, 30);
+            this.btnAddRecord.TabIndex = 48;
+            this.btnAddRecord.Text = "Add";
+            this.btnAddRecord.UseVisualStyleBackColor = true;
+            this.btnAddRecord.Click += new System.EventHandler(this.btnAddRecord_Click);
+            // 
+            // btnExport
+            // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.Enabled = false;
+            this.btnExport.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(57)))), ((int)(((byte)(58)))));
+            this.btnExport.Image = global::HumanResourceManagement.Properties.Resources.excel;
+            this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExport.Location = new System.Drawing.Point(707, 453);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(102, 30);
+            this.btnExport.TabIndex = 77;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEdit.Enabled = false;
+            this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnEdit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(57)))), ((int)(((byte)(58)))));
+            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEdit.Location = new System.Drawing.Point(491, 453);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(102, 30);
+            this.btnEdit.TabIndex = 78;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // UserControlServiceRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.lblSelectedRowID);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -897,11 +919,11 @@
             this.dgvContextMenu.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -955,5 +977,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroLabel metroLabel7;
+        private System.Windows.Forms.Button btnEdit;
     }
 }
