@@ -81,6 +81,8 @@
             this.btnAddRecord = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.btnImport = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.datagridServiceRecords)).BeginInit();
             this.panel1.SuspendLayout();
             this.dgvContextMenu.SuspendLayout();
@@ -839,6 +841,7 @@
             this.btnDelete.Size = new System.Drawing.Size(102, 30);
             this.btnDelete.TabIndex = 56;
             this.btnDelete.Text = "Delete";
+            this.toolTip1.SetToolTip(this.btnDelete, "Delete Selected Row");
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -858,6 +861,7 @@
             this.btnAddRecord.Size = new System.Drawing.Size(102, 30);
             this.btnAddRecord.TabIndex = 48;
             this.btnAddRecord.Text = "Add";
+            this.toolTip1.SetToolTip(this.btnAddRecord, "Add new entry");
             this.btnAddRecord.UseVisualStyleBackColor = true;
             this.btnAddRecord.Click += new System.EventHandler(this.btnAddRecord_Click);
             // 
@@ -875,6 +879,7 @@
             this.btnExport.Size = new System.Drawing.Size(102, 30);
             this.btnExport.TabIndex = 77;
             this.btnExport.Text = "Export";
+            this.toolTip1.SetToolTip(this.btnExport, "View in Excel");
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
@@ -894,14 +899,34 @@
             this.btnEdit.Size = new System.Drawing.Size(102, 30);
             this.btnEdit.TabIndex = 78;
             this.btnEdit.Text = "Edit";
+            this.toolTip1.SetToolTip(this.btnEdit, "Edit Selected Row");
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnImport
+            // 
+            this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnImport.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(57)))), ((int)(((byte)(58)))));
+            this.btnImport.Image = global::HumanResourceManagement.Properties.Resources.import_24_24;
+            this.btnImport.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImport.Location = new System.Drawing.Point(6, 451);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(102, 30);
+            this.btnImport.TabIndex = 79;
+            this.btnImport.Text = "Import";
+            this.toolTip1.SetToolTip(this.btnImport, "Import Existing Excel Data");
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Visible = false;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // UserControlServiceRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.lblSelectedRowID);
@@ -978,5 +1003,7 @@
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroLabel metroLabel7;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

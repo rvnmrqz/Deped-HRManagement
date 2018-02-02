@@ -83,6 +83,11 @@ namespace HumanResourceManagement
         public static string SYS_STEP_START = "step_start";
         public static string SYS_STEP_END = "step_end";
         public static string SYS_CAUSE = "cause";
+
+        //EXCEL VALUES
+        public static string SYS_EXCEL = "sys_excel";
+        public static string OFFICER_NAME = "officer_name";
+        public static string OFFICER_POSITION = "officer_position";
        
     }
 }

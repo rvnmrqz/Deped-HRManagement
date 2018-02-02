@@ -78,6 +78,9 @@ namespace HumanResourceManagement
                 //loads school names 
                 loadSchools();
 
+                //loads excel table's bottom part values
+                loadExcelValues();
+
             }
             catch (Exception ee)
             {
@@ -296,7 +299,6 @@ namespace HumanResourceManagement
                         TempHolder.schoolCollection.Add(schname);
                         ctr++;
                     }
-
                 }
 
                 Console.WriteLine(ctr + " schools loaded");
@@ -304,6 +306,35 @@ namespace HumanResourceManagement
             catch (Exception ee)
             {
                 Console.WriteLine("Faield to load school names" + ee.Message);
+            }
+        }
+
+        private void loadExcelValues()
+        {
+            try
+            {
+                TempHolder.officerName = "";
+                TempHolder.officerPosition = "";
+                int ctr = 0;
+                openSQLConnection();
+                string qry = "SELECT * FROM "+SQLbank.SYS_EXCEL;
+                cmd = new SqlCommand(qry, conn);
+                reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    TempHolder.officerName = reader[SQLbank.OFFICER_NAME].ToString();
+                    TempHolder.officerPosition = reader[SQLbank.OFFICER_POSITION].ToString();
+                    Console.WriteLine(ctr + " excel values loaded");
+                }
+                else
+                {
+                    TempHolder.officerName = "N/A";
+                    TempHolder.officerPosition = "N/A";
+                }
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine("Faield to load Excel Values" + ee.Message);
             }
         }
       

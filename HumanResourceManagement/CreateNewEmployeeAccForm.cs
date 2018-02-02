@@ -113,9 +113,7 @@ namespace HumanResourceManagement
                                         SQLbank.ACCOUNT_NO + "," + 
                                         SQLbank.TIN_NO + ") "+
                                         " OUTPUT INSERTED.EMP_ID "+ 
-                                        " VALUES(@EMPNO, @PLANTILLA, @LNAME, @FNAME, @MNAME, @SEX, @BIRTH, @BIRTHPLACE @CIVILSTAT, @HDMF, @PHIC, @BP, @ACC, @TIN)";
-
-            
+                                        " VALUES(@EMPNO, @PLANTILLA, @LNAME, @FNAME, @MNAME, @SEX, @BIRTH, @BIRTHPLACE, @CIVILSTAT, @HDMF, @PHIC, @BP, @ACC, @TIN)";
 
                     cmd = new SqlCommand(savingSQL, conn);
 
@@ -310,9 +308,6 @@ namespace HumanResourceManagement
                 cmbCivilStatus.DroppedDown = true;
                 return true;
             }
-
-          
-
             if (txtAccNo.Text.Length == 0)
             {
                 MessageBox.Show("Account no. must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

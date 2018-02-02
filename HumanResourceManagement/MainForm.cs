@@ -18,6 +18,7 @@ namespace HumanResourceManagement
 {
     public partial class MainForm : Form
     {
+        bool fromLogout = false;
         LoadingForm loadingform;
         SqlConnection conn;
         SqlCommand cmd;
@@ -119,6 +120,7 @@ namespace HumanResourceManagement
 
         private void menuItem_Lougout_Click(object sender, EventArgs e)
         {
+            fromLogout = true;
             this.Close();
             if (TempHolder.loginform != null)
             {
@@ -426,6 +428,13 @@ namespace HumanResourceManagement
         private void mainPanelLeft_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (TempHolder.excelApp != null) TempHolder.excelApp.Quit();
+
+            if (!fromLogout) Application.Exit();
         }
     }
 }

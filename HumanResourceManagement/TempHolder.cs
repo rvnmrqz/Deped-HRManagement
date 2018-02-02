@@ -10,10 +10,12 @@ namespace HumanResourceManagement
 {
     class TempHolder
     {
+        public static Microsoft.Office.Interop.Excel.Application excelApp = null;
         public static CreateNewEmployeeAccForm ceaf;
         public static SQLSettingsForm sqlSettingsForm;
         public static Form1 loginform;
         public static MainForm mainForm;
+        public static ImportExcelDialog importExcelDialog;
 
         public static string picturePath = Application.StartupPath + "\\EmployeePictures\\";
 
@@ -56,6 +58,12 @@ namespace HumanResourceManagement
         public static string lastCause;
         public static string lastLAWOP;
 
+
+        //excel
+        public static string officerName;
+        public static string officerPosition;
+
+   
 
         public static void clearSearchTempValues()
         {
