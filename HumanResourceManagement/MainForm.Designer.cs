@@ -37,6 +37,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tab2_Panel = new System.Windows.Forms.Panel();
             this.mainPanelLeft = new System.Windows.Forms.Panel();
+            this.lblDOAPrettyTime = new System.Windows.Forms.Label();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.txtDateOfOriginalAppointment = new MetroFramework.Controls.MetroTextBox();
             this.txtSchoolName = new MetroFramework.Controls.MetroTextBox();
@@ -57,13 +58,12 @@
             this.menuItem_Lougout = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolItem_ExcelToSQL = new System.Windows.Forms.ToolStripMenuItem();
-            this.excelToSQLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolItem_SQLBackup = new System.Windows.Forms.ToolStripMenuItem();
             this.maintenanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.schoolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sQLSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSystemAccounts = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSchools = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuDBBackup = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuSQLSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.lblFormExit = new System.Windows.Forms.Label();
             this.lblFormMinimize = new System.Windows.Forms.Label();
             this.lblFormMaxMin = new System.Windows.Forms.Label();
@@ -154,6 +154,7 @@
             // 
             // mainPanelLeft
             // 
+            this.mainPanelLeft.Controls.Add(this.lblDOAPrettyTime);
             this.mainPanelLeft.Controls.Add(this.metroLabel6);
             this.mainPanelLeft.Controls.Add(this.txtDateOfOriginalAppointment);
             this.mainPanelLeft.Controls.Add(this.txtSchoolName);
@@ -174,6 +175,14 @@
             this.mainPanelLeft.Size = new System.Drawing.Size(278, 543);
             this.mainPanelLeft.TabIndex = 1;
             this.mainPanelLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanelLeft_Paint);
+            // 
+            // lblDOAPrettyTime
+            // 
+            this.lblDOAPrettyTime.AutoSize = true;
+            this.lblDOAPrettyTime.Location = new System.Drawing.Point(135, 417);
+            this.lblDOAPrettyTime.Name = "lblDOAPrettyTime";
+            this.lblDOAPrettyTime.Size = new System.Drawing.Size(0, 13);
+            this.lblDOAPrettyTime.TabIndex = 80;
             // 
             // metroLabel6
             // 
@@ -216,6 +225,7 @@
             this.txtDateOfOriginalAppointment.UseSelectable = true;
             this.txtDateOfOriginalAppointment.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtDateOfOriginalAppointment.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtDateOfOriginalAppointment.TextChanged += new System.EventHandler(this.txtDateOfOriginalAppointment_TextChanged);
             // 
             // txtSchoolName
             // 
@@ -423,7 +433,6 @@
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(202)))), ((int)(((byte)(233)))));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuToolStripMenuItem,
-            this.toolItem_ExcelToSQL,
             this.maintenanceToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -472,61 +481,54 @@
             this.menuItemExit.Text = "Exit";
             this.menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
             // 
-            // toolItem_ExcelToSQL
-            // 
-            this.toolItem_ExcelToSQL.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.excelToSQLToolStripMenuItem,
-            this.toolItem_SQLBackup});
-            this.toolItem_ExcelToSQL.Name = "toolItem_ExcelToSQL";
-            this.toolItem_ExcelToSQL.Size = new System.Drawing.Size(47, 20);
-            this.toolItem_ExcelToSQL.Text = "Tools";
-            // 
-            // excelToSQLToolStripMenuItem
-            // 
-            this.excelToSQLToolStripMenuItem.Image = global::HumanResourceManagement.Properties.Resources.if_export_216190__1_;
-            this.excelToSQLToolStripMenuItem.Name = "excelToSQLToolStripMenuItem";
-            this.excelToSQLToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.excelToSQLToolStripMenuItem.Text = "Excel to SQL";
-            this.excelToSQLToolStripMenuItem.Click += new System.EventHandler(this.excelToSQLToolStripMenuItem_Click);
-            // 
-            // toolItem_SQLBackup
-            // 
-            this.toolItem_SQLBackup.Image = global::HumanResourceManagement.Properties.Resources.if_database_1608662;
-            this.toolItem_SQLBackup.Name = "toolItem_SQLBackup";
-            this.toolItem_SQLBackup.Size = new System.Drawing.Size(181, 22);
-            this.toolItem_SQLBackup.Text = "SQL Backup/Restore";
-            this.toolItem_SQLBackup.Click += new System.EventHandler(this.toolItem_SQLBackup_Click);
-            // 
             // maintenanceToolStripMenuItem
             // 
             this.maintenanceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.accountsToolStripMenuItem,
-            this.schoolsToolStripMenuItem,
-            this.sQLSettingsToolStripMenuItem});
+            this.menuSystemAccounts,
+            this.menuSchools,
+            this.toolStripSeparator2,
+            this.menuDBBackup,
+            this.MenuSQLSettings});
             this.maintenanceToolStripMenuItem.Name = "maintenanceToolStripMenuItem";
             this.maintenanceToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.maintenanceToolStripMenuItem.Text = "Maintenance";
             // 
-            // accountsToolStripMenuItem
+            // menuSystemAccounts
             // 
-            this.accountsToolStripMenuItem.Image = global::HumanResourceManagement.Properties.Resources.accounts;
-            this.accountsToolStripMenuItem.Name = "accountsToolStripMenuItem";
-            this.accountsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.accountsToolStripMenuItem.Text = "Accounts";
+            this.menuSystemAccounts.Image = global::HumanResourceManagement.Properties.Resources.accounts;
+            this.menuSystemAccounts.Name = "menuSystemAccounts";
+            this.menuSystemAccounts.Size = new System.Drawing.Size(208, 22);
+            this.menuSystemAccounts.Text = "System User Accounts";
+            this.menuSystemAccounts.Click += new System.EventHandler(this.menuSystemAccounts_Click);
             // 
-            // schoolsToolStripMenuItem
+            // menuSchools
             // 
-            this.schoolsToolStripMenuItem.Image = global::HumanResourceManagement.Properties.Resources.if_commerical_building_103266;
-            this.schoolsToolStripMenuItem.Name = "schoolsToolStripMenuItem";
-            this.schoolsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.schoolsToolStripMenuItem.Text = "Schools";
+            this.menuSchools.Image = global::HumanResourceManagement.Properties.Resources.if_commerical_building_103266;
+            this.menuSchools.Name = "menuSchools";
+            this.menuSchools.Size = new System.Drawing.Size(208, 22);
+            this.menuSchools.Text = "Schools";
+            this.menuSchools.Click += new System.EventHandler(this.menuSchools_Click);
             // 
-            // sQLSettingsToolStripMenuItem
+            // toolStripSeparator2
             // 
-            this.sQLSettingsToolStripMenuItem.Image = global::HumanResourceManagement.Properties.Resources.if_settings_326699;
-            this.sQLSettingsToolStripMenuItem.Name = "sQLSettingsToolStripMenuItem";
-            this.sQLSettingsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.sQLSettingsToolStripMenuItem.Text = "SQL Settings";
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(205, 6);
+            // 
+            // menuDBBackup
+            // 
+            this.menuDBBackup.Image = global::HumanResourceManagement.Properties.Resources.if_database_1608662;
+            this.menuDBBackup.Name = "menuDBBackup";
+            this.menuDBBackup.Size = new System.Drawing.Size(208, 22);
+            this.menuDBBackup.Text = "Database Backup/Restore";
+            this.menuDBBackup.Click += new System.EventHandler(this.menuDBBackup_Click);
+            // 
+            // MenuSQLSettings
+            // 
+            this.MenuSQLSettings.Image = global::HumanResourceManagement.Properties.Resources.if_settings_326699;
+            this.MenuSQLSettings.Name = "MenuSQLSettings";
+            this.MenuSQLSettings.Size = new System.Drawing.Size(208, 22);
+            this.MenuSQLSettings.Text = "SQL Settings";
+            this.MenuSQLSettings.Click += new System.EventHandler(this.MenuSQLSettings_Click);
             // 
             // lblFormExit
             // 
@@ -650,9 +652,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuItem_Lougout;
         private System.Windows.Forms.Panel mainPanelRight;
         private System.Windows.Forms.Panel mainPanelLeft;
-        private System.Windows.Forms.ToolStripMenuItem toolItem_ExcelToSQL;
-        private System.Windows.Forms.ToolStripMenuItem excelToSQLToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolItem_SQLBackup;
         private System.Windows.Forms.ToolStripMenuItem menuItemExit;
         private MetroFramework.Controls.MetroTabControl metroTabControl1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -671,14 +670,17 @@
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private System.Windows.Forms.PictureBox btnChoosePhoto;
         private System.Windows.Forms.ToolStripMenuItem maintenanceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem accountsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem schoolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sQLSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuSystemAccounts;
+        private System.Windows.Forms.ToolStripMenuItem menuSchools;
+        private System.Windows.Forms.ToolStripMenuItem MenuSQLSettings;
         private System.Windows.Forms.PictureBox btnAddUser;
         private System.Windows.Forms.Label lblUploadedPicture;
         public MetroFramework.Controls.MetroTextBox txtEmplyeeNo;
         private MetroFramework.Controls.MetroTextBox txtDateOfOriginalAppointment;
         private MetroFramework.Controls.MetroTextBox txtSchoolName;
         private MetroFramework.Controls.MetroLabel metroLabel4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem menuDBBackup;
+        private System.Windows.Forms.Label lblDOAPrettyTime;
     }
 }

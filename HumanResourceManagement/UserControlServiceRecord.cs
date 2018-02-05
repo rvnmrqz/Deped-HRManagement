@@ -317,14 +317,16 @@ namespace HumanResourceManagement
             {
                 string templatePath = System.Windows.Forms.Application.StartupPath + "/template.xlsx";
 
-
-                if (TempHolder.excelApp == null) TempHolder.excelApp = new Microsoft.Office.Interop.Excel.Application();
+       
+               /* if (TempHolder.excelApp == null) TempHolder.excelApp = new Microsoft.Office.Interop.Excel.Application();
                 else
                 {
-                    TempHolder.excelApp.Quit();
+                    Console.WriteLine("Excel is not null, closing and creating new one");
+                    TempHolder.quitExcel();
                     TempHolder.excelApp = new Microsoft.Office.Interop.Excel.Application();
-                }
-                workbook = TempHolder.excelApp.Workbooks.Open(templatePath);
+                }*/
+                Workbooks workbooks = TempHolder.excelApp.Workbooks;
+                workbook = workbooks.Open(@templatePath);
                 worksheet = workbook.Sheets[1];
 
                 //copying existing template
@@ -499,17 +501,8 @@ namespace HumanResourceManagement
                     op.Multiselect = false;
                     if(op.ShowDialog() == DialogResult.OK)
                     {
-
-             
-                        //open the Excel file,  check if the worksheet has many sheet
-                        //if there is only one sheet, it is the default sheet to be extracted, else, show options to select
-                        
-                    
-                        TempHolder.importExcelDialog = new ImportExcelDialog(op.FileName,op.SafeFileName);
-                        
+                        TempHolder.importExcelDialog = new ImportExcelDialog(op.FileName,op.SafeFileName);   
                         TempHolder.importExcelDialog.ShowDialog();
-                        
-                        
                     }
                 }
                 catch (Exception ee)

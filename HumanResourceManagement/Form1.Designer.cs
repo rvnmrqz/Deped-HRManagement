@@ -201,7 +201,7 @@
             this.lblErrorPass.AutoSize = true;
             this.lblErrorPass.BackColor = System.Drawing.Color.Transparent;
             this.lblErrorPass.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorPass.ForeColor = System.Drawing.Color.Yellow;
+            this.lblErrorPass.ForeColor = System.Drawing.Color.Red;
             this.lblErrorPass.Location = new System.Drawing.Point(38, 175);
             this.lblErrorPass.Name = "lblErrorPass";
             this.lblErrorPass.Size = new System.Drawing.Size(14, 16);
@@ -214,7 +214,7 @@
             this.lblErrorUser.AutoSize = true;
             this.lblErrorUser.BackColor = System.Drawing.Color.Transparent;
             this.lblErrorUser.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorUser.ForeColor = System.Drawing.Color.Yellow;
+            this.lblErrorUser.ForeColor = System.Drawing.Color.Red;
             this.lblErrorUser.Location = new System.Drawing.Point(37, 108);
             this.lblErrorUser.Name = "lblErrorUser";
             this.lblErrorUser.Size = new System.Drawing.Size(14, 16);

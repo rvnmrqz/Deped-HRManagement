@@ -51,6 +51,9 @@ namespace HumanResourceManagement
 
             metroTabControl1.SelectedTab = tabPage1;
             txtEmplyeeNo.Select();
+
+
+            TempHolder.excelApp = new Microsoft.Office.Interop.Excel.Application();
         }
 
         //************************SERVER CONNECTION*************************
@@ -139,12 +142,29 @@ namespace HumanResourceManagement
             if (dr == DialogResult.OK) Application.Exit();
         }
 
-        private void excelToSQLToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void MenuSQLSettings_Click(object sender, EventArgs e)
         {
-            if (Permissions.authorizedToUseFunction(Permissions.EXCEL_EXTRACTOR_PERMISSION) == null)
+            if (Permissions.authorizedToUseFunction(Permissions.SQL_SETTINGS_PERMISSION))
             {
-                //show backup dialog then show excel extractor
+                SQLSettingsForm sf = new SQLSettingsForm();
+                sf.ShowDialog();
             }
+        }
+
+        private void menuDBBackup_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuSchools_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuSystemAccounts_Click(object sender, EventArgs e)
+        {
+
         }
 
         //****************************TAB PAGES*********************************
@@ -382,15 +402,6 @@ namespace HumanResourceManagement
             return true;
         }
 
-
-        private void toolItem_SQLBackup_Click(object sender, EventArgs e)
-        {
-            if (Permissions.authorizedToUseFunction(Permissions.SQL_BACKUP_PERMISSION) == null)
-            {
-
-            }
-        }
-
         private void btnChoosePhoto_Click(object sender, EventArgs e)
         {
             //browse pictures
@@ -432,9 +443,34 @@ namespace HumanResourceManagement
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (TempHolder.excelApp != null) TempHolder.excelApp.Quit();
+            TempHolder.quitExcel();
 
             if (!fromLogout) Application.Exit();
+        }
+
+        private void txtDateOfOriginalAppointment_TextChanged(object sender, EventArgs e)
+        {
+            if (txtDateOfOriginalAppointment.Text.Length != 0)
+            {
+                lblDOAPrettyTime.Text = computeAgo(Convert.ToDateTime(txtDateOfOriginalAppointment.Text));
+            }
+            else lblDOAPrettyTime.ResetText();
+        }
+
+        private  string computeAgo(DateTime dt)
+        {
+            TimeSpan span = DateTime.Today - dt;
+            double days = span.TotalDays;
+
+            string msg = days.ToString("N0") +" day";
+            if (days > 1)
+            {
+                msg += "s";
+            }
+
+            msg += " ago";
+
+            return msg;
         }
     }
 }

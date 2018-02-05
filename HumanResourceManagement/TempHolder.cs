@@ -1,7 +1,9 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -10,7 +12,7 @@ namespace HumanResourceManagement
 {
     class TempHolder
     {
-        public static Microsoft.Office.Interop.Excel.Application excelApp = null;
+    
         public static CreateNewEmployeeAccForm ceaf;
         public static SQLSettingsForm sqlSettingsForm;
         public static Form1 loginform;
@@ -60,11 +62,45 @@ namespace HumanResourceManagement
 
 
         //excel
+        public static Microsoft.Office.Interop.Excel.Application excelApp = null;
         public static string officerName;
         public static string officerPosition;
 
-   
 
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern int GetWindowThreadProcessId(int handle, out int processId);
+
+        public static void quitExcel()
+        {
+            try
+            {
+                if (excelApp != null)
+                {
+                    excelApp.DisplayAlerts = false;
+                    excelApp.Quit();
+                    // Marshal.ReleaseComObject(excelApp);
+
+                    int proID;
+
+                    GetWindowThreadProcessId(excelApp.Hwnd, out proID);
+                    Process[] allProcesses = Process.GetProcessesByName("excel");
+                    foreach (Process excelProcess in allProcesses)
+                    {
+                        if (excelProcess.Id == proID)
+                        {
+                            excelProcess.Kill();
+                        }
+                    }
+                }
+            }
+            catch(Exception ee)
+            {
+                Console.WriteLine("Exception occured while quitting excel: " + ee.Message);
+            }
+           
+        }
+        
         public static void clearSearchTempValues()
         {
             searchedEmpID = null;
