@@ -178,9 +178,7 @@ namespace HumanResourceManagement
         {
             try
             {
-                Console.WriteLine("Reading Excel Sheet's Names");
-
-
+             
                 openExcelConnection();
 
                 System.Data.DataTable dtExcelSchema = new System.Data.DataTable();
@@ -194,7 +192,6 @@ namespace HumanResourceManagement
                     string sheet = dtExcelSchema.Rows[i]["TABLE_NAME"].ToString();
                     sheet = sheet.TrimEnd("$".ToCharArray());
                     sheetNamesList.Add(sheet);
-                    Console.WriteLine("Sheet scanned: " + sheet);
                 }
                 closeExcelConnection();
 
@@ -226,6 +223,10 @@ namespace HumanResourceManagement
                 Console.WriteLine(sheetNamesList[i] + " added to combobox");
             }
             if (cmbSheets.Items.Count > 0) cmbSheets.SelectedIndex = 0;
+            else if(cmbSheets.Items.Count == 0 )
+            {
+                MessageBox.Show("Excel's sheet cannot be read, please make sure the file is not corrupted or protected.\nNote: Copying data to new excel file may solve this problem","Oops",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
 
         private void startRow_ValueChanged(object sender, EventArgs e)
@@ -241,17 +242,35 @@ namespace HumanResourceManagement
         //****************************TRANSFERRING**********************************************
         private void btnStart_Click(object sender, EventArgs e)
         {
-            selectedSheetName = cmbSheets.Text;
-            panel1.Enabled = false;
-              bgTransfer.RunWorkerAsync();
-       
+            if (isRowsValid())
+            {
+                selectedSheetName = cmbSheets.Text;
+                panel1.Enabled = false;
+                bgTransfer.RunWorkerAsync();
+            }
         }
+
+        private bool isRowsValid()
+        {
+            if(sStart>sEnd)
+            {
+                MessageBox.Show("Start and End row's value invalid or in wrong order", "Transfer Canceled", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
         private void bgTransfer_DoWork(object sender, DoWorkEventArgs e)
+        {
+            transfer();
+        }
+        
+        private void transfer()
         {
 
             try
             {
-                //int sRow = Convert.ToInt32(startRow.ToString()) ; int eRow = Convert.ToInt32(endRow.ToString());
 
                 workbook = TempHolder.excelApp.Workbooks.Open(excelPath);
                 Worksheet worksheet = (Worksheet)workbook.Worksheets.get_Item(selectedSheetName);
@@ -294,11 +313,16 @@ namespace HumanResourceManagement
                     cmd.Parameters.AddWithValue("@EMPID" + i, TempHolder.searchedEmpID);
                     cmd.Parameters.AddWithValue("@FROM" + i, from);
 
-                    if (to.Trim().Length == 0 || to == null) cmd.Parameters.AddWithValue("@TO" + i, DBNull.Value);
-                    else cmd.Parameters.AddWithValue("@TO" + 1, to);
-                  
-                 
-                  
+                    if (to.Trim().Length == 0 || to.ToLower().Trim().Contains("present"))
+                    {
+                        cmd.Parameters.AddWithValue("@TO" + i, DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@TO" + i, to);
+                    }   
+                   
+
                     cmd.Parameters.AddWithValue("@DESIGNATION" + i, designation);
                     cmd.Parameters.AddWithValue("@STATUS" + i, status);
                     cmd.Parameters.AddWithValue("@SALARY" + i, salary);
@@ -316,34 +340,22 @@ namespace HumanResourceManagement
                 workbook.Close();
 
                 transfermsg = "Transfer Complete";
+
             }
             catch (Exception ee)
             {
                 transfermsg = "Failed to transfer: " + ee.Message;
             }
-        }
-
-        private bool insertRecord(string from, string to, string designation, string status, string salary,  string station, string branch, string cause,  string lawop )
-        {
-            try
-            {
-
-            }
-            catch (Exception)
-            {
-                transfermsg = "Failed to transfer Data";
-                return false;
-            }
-
-
-            return true;
+            
         }
 
         private void bgTransfer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show(transfermsg, "Message",MessageBoxButtons.OK,MessageBoxIcon.Information);
-            Console.WriteLine(transfermsg);
+           
+            TempHolder.uc_ServiceRecord.loadRecords(TempHolder.searchedEmpID);
             this.Close();
+
         }
         
 
