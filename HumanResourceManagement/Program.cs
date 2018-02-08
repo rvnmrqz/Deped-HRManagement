@@ -17,6 +17,20 @@ namespace HumanResourceManagement
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
         }
+
+        static void OnProcessExit(object sender, EventArgs e)
+        {
+           // TempHolder.quitExcel();
+           
+        }
+
+
     }
+
+
+
+
 }

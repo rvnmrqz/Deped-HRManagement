@@ -110,7 +110,7 @@ namespace HumanResourceManagement
 
         private void lblFormExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            aboutToExit();
         }
 
         //******************MENU STRIP ITEM CLICK EVENTS*********************
@@ -138,8 +138,14 @@ namespace HumanResourceManagement
 
         private void menuItemExit_Click(object sender, EventArgs e)
         {
+            aboutToExit();
+        }
+
+        private void aboutToExit()
+        {
             DialogResult dr = MessageBox.Show("You're about to close the program, continue?", "Closing", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dr == DialogResult.OK) Application.Exit();
+
         }
 
 
@@ -154,12 +160,16 @@ namespace HumanResourceManagement
 
         private void menuDBBackup_Click(object sender, EventArgs e)
         {
+            if (Permissions.authorizedToUseFunction(Permissions.SQL_BACKUP_PERMISSION))
+            {
 
+            }
         }
 
         private void menuSchools_Click(object sender, EventArgs e)
         {
-
+            SchoolMaintenance sm = new SchoolMaintenance();
+            sm.ShowDialog();
         }
 
         private void menuSystemAccounts_Click(object sender, EventArgs e)

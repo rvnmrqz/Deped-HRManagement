@@ -121,6 +121,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SchoolMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SchoolMaintenance.Designer.cs">
+      <DependentUpon>SchoolMaintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="SQLbank.cs" />
     <Compile Include="SQLSettingsForm.cs">
       <SubType>Form</SubType>
@@ -173,6 +179,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="SchoolMaintenance.resx">
+      <DependentUpon>SchoolMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SQLSettingsForm.resx">
       <DependentUpon>SQLSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -216,6 +225,7 @@
     <None Include="Resources\black key.png" />
     <None Include="Resources\gallery.png" />
     <None Include="Resources\gallery 48_48.png" />
+    <None Include="Resources\blurimg.png" />
     <Content Include="Resources\hide password.png" />
     <None Include="Resources\printer.png" />
     <None Include="Resources\lock.png" />

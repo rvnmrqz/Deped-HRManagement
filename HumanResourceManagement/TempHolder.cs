@@ -75,6 +75,7 @@ namespace HumanResourceManagement
         {
             try
             {
+                Console.WriteLine("Quit excel");
                 if (excelApp != null)
                 {
                     excelApp.DisplayAlerts = false;
@@ -90,9 +91,12 @@ namespace HumanResourceManagement
                         if (excelProcess.Id == proID)
                         {
                             excelProcess.Kill();
+                            Console.WriteLine("Excel killed");
                         }
                     }
                 }
+
+
             }
             catch(Exception ee)
             {

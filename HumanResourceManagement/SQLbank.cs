@@ -53,6 +53,13 @@ namespace HumanResourceManagement
         public static string SALARY = "salary";
         public static string LAWOP = "lawop";
 
+
+        //SCHOOLS
+        public static string TBL_SCHOOLS = "tbl_schools";
+        public static string SCHOOL_ID = "school_id";
+        //public static string SCHOOL_NAME = "school_name";
+        public static string DISTRICT = "district";
+
         //SYSTEM TABLES******************************************************
 
         //PERMISSIONS
@@ -72,7 +79,6 @@ namespace HumanResourceManagement
         public static string MOD_SERVICE_REC = "modify_service_record";
         public static string ADD_SERVICE_REC = "add_service_record";
         public static string DEL_SERVICE_REC = "delete_service_record";
-       
 
         //SYSTEM VALUES
         public static string SYS_VALUES = "sys_values";
