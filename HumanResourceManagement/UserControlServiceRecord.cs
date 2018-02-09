@@ -254,15 +254,15 @@ namespace HumanResourceManagement
                 }
                 else if (to.ToLower().Equals("present")) TempHolder.lastIsPresent = true;
 
-                if (school.Length != 0) TempHolder.searchedLastSchool = school;
-                if (designation.Length != 0) TempHolder.lastDesignation = designation;
-                if (status.Length != 0) TempHolder.lastStatus = status;
+                TempHolder.searchedLastSchool = school;
+                TempHolder.lastDesignation = designation;
+                TempHolder.lastStatus = status;
                 if (salary.Length == 0) TempHolder.lastSalary = "0.00";
-                if (salary.Length != 0) TempHolder.lastSalary = salary;
-                if (station.Length != 0) TempHolder.lastStation = station;
-                if (branch.Length != 0) TempHolder.lastBranch = branch;
-                if (cause.Length != 0) TempHolder.lastCause = cause;
-                if (lawop.Length != 0) TempHolder.lastLAWOP = lawop;
+                TempHolder.lastSalary = salary;
+                TempHolder.lastStation = station;
+                TempHolder.lastBranch = branch;
+                TempHolder.lastCause = cause;
+                TempHolder.lastLAWOP = lawop;
 
                 String searchValue = "original";
                 int rowIndex = -1;
@@ -317,14 +317,11 @@ namespace HumanResourceManagement
             {
                 string templatePath = System.Windows.Forms.Application.StartupPath + "/template.xlsx";
 
-       
-               /* if (TempHolder.excelApp == null) TempHolder.excelApp = new Microsoft.Office.Interop.Excel.Application();
-                else
+                if (TempHolder.excelApp.Visible)
                 {
-                    Console.WriteLine("Excel is not null, closing and creating new one");
-                    TempHolder.quitExcel();
+                    Console.WriteLine("Excel is visible");
                     TempHolder.excelApp = new Microsoft.Office.Interop.Excel.Application();
-                }*/
+                }
                 Workbooks workbooks = TempHolder.excelApp.Workbooks;
                 workbook = workbooks.Open(@templatePath);
                 worksheet = workbook.Sheets[1];
@@ -391,8 +388,6 @@ namespace HumanResourceManagement
                 worksheet.Cells[++wsCurrentRow, wsFirstCol] = TempHolder.officerPosition;
                 worksheet.Range[worksheet.Cells[wsCurrentRow, wsFirstCol], worksheet.Cells[wsCurrentRow, (wsFirstCol + 2)]].Merge();
 
-         
-                Console.WriteLine("Range: [" + (wsCurrentRow) + "," + wsFirstCol + "],[" + (wsCurrentRow) + "," + (wsLastCol) + "]");
             }
             catch (Exception ee)
             {

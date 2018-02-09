@@ -209,6 +209,7 @@
     <None Include="Resources\asd - Copy.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\x.png" />
     <None Include="Resources\small key.png" />
     <None Include="Resources\white gear.png" />
     <None Include="Resources\gear.png" />

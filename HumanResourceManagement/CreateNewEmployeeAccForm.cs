@@ -211,6 +211,7 @@ namespace HumanResourceManagement
             txtMname.ResetText();
             txtLname.ResetText();
             txtDateOfBirth.ResetText();
+            txtBirthPlace.ResetText();
             cmbGender.SelectedIndex = -1;
             cmbCivilStatus.SelectedIndex = -1;
 

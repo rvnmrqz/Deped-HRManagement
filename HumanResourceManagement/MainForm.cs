@@ -275,15 +275,18 @@ namespace HumanResourceManagement
                     }
                 }
 
-                if (resultCount == 0) showSearchResultMessage("No employee number matched");
+                if (resultCount == 0)
+                {
+                    btnClearSearch.Visible = false;
+                    showSearchResultMessage("No employee number matched");
+                }
                 else
                 {
                     showSearchResultMessage(null);
-
-
                     //load tab 1,2,3
                     TempHolder.uc_PersonalInfo.loadInfo(lblemployee_id_hidden.Text);
                     TempHolder.uc_ServiceRecord.loadRecords(lblemployee_id_hidden.Text);
+                    btnClearSearch.Visible = true;
                 }
 
             }
@@ -348,7 +351,7 @@ namespace HumanResourceManagement
         {
             txtEmplyeeNo.Enabled = !editmodeValue;
             btnChoosePhoto.Visible = editmodeValue;
-
+            btnClearSearch.Visible = !editmodeValue;
             TempHolder.uc_PersonalInfo.editMode(editmodeValue);
         }
 
@@ -439,6 +442,7 @@ namespace HumanResourceManagement
         private void txtEmplyeeNo_TextChanged(object sender, EventArgs e)
         {
             showSearchResultMessage(null);
+            btnClearSearch.Visible = false;
 
             if (lblemployee_id_hidden.Text.Length > 0 && !txtEmplyeeNo.Text.Equals(lblemployee_id_hidden.Text))
             {
@@ -481,6 +485,11 @@ namespace HumanResourceManagement
             msg += " ago";
 
             return msg;
+        }
+
+        private void btnClearSearch_Click_1(object sender, EventArgs e)
+        {
+            txtEmplyeeNo.ResetText();
         }
     }
 }

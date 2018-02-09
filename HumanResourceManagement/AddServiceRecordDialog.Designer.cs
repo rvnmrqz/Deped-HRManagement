@@ -482,7 +482,7 @@
             this.txtSchoolName.SelectionStart = 0;
             this.txtSchoolName.ShortcutsEnabled = true;
             this.txtSchoolName.Size = new System.Drawing.Size(241, 23);
-            this.txtSchoolName.TabIndex = 10;
+            this.txtSchoolName.TabIndex = 3;
             this.txtSchoolName.UseSelectable = true;
             this.txtSchoolName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtSchoolName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
