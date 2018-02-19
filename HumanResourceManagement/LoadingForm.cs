@@ -81,6 +81,9 @@ namespace HumanResourceManagement
                 //loads excel table's bottom part values
                 loadExcelValues();
 
+                //load roles
+                loadRoles();
+
             }
             catch (Exception ee)
             {
@@ -337,6 +340,36 @@ namespace HumanResourceManagement
                 Console.WriteLine("Faield to load Excel Values" + ee.Message);
             }
         }
-      
+
+        private void loadRoles()
+        {
+            try
+            {
+
+                TempHolder.roles_list.Clear();
+                int ctr = 0;
+                openSQLConnection();
+                string qry = "SELECT "+SQLbank.SYS_ACC_TYPES+" FROM " + SQLbank.SYS_VALUES;
+                cmd = new SqlCommand(qry, conn);
+
+                Console.WriteLine("Role query: " + qry);
+
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string role = reader[0].ToString();
+                    Console.WriteLine(role);
+                    TempHolder.roles_list.Add(role);
+                    ctr++;
+                }
+
+                Console.WriteLine(ctr + " roles loaded");
+             
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine("Faield to load Excel Values" + ee.Message);
+            }
+        }
     }
 }

@@ -19,9 +19,12 @@ namespace HumanResourceManagement
         SqlCommand cmd;
         SqlDataReader reader;
 
+        string errorMsg;
+
+
         string searchQry;
 
-        string errorMsg;
+        
         bool savingNew = false;
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -53,7 +56,9 @@ namespace HumanResourceManagement
         private void closeSQLConnection()
         {
             if (conn.State == ConnectionState.Open) conn.Close();
-        }//*********************************************************************
+        }
+        
+        //*********************************************************************
 
         public SchoolMaintenance()
         {
@@ -67,7 +72,6 @@ namespace HumanResourceManagement
             conn = new SqlConnection(getStringValue("sqlconstring"));
             loadSchools();
         }
-
 
         private void bgSchoolLoader_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -133,8 +137,6 @@ namespace HumanResourceManagement
             {
                 //do saving here
                 save(savingNew);
-                editMode(3);
-
             }
         }
 
@@ -206,51 +208,83 @@ namespace HumanResourceManagement
 
         private void save(bool newSchool)
         {
-            try
+            if (isInputValid())
             {
-                openSQLConnection();
-                string qry = "",savedMsg="";
-                if (newSchool)
+                try
                 {
-                    savedMsg = "New School Saved";
-                    qry = "INSERT INTO " + SQLbank.TBL_SCHOOLS + "(" + SQLbank.SCHOOL_ID + "," + SQLbank.SCHOOL_NAME + "," + SQLbank.DISTRICT + ")" +
-                        " OUTPUT INSERTED.ID VALUES(@SCHOOLID,@SCHOOLNAME,@DISTRICT)";
+                    openSQLConnection();
+                    string qry = "", savedMsg = "";
+                    if (newSchool)
+                    {
+                        savedMsg = "New School Saved";
+                        qry = "INSERT INTO " + SQLbank.TBL_SCHOOLS + "(" + SQLbank.SCHOOL_ID + "," + SQLbank.SCHOOL_NAME + "," + SQLbank.DISTRICT + ")" +
+                            " OUTPUT INSERTED.ID VALUES(@SCHOOLID,@SCHOOLNAME,@DISTRICT)";
+                    }
+                    else
+                    {
+                        savedMsg = "Update Successful";
+                        qry = "UPDATE " + SQLbank.TBL_SCHOOLS + " SET " +
+                        SQLbank.SCHOOL_ID + " = @SCHOOLID ," +
+                        SQLbank.SCHOOL_NAME + " = @SCHOOLNAME , " +
+                        SQLbank.DISTRICT + " = @DISTRICT  OUTPUT INSERTED.ID" +
+                        " WHERE " + SQLbank.ID + "=" + lblSelectedSchoolId.Text;
+                    }
+
+
+                    cmd = new SqlCommand(qry, conn);
+
+                    cmd.Parameters.AddWithValue("@SCHOOLID", txtSchoolId.Text);
+                    cmd.Parameters.AddWithValue("@SCHOOLNAME", txtSchoolname.Text);
+                    cmd.Parameters.AddWithValue("@DISTRICT", txtdistrict.Text);
+
+                    string id = cmd.ExecuteScalar().ToString();
+
+                    if (newSchool)
+                    {
+                        //insert in dgv
+                        dgvSchools.Rows.Add(id, txtSchoolId.Text, txtSchoolname.Text, txtdistrict.Text);
+                    }
+                    else
+                    {
+                        //update selected row
+                        dgvSchools.Rows[dgvSchools.CurrentRow.Index].SetValues(id, txtSchoolId.Text, txtSchoolname.Text, txtdistrict.Text);
+                    }
+                    editMode(3);
+                    MessageBox.Show(savedMsg, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else
+                catch (Exception ee)
                 {
-                    savedMsg = "Update Successful";
-                    qry = "UPDATE " + SQLbank.TBL_SCHOOLS + " SET " +
-                    SQLbank.SCHOOL_ID + " = @SCHOOLID ," +
-                    SQLbank.SCHOOL_NAME + " = @SCHOOLNAME , " +
-                    SQLbank.DISTRICT + " = @DISTRICT  OUTPUT INSERTED.ID" +
-                    " WHERE " + SQLbank.ID + "=" + lblSelectedSchoolId.Text;
+                    MessageBox.Show("Saving failed\n" + ee.Message, "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-
-                cmd = new SqlCommand(qry,conn);
-
-                cmd.Parameters.AddWithValue("@SCHOOLID", txtSchoolId.Text);
-                cmd.Parameters.AddWithValue("@SCHOOLNAME", txtSchoolname.Text);
-                cmd.Parameters.AddWithValue("@DISTRICT", txtdistrict.Text);
-
-                string id = cmd.ExecuteScalar().ToString() ;
-
-                if (newSchool)
-                {
-                    //insert in dgv
-                    dgvSchools.Rows.Add(id, txtSchoolId.Text, txtSchoolname.Text, txtdistrict.Text);
-                }
-                else
-                {
-                    //update selected row
-                    dgvSchools.Rows[dgvSchools.CurrentRow.Index].SetValues(id, txtSchoolId.Text, txtSchoolname.Text, txtdistrict.Text);
-                }
-                MessageBox.Show(savedMsg, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ee)
+        }
+
+        private bool isInputValid()
+        {
+            if (txtSchoolId.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Saving failed\n" + ee.Message, "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("School ID must not be empty", "Saving canceled", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtSchoolId.Select();
+                return false;
             }
+
+            if(txtSchoolname.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("School name must not be empty", "Saving Canceled", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtSchoolname.Select();
+                return false;
+            }
+
+            if(txtdistrict.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("District must not be empty", "Saving Canceled", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtdistrict.Select();
+                return false;
+            }
+
+            
+
+            return true;
         }
 
         private void FormPanel_MouseMove(object sender, MouseEventArgs e)
@@ -334,6 +368,11 @@ namespace HumanResourceManagement
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            refresh();
+        }
+
+        private void refresh()
+        {
             editMode(-1);
             dgvSchools.Rows.Clear();
             loadSchools();
@@ -359,17 +398,22 @@ namespace HumanResourceManagement
 
         }
 
+
+        //SEARCHING
         private void txtEmplyeeNo_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter && txtEmplyeeNo.Text.Trim().Length != 0)
             {
                 try
                 {
+                
                     dgvSchools.Rows.Clear();
+                    clearInfoGroup();
+                    editMode(3);
 
                     openSQLConnection();
                     cmd = new SqlCommand(searchQry, conn);
-                    cmd.Parameters.AddWithValue("@KEYWORD", "%" + txtEmplyeeNo.Text.Trim() + "%");
+                    cmd.Parameters.AddWithValue("@KEYWORD",  txtEmplyeeNo.Text.Trim() + "%");
                     reader = cmd.ExecuteReader();
                     int ctr = 0;
                     while (reader.Read())
@@ -386,8 +430,11 @@ namespace HumanResourceManagement
                 }
             }else if(e.KeyCode == Keys.Enter && txtEmplyeeNo.Text.Trim().Length == 0)
             {
-                Refresh();
+                clearInfoGroup();
+                editMode(3);
+                refresh();  
             }
+
         }
     }
 }

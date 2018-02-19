@@ -89,6 +89,7 @@ namespace HumanResourceManagement
         public static string SYS_STEP_START = "step_start";
         public static string SYS_STEP_END = "step_end";
         public static string SYS_CAUSE = "cause";
+        public static string SYS_ACC_TYPES = "account_types";
 
         //EXCEL VALUES
         public static string SYS_EXCEL = "sys_excel";

@@ -180,8 +180,6 @@
             // chkPresent
             // 
             this.chkPresent.AutoSize = true;
-            this.chkPresent.Checked = true;
-            this.chkPresent.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkPresent.Location = new System.Drawing.Point(3, 6);
             this.chkPresent.Name = "chkPresent";
             this.chkPresent.Size = new System.Drawing.Size(62, 17);

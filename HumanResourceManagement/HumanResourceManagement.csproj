@@ -134,6 +134,12 @@
     <Compile Include="SQLSettingsForm.designer.cs">
       <DependentUpon>SQLSettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SystemUserMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemUserMaintenance.Designer.cs">
+      <DependentUpon>SystemUserMaintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="TempHolder.cs" />
     <Compile Include="UserControlPersonalInfo.cs">
       <SubType>UserControl</SubType>
@@ -184,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SQLSettingsForm.resx">
       <DependentUpon>SQLSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemUserMaintenance.resx">
+      <DependentUpon>SystemUserMaintenance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlPersonalInfo.resx">
       <DependentUpon>UserControlPersonalInfo.cs</DependentUpon>

@@ -40,8 +40,8 @@ namespace HumanResourceManagement
         private void MainForm_Load(object sender, EventArgs e)
         {
 
-            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-            this.WindowState = FormWindowState.Maximized;
+        //    this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+         //   this.WindowState = FormWindowState.Maximized;
 
             TempHolder.mainForm = this;
             conn = new SqlConnection(getStringValue("sqlconstring"));
@@ -174,7 +174,11 @@ namespace HumanResourceManagement
 
         private void menuSystemAccounts_Click(object sender, EventArgs e)
         {
-
+            if (Permissions.authorizedToUseFunction(Permissions.MODIFY_SYS_USER_PERMISSION))
+            {
+                SystemUserMaintenance sum = new SystemUserMaintenance();
+                sum.ShowDialog();   
+            }
         }
 
         //****************************TAB PAGES*********************************
@@ -473,17 +477,19 @@ namespace HumanResourceManagement
 
         private  string computeAgo(DateTime dt)
         {
+            string msg="";
+
             TimeSpan span = DateTime.Today - dt;
             double days = span.TotalDays;
 
-            string msg = days.ToString("N0") +" day";
+            msg = days.ToString("N0") +" day";
             if (days > 1)
             {
                 msg += "s";
             }
 
             msg += " ago";
-
+            
             return msg;
         }
 

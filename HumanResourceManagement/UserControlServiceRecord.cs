@@ -131,6 +131,7 @@ namespace HumanResourceManagement
 
                 if (counter == 0)
                 {
+                    lblNoServiceRecord.Visible = true;
                     btnImport.Visible = true;
                     TempHolder.lastSalary = "0.00";
                 }
@@ -154,7 +155,7 @@ namespace HumanResourceManagement
             if (datagridServiceRecords.Rows.Count > 0) datagridServiceRecords.Rows.Clear();
 
             btnDelete.Enabled = false;
-
+            lblNoServiceRecord.Visible = false;
             txtSchoolName.ResetText();
             txtStation.ResetText();
             txtBranch.ResetText();
@@ -198,6 +199,7 @@ namespace HumanResourceManagement
 
         private void datagridServiceRecords_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
+            lblNoServiceRecord.Visible = false;
             lblRowsCount.Text = datagridServiceRecords.Rows.Count.ToString();
             detectLastRow();
         }
@@ -213,6 +215,7 @@ namespace HumanResourceManagement
 
             if (datagridServiceRecords.Rows.Count == 0)
             {
+                lblNoServiceRecord.Visible = true;
                 txtFrom.ResetText();
                 txtTo.ResetText();
                 txtSchoolName.ResetText();

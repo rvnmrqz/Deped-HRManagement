@@ -1026,6 +1026,7 @@
             this.Controls.Add(this.btnRemoveEmpAcc);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.panel_personalInfo);
+            this.DoubleBuffered = true;
             this.Name = "UserControlPersonalInfo";
             this.Size = new System.Drawing.Size(764, 489);
             this.Load += new System.EventHandler(this.UserControlPersonalInfo_Load);

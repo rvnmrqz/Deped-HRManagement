@@ -126,6 +126,33 @@ namespace HumanResourceManagement
             }
         }
 
+
+        private void clearFields()
+        {
+            //uncheck all
+
+
+            foreach (CheckBox chk in panelChkBox.Controls)
+            {
+                chk.Checked = false;
+            }
+
+            txtDateFrom.ResetText();
+            txtDateTo.ResetText();
+            txtSchoolName.ResetText();
+            txtDesignation.ResetText();
+            cmbStatus.SelectedIndex = -1;
+            txtSalary.ResetText();
+            txtStation.ResetText();
+            txtBranch.ResetText();
+            cmbCause.SelectedIndex = -1;
+            txtLAWOP.ResetText();
+
+           
+           
+
+        }
+
         //************************SERVER CONNECTION**************************************
         private void openSQLConnection()
         {
@@ -233,7 +260,9 @@ namespace HumanResourceManagement
                 //to reload and rearrange the list based on from date
                 TempHolder.uc_ServiceRecord.loadRecords(TempHolder.searchedEmpID);
 
-                prepareDisplay();
+
+                //prepareDisplay();
+                clearFields();
 
                 MessageBox.Show("New entry successfully added", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtDateFrom.Select();

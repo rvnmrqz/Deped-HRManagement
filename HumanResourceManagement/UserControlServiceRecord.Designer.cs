@@ -47,6 +47,7 @@
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblNoServiceRecord = new System.Windows.Forms.Label();
             this.lblRowsCount = new System.Windows.Forms.Label();
             this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
             this.txtSchoolName = new MetroFramework.Controls.MetroTextBox();
@@ -66,11 +67,11 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtFrom = new MetroFramework.Controls.MetroTextBox();
             this.txtTo = new MetroFramework.Controls.MetroTextBox();
             this.txtLAWOP = new MetroFramework.Controls.MetroTextBox();
             this.txtSalary = new MetroFramework.Controls.MetroTextBox();
             this.txtCause = new MetroFramework.Controls.MetroTextBox();
+            this.txtFrom = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
@@ -152,7 +153,7 @@
             this.datagridServiceRecords.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.datagridServiceRecords.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.datagridServiceRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datagridServiceRecords.Size = new System.Drawing.Size(800, 264);
+            this.datagridServiceRecords.Size = new System.Drawing.Size(751, 264);
             this.datagridServiceRecords.TabIndex = 1;
             this.datagridServiceRecords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridServiceRecords_CellDoubleClick);
             this.datagridServiceRecords.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.datagridServiceRecords_RowsAdded);
@@ -257,12 +258,27 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.LightGray;
+            this.panel1.Controls.Add(this.lblNoServiceRecord);
             this.panel1.Controls.Add(this.datagridServiceRecords);
             this.panel1.Location = new System.Drawing.Point(6, 179);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(2);
-            this.panel1.Size = new System.Drawing.Size(804, 268);
+            this.panel1.Size = new System.Drawing.Size(755, 268);
             this.panel1.TabIndex = 52;
+            // 
+            // lblNoServiceRecord
+            // 
+            this.lblNoServiceRecord.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblNoServiceRecord.AutoSize = true;
+            this.lblNoServiceRecord.BackColor = System.Drawing.Color.White;
+            this.lblNoServiceRecord.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoServiceRecord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblNoServiceRecord.Location = new System.Drawing.Point(323, 137);
+            this.lblNoServiceRecord.Name = "lblNoServiceRecord";
+            this.lblNoServiceRecord.Size = new System.Drawing.Size(170, 24);
+            this.lblNoServiceRecord.TabIndex = 80;
+            this.lblNoServiceRecord.Text = "No Service Record";
+            this.lblNoServiceRecord.Visible = false;
             // 
             // lblRowsCount
             // 
@@ -293,7 +309,7 @@
             // 
             // 
             this.txtSchoolName.CustomButton.Image = null;
-            this.txtSchoolName.CustomButton.Location = new System.Drawing.Point(332, 2);
+            this.txtSchoolName.CustomButton.Location = new System.Drawing.Point(270, 2);
             this.txtSchoolName.CustomButton.Name = "";
             this.txtSchoolName.CustomButton.Size = new System.Drawing.Size(15, 15);
             this.txtSchoolName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -313,7 +329,7 @@
             this.txtSchoolName.SelectionLength = 0;
             this.txtSchoolName.SelectionStart = 0;
             this.txtSchoolName.ShortcutsEnabled = true;
-            this.txtSchoolName.Size = new System.Drawing.Size(350, 20);
+            this.txtSchoolName.Size = new System.Drawing.Size(288, 20);
             this.txtSchoolName.TabIndex = 25;
             this.txtSchoolName.UseSelectable = true;
             this.txtSchoolName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -336,7 +352,7 @@
             // 
             // 
             this.txtDesignation.CustomButton.Image = null;
-            this.txtDesignation.CustomButton.Location = new System.Drawing.Point(332, 2);
+            this.txtDesignation.CustomButton.Location = new System.Drawing.Point(270, 2);
             this.txtDesignation.CustomButton.Name = "";
             this.txtDesignation.CustomButton.Size = new System.Drawing.Size(15, 15);
             this.txtDesignation.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -356,7 +372,7 @@
             this.txtDesignation.SelectionLength = 0;
             this.txtDesignation.SelectionStart = 0;
             this.txtDesignation.ShortcutsEnabled = true;
-            this.txtDesignation.Size = new System.Drawing.Size(350, 20);
+            this.txtDesignation.Size = new System.Drawing.Size(288, 20);
             this.txtDesignation.TabIndex = 30;
             this.txtDesignation.UseSelectable = true;
             this.txtDesignation.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -390,7 +406,7 @@
             // 
             // 
             this.txtBranch.CustomButton.Image = null;
-            this.txtBranch.CustomButton.Location = new System.Drawing.Point(328, 1);
+            this.txtBranch.CustomButton.Location = new System.Drawing.Point(266, 1);
             this.txtBranch.CustomButton.Name = "";
             this.txtBranch.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtBranch.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -410,7 +426,7 @@
             this.txtBranch.SelectionLength = 0;
             this.txtBranch.SelectionStart = 0;
             this.txtBranch.ShortcutsEnabled = true;
-            this.txtBranch.Size = new System.Drawing.Size(350, 23);
+            this.txtBranch.Size = new System.Drawing.Size(288, 23);
             this.txtBranch.TabIndex = 34;
             this.txtBranch.UseSelectable = true;
             this.txtBranch.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -433,7 +449,7 @@
             // 
             // 
             this.txtStation.CustomButton.Image = null;
-            this.txtStation.CustomButton.Location = new System.Drawing.Point(332, 2);
+            this.txtStation.CustomButton.Location = new System.Drawing.Point(270, 2);
             this.txtStation.CustomButton.Name = "";
             this.txtStation.CustomButton.Size = new System.Drawing.Size(15, 15);
             this.txtStation.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -453,7 +469,7 @@
             this.txtStation.SelectionLength = 0;
             this.txtStation.SelectionStart = 0;
             this.txtStation.ShortcutsEnabled = true;
-            this.txtStation.Size = new System.Drawing.Size(350, 20);
+            this.txtStation.Size = new System.Drawing.Size(288, 20);
             this.txtStation.TabIndex = 55;
             this.txtStation.UseSelectable = true;
             this.txtStation.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -490,7 +506,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(471, 161);
+            this.panel2.Size = new System.Drawing.Size(409, 153);
             this.panel2.TabIndex = 73;
             // 
             // tableLayoutPanel3
@@ -512,7 +528,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(356, 133);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(294, 133);
             this.tableLayoutPanel3.TabIndex = 55;
             // 
             // txtStatus
@@ -521,7 +537,7 @@
             // 
             // 
             this.txtStatus.CustomButton.Image = null;
-            this.txtStatus.CustomButton.Location = new System.Drawing.Point(332, 2);
+            this.txtStatus.CustomButton.Location = new System.Drawing.Point(270, 2);
             this.txtStatus.CustomButton.Name = "";
             this.txtStatus.CustomButton.Size = new System.Drawing.Size(15, 15);
             this.txtStatus.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -541,7 +557,7 @@
             this.txtStatus.SelectionLength = 0;
             this.txtStatus.SelectionStart = 0;
             this.txtStatus.ShortcutsEnabled = true;
-            this.txtStatus.Size = new System.Drawing.Size(350, 20);
+            this.txtStatus.Size = new System.Drawing.Size(288, 20);
             this.txtStatus.TabIndex = 47;
             this.txtStatus.UseSelectable = true;
             this.txtStatus.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -552,29 +568,30 @@
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.68942F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.31058F));
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 6);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(796, 167);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(747, 159);
             this.tableLayoutPanel1.TabIndex = 75;
             // 
             // panel3
             // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.Controls.Add(this.tableLayoutPanel2);
             this.panel3.Controls.Add(this.metroLabel6);
             this.panel3.Controls.Add(this.metroLabel5);
             this.panel3.Controls.Add(this.metroLabel4);
             this.panel3.Controls.Add(this.metroLabel3);
             this.panel3.Controls.Add(this.metroLabel7);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(480, 3);
+            this.panel3.Location = new System.Drawing.Point(418, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(313, 161);
+            this.panel3.Size = new System.Drawing.Size(326, 153);
             this.panel3.TabIndex = 74;
             // 
             // tableLayoutPanel2
@@ -582,13 +599,13 @@
             this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 239F));
-            this.tableLayoutPanel2.Controls.Add(this.txtFrom, 0, 0);
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 252F));
             this.tableLayoutPanel2.Controls.Add(this.txtTo, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.txtLAWOP, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.txtSalary, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.txtCause, 0, 3);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(68, 17);
+            this.tableLayoutPanel2.Controls.Add(this.txtFrom, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(71, 18);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -596,49 +613,17 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(239, 132);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(252, 132);
             this.tableLayoutPanel2.TabIndex = 45;
-            // 
-            // txtFrom
-            // 
-            // 
-            // 
-            // 
-            this.txtFrom.CustomButton.Image = null;
-            this.txtFrom.CustomButton.Location = new System.Drawing.Point(215, 2);
-            this.txtFrom.CustomButton.Name = "";
-            this.txtFrom.CustomButton.Size = new System.Drawing.Size(15, 15);
-            this.txtFrom.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtFrom.CustomButton.TabIndex = 1;
-            this.txtFrom.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtFrom.CustomButton.UseSelectable = true;
-            this.txtFrom.CustomButton.Visible = false;
-            this.txtFrom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtFrom.Enabled = false;
-            this.txtFrom.Lines = new string[0];
-            this.txtFrom.Location = new System.Drawing.Point(3, 3);
-            this.txtFrom.MaxLength = 32767;
-            this.txtFrom.Name = "txtFrom";
-            this.txtFrom.PasswordChar = '\0';
-            this.txtFrom.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtFrom.SelectedText = "";
-            this.txtFrom.SelectionLength = 0;
-            this.txtFrom.SelectionStart = 0;
-            this.txtFrom.ShortcutsEnabled = true;
-            this.txtFrom.Size = new System.Drawing.Size(233, 20);
-            this.txtFrom.TabIndex = 45;
-            this.txtFrom.UseSelectable = true;
-            this.txtFrom.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtFrom.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.txtFrom.Click += new System.EventHandler(this.txtFrom_Click);
             // 
             // txtTo
             // 
+            this.txtTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // 
             // 
             this.txtTo.CustomButton.Image = null;
-            this.txtTo.CustomButton.Location = new System.Drawing.Point(215, 2);
+            this.txtTo.CustomButton.Location = new System.Drawing.Point(228, 2);
             this.txtTo.CustomButton.Name = "";
             this.txtTo.CustomButton.Size = new System.Drawing.Size(15, 15);
             this.txtTo.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -646,7 +631,6 @@
             this.txtTo.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtTo.CustomButton.UseSelectable = true;
             this.txtTo.CustomButton.Visible = false;
-            this.txtTo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtTo.Enabled = false;
             this.txtTo.Lines = new string[0];
             this.txtTo.Location = new System.Drawing.Point(3, 29);
@@ -658,7 +642,7 @@
             this.txtTo.SelectionLength = 0;
             this.txtTo.SelectionStart = 0;
             this.txtTo.ShortcutsEnabled = true;
-            this.txtTo.Size = new System.Drawing.Size(233, 20);
+            this.txtTo.Size = new System.Drawing.Size(246, 20);
             this.txtTo.TabIndex = 46;
             this.txtTo.UseSelectable = true;
             this.txtTo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -666,11 +650,12 @@
             // 
             // txtLAWOP
             // 
+            this.txtLAWOP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // 
             // 
             this.txtLAWOP.CustomButton.Image = null;
-            this.txtLAWOP.CustomButton.Location = new System.Drawing.Point(213, 2);
+            this.txtLAWOP.CustomButton.Location = new System.Drawing.Point(226, 2);
             this.txtLAWOP.CustomButton.Name = "";
             this.txtLAWOP.CustomButton.Size = new System.Drawing.Size(17, 17);
             this.txtLAWOP.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -678,7 +663,6 @@
             this.txtLAWOP.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtLAWOP.CustomButton.UseSelectable = true;
             this.txtLAWOP.CustomButton.Visible = false;
-            this.txtLAWOP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtLAWOP.Enabled = false;
             this.txtLAWOP.Lines = new string[0];
             this.txtLAWOP.Location = new System.Drawing.Point(3, 107);
@@ -690,7 +674,7 @@
             this.txtLAWOP.SelectionLength = 0;
             this.txtLAWOP.SelectionStart = 0;
             this.txtLAWOP.ShortcutsEnabled = true;
-            this.txtLAWOP.Size = new System.Drawing.Size(233, 22);
+            this.txtLAWOP.Size = new System.Drawing.Size(246, 22);
             this.txtLAWOP.TabIndex = 42;
             this.txtLAWOP.UseSelectable = true;
             this.txtLAWOP.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -698,11 +682,12 @@
             // 
             // txtSalary
             // 
+            this.txtSalary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // 
             // 
             this.txtSalary.CustomButton.Image = null;
-            this.txtSalary.CustomButton.Location = new System.Drawing.Point(215, 2);
+            this.txtSalary.CustomButton.Location = new System.Drawing.Point(228, 2);
             this.txtSalary.CustomButton.Name = "";
             this.txtSalary.CustomButton.Size = new System.Drawing.Size(15, 15);
             this.txtSalary.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -710,7 +695,6 @@
             this.txtSalary.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtSalary.CustomButton.UseSelectable = true;
             this.txtSalary.CustomButton.Visible = false;
-            this.txtSalary.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtSalary.Enabled = false;
             this.txtSalary.Lines = new string[0];
             this.txtSalary.Location = new System.Drawing.Point(3, 55);
@@ -722,7 +706,7 @@
             this.txtSalary.SelectionLength = 0;
             this.txtSalary.SelectionStart = 0;
             this.txtSalary.ShortcutsEnabled = true;
-            this.txtSalary.Size = new System.Drawing.Size(233, 20);
+            this.txtSalary.Size = new System.Drawing.Size(246, 20);
             this.txtSalary.TabIndex = 40;
             this.txtSalary.UseSelectable = true;
             this.txtSalary.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -730,11 +714,12 @@
             // 
             // txtCause
             // 
+            this.txtCause.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // 
             // 
             this.txtCause.CustomButton.Image = null;
-            this.txtCause.CustomButton.Location = new System.Drawing.Point(215, 2);
+            this.txtCause.CustomButton.Location = new System.Drawing.Point(228, 2);
             this.txtCause.CustomButton.Name = "";
             this.txtCause.CustomButton.Size = new System.Drawing.Size(15, 15);
             this.txtCause.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -742,7 +727,6 @@
             this.txtCause.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtCause.CustomButton.UseSelectable = true;
             this.txtCause.CustomButton.Visible = false;
-            this.txtCause.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCause.Enabled = false;
             this.txtCause.Lines = new string[0];
             this.txtCause.Location = new System.Drawing.Point(3, 81);
@@ -754,11 +738,44 @@
             this.txtCause.SelectionLength = 0;
             this.txtCause.SelectionStart = 0;
             this.txtCause.ShortcutsEnabled = true;
-            this.txtCause.Size = new System.Drawing.Size(233, 20);
+            this.txtCause.Size = new System.Drawing.Size(246, 20);
             this.txtCause.TabIndex = 38;
             this.txtCause.UseSelectable = true;
             this.txtCause.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtCause.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // txtFrom
+            // 
+            this.txtFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txtFrom.CustomButton.Image = null;
+            this.txtFrom.CustomButton.Location = new System.Drawing.Point(228, 2);
+            this.txtFrom.CustomButton.Name = "";
+            this.txtFrom.CustomButton.Size = new System.Drawing.Size(15, 15);
+            this.txtFrom.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtFrom.CustomButton.TabIndex = 1;
+            this.txtFrom.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtFrom.CustomButton.UseSelectable = true;
+            this.txtFrom.CustomButton.Visible = false;
+            this.txtFrom.Enabled = false;
+            this.txtFrom.Lines = new string[0];
+            this.txtFrom.Location = new System.Drawing.Point(3, 3);
+            this.txtFrom.MaxLength = 32767;
+            this.txtFrom.Name = "txtFrom";
+            this.txtFrom.PasswordChar = '\0';
+            this.txtFrom.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtFrom.SelectedText = "";
+            this.txtFrom.SelectionLength = 0;
+            this.txtFrom.SelectionStart = 0;
+            this.txtFrom.ShortcutsEnabled = true;
+            this.txtFrom.Size = new System.Drawing.Size(246, 20);
+            this.txtFrom.TabIndex = 45;
+            this.txtFrom.UseSelectable = true;
+            this.txtFrom.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtFrom.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtFrom.Click += new System.EventHandler(this.txtFrom_Click);
             // 
             // metroLabel6
             // 
@@ -836,7 +853,7 @@
             this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(57)))), ((int)(((byte)(58)))));
             this.btnDelete.Image = global::HumanResourceManagement.Properties.Resources.delete1;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDelete.Location = new System.Drawing.Point(599, 453);
+            this.btnDelete.Location = new System.Drawing.Point(550, 453);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(102, 30);
             this.btnDelete.TabIndex = 56;
@@ -856,7 +873,7 @@
             this.btnAddRecord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(57)))), ((int)(((byte)(58)))));
             this.btnAddRecord.Image = global::HumanResourceManagement.Properties.Resources.add1;
             this.btnAddRecord.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddRecord.Location = new System.Drawing.Point(383, 452);
+            this.btnAddRecord.Location = new System.Drawing.Point(334, 452);
             this.btnAddRecord.Name = "btnAddRecord";
             this.btnAddRecord.Size = new System.Drawing.Size(102, 30);
             this.btnAddRecord.TabIndex = 48;
@@ -874,7 +891,7 @@
             this.btnExport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(57)))), ((int)(((byte)(58)))));
             this.btnExport.Image = global::HumanResourceManagement.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExport.Location = new System.Drawing.Point(707, 453);
+            this.btnExport.Location = new System.Drawing.Point(658, 453);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(102, 30);
             this.btnExport.TabIndex = 77;
@@ -894,7 +911,7 @@
             this.btnEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(57)))), ((int)(((byte)(58)))));
             this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEdit.Location = new System.Drawing.Point(491, 453);
+            this.btnEdit.Location = new System.Drawing.Point(442, 453);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(102, 30);
             this.btnEdit.TabIndex = 78;
@@ -937,10 +954,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAddRecord);
             this.Name = "UserControlServiceRecord";
-            this.Size = new System.Drawing.Size(815, 489);
+            this.Size = new System.Drawing.Size(766, 489);
             this.Load += new System.EventHandler(this.UserControlServiceRecord_Load);
             ((System.ComponentModel.ISupportInitialize)(this.datagridServiceRecords)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.dgvContextMenu.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -1005,5 +1023,6 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label lblNoServiceRecord;
     }
 }
