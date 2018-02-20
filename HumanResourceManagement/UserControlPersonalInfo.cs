@@ -47,8 +47,12 @@ namespace HumanResourceManagement
 
         private void UserControlPersonalInfo_Load(object sender, EventArgs e)
         {
-            conn = new SqlConnection(getStringValue("sqlconstring"));
-            loadCivilStatus();
+            if (!this.DesignMode) {
+                conn = new SqlConnection(getStringValue("sqlconstring"));
+                loadCivilStatus();
+                TempHolder.uc_PersonalInfo = this;
+            }
+           
         }
 
         //*******************APP CONFIG MANAGER*********************************

@@ -436,5 +436,10 @@ namespace HumanResourceManagement
             }
 
         }
+
+        private void metroLabel4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

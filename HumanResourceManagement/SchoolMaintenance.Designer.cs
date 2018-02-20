@@ -47,7 +47,6 @@
             this.txtEmplyeeNo = new MetroFramework.Controls.MetroTextBox();
             this.infoGroup = new System.Windows.Forms.GroupBox();
             this.lblSelectedSchoolId = new System.Windows.Forms.Label();
-            this.btnAddNew = new System.Windows.Forms.PictureBox();
             this.txtdistrict = new MetroFramework.Controls.MetroTextBox();
             this.txtSchoolname = new MetroFramework.Controls.MetroTextBox();
             this.txtSchoolId = new MetroFramework.Controls.MetroTextBox();
@@ -65,10 +64,10 @@
             this.lblFormExit = new System.Windows.Forms.Label();
             this.bgSchoolLoader = new System.ComponentModel.BackgroundWorker();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnAddNew = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.infoGroup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddNew)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSchools)).BeginInit();
             this.FormPanel.SuspendLayout();
@@ -77,6 +76,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnAddNew);
             this.panel1.Controls.Add(this.btnRefresh);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.label2);
@@ -174,7 +174,7 @@
             this.groupBox1.Controls.Add(this.txtEmplyeeNo);
             this.groupBox1.Location = new System.Drawing.Point(17, 32);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(631, 40);
+            this.groupBox1.Size = new System.Drawing.Size(590, 40);
             this.groupBox1.TabIndex = 32;
             this.groupBox1.TabStop = false;
             // 
@@ -183,11 +183,12 @@
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.metroLabel4.Enabled = false;
-            this.metroLabel4.Location = new System.Drawing.Point(403, 13);
+            this.metroLabel4.Location = new System.Drawing.Point(325, 13);
             this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(27, 19);
+            this.metroLabel4.Size = new System.Drawing.Size(68, 19);
             this.metroLabel4.TabIndex = 101;
-            this.metroLabel4.Text = "BY:";
+            this.metroLabel4.Text = "FILTER BY:";
+            this.metroLabel4.Click += new System.EventHandler(this.metroLabel4_Click);
             // 
             // cmbBy
             // 
@@ -199,9 +200,9 @@
             "School ID",
             "School Name",
             "District"});
-            this.cmbBy.Location = new System.Drawing.Point(436, 10);
+            this.cmbBy.Location = new System.Drawing.Point(398, 10);
             this.cmbBy.Name = "cmbBy";
-            this.cmbBy.Size = new System.Drawing.Size(181, 25);
+            this.cmbBy.Size = new System.Drawing.Size(186, 25);
             this.cmbBy.TabIndex = 100;
             this.cmbBy.UseSelectable = true;
             this.cmbBy.SelectedIndexChanged += new System.EventHandler(this.cmbBy_SelectedIndexChanged);
@@ -223,7 +224,7 @@
             // 
             // 
             this.txtEmplyeeNo.CustomButton.Image = null;
-            this.txtEmplyeeNo.CustomButton.Location = new System.Drawing.Point(250, 1);
+            this.txtEmplyeeNo.CustomButton.Location = new System.Drawing.Point(212, 1);
             this.txtEmplyeeNo.CustomButton.Name = "";
             this.txtEmplyeeNo.CustomButton.Size = new System.Drawing.Size(23, 23);
             this.txtEmplyeeNo.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -232,7 +233,7 @@
             this.txtEmplyeeNo.CustomButton.UseSelectable = true;
             this.txtEmplyeeNo.CustomButton.Visible = false;
             this.txtEmplyeeNo.Lines = new string[0];
-            this.txtEmplyeeNo.Location = new System.Drawing.Point(121, 10);
+            this.txtEmplyeeNo.Location = new System.Drawing.Point(74, 10);
             this.txtEmplyeeNo.MaxLength = 30;
             this.txtEmplyeeNo.Name = "txtEmplyeeNo";
             this.txtEmplyeeNo.PasswordChar = '\0';
@@ -242,7 +243,7 @@
             this.txtEmplyeeNo.SelectionLength = 0;
             this.txtEmplyeeNo.SelectionStart = 0;
             this.txtEmplyeeNo.ShortcutsEnabled = true;
-            this.txtEmplyeeNo.Size = new System.Drawing.Size(274, 25);
+            this.txtEmplyeeNo.Size = new System.Drawing.Size(236, 25);
             this.txtEmplyeeNo.TabIndex = 29;
             this.txtEmplyeeNo.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtEmplyeeNo.UseSelectable = true;
@@ -254,7 +255,6 @@
             // infoGroup
             // 
             this.infoGroup.Controls.Add(this.lblSelectedSchoolId);
-            this.infoGroup.Controls.Add(this.btnAddNew);
             this.infoGroup.Controls.Add(this.txtdistrict);
             this.infoGroup.Controls.Add(this.txtSchoolname);
             this.infoGroup.Controls.Add(this.txtSchoolId);
@@ -276,19 +276,6 @@
             this.lblSelectedSchoolId.TabIndex = 33;
             this.lblSelectedSchoolId.Text = "   ";
             this.lblSelectedSchoolId.Visible = false;
-            // 
-            // btnAddNew
-            // 
-            this.btnAddNew.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddNew.Image = global::HumanResourceManagement.Properties.Resources.add;
-            this.btnAddNew.Location = new System.Drawing.Point(593, 13);
-            this.btnAddNew.Name = "btnAddNew";
-            this.btnAddNew.Size = new System.Drawing.Size(24, 24);
-            this.btnAddNew.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnAddNew.TabIndex = 34;
-            this.btnAddNew.TabStop = false;
-            this.toolTip1.SetToolTip(this.btnAddNew, "Add New School");
-            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // txtdistrict
             // 
@@ -363,7 +350,7 @@
             // 
             // 
             this.txtSchoolId.CustomButton.Image = null;
-            this.txtSchoolId.CustomButton.Location = new System.Drawing.Point(252, 1);
+            this.txtSchoolId.CustomButton.Location = new System.Drawing.Point(167, 1);
             this.txtSchoolId.CustomButton.Name = "";
             this.txtSchoolId.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtSchoolId.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -382,7 +369,7 @@
             this.txtSchoolId.SelectionLength = 0;
             this.txtSchoolId.SelectionStart = 0;
             this.txtSchoolId.ShortcutsEnabled = true;
-            this.txtSchoolId.Size = new System.Drawing.Size(274, 23);
+            this.txtSchoolId.Size = new System.Drawing.Size(189, 23);
             this.txtSchoolId.TabIndex = 30;
             this.txtSchoolId.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtSchoolId.UseSelectable = true;
@@ -562,6 +549,20 @@
             this.bgSchoolLoader.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgSchoolLoader_DoWork);
             this.bgSchoolLoader.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgSchoolLoader_RunWorkerCompleted);
             // 
+            // btnAddNew
+            // 
+            this.btnAddNew.BackgroundImage = global::HumanResourceManagement.Properties.Resources.add;
+            this.btnAddNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAddNew.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnAddNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddNew.Location = new System.Drawing.Point(614, 36);
+            this.btnAddNew.Name = "btnAddNew";
+            this.btnAddNew.Size = new System.Drawing.Size(32, 32);
+            this.btnAddNew.TabIndex = 39;
+            this.btnAddNew.UseVisualStyleBackColor = true;
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
+            // 
             // SchoolMaintenance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -582,7 +583,6 @@
             this.groupBox1.PerformLayout();
             this.infoGroup.ResumeLayout(false);
             this.infoGroup.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddNew)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSchools)).EndInit();
             this.FormPanel.ResumeLayout(false);
@@ -621,9 +621,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.ComponentModel.BackgroundWorker bgSchoolLoader;
         private System.Windows.Forms.Label lblSelectedSchoolId;
-        private System.Windows.Forms.PictureBox btnAddNew;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnAddNew;
     }
 }

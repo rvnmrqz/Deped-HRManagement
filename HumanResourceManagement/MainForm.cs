@@ -46,8 +46,8 @@ namespace HumanResourceManagement
             TempHolder.mainForm = this;
             conn = new SqlConnection(getStringValue("sqlconstring"));
 
-            loadTab2();
-            loadTab1();
+              loadTab2();
+  //          loadTab1();
 
             metroTabControl1.SelectedTab = tabPage1;
             txtEmplyeeNo.Select();
@@ -203,7 +203,7 @@ namespace HumanResourceManagement
             {
                 tab2_Panel.Controls.Add(UserControlServiceRecord.Instance);
                 UserControlServiceRecord.Instance.Dock = DockStyle.Fill;
-                UserControlServiceRecord.Instance.BringToFront();
+                //UserControlServiceRecord.Instance.BringToFront();
                 TempHolder.uc_ServiceRecord = UserControlServiceRecord.Instance;
             }
             else

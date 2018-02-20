@@ -75,7 +75,11 @@ namespace HumanResourceManagement
         //****************************EVENTS**********************************
         private void UserControlServiceRecord_Load(object sender, EventArgs e)
         {
-            conn = new SqlConnection(getStringValue("sqlconstring"));
+            if (!this.DesignMode)
+            {
+                conn = new SqlConnection(getStringValue("sqlconstring"));
+            }
+  
         }
 
         //***********LOADING DATA*****************************

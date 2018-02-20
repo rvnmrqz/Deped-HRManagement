@@ -300,6 +300,7 @@
             this.linkSetPassword.TabStop = true;
             this.linkSetPassword.Text = "Set Password";
             this.linkSetPassword.VisitedLinkColor = System.Drawing.SystemColors.HotTrack;
+            this.linkSetPassword.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkSetPassword_LinkClicked);
             // 
             // txtLastname
             // 

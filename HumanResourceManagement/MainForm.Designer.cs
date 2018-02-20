@@ -71,10 +71,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.FormPanel = new System.Windows.Forms.Panel();
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            this.userControlPersonalInfo1 = new HumanResourceManagement.UserControlPersonalInfo();
             this.panel1.SuspendLayout();
             this.mainPanelRight.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tab1_panel.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.mainPanelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddUser)).BeginInit();
@@ -114,7 +116,7 @@
             this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
+            this.metroTabControl1.SelectedIndex = 1;
             this.metroTabControl1.Size = new System.Drawing.Size(751, 543);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
@@ -130,6 +132,7 @@
             // 
             // tab1_panel
             // 
+            this.tab1_panel.Controls.Add(this.userControlPersonalInfo1);
             this.tab1_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tab1_panel.Location = new System.Drawing.Point(0, 0);
             this.tab1_panel.Name = "tab1_panel";
@@ -623,6 +626,16 @@
             this.metroToolTip1.StyleManager = null;
             this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
+            // userControlPersonalInfo1
+            // 
+            this.userControlPersonalInfo1.AutoScroll = true;
+            this.userControlPersonalInfo1.BackColor = System.Drawing.Color.White;
+            this.userControlPersonalInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlPersonalInfo1.Location = new System.Drawing.Point(0, 0);
+            this.userControlPersonalInfo1.Name = "userControlPersonalInfo1";
+            this.userControlPersonalInfo1.Size = new System.Drawing.Size(743, 501);
+            this.userControlPersonalInfo1.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -645,6 +658,7 @@
             this.mainPanelRight.ResumeLayout(false);
             this.metroTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tab1_panel.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.mainPanelLeft.ResumeLayout(false);
             this.mainPanelLeft.PerformLayout();
@@ -702,5 +716,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuDBBackup;
         private System.Windows.Forms.Label lblDOAPrettyTime;
         private System.Windows.Forms.Button btnClearSearch;
+        private UserControlPersonalInfo userControlPersonalInfo1;
     }
 }

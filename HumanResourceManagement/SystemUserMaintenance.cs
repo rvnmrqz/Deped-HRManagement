@@ -467,6 +467,18 @@ namespace HumanResourceManagement
             }
         }
 
+        private void linkSetPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            using (PasswordDialog pd = new PasswordDialog())
+            {
+                if(pd.ShowDialog() == DialogResult.OK)
+                {
+                    lblPassword.Text = pd.encryptedPassword;
+                }
+            }
+                
+        }
+
         private void enableFields( bool val)
         {
             txtUsername.Enabled = val;
