@@ -127,6 +127,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForm.Designer.cs">
+      <DependentUpon>ReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SchoolMaintenance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +200,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportForm.resx">
+      <DependentUpon>ReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SchoolMaintenance.resx">
       <DependentUpon>SchoolMaintenance.cs</DependentUpon>
     </EmbeddedResource>
@@ -245,6 +254,7 @@
     <None Include="Resources\gallery.png" />
     <None Include="Resources\gallery 48_48.png" />
     <None Include="Resources\blurimg.png" />
+    <None Include="Resources\greenGo.png" />
     <Content Include="Resources\hide password.png" />
     <None Include="Resources\printer.png" />
     <None Include="Resources\lock.png" />
@@ -259,6 +269,9 @@
     <None Include="Resources\if_sign-out_1608410.png" />
     <None Include="Resources\if_060_Off_183189.png" />
     <None Include="Resources\import 24_24.png" />
+    <None Include="Resources\reports.png" />
+    <None Include="Resources\magnifying glass.png" />
+    <None Include="Resources\search.png" />
     <Content Include="Resources\show password.png" />
   </ItemGroup>
   <ItemGroup>

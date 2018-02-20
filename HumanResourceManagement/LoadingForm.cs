@@ -214,7 +214,7 @@ namespace HumanResourceManagement
                 while (reader.Read())
                 {
                     string cs = reader[SQLbank.SYS_CIVIL_STATUS].ToString();
-                    if (cs.Length != 0)
+                    if (cs.Trim().Length != 0)
                     {
                         TempHolder.civil_status_list.Add(cs);
                         ctr++;
@@ -243,7 +243,7 @@ namespace HumanResourceManagement
                 while (reader.Read())
                 {
                     string stat = reader[SQLbank.SYS_STATUS].ToString();
-                    if (stat.Length != 0)
+                    if (stat.Trim().Length != 0)
                     {
                         TempHolder.status_list.Add(stat);
                         ctr++;
@@ -270,7 +270,7 @@ namespace HumanResourceManagement
                 while (reader.Read())
                 {
                     string cause = reader[SQLbank.SYS_CAUSE].ToString();
-                    if (cause.Length != 0)
+                    if (cause.Trim().Length != 0)
                     {
                         TempHolder.cause_list.Add(cause);
                         ctr++;
@@ -297,7 +297,7 @@ namespace HumanResourceManagement
                 while (reader.Read())
                 {
                     string schname = reader[SQLbank.SCHOOL_NAME].ToString();
-                    if (schname.Length != 0)
+                    if (schname.Trim().Length != 0)
                     {
                         TempHolder.schoolCollection.Add(schname);
                         ctr++;
@@ -359,7 +359,7 @@ namespace HumanResourceManagement
                 {
                     string role = reader[0].ToString();
                     Console.WriteLine(role);
-                    TempHolder.roles_list.Add(role);
+                    if(role.Trim().Length>0) TempHolder.roles_list.Add(role);
                     ctr++;
                 }
 

@@ -15,6 +15,7 @@ namespace HumanResourceManagement
     public partial class PasswordDialog : Form
     {
 
+        bool exitFromlabel=false;
         public string encryptedPassword = "";
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -31,7 +32,13 @@ namespace HumanResourceManagement
 
         private void lblClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            exitFromlabel = true;
+            this.Close();   
+        }
+
+        private void PasswordDialog_Load(object sender, EventArgs e)
+        {
+            
         }
 
         private void btnUpdatePass_Click(object sender, EventArgs e)
@@ -66,13 +73,16 @@ namespace HumanResourceManagement
 
         private void PasswordDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (checkInputs())
+            if (!exitFromlabel)
             {
-                encryptedPassword = encrypt(txtPassword.Text.ToString());
-            }
-            else
-            {
-                e.Cancel = true;
+                if (checkInputs())
+                {
+                    encryptedPassword = encrypt(txtPassword.Text.ToString());
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
             }
         }
 
@@ -82,5 +92,7 @@ namespace HumanResourceManagement
             byte[] inArray = HashAlgorithm.Create("SHA1").ComputeHash(bytes);
             return Convert.ToBase64String(inArray);
         }
+
+       
     }
 }

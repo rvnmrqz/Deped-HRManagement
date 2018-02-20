@@ -170,6 +170,7 @@ namespace HumanResourceManagement
             {
                 int selectedindex = dgvUsers.CurrentRow.Index;
                 lblSelectedID.Text = dgvUsers.Rows[selectedindex].Cells[0].Value.ToString();
+                lblOriginalUsername.Text = dgvUsers.Rows[selectedindex].Cells[1].Value.ToString();
                 txtUsername.Text = dgvUsers.Rows[selectedindex].Cells[1].Value.ToString();
                 lblPassword.Text = dgvUsers.Rows[selectedindex].Cells[2].Value.ToString();
                 txtFirstname.Text = dgvUsers.Rows[selectedindex].Cells[3].Value.ToString();
@@ -189,6 +190,7 @@ namespace HumanResourceManagement
 
         private void clearInfoGroup()
         {
+            lblOriginalUsername.ResetText();
             txtUsername.ResetText();
             lblPassword.ResetText();
             txtFirstname.ResetText();
@@ -300,7 +302,6 @@ namespace HumanResourceManagement
                     enableFields(false);
                     btnEditSave.Text = "Edit";
                     btnCancel.Visible = false;
-                    
                     btnEditSave.Enabled = (dgvUsers.CurrentRow != null);
                     btnDelete.Enabled = (dgvUsers.CurrentRow != null);
                     
@@ -316,6 +317,16 @@ namespace HumanResourceManagement
                         }
                     }
                     break;
+            }
+        }
+
+        private void reselectLastSelectedRow()
+        {
+            if (dgvUsers.RowCount > 0)
+            {
+                int selectedindex = dgvUsers.CurrentCell.RowIndex;
+                dgvUsers.ClearSelection();
+                dgvUsers.Rows[selectedindex].Selected = true;
             }
         }
 
@@ -376,7 +387,8 @@ namespace HumanResourceManagement
 
                     if (newUser) dgvUsers.Rows.Add(lblSelectedID.Text, txtUsername.Text, lblPassword.Text, txtFirstname.Text, txtMiddlename.Text, txtLastname.Text, cmbRoles.Text);
                     else dgvUsers.Rows[dgvUsers.CurrentCell.RowIndex].SetValues(lblSelectedID.Text, txtUsername.Text, lblPassword.Text, txtFirstname.Text, txtMiddlename.Text, txtLastname.Text, cmbRoles.Text);
-
+                    reselectLastSelectedRow();
+                   
                     editMode(NOTEDITMODE);
                     savingNew = false;
                     MessageBox.Show("Saved");
@@ -397,17 +409,18 @@ namespace HumanResourceManagement
                 MessageBox.Show("Username must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-            if (savingNew)
+            if (savingNew || (!savingNew && !lblOriginalUsername.Text.ToString().Equals((txtUsername.Text.ToString())))) 
             {
-                //username is not empty, already checked. check if the new user's username is already used
+                // checks if the new user's username is already used
                 try
                 {
                     openSQLConnection();
-                    cmd = new SqlCommand("SELECT COUNT(" + SQLbank.ID + ") from " + SQLbank.TBL_USERS + " WHERE " + SQLbank.USERNAME + " = '" + txtUsername.Text.ToString() + "'", conn);
+                    cmd = new SqlCommand("SELECT "+SQLbank.ID+" from " + SQLbank.TBL_USERS + " WHERE " + SQLbank.USERNAME + " = '" + txtUsername.Text.ToString() + "'", conn);
                     reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-
+                        MessageBox.Show("Username is already used", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return false;
                     }
                     
                 }
@@ -416,6 +429,30 @@ namespace HumanResourceManagement
                     Console.WriteLine("Cannot check for username duplicat \n" + ee.Message);
                     return false;
                 }
+            }
+
+            if(txtFirstname.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("First name must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            if (txtLastname.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Last name must not be empty", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            if(cmbRoles.SelectedIndex == -1)
+            {
+                MessageBox.Show("Choose an account role", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            if(lblPassword.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("No password set", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
             }
             return true;
         }

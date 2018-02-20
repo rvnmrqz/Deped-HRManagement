@@ -497,5 +497,13 @@ namespace HumanResourceManagement
         {
             txtEmplyeeNo.ResetText();
         }
+
+        private void reportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ReportForm rp = new ReportForm())
+            {
+                rp.ShowDialog();
+            }
+        }
     }
 }
