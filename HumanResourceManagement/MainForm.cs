@@ -20,6 +20,7 @@ namespace HumanResourceManagement
     {
         bool fromLogout = false;
         LoadingForm loadingform;
+
         SqlConnection conn;
         SqlCommand cmd;
         SqlDataReader reader;
@@ -39,10 +40,6 @@ namespace HumanResourceManagement
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
-        //    this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-         //   this.WindowState = FormWindowState.Maximized;
-
             TempHolder.mainForm = this;
             conn = new SqlConnection(getStringValue("sqlconstring"));
 
@@ -500,10 +497,9 @@ namespace HumanResourceManagement
 
         private void reportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (ReportForm rp = new ReportForm())
-            {
-                rp.ShowDialog();
-            }
+            ReportForm rp = new ReportForm();
+            rp.ShowDialog();
+            
         }
     }
 }
