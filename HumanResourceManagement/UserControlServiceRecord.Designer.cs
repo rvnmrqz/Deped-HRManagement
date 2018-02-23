@@ -29,13 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlServiceRecord));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblNoServiceRecord = new System.Windows.Forms.Label();
+            this.dgvServiceRecord = new MetroFramework.Controls.MetroGrid();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblRowsCount = new System.Windows.Forms.Label();
             this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
             this.txtSchoolName = new MetroFramework.Controls.MetroTextBox();
@@ -57,9 +69,9 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.txtTo = new MetroFramework.Controls.MetroTextBox();
             this.txtLAWOP = new MetroFramework.Controls.MetroTextBox();
+            this.txtFrom = new MetroFramework.Controls.MetroTextBox();
             this.txtSalary = new MetroFramework.Controls.MetroTextBox();
             this.txtCause = new MetroFramework.Controls.MetroTextBox();
-            this.txtFrom = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
@@ -72,26 +84,14 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datagridServiceRecords = new MetroFramework.Controls.MetroGrid();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvServiceRecord)).BeginInit();
             this.dgvContextMenu.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datagridServiceRecords)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -112,7 +112,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.LightGray;
             this.panel1.Controls.Add(this.lblNoServiceRecord);
-            this.panel1.Controls.Add(this.datagridServiceRecords);
+            this.panel1.Controls.Add(this.dgvServiceRecord);
             this.panel1.Location = new System.Drawing.Point(6, 179);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(2);
@@ -132,6 +132,153 @@
             this.lblNoServiceRecord.TabIndex = 80;
             this.lblNoServiceRecord.Text = "No Service Record";
             this.lblNoServiceRecord.Visible = false;
+            // 
+            // dgvServiceRecord
+            // 
+            this.dgvServiceRecord.AllowUserToAddRows = false;
+            this.dgvServiceRecord.AllowUserToResizeRows = false;
+            this.dgvServiceRecord.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvServiceRecord.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgvServiceRecord.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvServiceRecord.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvServiceRecord.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvServiceRecord.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvServiceRecord.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvServiceRecord.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column6,
+            this.Column1,
+            this.Column3,
+            this.Column4,
+            this.Column2,
+            this.Column10,
+            this.Column7,
+            this.Column5,
+            this.Column9,
+            this.Column11,
+            this.Column8});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(202)))), ((int)(((byte)(233)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvServiceRecord.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvServiceRecord.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvServiceRecord.EnableHeadersVisualStyles = false;
+            this.dgvServiceRecord.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.dgvServiceRecord.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgvServiceRecord.Location = new System.Drawing.Point(2, 2);
+            this.dgvServiceRecord.MultiSelect = false;
+            this.dgvServiceRecord.Name = "dgvServiceRecord";
+            this.dgvServiceRecord.ReadOnly = true;
+            this.dgvServiceRecord.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(202)))), ((int)(((byte)(233)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvServiceRecord.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvServiceRecord.RowHeadersVisible = false;
+            this.dgvServiceRecord.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvServiceRecord.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.dgvServiceRecord.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvServiceRecord.Size = new System.Drawing.Size(619, 264);
+            this.dgvServiceRecord.TabIndex = 1;
+            this.dgvServiceRecord.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridServiceRecords_CellDoubleClick);
+            this.dgvServiceRecord.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.datagridServiceRecords_RowsAdded);
+            this.dgvServiceRecord.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.datagridServiceRecords_RowsRemoved);
+            this.dgvServiceRecord.SelectionChanged += new System.EventHandler(this.datagridServiceRecords_SelectionChanged);
+            this.dgvServiceRecord.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.datagridServiceRecords_UserDeletingRow);
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "id";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column6.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "School";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column1.Visible = false;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Start";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "End";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Designation";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "Status";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Salary";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Station/ Place ABS";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Branch";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column9.Visible = false;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "Cause";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            this.Column11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "LAWOP";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // lblRowsCount
             // 
@@ -532,6 +679,39 @@
             this.txtLAWOP.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtLAWOP.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
+            // txtFrom
+            // 
+            // 
+            // 
+            // 
+            this.txtFrom.CustomButton.Image = null;
+            this.txtFrom.CustomButton.Location = new System.Drawing.Point(154, 2);
+            this.txtFrom.CustomButton.Name = "";
+            this.txtFrom.CustomButton.Size = new System.Drawing.Size(17, 17);
+            this.txtFrom.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtFrom.CustomButton.TabIndex = 1;
+            this.txtFrom.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtFrom.CustomButton.UseSelectable = true;
+            this.txtFrom.CustomButton.Visible = false;
+            this.txtFrom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtFrom.Enabled = false;
+            this.txtFrom.Lines = new string[0];
+            this.txtFrom.Location = new System.Drawing.Point(3, 3);
+            this.txtFrom.MaxLength = 32767;
+            this.txtFrom.Name = "txtFrom";
+            this.txtFrom.PasswordChar = '\0';
+            this.txtFrom.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtFrom.SelectedText = "";
+            this.txtFrom.SelectionLength = 0;
+            this.txtFrom.SelectionStart = 0;
+            this.txtFrom.ShortcutsEnabled = true;
+            this.txtFrom.Size = new System.Drawing.Size(174, 22);
+            this.txtFrom.TabIndex = 45;
+            this.txtFrom.UseSelectable = true;
+            this.txtFrom.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtFrom.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtFrom.Click += new System.EventHandler(this.txtFrom_Click);
+            // 
             // txtSalary
             // 
             // 
@@ -595,39 +775,6 @@
             this.txtCause.UseSelectable = true;
             this.txtCause.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtCause.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // txtFrom
-            // 
-            // 
-            // 
-            // 
-            this.txtFrom.CustomButton.Image = null;
-            this.txtFrom.CustomButton.Location = new System.Drawing.Point(154, 2);
-            this.txtFrom.CustomButton.Name = "";
-            this.txtFrom.CustomButton.Size = new System.Drawing.Size(17, 17);
-            this.txtFrom.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtFrom.CustomButton.TabIndex = 1;
-            this.txtFrom.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtFrom.CustomButton.UseSelectable = true;
-            this.txtFrom.CustomButton.Visible = false;
-            this.txtFrom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtFrom.Enabled = false;
-            this.txtFrom.Lines = new string[0];
-            this.txtFrom.Location = new System.Drawing.Point(3, 3);
-            this.txtFrom.MaxLength = 32767;
-            this.txtFrom.Name = "txtFrom";
-            this.txtFrom.PasswordChar = '\0';
-            this.txtFrom.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtFrom.SelectedText = "";
-            this.txtFrom.SelectionLength = 0;
-            this.txtFrom.SelectionStart = 0;
-            this.txtFrom.ShortcutsEnabled = true;
-            this.txtFrom.Size = new System.Drawing.Size(174, 22);
-            this.txtFrom.TabIndex = 45;
-            this.txtFrom.UseSelectable = true;
-            this.txtFrom.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtFrom.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.txtFrom.Click += new System.EventHandler(this.txtFrom_Click);
             // 
             // metroLabel6
             // 
@@ -790,153 +937,6 @@
             this.btnImport.Visible = false;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "LAWOP";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "Cause";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            this.Column11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "Branch";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column9.Visible = false;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Station/ Place ABS";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Salary";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "Status";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Designation";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "End";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Start";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "School";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column1.Visible = false;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "id";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column6.Visible = false;
-            // 
-            // datagridServiceRecords
-            // 
-            this.datagridServiceRecords.AllowUserToAddRows = false;
-            this.datagridServiceRecords.AllowUserToResizeRows = false;
-            this.datagridServiceRecords.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.datagridServiceRecords.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.datagridServiceRecords.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.datagridServiceRecords.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.datagridServiceRecords.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridServiceRecords.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.datagridServiceRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.datagridServiceRecords.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column6,
-            this.Column1,
-            this.Column3,
-            this.Column4,
-            this.Column2,
-            this.Column10,
-            this.Column7,
-            this.Column5,
-            this.Column9,
-            this.Column11,
-            this.Column8});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(202)))), ((int)(((byte)(233)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datagridServiceRecords.DefaultCellStyle = dataGridViewCellStyle5;
-            this.datagridServiceRecords.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.datagridServiceRecords.EnableHeadersVisualStyles = false;
-            this.datagridServiceRecords.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.datagridServiceRecords.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.datagridServiceRecords.Location = new System.Drawing.Point(2, 2);
-            this.datagridServiceRecords.MultiSelect = false;
-            this.datagridServiceRecords.Name = "datagridServiceRecords";
-            this.datagridServiceRecords.ReadOnly = true;
-            this.datagridServiceRecords.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(202)))), ((int)(((byte)(233)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridServiceRecords.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.datagridServiceRecords.RowHeadersVisible = false;
-            this.datagridServiceRecords.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.datagridServiceRecords.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.datagridServiceRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datagridServiceRecords.Size = new System.Drawing.Size(619, 264);
-            this.datagridServiceRecords.TabIndex = 1;
-            this.datagridServiceRecords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridServiceRecords_CellDoubleClick);
-            this.datagridServiceRecords.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.datagridServiceRecords_RowsAdded);
-            this.datagridServiceRecords.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.datagridServiceRecords_RowsRemoved);
-            this.datagridServiceRecords.SelectionChanged += new System.EventHandler(this.datagridServiceRecords_SelectionChanged);
-            this.datagridServiceRecords.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.datagridServiceRecords_UserDeletingRow);
-            // 
             // UserControlServiceRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -957,6 +957,7 @@
             this.Load += new System.EventHandler(this.UserControlServiceRecord_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvServiceRecord)).EndInit();
             this.dgvContextMenu.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -965,7 +966,6 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.datagridServiceRecords)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1011,7 +1011,7 @@
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label lblNoServiceRecord;
-        private MetroFramework.Controls.MetroGrid datagridServiceRecords;
+        private MetroFramework.Controls.MetroGrid dgvServiceRecord;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

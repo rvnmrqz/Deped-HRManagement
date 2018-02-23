@@ -57,7 +57,7 @@ namespace HumanResourceManagement
             {
                 //display double clicked row
                 lblFormTitle.Text = "Edit Serivce Record";
-                panelChkBox.Enabled = false;
+               // panelChkBox.Enabled = false;
                 txtDateFrom.Enabled = false;
                 txtDateTo.Enabled = false;
                 chkPresent.Enabled = false;
@@ -130,13 +130,11 @@ namespace HumanResourceManagement
         private void clearFields()
         {
             //uncheck all
-
-
             foreach (CheckBox chk in panelChkBox.Controls)
             {
                 chk.Checked = false;
             }
-
+            TempHolder.selectedIndex = -1;
             txtDateFrom.ResetText();
             txtDateTo.ResetText();
             txtSchoolName.ResetText();
@@ -147,10 +145,6 @@ namespace HumanResourceManagement
             txtBranch.ResetText();
             cmbCause.SelectedIndex = -1;
             txtLAWOP.ResetText();
-
-           
-           
-
         }
 
         //************************SERVER CONNECTION**************************************
@@ -263,6 +257,7 @@ namespace HumanResourceManagement
 
                 //prepareDisplay();
                 clearFields();
+                chkPresent.Checked = true;
 
                 MessageBox.Show("New entry successfully added", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtDateFrom.Select();
@@ -465,14 +460,19 @@ namespace HumanResourceManagement
 
         private void chkSchool_CheckedChanged(object sender, EventArgs e)
         {
+          
             if (!chkSchool.Checked)
             {
                 txtSchoolName.Enabled = true;
                 txtSchoolName.Select();
             }
             else {
-                txtSchoolName.Enabled = false;
-                txtSchoolName.Text = TempHolder.searchedLastSchool;
+                if (TempHolder.uc_ServiceRecord.getPreviousRowInfo(TempHolder.selectedIndex))
+                {
+                    txtSchoolName.Enabled = false;
+                    txtSchoolName.Text = TempHolder.prevSchool;
+                }
+                else chkSchool.Checked = false;
             }
         }
 
@@ -484,8 +484,12 @@ namespace HumanResourceManagement
                 txtDesignation.Select();
             }
             else {
-                txtDesignation.Enabled = false;
-                txtDesignation.Text = TempHolder.lastDesignation;
+                if (TempHolder.uc_ServiceRecord.getPreviousRowInfo(TempHolder.selectedIndex))
+                {
+                    txtDesignation.Enabled = false;
+                    txtDesignation.Text = TempHolder.prevDesignation;
+                }
+                else chkDesignation.Checked = false;
             }
         }
 
@@ -497,8 +501,12 @@ namespace HumanResourceManagement
                 cmbStatus.Select();
             }
             else {
-                cmbStatus.Enabled = false;
-                cmbStatus.Text = TempHolder.lastStatus;
+                if (TempHolder.uc_ServiceRecord.getPreviousRowInfo(TempHolder.selectedIndex))
+                {
+                    cmbStatus.Enabled = false;
+                    cmbStatus.Text = TempHolder.prevStatus;
+                }
+                else chkStatus.Checked = false;
             }
         }
 
@@ -510,8 +518,15 @@ namespace HumanResourceManagement
                 txtStation.Select();
             }
             else {
-                txtStation.Enabled = false;
-                txtStation.Text = TempHolder.lastStation;
+                if (TempHolder.uc_ServiceRecord.getPreviousRowInfo(TempHolder.selectedIndex))
+                {
+                    txtStation.Enabled = false;
+                    txtStation.Text = TempHolder.prevStation;
+                }
+                else
+                {
+                    chkStation.Checked = false;
+                }
             }
         }
 
@@ -523,8 +538,12 @@ namespace HumanResourceManagement
                 txtBranch.Select();
             }
             else {
-                txtBranch.Enabled = false;
-                txtBranch.Text = TempHolder.lastBranch;
+                if (TempHolder.uc_ServiceRecord.getPreviousRowInfo(TempHolder.selectedIndex))
+                {
+                    txtBranch.Enabled = false;
+                    txtBranch.Text = TempHolder.prevBranch;
+                }
+                else chkBranch.Checked = false;
             }
         }
 
@@ -536,8 +555,12 @@ namespace HumanResourceManagement
                 txtLAWOP.Select();
             }
             else {
-                txtLAWOP.Enabled = false;
-                txtLAWOP.Text = TempHolder.lastLAWOP;
+                if (TempHolder.uc_ServiceRecord.getPreviousRowInfo(TempHolder.selectedIndex))
+                {
+                    txtLAWOP.Enabled = false;
+                    txtLAWOP.Text = TempHolder.prevLawop;
+                }
+                else chkLawop.Checked = false;
             }
         }
 
@@ -549,8 +572,12 @@ namespace HumanResourceManagement
                 txtSalary.Select();
             }
             else {
-                txtSalary.Enabled = false;
-                txtSalary.Text = TempHolder.lastSalary;
+                if (TempHolder.uc_ServiceRecord.getPreviousRowInfo(TempHolder.selectedIndex))
+                {
+                    txtSalary.Enabled = false;
+                    txtSalary.Text = TempHolder.prevSalary;
+                }
+                else chkSalary.Checked = false;
             }
         }
 

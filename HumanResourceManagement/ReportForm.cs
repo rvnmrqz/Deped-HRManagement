@@ -168,14 +168,13 @@ namespace HumanResourceManagement
 
                 try
                 {
-                    int resultColCount = reader.FieldCount;
-                    Console.WriteLine("Result Column Count: " + resultColCount);
+    
                     System.Data.DataTable dataTable = new System.Data.DataTable();
                     dataTable.Load(reader);
-
                     dgv.DataSource = dataTable;
-                    MessageBox.Show("Loaded!");
-                    lblBottomMessage.Text = "Ready";
+                    lblBottomMessage.Text = "Results: " + dataTable.Rows.Count;
+                    MessageBox.Show("Search Complete","",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                 
                 }
                 catch (Exception ee)
                 {
@@ -263,8 +262,8 @@ namespace HumanResourceManagement
                 SQLbank.HDMF_NO + " as 'HDMF No.'," +
                 SQLbank.PHIC_NO + " as 'PHIC No.' ," +
                 SQLbank.BP_NO + " as 'BP No.' ," +
-                SQLbank.ACCOUNT_NO + " as 'Account No.' ," + SQLbank.TIN_NO;
-
+                SQLbank.ACCOUNT_NO + " as 'Account No.' ," + 
+                SQLbank.TIN_NO + " as 'TIN No.'";
 
             switch (cmbfilterby.SelectedIndex)
             {
@@ -313,7 +312,10 @@ namespace HumanResourceManagement
         private string generateSystemUserQuery()
         {
             string qry = null;
-            string selectedFields = SQLbank.USERNAME + "," + SQLbank.FNAME + "," + SQLbank.MNAME + "," + SQLbank.LNAME;
+            string selectedFields = SQLbank.USERNAME + " as 'Username' , " + 
+                SQLbank.FNAME + " as 'First Name'," + 
+                SQLbank.MNAME + " as 'Middlen Name'," +
+                SQLbank.LNAME+ " as 'Last Name'";
 
 
             switch (cmbfilterby.SelectedIndex)
@@ -410,18 +412,16 @@ namespace HumanResourceManagement
                         Console.WriteLine("Excel is visible");
                         TempHolder.excelApp = new Microsoft.Office.Interop.Excel.Application();
                     }
-                    
-                    // creating new WorkBook within Excel application  
+
                     _Workbook workbook = TempHolder.excelApp.Workbooks.Add(Type.Missing);
-                    // creating new Excelsheet in workbook  
+
                     _Worksheet worksheet = null;
-                    // see the excel sheet behind the program  
+ 
                     TempHolder.excelApp.Visible = true;
-                    // get the reference of first sheet. By default its name is Sheet1.  
-                    // store its reference to worksheet  
+          
                     worksheet = workbook.Sheets["Sheet1"];
                     worksheet = workbook.ActiveSheet;
-                    // changing the name of active sheet  
+             
                     worksheet.Name = "Exported from gridview";
                     // storing header part in Excel  
 
@@ -443,7 +443,7 @@ namespace HumanResourceManagement
 
                     //to add borders
                     worksheet.Range[worksheet.Cells[1, 1], worksheet.Cells[dgvRowCount, dgvColumnCount]].Borders.LineStyle = XlLineStyle.xlContinuous;
-
+                    worksheet.Range[worksheet.Cells[1, 1], worksheet.Cells[dgvRowCount, dgvColumnCount]].Columns.AutoFit();
 
                 }
                 catch (Exception)

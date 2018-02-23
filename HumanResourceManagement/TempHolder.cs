@@ -23,7 +23,7 @@ namespace HumanResourceManagement
 
         //selectedRow (doubleclicked)
         public static bool editMode = false;
-        public static string selectedIndex;
+        public static int selectedIndex=-1;
         public static string selectedId;
         public static string selectedSchool;
         public static string selectedFrom;
@@ -59,6 +59,20 @@ namespace HumanResourceManagement
         public static string lastBranch;
         public static string lastCause;
         public static string lastLAWOP;
+
+
+        //previous row
+        public static string prevId;
+        public static string prevSchool;
+        public static string prevStart;
+        public static string prevEnd;
+        public static string prevDesignation;
+        public static string prevStatus;
+        public static string prevSalary;
+        public static string prevStation;
+        public static string prevBranch;
+        public static string prevCause;
+        public static string prevLawop;
 
 
         //excel
@@ -131,6 +145,21 @@ namespace HumanResourceManagement
             lastBranch = null;
             lastCause = null;
             lastLAWOP = null;
+        }
+
+        public static void setPrevRowVar(string id, string school, string start, string end, string designation, string status, string salary, string stations, string branch, string cause, string lawop)
+        {
+            prevId = id;
+            prevSchool = school;
+            prevStart = start;
+            prevEnd = end;
+            prevDesignation = designation;
+            prevStatus = status;
+            prevSalary = salary;
+            prevStation = stations;
+            prevBranch = branch;
+            prevCause = cause;
+            prevLawop = lawop;
         }
 
         //logged user

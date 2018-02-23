@@ -130,7 +130,7 @@ namespace HumanResourceManagement
 
                     string lawop = reader[SQLbank.LAWOP].ToString();
 
-                    datagridServiceRecords.Rows.Add(id, school, start, end, designation, status, salary, station, branch, cause, lawop);
+                    dgvServiceRecord.Rows.Add(id, school, start, end, designation, status, salary, station, branch, cause, lawop);
                 }
 
                 if (counter == 0)
@@ -156,7 +156,7 @@ namespace HumanResourceManagement
         {
             TempHolder.clearLastRecord();
 
-            if (datagridServiceRecords.Rows.Count > 0) datagridServiceRecords.Rows.Clear();
+            if (dgvServiceRecord.Rows.Count > 0) dgvServiceRecord.Rows.Clear();
 
             btnDelete.Enabled = false;
             lblNoServiceRecord.Visible = false;
@@ -179,21 +179,21 @@ namespace HumanResourceManagement
         private void datagridServiceRecords_SelectionChanged(object sender, EventArgs e)
         {
 
-            if (datagridServiceRecords.Rows.Count > 0)
+            if (dgvServiceRecord.Rows.Count > 0)
             {
-                int selectedIndex = datagridServiceRecords.CurrentCell.RowIndex;
+                int selectedIndex = dgvServiceRecord.CurrentCell.RowIndex;
 
-                lblSelectedRowID.Text = datagridServiceRecords.Rows[selectedIndex].Cells[0].Value.ToString();
-                txtSchoolName.Text = datagridServiceRecords.Rows[selectedIndex].Cells[1].Value.ToString();
-                txtFrom.Text = datagridServiceRecords.Rows[selectedIndex].Cells[2].Value.ToString();
-                txtTo.Text = datagridServiceRecords.Rows[selectedIndex].Cells[3].Value.ToString().Trim();
-                txtDesignation.Text = datagridServiceRecords.Rows[selectedIndex].Cells[4].Value.ToString();
-                txtStatus.Text = datagridServiceRecords.Rows[selectedIndex].Cells[5].Value.ToString();
-                txtSalary.Text = datagridServiceRecords.Rows[selectedIndex].Cells[6].Value.ToString();
-                txtStation.Text = datagridServiceRecords.Rows[selectedIndex].Cells[7].Value.ToString();
-                txtBranch.Text = datagridServiceRecords.Rows[selectedIndex].Cells[8].Value.ToString();
-                txtCause.Text = datagridServiceRecords.Rows[selectedIndex].Cells[9].Value.ToString();
-                txtLAWOP.Text = datagridServiceRecords.Rows[selectedIndex].Cells[10].Value.ToString();
+                lblSelectedRowID.Text = dgvServiceRecord.Rows[selectedIndex].Cells[0].Value.ToString();
+                txtSchoolName.Text = dgvServiceRecord.Rows[selectedIndex].Cells[1].Value.ToString();
+                txtFrom.Text = dgvServiceRecord.Rows[selectedIndex].Cells[2].Value.ToString();
+                txtTo.Text = dgvServiceRecord.Rows[selectedIndex].Cells[3].Value.ToString().Trim();
+                txtDesignation.Text = dgvServiceRecord.Rows[selectedIndex].Cells[4].Value.ToString();
+                txtStatus.Text = dgvServiceRecord.Rows[selectedIndex].Cells[5].Value.ToString();
+                txtSalary.Text = dgvServiceRecord.Rows[selectedIndex].Cells[6].Value.ToString();
+                txtStation.Text = dgvServiceRecord.Rows[selectedIndex].Cells[7].Value.ToString();
+                txtBranch.Text = dgvServiceRecord.Rows[selectedIndex].Cells[8].Value.ToString();
+                txtCause.Text = dgvServiceRecord.Rows[selectedIndex].Cells[9].Value.ToString();
+                txtLAWOP.Text = dgvServiceRecord.Rows[selectedIndex].Cells[10].Value.ToString();
                 btnDelete.Enabled = true;
                 btnEdit.Enabled = true;
             }
@@ -204,20 +204,20 @@ namespace HumanResourceManagement
         private void datagridServiceRecords_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             lblNoServiceRecord.Visible = false;
-            lblRowsCount.Text = datagridServiceRecords.Rows.Count.ToString();
+            lblRowsCount.Text = dgvServiceRecord.Rows.Count.ToString();
             detectLastRow();
         }
 
         private void datagridServiceRecords_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
-            lblRowsCount.Text = datagridServiceRecords.Rows.Count.ToString();
+            lblRowsCount.Text = dgvServiceRecord.Rows.Count.ToString();
 
-            if(datagridServiceRecords.Rows.Count == 0 && (TempHolder.searchedEmpID != null))
+            if(dgvServiceRecord.Rows.Count == 0 && (TempHolder.searchedEmpID != null))
             {
                 btnImport.Visible = true;
             }
 
-            if (datagridServiceRecords.Rows.Count == 0)
+            if (dgvServiceRecord.Rows.Count == 0)
             {
                 lblNoServiceRecord.Visible = true;
                 txtFrom.ResetText();
@@ -237,20 +237,20 @@ namespace HumanResourceManagement
 
         public void detectLastRow()
         {
-            int lastIndex = datagridServiceRecords.Rows.Count - 1;
+            int lastIndex = dgvServiceRecord.Rows.Count - 1;
             if (lastIndex != -1)
             {
-                TempHolder.lastServiceRecordId = datagridServiceRecords.Rows[lastIndex].Cells[0].Value.ToString();
-                string school = datagridServiceRecords.Rows[lastIndex].Cells[1].Value.ToString();
-                string from = datagridServiceRecords.Rows[lastIndex].Cells[2].Value.ToString();
-                string to = datagridServiceRecords.Rows[lastIndex].Cells[3].Value.ToString();
-                string designation = datagridServiceRecords.Rows[lastIndex].Cells[4].Value.ToString();
-                string status = datagridServiceRecords.Rows[lastIndex].Cells[5].Value.ToString();
-                string salary = datagridServiceRecords.Rows[lastIndex].Cells[6].Value.ToString();
-                string station = datagridServiceRecords.Rows[lastIndex].Cells[7].Value.ToString();
-                string branch = datagridServiceRecords.Rows[lastIndex].Cells[8].Value.ToString();
-                string cause = datagridServiceRecords.Rows[lastIndex].Cells[9].Value.ToString();
-                string lawop = datagridServiceRecords.Rows[lastIndex].Cells[10].Value.ToString();
+                TempHolder.lastServiceRecordId = dgvServiceRecord.Rows[lastIndex].Cells[0].Value.ToString();
+                string school = dgvServiceRecord.Rows[lastIndex].Cells[1].Value.ToString();
+                string from = dgvServiceRecord.Rows[lastIndex].Cells[2].Value.ToString();
+                string to = dgvServiceRecord.Rows[lastIndex].Cells[3].Value.ToString();
+                string designation = dgvServiceRecord.Rows[lastIndex].Cells[4].Value.ToString();
+                string status = dgvServiceRecord.Rows[lastIndex].Cells[5].Value.ToString();
+                string salary = dgvServiceRecord.Rows[lastIndex].Cells[6].Value.ToString();
+                string station = dgvServiceRecord.Rows[lastIndex].Cells[7].Value.ToString();
+                string branch = dgvServiceRecord.Rows[lastIndex].Cells[8].Value.ToString();
+                string cause = dgvServiceRecord.Rows[lastIndex].Cells[9].Value.ToString();
+                string lawop = dgvServiceRecord.Rows[lastIndex].Cells[10].Value.ToString();
 
                 DateTime dt;
                 if (DateTime.TryParse(from, out dt)) TempHolder.lastFrom = dt.ToString("MM/dd/yyyy");
@@ -273,7 +273,7 @@ namespace HumanResourceManagement
 
                 String searchValue = "original";
                 int rowIndex = -1;
-                foreach (DataGridViewRow row in datagridServiceRecords.Rows)
+                foreach (DataGridViewRow row in dgvServiceRecord.Rows)
                 {
                     if (row.Cells[9].Value.ToString().ToLower().Contains(searchValue))
                     {
@@ -284,7 +284,7 @@ namespace HumanResourceManagement
 
                 if (rowIndex != -1)
                 {
-                    TempHolder.searchedOriginalAppointment = datagridServiceRecords.Rows[rowIndex].Cells[2].Value.ToString();
+                    TempHolder.searchedOriginalAppointment = dgvServiceRecord.Rows[rowIndex].Cells[2].Value.ToString();
                 }
                 else
                 {
@@ -353,11 +353,11 @@ namespace HumanResourceManagement
                 int wsFirstRow = wsRow, wsFirstCol = wsCol;
                 int wsCurrentRow = 1, wsLastCol = 1;    
 
-                for (int row = 0; row < datagridServiceRecords.Rows.Count; row++)
+                for (int row = 0; row < dgvServiceRecord.Rows.Count; row++)
                 {
-                    for (int col = 2; col < datagridServiceRecords.Columns.Count; col++)
+                    for (int col = 2; col < dgvServiceRecord.Columns.Count; col++)
                     {
-                        worksheet.Cells[wsRow, wsCol] = datagridServiceRecords.Rows[row].Cells[col].Value.ToString();
+                        worksheet.Cells[wsRow, wsCol] = dgvServiceRecord.Rows[row].Cells[col].Value.ToString();
                         //worksheet.Cells[wsRow,wsCol].Borders.LineStyle = XlLineStyle.xlContinuous;
                         wsCol++;
                     }
@@ -429,7 +429,7 @@ namespace HumanResourceManagement
                         cmd = new SqlCommand(delSQL, conn);
                         cmd.ExecuteNonQuery();
 
-                        if (fromButtonEvent) datagridServiceRecords.Rows.RemoveAt(datagridServiceRecords.CurrentCell.RowIndex); //if false, user pressed from keyboard's delete button, no need to call this line, event will be doubled and may throw index outbound exception
+                        if (fromButtonEvent) dgvServiceRecord.Rows.RemoveAt(dgvServiceRecord.CurrentCell.RowIndex); //if false, user pressed from keyboard's delete button, no need to call this line, event will be doubled and may throw index outbound exception
 
                         MessageBox.Show("Service Record Deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return true;
@@ -458,19 +458,19 @@ namespace HumanResourceManagement
         {
             if (Permissions.authorizedToUseFunction(Permissions.MODIFY_SERVICE_RECORD))
             {
-               
 
-                TempHolder.selectedId = datagridServiceRecords.Rows[selectedIndex].Cells[0].Value.ToString();
-                TempHolder.selectedSchool = datagridServiceRecords.Rows[selectedIndex].Cells[1].Value.ToString();
-                TempHolder.selectedFrom = datagridServiceRecords.Rows[selectedIndex].Cells[2].Value.ToString();
-                TempHolder.selectedTo = datagridServiceRecords.Rows[selectedIndex].Cells[3].Value.ToString();
-                TempHolder.selectedDesignation = datagridServiceRecords.Rows[selectedIndex].Cells[4].Value.ToString();
-                TempHolder.selectedStatus = datagridServiceRecords.Rows[selectedIndex].Cells[5].Value.ToString();
-                TempHolder.selectedSalary = datagridServiceRecords.Rows[selectedIndex].Cells[6].Value.ToString();
-                TempHolder.selectedStation = datagridServiceRecords.Rows[selectedIndex].Cells[7].Value.ToString();
-                TempHolder.selectedBranch = datagridServiceRecords.Rows[selectedIndex].Cells[8].Value.ToString();
-                TempHolder.selectedCause = datagridServiceRecords.Rows[selectedIndex].Cells[9].Value.ToString();
-                TempHolder.selectedLawop = datagridServiceRecords.Rows[selectedIndex].Cells[10].Value.ToString();
+                TempHolder.selectedIndex = dgvServiceRecord.CurrentCell.RowIndex;
+                TempHolder.selectedId = dgvServiceRecord.Rows[selectedIndex].Cells[0].Value.ToString();
+                TempHolder.selectedSchool = dgvServiceRecord.Rows[selectedIndex].Cells[1].Value.ToString();
+                TempHolder.selectedFrom = dgvServiceRecord.Rows[selectedIndex].Cells[2].Value.ToString();
+                TempHolder.selectedTo = dgvServiceRecord.Rows[selectedIndex].Cells[3].Value.ToString();
+                TempHolder.selectedDesignation = dgvServiceRecord.Rows[selectedIndex].Cells[4].Value.ToString();
+                TempHolder.selectedStatus = dgvServiceRecord.Rows[selectedIndex].Cells[5].Value.ToString();
+                TempHolder.selectedSalary = dgvServiceRecord.Rows[selectedIndex].Cells[6].Value.ToString();
+                TempHolder.selectedStation = dgvServiceRecord.Rows[selectedIndex].Cells[7].Value.ToString();
+                TempHolder.selectedBranch = dgvServiceRecord.Rows[selectedIndex].Cells[8].Value.ToString();
+                TempHolder.selectedCause = dgvServiceRecord.Rows[selectedIndex].Cells[9].Value.ToString();
+                TempHolder.selectedLawop = dgvServiceRecord.Rows[selectedIndex].Cells[10].Value.ToString();
 
                 TempHolder.editMode = true;
                 AddServiceRecordDialog asr = new AddServiceRecordDialog();
@@ -485,10 +485,49 @@ namespace HumanResourceManagement
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            editRow(datagridServiceRecords.CurrentCell.RowIndex);
+            editRow(dgvServiceRecord.CurrentCell.RowIndex);
+        }
+
+        public bool getPreviousRowInfo(int selectedindex)
+        {
+            //-1 means adding new
+
+            int prevRowIndex;
+            if (dgvServiceRecord.RowCount > 0)
+            {
+                if (selectedindex > 0) prevRowIndex = selectedindex - 1;
+                else if (selectedindex == -1) prevRowIndex = dgvServiceRecord.RowCount - 1;
+                else { 
+                    MessageBox.Show("First row is your currently selected row there is no previous service record","Oops",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                    return false;
+                }
+
+                TempHolder.setPrevRowVar(getDGVString(prevRowIndex, 0),
+                    getDGVString(prevRowIndex, 1),
+                    getDGVString(prevRowIndex, 2),
+                    getDGVString(prevRowIndex, 3),
+                    getDGVString(prevRowIndex, 4),
+                    getDGVString(prevRowIndex, 5),
+                    getDGVString(prevRowIndex, 6),
+                    getDGVString(prevRowIndex, 7),
+                    getDGVString(prevRowIndex, 8),
+                    getDGVString(prevRowIndex, 9),
+                    getDGVString(prevRowIndex, 10));
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("There is no previous service record", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            return false;
         }
 
 
+        private string getDGVString(int rowindex, int cellindex)
+        {
+            return dgvServiceRecord.Rows[rowindex].Cells[cellindex].Value.ToString();
+        }
 
         //*************IMPORTING******************************************************
         private void btnImport_Click(object sender, EventArgs e)
