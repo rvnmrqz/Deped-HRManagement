@@ -554,41 +554,6 @@ namespace HumanResourceManagement
             }
         }
 
-        /*
-        private void readExcelSheetNames()
-        {
-            try
-            {
-                openExcelConnection();
-
-                DataTable dtExcelSchema = new DataTable();
-
-                dtExcelSchema = excelCon.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-
-                //to read all excel sheet name
-                cmbSheetNames.Items.Clear();
-                for (int i = 0; i < dtExcelSchema.Rows.Count; i++)
-                {
-                    string sheet = dtExcelSchema.Rows[i]["TABLE_NAME"].ToString();
-                    sheet = sheet.TrimEnd("$".ToCharArray());
-                    cmbSheetNames.Items.Add(sheet);
-                }
-
-                //to set default selected sheet
-                if (cmbSheetNames.Items.Count > 0)
-                {
-                    cmbSheetNames.SelectedIndex = 0;
-                    lblSelectedFields.Enabled = true;
-                }
-
-                closeExcelConnection();
-
-            }
-            catch (Exception ee)
-            {
-                MessageBox.Show("Problem Occured while reading sheets\n" + ee.Message, "Failed to read ExcelSheets", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        */
+    
     }
 }
