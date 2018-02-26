@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MyAccountForm));
             this.FormPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -36,7 +35,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnChangePhoto = new System.Windows.Forms.PictureBox();
             this.lblUploadedPicturePath = new System.Windows.Forms.Label();
-            this.lblPictureFilename = new System.Windows.Forms.Label();
             this.lblAccountType = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnEditCancel = new System.Windows.Forms.Button();
@@ -53,14 +51,10 @@
             this.txtFirstname = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.changePhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearPhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FormPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnChangePhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // FormPanel
@@ -106,7 +100,6 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.btnChangePhoto);
             this.panel1.Controls.Add(this.lblUploadedPicturePath);
-            this.panel1.Controls.Add(this.lblPictureFilename);
             this.panel1.Controls.Add(this.lblAccountType);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.btnEditCancel);
@@ -150,15 +143,6 @@
             this.lblUploadedPicturePath.Size = new System.Drawing.Size(0, 13);
             this.lblUploadedPicturePath.TabIndex = 75;
             this.lblUploadedPicturePath.Visible = false;
-            // 
-            // lblPictureFilename
-            // 
-            this.lblPictureFilename.AutoSize = true;
-            this.lblPictureFilename.Location = new System.Drawing.Point(232, 201);
-            this.lblPictureFilename.Name = "lblPictureFilename";
-            this.lblPictureFilename.Size = new System.Drawing.Size(0, 13);
-            this.lblPictureFilename.TabIndex = 74;
-            this.lblPictureFilename.Visible = false;
             // 
             // lblAccountType
             // 
@@ -318,7 +302,6 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.ContextMenuStrip = this.contextMenuStrip1;
             this.pictureBox1.Enabled = false;
             this.pictureBox1.Image = global::HumanResourceManagement.Properties.Resources.default_avatar;
             this.pictureBox1.Location = new System.Drawing.Point(11, 11);
@@ -327,28 +310,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changePhotoToolStripMenuItem,
-            this.clearPhotoToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(151, 48);
-            // 
-            // changePhotoToolStripMenuItem
-            // 
-            this.changePhotoToolStripMenuItem.Name = "changePhotoToolStripMenuItem";
-            this.changePhotoToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.changePhotoToolStripMenuItem.Text = "Change Photo";
-            this.changePhotoToolStripMenuItem.Click += new System.EventHandler(this.changePhotoToolStripMenuItem_Click);
-            // 
-            // clearPhotoToolStripMenuItem
-            // 
-            this.clearPhotoToolStripMenuItem.Name = "clearPhotoToolStripMenuItem";
-            this.clearPhotoToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.clearPhotoToolStripMenuItem.Text = "Clear Photo";
-            this.clearPhotoToolStripMenuItem.Click += new System.EventHandler(this.clearPhotoToolStripMenuItem_Click);
             // 
             // MyAccountForm
             // 
@@ -370,7 +331,6 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnChangePhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -395,10 +355,6 @@
         private System.Windows.Forms.Button btnEditCancel;
         private System.Windows.Forms.Label lblAccountType;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label lblPictureFilename;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem changePhotoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clearPhotoToolStripMenuItem;
         private System.Windows.Forms.Label lblUploadedPicturePath;
         private System.Windows.Forms.PictureBox btnChangePhoto;
         private System.Windows.Forms.PictureBox pictureBox1;

@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace HumanResourceManagement
 {
@@ -44,6 +45,15 @@ namespace HumanResourceManagement
             sqlSettingsForm = new SQLSettingsForm();
             txtUsername.Focus();
             testConnection();
+
+        }
+
+
+        //*******************APP CONFIG MANAGER*********************************
+        private string getStringValue(string key)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            return config.AppSettings.Settings[key].Value.ToString();
 
         }
 
@@ -170,7 +180,7 @@ namespace HumanResourceManagement
                 cmd.Parameters.AddWithValue("@USERNAME", txtUsername.Text.Trim());
                 cmd.Parameters.AddWithValue("@PASS", encrypt(txtPassword.Text));
                 reader = cmd.ExecuteReader();
-                while (reader.Read())
+                if (reader.Read())
                 {
                     resCount++;
                     TempHolder.loggedUser_ID = reader[SQLbank.ID].ToString();
@@ -180,7 +190,19 @@ namespace HumanResourceManagement
                     TempHolder.mname = reader[SQLbank.MNAME].ToString();
                     TempHolder.lname = reader[SQLbank.LNAME].ToString();
                     TempHolder.accountType = reader[SQLbank.ROLE].ToString().ToLower();
-                    TempHolder.pictureFilename = reader[SQLbank.PICTUREFILENAME].ToString();
+
+                    if (reader[SQLbank.PICTURE] != null)
+                    {
+                        try
+                        {
+                            TempHolder.userImage = byteToImage((byte[])reader[SQLbank.PICTURE]);
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Failed to Load Image");
+                        }
+                    }
+                   
                 }
 
                 if (resCount > 0)
@@ -200,6 +222,14 @@ namespace HumanResourceManagement
                 Console.WriteLine("Failed to login, exception: " + ee.Message);
                 showBottomMessage("Problem occured while logging-in");
                 return false;
+            }
+        }
+
+        private Image byteToImage(byte[] byteArrayIn)
+        {
+            using (var ms = new MemoryStream(byteArrayIn))
+            {
+                return Image.FromStream(ms);
             }
         }
 
@@ -238,20 +268,7 @@ namespace HumanResourceManagement
         }
 
 
-        //*******************APP CONFIG MANAGER*********************************
-        private string getStringValue(string key)
-        {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
-            return config.AppSettings.Settings[key].Value.ToString();
 
-        }
-
-        private void updateValue(string key, string value)
-        {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
-            config.AppSettings.Settings[key].Value = value;
-            config.Save(ConfigurationSaveMode.Minimal);
-        }
 
         //***********************SQL CONNECTIONS*******************************
         private void openSQLConnection()

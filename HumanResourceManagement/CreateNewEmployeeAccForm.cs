@@ -20,6 +20,8 @@ namespace HumanResourceManagement
 {
     public partial class CreateNewEmployeeAccForm : Form
     {
+
+        public bool systemUserCreated = false;
         bool usernameAvailable = false;
         SqlConnection conn;
         SqlCommand cmd;
@@ -99,21 +101,35 @@ namespace HumanResourceManagement
                     openSQLConnection();
                     string savingSQL = "INSERT INTO " + SQLbank.TBL_EMPLOYEES + "(" +
                                         SQLbank.EMPLOYEE_NO + "," +
-                                        SQLbank.PLANTILLA_NO+","+
-                                        SQLbank.EMP_LAST_NAME + "," + 
-                                        SQLbank.EMP_FIRST_NAME + "," + 
-                                        SQLbank.EMP_MIDDLE_NAME + "," + 
-                                        SQLbank.SEX + "," + 
-                                        SQLbank.DATE_OF_BIRTH + "," + 
+                                        SQLbank.PLANTILLA_NO + "," +
+                                        SQLbank.EMP_LAST_NAME + "," +
+                                        SQLbank.EMP_FIRST_NAME + "," +
+                                        SQLbank.EMP_MIDDLE_NAME + "," +
+                                        SQLbank.SEX + "," +
+                                        SQLbank.DATE_OF_BIRTH + "," +
                                         SQLbank.BIRTH_PLACE + "," +
                                         SQLbank.CIVIL_STATUS + "," +
-                                        SQLbank.HDMF_NO + "," + 
-                                        SQLbank.PHIC_NO + "," + 
-                                        SQLbank.BP_NO + "," + 
-                                        SQLbank.ACCOUNT_NO + "," + 
-                                        SQLbank.TIN_NO + ") "+
-                                        " OUTPUT INSERTED.EMP_ID "+ 
-                                        " VALUES(@EMPNO, @PLANTILLA, @LNAME, @FNAME, @MNAME, @SEX, @BIRTH, @BIRTHPLACE, @CIVILSTAT, @HDMF, @PHIC, @BP, @ACC, @TIN)";
+                                        SQLbank.HDMF_NO + "," +
+                                        SQLbank.PHIC_NO + "," +
+                                        SQLbank.BP_NO + "," +
+                                        SQLbank.ACCOUNT_NO + "," +
+                                        SQLbank.TIN_NO;
+
+                    if (lblPictureDirectory.Text.Length > 0)
+                    {
+                        savingSQL += ", " + SQLbank.PICTURE;
+                    }
+
+                    savingSQL += ") ";
+                    savingSQL += " OUTPUT INSERTED.EMP_ID " +
+                    " VALUES(@EMPNO, @PLANTILLA, @LNAME, @FNAME, @MNAME, @SEX, @BIRTH, @BIRTHPLACE, @CIVILSTAT, @HDMF, @PHIC, @BP, @ACC, @TIN";
+
+                    if (lblPictureDirectory.Text.Length > 0)
+                    {
+                        savingSQL += ", @PICTURE";
+                    }
+
+                    savingSQL+=")";
 
                     cmd = new SqlCommand(savingSQL, conn);
 
@@ -132,45 +148,36 @@ namespace HumanResourceManagement
                     cmd.Parameters.AddWithValue("@ACC", txtAccNo.Text.Trim());
                     cmd.Parameters.AddWithValue("@TIN", txtTin.Text.Trim());
 
-                    string lastInsertId = cmd.ExecuteScalar().ToString();
-                    string filename = "";
-
-
-                    if (lblPictureDirectory.Text.Length != 0)
+                    if (lblPictureDirectory.Text.Length > 0)
                     {
-                        DateTime dt = DateTime.Now;
-                        filename = lastInsertId + "-" + dt.Hour + "_" + dt.Minute + "_" + dt.Millisecond + ".png";
-               
-                        if (copyFileToPictureFolder(filename))
-                        {
-                            //picture is successfully copied
-                            //update the value of picture_filename column in the database
-
-                            try
-                            {
-                                openSQLConnection();
-                                string updateqry = "UPDATE " + SQLbank.TBL_EMPLOYEES + " SET " + SQLbank.PICTUREFILENAME + "= @FILENAME WHERE "+SQLbank.EMP_ID+" = "+lastInsertId;
-                                cmd = new SqlCommand(updateqry, conn);
-                                cmd.Parameters.AddWithValue("@FILENAME", filename);
-                                cmd.ExecuteNonQuery();
-                            }
-                            catch (Exception ee)
-                            {
-                                MessageBox.Show("Failed update employee's picture info", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                Console.WriteLine("Saving updates in picture field error: " + ee.Message);
-                            }
-                        }
+                        byte[] pictureByte = fileToByte(lblPictureDirectory.Text.ToString());
+                        cmd.Parameters.Add("@PICTURE", SqlDbType.VarBinary, pictureByte.Length).Value = pictureByte;
                     }
+
+                    string lastInsertId = cmd.ExecuteScalar().ToString();
 
                     MessageBox.Show("New Employee Saved","Success",MessageBoxButtons.OK,MessageBoxIcon.Information);
 
-                    if (lblSystemCreationMessage.Visible)
+                    if (systemUserCreated)
                     {
                         try
                         {
                             //creation of system user acc
-                            string createSysAcc = "INSERT INTO " + SQLbank.TBL_USERS + "(" + SQLbank.USERNAME + "," + SQLbank.PASSWORD + "," + SQLbank.ROLE + "," + SQLbank.FNAME + "," + SQLbank.MNAME + "," + SQLbank.LNAME + "," + SQLbank.PICTUREFILENAME + ")" +
-                                            " VALUES (@USERNAME,@PASSWORD,@ROLE,@FNAME,@MNAME,@LNAME,@PICFILENAME)";
+                            string createSysAcc = "INSERT INTO " + SQLbank.TBL_USERS + "(" + SQLbank.USERNAME + "," + SQLbank.PASSWORD + "," + SQLbank.ROLE + "," + SQLbank.FNAME + "," + SQLbank.MNAME + "," + SQLbank.LNAME;
+                            if (lblPictureDirectory.Text.Length > 0)
+                            {
+                                createSysAcc += "," + SQLbank.PICTURE; 
+                            }
+
+                            createSysAcc += ") VALUES (@USERNAME,@PASSWORD,@ROLE,@FNAME,@MNAME,@LNAME";
+
+                            if (lblPictureDirectory.Text.Length > 0)
+                            {
+                                createSysAcc += " ,@PICTURE";
+                            }
+
+                            createSysAcc+=")";
+
                             cmd = new SqlCommand(createSysAcc, conn);
                             cmd.Parameters.AddWithValue("@USERNAME", lblUsername.Text);
                             cmd.Parameters.AddWithValue("@PASSWORD", encrypt(lblPassword.Text));
@@ -178,7 +185,15 @@ namespace HumanResourceManagement
                             cmd.Parameters.AddWithValue("@FNAME", txtFname.Text);
                             cmd.Parameters.AddWithValue("@MNAME", txtMname.Text);
                             cmd.Parameters.AddWithValue("@LNAME", txtLname.Text);
-                            cmd.Parameters.AddWithValue("@PICFILENAME", filename);
+
+
+                            if (lblPictureDirectory.Text.Length > 0)
+                            {
+                                byte[] pictureByte = fileToByte(lblPictureDirectory.Text.ToString());
+                                cmd.Parameters.Add("@PICTURE", SqlDbType.VarBinary, pictureByte.Length).Value = pictureByte;
+                            }
+
+
                             cmd.ExecuteNonQuery();
                             MessageBox.Show("New System Account Created", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
@@ -201,11 +216,11 @@ namespace HumanResourceManagement
         {
             //clear the image of the picturebox
             lblSystemCreationMessage.Visible = false;
-            lblUsername.Text = "";
-            lblPassword.Text = "";
+            lblUsername.ResetText();
+            lblPassword.ResetText();
 
             pictureBox.Image = HumanResourceManagement.Properties.Resources.default_avatar;
-            lblPictureDirectory.Text = "";
+            lblPictureDirectory.ResetText();
 
             txtFname.ResetText();
             txtMname.ResetText();
@@ -522,6 +537,28 @@ namespace HumanResourceManagement
             textbox.SelectionStart = textbox.Text.Length;
         }
 
-      
+
+        private byte[] fileToByte(string filepath)
+        {
+            byte[] file;
+            using (var stream = new FileStream(filepath, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = new BinaryReader(stream))
+                {
+                    file = reader.ReadBytes((int)stream.Length);
+                }
+            }
+
+            return file;
+        }
+
+        private Image byteToImage(byte[] byteArrayIn)
+        {
+            using (var ms = new MemoryStream(byteArrayIn))
+            {
+                return Image.FromStream(ms);
+            }
+        }
+
     }
 }

@@ -516,6 +516,15 @@ namespace HumanResourceManagement
                 
         }
 
+        private void btnChoosePhoto_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            if(op.ShowDialog() == DialogResult.OK)
+            {
+                lblUploadedPicture.Text = op.FileName;
+            }
+        }
+
         private void enableFields( bool val)
         {
             txtUsername.Enabled = val;

@@ -37,10 +37,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblFormExit = new System.Windows.Forms.Label();
             this.dgvUsers = new MetroFramework.Controls.MetroGrid();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.bgLoader = new System.ComponentModel.BackgroundWorker();
             this.lblSelectedID = new System.Windows.Forms.Label();
             this.infoGroup = new System.Windows.Forms.GroupBox();
+            this.lblOriginalUsername = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.linkSetPassword = new System.Windows.Forms.LinkLabel();
@@ -69,14 +77,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnEditSave = new System.Windows.Forms.Button();
             this.FormPanel = new System.Windows.Forms.Panel();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblOriginalUsername = new System.Windows.Forms.Label();
+            this.btnChoosePhoto = new System.Windows.Forms.Button();
+            this.lblUploadedPicture = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.panel2.SuspendLayout();
             this.infoGroup.SuspendLayout();
@@ -172,6 +174,53 @@
             this.dgvUsers.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvUsers_RowsRemoved);
             this.dgvUsers.SelectionChanged += new System.EventHandler(this.dgvUsers_SelectionChanged);
             // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "id";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column6.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Username";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Password";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "First name";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Middle name";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "Last name";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            this.Column11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Role";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Silver;
@@ -200,6 +249,8 @@
             // 
             // infoGroup
             // 
+            this.infoGroup.Controls.Add(this.lblUploadedPicture);
+            this.infoGroup.Controls.Add(this.btnChoosePhoto);
             this.infoGroup.Controls.Add(this.lblOriginalUsername);
             this.infoGroup.Controls.Add(this.lblPassword);
             this.infoGroup.Controls.Add(this.pictureBox1);
@@ -222,6 +273,15 @@
             this.infoGroup.TabIndex = 31;
             this.infoGroup.TabStop = false;
             // 
+            // lblOriginalUsername
+            // 
+            this.lblOriginalUsername.AutoSize = true;
+            this.lblOriginalUsername.Location = new System.Drawing.Point(446, 132);
+            this.lblOriginalUsername.Name = "lblOriginalUsername";
+            this.lblOriginalUsername.Size = new System.Drawing.Size(0, 13);
+            this.lblOriginalUsername.TabIndex = 111;
+            this.lblOriginalUsername.Visible = false;
+            // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
@@ -234,9 +294,11 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.LightGray;
+            this.pictureBox1.Image = global::HumanResourceManagement.Properties.Resources.default_avatar;
             this.pictureBox1.Location = new System.Drawing.Point(10, 19);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(124, 124);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 109;
             this.pictureBox1.TabStop = false;
             // 
@@ -674,61 +736,24 @@
             this.FormPanel.TabIndex = 1;
             this.FormPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FormPanel_MouseMove);
             // 
-            // Column6
+            // btnChoosePhoto
             // 
-            this.Column6.HeaderText = "id";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column6.Visible = false;
+            this.btnChoosePhoto.Image = global::HumanResourceManagement.Properties.Resources.gallery_48_48;
+            this.btnChoosePhoto.Location = new System.Drawing.Point(94, 107);
+            this.btnChoosePhoto.Name = "btnChoosePhoto";
+            this.btnChoosePhoto.Size = new System.Drawing.Size(37, 34);
+            this.btnChoosePhoto.TabIndex = 112;
+            this.btnChoosePhoto.UseVisualStyleBackColor = true;
+            this.btnChoosePhoto.Click += new System.EventHandler(this.btnChoosePhoto_Click);
             // 
-            // Column2
+            // lblUploadedPicture
             // 
-            this.Column2.HeaderText = "Username";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Password";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Visible = false;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "First name";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Middle name";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "Last name";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            this.Column11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Role";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // lblOriginalUsername
-            // 
-            this.lblOriginalUsername.AutoSize = true;
-            this.lblOriginalUsername.Location = new System.Drawing.Point(446, 132);
-            this.lblOriginalUsername.Name = "lblOriginalUsername";
-            this.lblOriginalUsername.Size = new System.Drawing.Size(0, 13);
-            this.lblOriginalUsername.TabIndex = 111;
-            this.lblOriginalUsername.Visible = false;
+            this.lblUploadedPicture.AutoSize = true;
+            this.lblUploadedPicture.Location = new System.Drawing.Point(472, 125);
+            this.lblUploadedPicture.Name = "lblUploadedPicture";
+            this.lblUploadedPicture.Size = new System.Drawing.Size(16, 13);
+            this.lblUploadedPicture.TabIndex = 113;
+            this.lblUploadedPicture.Text = "   ";
             // 
             // SystemUserMaintenance
             // 
@@ -805,5 +830,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.Label lblOriginalUsername;
+        private System.Windows.Forms.Label lblUploadedPicture;
+        private System.Windows.Forms.Button btnChoosePhoto;
     }
 }

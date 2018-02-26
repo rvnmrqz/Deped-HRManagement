@@ -37,7 +37,7 @@ namespace HumanResourceManagement
         public static string SCHOOL_NAME = "school_name";
         public static string CLASSIFICATION = "classification";
         public static string ELIGIBILITY = "eligibility";
-        public static string PICTUREFILENAME = "picture_filename";
+        public static string PICTURE = "picture";
 
         //SERVICE RECORDS TABLE
         public static string TBL_SERVICE_RECORDS = "tbl_service_records";

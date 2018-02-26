@@ -78,6 +78,7 @@ namespace HumanResourceManagement
                 if (TempHolder.ceaf != null)
                 {
                     TempHolder.ceaf.updateSystemAcc(txtUsername.Text.Trim(), txtPassword.Text);
+                    TempHolder.ceaf.systemUserCreated = true;
                 }
                 this.Close();
             }

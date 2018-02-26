@@ -67,23 +67,8 @@ namespace HumanResourceManagement
         private void prepareDisplay()
         {
             string file_path = TempHolder.picturePath+TempHolder.pictureFilename;
-            if (File.Exists(file_path))
-            {
-                pictureBox1.Image = Image.FromFile(file_path);
-                lblPictureFilename.Text = TempHolder.pictureFilename;
-            }
-            else
-            {
-                //no image or not existing
 
-                // null or length == 0
-                //1.png , 5 digits minimum
-                DateTime dt = DateTime.Now;
-                
-                string filename = TempHolder.loggedUser_ID + "-"+ dt.Hour + "_" + dt.Minute + "_" + dt.Millisecond + ".png";
-                lblPictureFilename.Text = filename;
-
-            }
+            if (TempHolder.userImage != null) pictureBox1.Image = TempHolder.userImage;
 
             lblAccountType.Text = formatString(TempHolder.accountType);
             txtFirstname.Text = formatString(TempHolder.fname);
@@ -141,16 +126,26 @@ namespace HumanResourceManagement
                 {
                     enableInputs(false);
 
+                    byte[] bytePicture;
+                    cmd = new SqlCommand();
+
                     openSQLConnection();
                     string cmdText = "UPDATE " + SQLbank.TBL_USERS + " SET "
                         + SQLbank.FNAME + " = @FNAME, "
                         + SQLbank.MNAME + " = @MNAME, "
                         + SQLbank.LNAME + " = @LNAME ,"
-                        + SQLbank.USERNAME + " = @USERNAME"
-                        + " WHERE " + SQLbank.ID + "=" + TempHolder.loggedUser_ID;
+                        + SQLbank.USERNAME + " = @USERNAME ";
 
-                    cmd = new SqlCommand(cmdText, conn);
+                    if (lblUploadedPicturePath.Text.Trim().Length > 0)
+                    {
+                        bytePicture = fileToByte(lblUploadedPicturePath.Text.ToString());
+                        cmdText += ", " + SQLbank.PICTURE + " = @PICTURE";
+                        cmd.Parameters.Add("@PICTURE", SqlDbType.VarBinary, bytePicture.Length).Value = bytePicture;
+                        TempHolder.userImage = byteToImage(bytePicture);
+                    }
+                    cmdText+= " WHERE " + SQLbank.ID + "=" + TempHolder.loggedUser_ID;
 
+                 
                     cmd.Parameters.Add("@FNAME", SqlDbType.VarChar);
                     cmd.Parameters.Add("@MNAME", SqlDbType.VarChar);
                     cmd.Parameters.Add("@LNAME", SqlDbType.VarChar);
@@ -161,59 +156,15 @@ namespace HumanResourceManagement
                     cmd.Parameters["@LNAME"].Value = txtLastname.Text;
                     cmd.Parameters["@USERNAME"].Value = txtUsername.Text;
 
+                    cmd.CommandText = cmdText;
+                    cmd.Connection = conn;
                     cmd.ExecuteNonQuery();
 
                     TempHolder.fname = txtFirstname.Text;
                     TempHolder.mname = txtMiddleInitial.Text;
                     TempHolder.lname = txtLastname.Text;
                     TempHolder.username = txtUsername.Text;
-
-                    string filename = lblPictureFilename.Text.Trim(); 
-                    
-
-                    bool updatePictureField = false;
-
-                    if (lblUploadedPicturePath.Text.Length > 0)
-                    {
-                        //user uploaded new photo
-                        if (copyFileToPictureFolder(filename))
-                        {
-                            //picture is successfully copied
-                            //update the value of picture_filename column in the database
-                            updatePictureField = true;
-                        }
-                    }
-                    else if(lblPictureFilename.Text.Equals("Removed", StringComparison.CurrentCultureIgnoreCase))
-                    {
-                        //user removed the photo
-
-                        //delete the photo in the storage
-                        removePhotoFromFolder(filename);
-
-                        //remove the value of the field picture
-                        filename = "";
-                        updatePictureField = true;
-                    }
-
-                    if (updatePictureField)
-                    {
-                        try
-                        {
-                            openSQLConnection();
-                            string updateqry = "UPDATE " + SQLbank.TBL_USERS + " SET " + SQLbank.PICTUREFILENAME + "= @FILENAME WHERE " + SQLbank.ID + " = " + TempHolder.loggedUser_ID;
-                            cmd = new SqlCommand(updateqry, conn);
-                            cmd.Parameters.AddWithValue("@FILENAME", filename);
-                            cmd.ExecuteNonQuery();
-                            TempHolder.pictureFilename = filename;
-                        }
-                        catch (Exception ee)
-                        {
-                            MessageBox.Show("Failed update employee's picture info", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            Console.WriteLine("Saving updates in picture field error: " + ee.Message);
-                        }
-
-                    }
-                    closeSQLConnection();
+          
 
                     MessageBox.Show("Update Successfully Saved", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     btnEditCancel.Text = "Edit";
@@ -407,60 +358,34 @@ namespace HumanResourceManagement
             }
         }
 
-        protected void removePhoto()
-        {
-            pictureBox1.Image.Dispose();
-            pictureBox1.Image = HumanResourceManagement.Properties.Resources.default_avatar;
-            lblPictureFilename.Text = "Removed";
-        }
-
-        private bool copyFileToPictureFolder(string imagefilename)
-        {
-            try
-            {
-                string pictureFolderPath = TempHolder.picturePath;
-
-                if (!Directory.Exists(pictureFolderPath))
-                {
-                    //directory does not exist, create path
-                    Directory.CreateDirectory(pictureFolderPath);
-                }
-
-                //copy file
-                File.Copy(lblUploadedPicturePath.Text, (pictureFolderPath + imagefilename), true);
-
-            }
-            catch (Exception ee)
-            {
-                Console.WriteLine("Error while copying: " + ee.Message);
-                MessageBox.Show("An error occured while copying the user's image", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            return true;
-        }
-
-        private void removePhotoFromFolder(string imagefilename)
-        {
-            if (File.Exists(TempHolder.picturePath + imagefilename))
-            {
-                File.Delete(TempHolder.picturePath + imagefilename);
-            }
-        }
-
-        private void changePhotoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            browsePhoto();
-        }
-
-        private void clearPhotoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            removePhoto();
-        }
-
         private void btnChangePhoto_Click(object sender, EventArgs e)
         {
             browsePhoto();
         }
+
+
+
+        private byte[] fileToByte(string filepath)
+        {
+            byte[] file;
+            using (var stream = new FileStream(filepath, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = new BinaryReader(stream))
+                {
+                    file = reader.ReadBytes((int)stream.Length);
+                }
+            }
+
+            return file;
+        }
+
+        private Image byteToImage(byte[] byteArrayIn)
+        {
+            using (var ms = new MemoryStream(byteArrayIn))
+            {
+                return Image.FromStream(ms);
+            }
+        }
+
     }
 }

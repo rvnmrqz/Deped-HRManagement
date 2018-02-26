@@ -41,6 +41,7 @@ namespace HumanResourceManagement
         private void MainForm_Load(object sender, EventArgs e)
         {
             TempHolder.mainForm = this;
+
             conn = new SqlConnection(getStringValue("sqlconstring"));
 
               loadTab2();
@@ -51,6 +52,15 @@ namespace HumanResourceManagement
 
 
             TempHolder.excelApp = new Microsoft.Office.Interop.Excel.Application();
+        }
+
+
+        //*******************APP CONFIG MANAGER************************************************
+        private string getStringValue(string key)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            return config.AppSettings.Settings[key].Value.ToString();
+
         }
 
         //************************SERVER CONNECTION*************************
@@ -68,13 +78,7 @@ namespace HumanResourceManagement
             if (conn.State == ConnectionState.Open) conn.Close();
         }
 
-        //*******************APP CONFIG MANAGER************************************************
-        private string getStringValue(string key)
-        {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
-            return config.AppSettings.Settings[key].Value.ToString();
-
-        }
+     
 
         //***************************FORM TOP PANEL EVENTS**************************************
         private void FormPanel_MouseMove(object sender, MouseEventArgs e)
@@ -255,23 +259,19 @@ namespace HumanResourceManagement
                     TempHolder.searchedName = reader[SQLbank.EMP_LAST_NAME].ToString().ToUpper()+"    "+reader[SQLbank.EMP_FIRST_NAME].ToString().ToUpper()+"    " + reader[SQLbank.EMP_MIDDLE_NAME].ToString().ToUpper();
                     TempHolder.searchedSheetName = reader[SQLbank.EMP_FIRST_NAME].ToString();
 
-
                     lblemployee_id_hidden.Text = reader[SQLbank.EMP_ID].ToString();
-                    //txtPlantillaNo.Text = reader[SQLbank.PLANTILLA_NO].ToString();
+       
 
-                    string filename = reader[SQLbank.PICTUREFILENAME].ToString().Trim();
-
-                    if (filename.Length > 0)
+                    if (reader[SQLbank.PICTURE] != null)
                     {
-                        //user has picture
                         try
                         {
-                            pictureBox1.Image =GetImage(TempHolder.picturePath + filename);
-                            TempHolder.searchedPictureFilename = TempHolder.picturePath + filename;
+                            byte[] picturebyte = (byte[]) reader[SQLbank.PICTURE];
+                            pictureBox1.Image = byteToImage(picturebyte);
                         }
-                        catch (Exception ee)
+                        catch (Exception)
                         {
-                            Console.WriteLine("Failed to load the image of the user: " + ee.Message);
+                            Console.WriteLine("Failed to load image");
                         }
                     }
                 }
@@ -296,6 +296,28 @@ namespace HumanResourceManagement
                 showSearchResultMessage("An error occured");
                 MessageBox.Show("Problem occured while searching", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Console.WriteLine("Search Exception: " + ee.Message);
+            }
+        }
+
+        private byte[] fileToByte(string filepath)
+        {
+            byte[] file;
+            using (var stream = new FileStream(filepath, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = new BinaryReader(stream))
+                {
+                    file = reader.ReadBytes((int)stream.Length);
+                }
+            }
+
+            return file;
+        }
+
+        private Image byteToImage(byte[] byteArrayIn)
+        {
+            using (var ms = new MemoryStream(byteArrayIn))
+            {
+                return Image.FromStream(ms);
             }
         }
 
@@ -374,9 +396,10 @@ namespace HumanResourceManagement
                     try
                     {
                         openSQLConnection();
-                        string updateqry = "UPDATE " + SQLbank.TBL_EMPLOYEES + " SET " + SQLbank.PICTUREFILENAME + "= @FILENAME WHERE " + SQLbank.EMP_ID + " = " + lblemployee_id_hidden.Text;
+                        string updateqry = "UPDATE " + SQLbank.TBL_EMPLOYEES + " SET " + SQLbank.PICTURE + "= @PICTURE WHERE " + SQLbank.EMP_ID + " = " + lblemployee_id_hidden.Text;
                         cmd = new SqlCommand(updateqry, conn);
-                        cmd.Parameters.AddWithValue("@FILENAME", filename);
+                        byte[] pictureByte = fileToByte(lblUploadedPicture.Text.ToString());
+                        cmd.Parameters.Add("@PICTURE", SqlDbType.VarBinary, pictureByte.Length).Value = pictureByte;
                         cmd.ExecuteNonQuery();
                     }
                     catch (Exception ee)
