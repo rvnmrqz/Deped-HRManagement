@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Configuration;
+using System.IO;
 
 namespace HumanResourceManagement
 {
@@ -140,25 +141,29 @@ namespace HumanResourceManagement
 
         private void bgLoader_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-          
-
-            int ctr = 0;
-            while (reader.Read())
+            try
             {
-                dgvUsers.Rows.Add(reader[0].ToString(), reader[1].ToString(),reader[2].ToString(), reader[5].ToString(), reader[6].ToString(), reader[7].ToString(), reader[4].ToString());
-                ctr++;
-            }
+                int ctr = 0;
 
-            if (searching)
+                while (reader.Read())
+                {
+                    dgvUsers.Rows.Add(reader[0], reader[1], reader[2], reader[3], reader[4], reader[5], byteToImage(reader[6]), reader[7]);
+                }
+
+                if (searching)
+                {
+                    MessageBox.Show("Match result(s): " + ctr, "Search Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+
+                if (errorMsg != null) MessageBox.Show(errorMsg, "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                searching = false;
+            }
+            catch (Exception ee)
             {
-                MessageBox.Show("Match result(s): " + ctr, "Search Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Error while displaying : "+ee.Message);
             }
-
-
-            if (errorMsg != null) MessageBox.Show(errorMsg, "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            searching = false;
-
         }
 
         //**************************************************************************
@@ -176,7 +181,19 @@ namespace HumanResourceManagement
                 txtFirstname.Text = dgvUsers.Rows[selectedindex].Cells[3].Value.ToString();
                 txtMiddlename.Text = dgvUsers.Rows[selectedindex].Cells[4].Value.ToString();
                 txtLastname.Text = dgvUsers.Rows[selectedindex].Cells[5].Value.ToString();
-                cmbRoles.Text = dgvUsers.Rows[selectedindex].Cells[6].Value.ToString();
+                cmbRoles.Text = dgvUsers.Rows[selectedindex].Cells[7].Value.ToString();
+
+                if (dgvUsers.Rows[selectedindex].Cells[6].Value != null)
+                {
+                    try
+                    {
+                        pictureBox1.Image = (Image) dgvUsers.Rows[selectedindex].Cells[6].Value;
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Failed to load");
+                    }
+                }
 
                 btnEditSave.Enabled = true;
                 btnDelete.Enabled = true;
@@ -197,6 +214,7 @@ namespace HumanResourceManagement
             txtMiddlename.ResetText();
             txtLastname.ResetText();
             cmbRoles.SelectedIndex = -1;
+            lblUploadedPicture.ResetText();
         }
 
         private void txtSearchKey_KeyDown(object sender, KeyEventArgs e)
@@ -275,6 +293,7 @@ namespace HumanResourceManagement
             switch (value)
             {
                 case 1:
+                    btnChoosePhoto.Visible = true;
                     dgvUsers.Enabled = false;
                     savingNew = false;
                     btnAddNew.Enabled = false;
@@ -283,6 +302,7 @@ namespace HumanResourceManagement
                     btnCancel.Visible = true;
                     break;
                 case 2:
+                    btnChoosePhoto.Visible = true;
                     savingNew = true;
                     dgvUsers.ClearSelection();
                     dgvUsers.Enabled = false;
@@ -296,6 +316,7 @@ namespace HumanResourceManagement
                     txtUsername.Select();
                     break;
                 default:
+                    btnChoosePhoto.Visible = false;
                     dgvUsers.Enabled = true;
                     savingNew = false;
                     btnAddNew.Enabled = true;
@@ -354,25 +375,35 @@ namespace HumanResourceManagement
                     Console.WriteLine("SaveUser, newUser: " + newUser);
                     if (newUser)
                     {
-                        qry = "INSERT INTO " + SQLbank.TBL_USERS + "(" + SQLbank.USERNAME + "," +
+                        qry = "INSERT INTO " + SQLbank.TBL_USERS + "(" +
+                            SQLbank.USERNAME + "," +
                             SQLbank.PASSWORD + "," +
                             SQLbank.ROLE + "," +
                             SQLbank.FNAME + "," +
                             SQLbank.MNAME + "," +
-                            SQLbank.LNAME + ") " +
-                            "VALUES (@USERNAME, @PASSWORD, @ROLE, @FNAME, @MNAME, @LNAME)";
+                            SQLbank.LNAME;
+
+                        if (lblUploadedPicture.Text.Length > 0) qry += ", " + SQLbank.PICTURE;
+
+                        qry += ") VALUES (@USERNAME, @PASSWORD, @ROLE, @FNAME, @MNAME, @LNAME";
+
+                        if (lblUploadedPicture.Text.Length > 0) qry += ",@PICTURE";  
+                            
+                        qry+=")";
                     }
                     else
                     {
-                        qry = "UPDATE " + SQLbank.TBL_USERS + " SET " + SQLbank.USERNAME + "=@USERNAME, " +
+                        qry = "UPDATE " + SQLbank.TBL_USERS + " SET " + SQLbank.USERNAME + "= @USERNAME, " +
                             SQLbank.PASSWORD + " = @PASSWORD," +
                             SQLbank.ROLE + " = @ROLE," +
                             SQLbank.FNAME + " = @FNAME, " +
                             SQLbank.MNAME + " = @MNAME, " +
-                            SQLbank.LNAME + " = @LNAME WHERE " + SQLbank.ID + " = " + lblSelectedID.Text;
-                    }
+                            SQLbank.LNAME + " = @LNAME ";
 
-                    Console.WriteLine("Saving new: " + savingNew + "\nQuery: " + qry);
+                        if (lblUploadedPicture.Text.Length > 0) qry += ","+SQLbank.PICTURE + " = @PICTURE ";
+
+                        qry+=" WHERE " + SQLbank.ID + " = " + lblSelectedID.Text;
+                    }
 
                     openSQLConnection();
                     cmd = new SqlCommand(qry, conn);
@@ -383,15 +414,24 @@ namespace HumanResourceManagement
                     cmd.Parameters.AddWithValue("@MNAME", txtMiddlename.Text);
                     cmd.Parameters.AddWithValue("@LNAME", txtLastname.Text);
 
+                    if (lblUploadedPicture.Text.Length > 0)
+                    {
+
+                        byte[] bytePicture = fileToByte(lblUploadedPicture.Text.ToString());
+                        cmd.Parameters.Add("@PICTURE", SqlDbType.VarBinary,bytePicture.Length).Value = bytePicture;
+                    }
+
+                    Console.WriteLine("Query: " + qry);
+
                     cmd.ExecuteNonQuery();
 
-                    if (newUser) dgvUsers.Rows.Add(lblSelectedID.Text, txtUsername.Text, lblPassword.Text, txtFirstname.Text, txtMiddlename.Text, txtLastname.Text, cmbRoles.Text);
-                    else dgvUsers.Rows[dgvUsers.CurrentCell.RowIndex].SetValues(lblSelectedID.Text, txtUsername.Text, lblPassword.Text, txtFirstname.Text, txtMiddlename.Text, txtLastname.Text, cmbRoles.Text);
+                    if (newUser) dgvUsers.Rows.Add(lblSelectedID.Text, txtUsername.Text, lblPassword.Text, txtFirstname.Text, txtMiddlename.Text, txtLastname.Text,pictureBox1.Image, cmbRoles.Text);
+                    else dgvUsers.Rows[dgvUsers.CurrentCell.RowIndex].SetValues(lblSelectedID.Text, txtUsername.Text, lblPassword.Text, txtFirstname.Text, txtMiddlename.Text, txtLastname.Text,pictureBox1.Image, cmbRoles.Text);
                     reselectLastSelectedRow();
                    
                     editMode(NOTEDITMODE);
                     savingNew = false;
-                    MessageBox.Show("Saved");
+                    MessageBox.Show("Details Saved","",MessageBoxButtons.OK,MessageBoxIcon.Information);
 
                 }
                 catch (Exception ee)
@@ -455,6 +495,37 @@ namespace HumanResourceManagement
                 return false;
             }
             return true;
+        }
+
+        private byte[] fileToByte(string filepath)
+        {
+            byte[] file;
+            using (var stream = new FileStream(filepath, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = new BinaryReader(stream))
+                {
+                    file = reader.ReadBytes((int)stream.Length);
+                }
+            }
+
+            return file;
+        }
+
+        private Image byteToImage(Object obj)
+        {
+            try
+            {
+                byte[] byteArrayIn = (byte[])obj;
+                using (var ms = new MemoryStream(byteArrayIn))
+                {
+                    return Image.FromStream(ms);
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+       
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -522,6 +593,7 @@ namespace HumanResourceManagement
             if(op.ShowDialog() == DialogResult.OK)
             {
                 lblUploadedPicture.Text = op.FileName;
+                pictureBox1.Image = new Bitmap(op.FileName);
             }
         }
 
@@ -534,8 +606,6 @@ namespace HumanResourceManagement
             cmbRoles.Enabled = val;
             linkSetPassword.Enabled = val;
         }
-
-
-
+        
     }
 }
