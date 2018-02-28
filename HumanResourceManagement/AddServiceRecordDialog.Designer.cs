@@ -125,7 +125,7 @@
             this.chkSchool.Size = new System.Drawing.Size(44, 17);
             this.chkSchool.TabIndex = 57;
             this.chkSchool.Text = "-do-";
-            this.toolTip1.SetToolTip(this.chkSchool, "Same as the last entry");
+            this.toolTip1.SetToolTip(this.chkSchool, "Same as the Previous");
             this.chkSchool.UseVisualStyleBackColor = true;
             this.chkSchool.CheckedChanged += new System.EventHandler(this.chkSchool_CheckedChanged);
             // 
@@ -137,7 +137,7 @@
             this.chkDesignation.Size = new System.Drawing.Size(44, 17);
             this.chkDesignation.TabIndex = 59;
             this.chkDesignation.Text = "-do-";
-            this.toolTip1.SetToolTip(this.chkDesignation, "Same as the last entry");
+            this.toolTip1.SetToolTip(this.chkDesignation, "Same as the Previous");
             this.chkDesignation.UseVisualStyleBackColor = true;
             this.chkDesignation.CheckedChanged += new System.EventHandler(this.chkDesignation_CheckedChanged);
             // 
@@ -149,7 +149,7 @@
             this.chkStatus.Size = new System.Drawing.Size(44, 17);
             this.chkStatus.TabIndex = 60;
             this.chkStatus.Text = "-do-";
-            this.toolTip1.SetToolTip(this.chkStatus, "Same as the last entry");
+            this.toolTip1.SetToolTip(this.chkStatus, "Same as the Previous");
             this.chkStatus.UseVisualStyleBackColor = true;
             this.chkStatus.CheckedChanged += new System.EventHandler(this.chkStatus_CheckedChanged);
             // 
@@ -161,7 +161,7 @@
             this.chkStation.Size = new System.Drawing.Size(44, 17);
             this.chkStation.TabIndex = 61;
             this.chkStation.Text = "-do-";
-            this.toolTip1.SetToolTip(this.chkStation, "Same as the last entry");
+            this.toolTip1.SetToolTip(this.chkStation, "Same as the Previous");
             this.chkStation.UseVisualStyleBackColor = true;
             this.chkStation.CheckedChanged += new System.EventHandler(this.chkStation_CheckedChanged);
             // 
@@ -173,7 +173,7 @@
             this.chkBranch.Size = new System.Drawing.Size(44, 17);
             this.chkBranch.TabIndex = 62;
             this.chkBranch.Text = "-do-";
-            this.toolTip1.SetToolTip(this.chkBranch, "Same as the last entry");
+            this.toolTip1.SetToolTip(this.chkBranch, "Same as the Previous");
             this.chkBranch.UseVisualStyleBackColor = true;
             this.chkBranch.CheckedChanged += new System.EventHandler(this.chkBranch_CheckedChanged);
             // 
@@ -185,6 +185,7 @@
             this.chkPresent.Size = new System.Drawing.Size(62, 17);
             this.chkPresent.TabIndex = 58;
             this.chkPresent.Text = "Present";
+            this.toolTip1.SetToolTip(this.chkPresent, "up to Present");
             this.chkPresent.UseVisualStyleBackColor = true;
             this.chkPresent.CheckedChanged += new System.EventHandler(this.chkPresent_CheckedChanged);
             // 
@@ -196,7 +197,7 @@
             this.chkLawop.Size = new System.Drawing.Size(44, 17);
             this.chkLawop.TabIndex = 64;
             this.chkLawop.Text = "-do-";
-            this.toolTip1.SetToolTip(this.chkLawop, "Same as the last entry");
+            this.toolTip1.SetToolTip(this.chkLawop, "Same as the Previous");
             this.chkLawop.UseVisualStyleBackColor = true;
             this.chkLawop.CheckedChanged += new System.EventHandler(this.chkLawop_CheckedChanged);
             // 
@@ -208,7 +209,7 @@
             this.chkSalary.Size = new System.Drawing.Size(44, 17);
             this.chkSalary.TabIndex = 63;
             this.chkSalary.Text = "-do-";
-            this.toolTip1.SetToolTip(this.chkSalary, "Same as the last entry");
+            this.toolTip1.SetToolTip(this.chkSalary, "Same as the Previous");
             this.chkSalary.UseVisualStyleBackColor = true;
             this.chkSalary.CheckedChanged += new System.EventHandler(this.chkSalary_CheckedChanged);
             // 
@@ -250,8 +251,7 @@
             this.txtDateTo.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtDateTo.CustomButton.UseSelectable = true;
             this.txtDateTo.CustomButton.Visible = false;
-            this.txtDateTo.Lines = new string[] {
-        "PRESENT"};
+            this.txtDateTo.Lines = new string[0];
             this.txtDateTo.Location = new System.Drawing.Point(288, 51);
             this.txtDateTo.MaxLength = 10;
             this.txtDateTo.Name = "txtDateTo";
@@ -264,7 +264,6 @@
             this.txtDateTo.ShortcutsEnabled = true;
             this.txtDateTo.Size = new System.Drawing.Size(92, 23);
             this.txtDateTo.TabIndex = 2;
-            this.txtDateTo.Text = "PRESENT";
             this.txtDateTo.UseSelectable = true;
             this.txtDateTo.WaterMark = "mm/dd/yyyy";
             this.txtDateTo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));

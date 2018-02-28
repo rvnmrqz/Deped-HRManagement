@@ -58,13 +58,17 @@ namespace HumanResourceManagement
                 //display double clicked row
                 lblFormTitle.Text = "Edit Serivce Record";
                // panelChkBox.Enabled = false;
-                txtDateFrom.Enabled = false;
-                txtDateTo.Enabled = false;
-                chkPresent.Enabled = false;
-                chkPresent.Checked = false;
+                //txtDateFrom.Enabled = false;
+                //txtDateTo.Enabled = false;
+                //chkPresent.Enabled = false;
+                //chkPresent.Checked = false;
                 txtSchoolName.Text = TempHolder.selectedSchool;
                 txtDateFrom.Text = TempHolder.selectedFrom;
                 txtDateTo.Text = TempHolder.selectedTo;
+                if (txtDateTo.Text.ToLower().Contains("present"))
+                {
+                    chkPresent.Checked = true;
+                }
                 txtDesignation.Text = TempHolder.selectedDesignation;
                 cmbStatus.Text = TempHolder.selectedStatus;
                 txtSalary.Text = TempHolder.selectedSalary;
@@ -276,7 +280,10 @@ namespace HumanResourceManagement
             {
                 openSQLConnection();
 
-                string sql = "UPDATE " + SQLbank.TBL_SERVICE_RECORDS + " SET " + SQLbank.SCHOOL_NAME + "= @SCHOOL , " +
+                string sql = "UPDATE " + SQLbank.TBL_SERVICE_RECORDS +
+                    " SET " + SQLbank.SCHOOL_NAME + "= @SCHOOL , " +
+                    SQLbank.FROM_DATE + " = @FROMDATE , "+
+                    SQLbank.TO_DATE + " = @TODATE , "+
                     SQLbank.DESIGNATION + " = @DESIGNATION , " +
                     SQLbank.STATUS + " = @STATUS , " +
                     SQLbank.SALARY + " = @SALARY , " +
@@ -286,6 +293,9 @@ namespace HumanResourceManagement
                     SQLbank.LAWOP + " = @LAWOP WHERE " + SQLbank.ID + " = " + TempHolder.selectedId;
 
                 cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@FROMDATE", txtDateFrom.Text);
+                if (!chkPresent.Checked) cmd.Parameters.AddWithValue("@TODATE", txtDateTo.Text);
+                else cmd.Parameters.AddWithValue("@TODATE", DBNull.Value);
                 cmd.Parameters.AddWithValue("@SCHOOL", txtSchoolName.Text.Trim());
                 cmd.Parameters.AddWithValue("@DESIGNATION", txtDesignation.Text.Trim());
                 cmd.Parameters.AddWithValue("@STATUS", cmbStatus.Text.Trim());
@@ -331,8 +341,7 @@ namespace HumanResourceManagement
         private bool isInputValid()
         {
 
-            if (!TempHolder.editMode)
-            {
+          
                 DateTime dtStart = DateTime.Now, dtEnd = DateTime.Now;
 
                 if (!DateTime.TryParse(txtDateFrom.Text, out dtStart))
@@ -342,6 +351,9 @@ namespace HumanResourceManagement
                 }
 
 
+            if (!TempHolder.editMode)
+            {
+                //adding new
                 //if chkTo is checked, and the FROM date is behind the date of last record, return false
                 if (chkPresent.Checked && TempHolder.lastFrom != null)
                 {
@@ -367,6 +379,8 @@ namespace HumanResourceManagement
                         return false;
                     }
                 }
+            }
+                
 
                 if (!chkPresent.Checked && !DateTime.TryParse(txtDateTo.Text, out dtEnd))
                 {
@@ -395,7 +409,7 @@ namespace HumanResourceManagement
                         return false;
                     }
                 }
-            }
+            //************
 
             if (txtSchoolName.Text.Trim().Length == 0)
             {
@@ -583,8 +597,7 @@ namespace HumanResourceManagement
 
         private void chkPresent_CheckedChanged(object sender, EventArgs e)
         {
-            if (!TempHolder.editMode)
-            {
+            
                 if (chkPresent.Checked)
                 {
                     txtDateTo.Enabled = false;
@@ -596,7 +609,6 @@ namespace HumanResourceManagement
                     txtDateTo.Enabled = true;
                     txtDateTo.Select();
                 }
-            }
         }
 
         private void txtDateFrom_KeyDown(object sender, KeyEventArgs e)

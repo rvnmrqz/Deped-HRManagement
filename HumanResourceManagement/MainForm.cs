@@ -49,9 +49,6 @@ namespace HumanResourceManagement
 
             metroTabControl1.SelectedTab = tabPage1;
             txtEmplyeeNo.Select();
-
-
-            TempHolder.excelApp = new Microsoft.Office.Interop.Excel.Application();
         }
 
 

@@ -110,7 +110,7 @@ namespace HumanResourceManagement
                         }
                     }
                 }
-
+                excelApp = null;
 
             }
             catch(Exception ee)

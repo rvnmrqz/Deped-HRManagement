@@ -590,7 +590,8 @@ namespace HumanResourceManagement
         private void btnChoosePhoto_Click(object sender, EventArgs e)
         {
             OpenFileDialog op = new OpenFileDialog();
-            if(op.ShowDialog() == DialogResult.OK)
+            op.Filter = "Image Files|*.jpg; *.jpeg; *.png";
+            if (op.ShowDialog() == DialogResult.OK)
             {
                 lblUploadedPicture.Text = op.FileName;
                 pictureBox1.Image = new Bitmap(op.FileName);

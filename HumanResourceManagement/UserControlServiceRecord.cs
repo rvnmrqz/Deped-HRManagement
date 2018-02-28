@@ -322,6 +322,11 @@ namespace HumanResourceManagement
         {
             try
             {
+                if(TempHolder.excelApp == null)
+                {
+                    TempHolder.excelApp = new Microsoft.Office.Interop.Excel.Application();
+                }
+
                 string templatePath = System.Windows.Forms.Application.StartupPath + "/template.xlsx";
 
                 if (TempHolder.excelApp.Visible)

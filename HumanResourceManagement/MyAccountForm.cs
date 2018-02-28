@@ -70,10 +70,10 @@ namespace HumanResourceManagement
 
             if (TempHolder.userImage != null) pictureBox1.Image = TempHolder.userImage;
 
-            lblAccountType.Text = formatString(TempHolder.accountType);
-            txtFirstname.Text = formatString(TempHolder.fname);
-            txtMiddleInitial.Text = TempHolder.mname.ToUpper();
-            txtLastname.Text = formatString(TempHolder.lname);
+            lblAccountType.Text = TempHolder.accountType;
+            txtFirstname.Text = TempHolder.fname;
+            txtMiddleInitial.Text = TempHolder.mname;
+            txtLastname.Text = TempHolder.lname;
             txtUsername.Text = TempHolder.username.Trim();
 
             txtFirstname.BackColor = SystemColors.Window;
@@ -81,28 +81,6 @@ namespace HumanResourceManagement
             txtLastname.BackColor = SystemColors.Window;
             txtUsername.BackColor = SystemColors.Window;
 
-        }
-
-        private string formatString(string unformattedString)
-        {
-            
-            Console.WriteLine("unformatedString:" + unformattedString+", Length: "+unformattedString.Length);
-            string formatedString = "";
-
-            if (unformattedString.Length > 0)
-            {
-                string[] unformatParts = unformattedString.Split(' ');
-
-                for (int i = 0; i < unformatParts.Length; i++)
-                {
-                    char[] val = unformatParts[i].ToLower().ToCharArray();
-                    val[0] = char.ToUpper(val[0]);
-                    formatedString += new string(val) + " ";
-                }
-            }
-          
-            
-            return formatedString.Trim();
         }
 
         private void enableInputs(bool value)
@@ -193,7 +171,6 @@ namespace HumanResourceManagement
             else
             {
                 txtFirstname.BackColor = SystemColors.Window;
-                txtFirstname.Text = formatString(txtFirstname.Text);
             }
 
             //LAST NAME
@@ -205,7 +182,6 @@ namespace HumanResourceManagement
             else
             {
                 txtLastname.BackColor = SystemColors.Window;
-                txtLastname.Text = formatString(txtLastname.Text);
             }
 
             //USERNAME

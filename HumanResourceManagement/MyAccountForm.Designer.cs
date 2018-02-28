@@ -243,6 +243,7 @@
             // 
             // txtLastname
             // 
+            this.txtLastname.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtLastname.Enabled = false;
             this.txtLastname.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLastname.Location = new System.Drawing.Point(429, 62);
@@ -263,6 +264,7 @@
             // 
             // txtMiddleInitial
             // 
+            this.txtMiddleInitial.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMiddleInitial.Enabled = false;
             this.txtMiddleInitial.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMiddleInitial.Location = new System.Drawing.Point(380, 62);
@@ -282,6 +284,7 @@
             // 
             // txtFirstname
             // 
+            this.txtFirstname.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtFirstname.Enabled = false;
             this.txtFirstname.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFirstname.Location = new System.Drawing.Point(229, 62);
