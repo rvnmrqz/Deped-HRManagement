@@ -271,6 +271,11 @@ namespace HumanResourceManagement
 
             try
             {
+                if (TempHolder.excelApp == null)
+                {
+                    TempHolder.excelApp = new Microsoft.Office.Interop.Excel.Application();
+                }
+
 
                 workbook = TempHolder.excelApp.Workbooks.Open(excelPath);
                 Worksheet worksheet = (Worksheet)workbook.Worksheets.get_Item(selectedSheetName);

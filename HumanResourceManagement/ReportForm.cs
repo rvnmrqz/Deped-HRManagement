@@ -405,8 +405,15 @@ namespace HumanResourceManagement
         {
             if (dgv.RowCount > 0)
             {
+                btnPrint.Enabled = false;
                 try
                 {
+
+                    if (TempHolder.excelApp == null)
+                    {
+                        TempHolder.excelApp = new Microsoft.Office.Interop.Excel.Application();
+                    }
+
                     if (TempHolder.excelApp.Visible)
                     {
                         Console.WriteLine("Excel is visible");
@@ -450,6 +457,7 @@ namespace HumanResourceManagement
                 {
                     MessageBox.Show("Failed to export to Excel", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                btnPrint.Enabled = true;
             }
        
         }

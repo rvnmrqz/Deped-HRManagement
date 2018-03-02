@@ -51,6 +51,8 @@
             this.txtFirstname = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblBottomMessage = new System.Windows.Forms.Label();
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.FormPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnChangePhoto)).BeginInit();
@@ -98,6 +100,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lblBottomMessage);
             this.panel1.Controls.Add(this.btnChangePhoto);
             this.panel1.Controls.Add(this.lblUploadedPicturePath);
             this.panel1.Controls.Add(this.lblAccountType);
@@ -314,6 +317,20 @@
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
+            // lblBottomMessage
+            // 
+            this.lblBottomMessage.AutoSize = true;
+            this.lblBottomMessage.Location = new System.Drawing.Point(13, 215);
+            this.lblBottomMessage.Name = "lblBottomMessage";
+            this.lblBottomMessage.Size = new System.Drawing.Size(51, 13);
+            this.lblBottomMessage.TabIndex = 77;
+            this.lblBottomMessage.Text = "Loading..";
+            // 
+            // bgWorker
+            // 
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
+            // 
             // MyAccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -361,5 +378,7 @@
         private System.Windows.Forms.Label lblUploadedPicturePath;
         private System.Windows.Forms.PictureBox btnChangePhoto;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblBottomMessage;
+        private System.ComponentModel.BackgroundWorker bgWorker;
     }
 }

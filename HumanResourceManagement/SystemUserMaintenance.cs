@@ -207,6 +207,7 @@ namespace HumanResourceManagement
 
         private void clearInfoGroup()
         {
+            pictureBox1.Image = HumanResourceManagement.Properties.Resources.default_avatar;
             lblOriginalUsername.ResetText();
             txtUsername.ResetText();
             lblPassword.ResetText();

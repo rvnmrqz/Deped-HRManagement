@@ -21,6 +21,7 @@ namespace HumanResourceManagement
         SqlCommand cmd;
         SqlDataReader reader;
 
+        string errMsg = null;
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -39,7 +40,7 @@ namespace HumanResourceManagement
         private void MyAccountForm_Load(object sender, EventArgs e)
         {
             conn = new SqlConnection(getStringValue("sqlconstring"));
-            prepareDisplay();
+            if (!bgWorker.IsBusy) bgWorker.RunWorkerAsync();
         }
 
         private void FormPanel_MouseMove(object sender, MouseEventArgs e)
@@ -66,16 +67,10 @@ namespace HumanResourceManagement
 
         private void prepareDisplay()
         {
-            string file_path = TempHolder.picturePath+TempHolder.pictureFilename;
+
+            lblBottomMessage.Text = "Loading...";  
 
             if (TempHolder.userImage != null) pictureBox1.Image = TempHolder.userImage;
-
-            lblAccountType.Text = TempHolder.accountType;
-            txtFirstname.Text = TempHolder.fname;
-            txtMiddleInitial.Text = TempHolder.mname;
-            txtLastname.Text = TempHolder.lname;
-            txtUsername.Text = TempHolder.username.Trim();
-
             txtFirstname.BackColor = SystemColors.Window;
             txtMiddleInitial.BackColor = SystemColors.Window;
             txtLastname.BackColor = SystemColors.Window;
@@ -236,6 +231,60 @@ namespace HumanResourceManagement
             return remarks;
         }
 
+
+
+        //LOADER
+        private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                openSQLConnection();
+                cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM " + SQLbank.TBL_USERS + " WHERE " + SQLbank.ID + " = " + TempHolder.loggedUser_ID;
+                reader = cmd.ExecuteReader();
+            }
+            catch (Exception ee)
+            {
+                errMsg = ee.Message;
+            }
+        }
+
+        private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (errMsg == null)
+            {
+                if (reader.Read())
+                {
+                    txtUsername.Text = reader[1].ToString();
+                    TempHolder.password = reader[2].ToString();
+                    txtFirstname.Text = reader[3].ToString();
+                    txtMiddleInitial.Text = reader[4].ToString();
+                    txtLastname.Text = reader[5].ToString();
+                    lblAccountType.Text = reader[7].ToString();
+
+                    lblBottomMessage.Text = "";
+
+                    try
+                    {
+                        pictureBox1.Image = byteToImage((byte[])reader[6]);
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Failed to display Image");
+                        lblBottomMessage.Text = "Failed to display image";
+                    }
+
+                    
+                    
+                }
+            }
+            else
+            {
+                MessageBox.Show(errMsg,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            errMsg = null;
+        }
 
         //************************SERVER CONNECTION*************************
         private void openSQLConnection()
