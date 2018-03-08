@@ -375,6 +375,11 @@ namespace HumanResourceManagement
             TempHolder.uc_PersonalInfo.editMode(editmodeValue);
         }
 
+        public string getUploadedPicturePath()
+        {
+            return lblUploadedPicture.Text.ToString();
+        }
+
         public int saveUpdates()
         {
             /*
@@ -385,11 +390,6 @@ namespace HumanResourceManagement
 
             if (lblUploadedPicture.Text.Length != 0)
             {
-                string filename = lblemployee_id_hidden.Text + ".png";
-                if (copyFileToPictureFolder(filename))
-                {
-                    //picture is successfully copied
-                    //update the value of picture_filename column in the database
                     try
                     {
                         openSQLConnection();
@@ -397,7 +397,7 @@ namespace HumanResourceManagement
                         cmd = new SqlCommand(updateqry, conn);
                         byte[] pictureByte = fileToByte(lblUploadedPicture.Text.ToString());
                         cmd.Parameters.Add("@PICTURE", SqlDbType.VarBinary, pictureByte.Length).Value = pictureByte;
-                        cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();                    
                     }
                     catch (Exception ee)
                     {
@@ -405,35 +405,8 @@ namespace HumanResourceManagement
                         Console.WriteLine("Saving updates in picture field error: " + ee.Message);
                         return -1;
                     }
-                }
             }
             return 1;
-        }
-
-        private bool copyFileToPictureFolder(string imagefilename)
-        {
-            try
-            {
-                string pictureFolderPath = TempHolder.picturePath;
-
-                if (!Directory.Exists(pictureFolderPath))
-                {
-                    //directory does not exist, create path
-                    Directory.CreateDirectory(pictureFolderPath);
-                }
-
-                //copy file
-                File.Copy(lblUploadedPicture.Text, (pictureFolderPath + imagefilename), true);
-
-            }
-            catch (Exception ee)
-            {
-                Console.WriteLine("Copying Exception : " + ee.Message);
-                MessageBox.Show("An error occured while copying the user's image", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            return true;
         }
 
         private void btnChoosePhoto_Click(object sender, EventArgs e)

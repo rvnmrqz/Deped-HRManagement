@@ -89,68 +89,7 @@ namespace HumanResourceManagement
             txtUsername.Enabled = value;
         }
         
-        private void attemptToSave()
-        {
-            
-            if (isInputValid())
-            {
-                //inputs are valid, save changes
-                try
-                {
-                    enableInputs(false);
-
-                    byte[] bytePicture;
-                    cmd = new SqlCommand();
-
-                    openSQLConnection();
-                    string cmdText = "UPDATE " + SQLbank.TBL_USERS + " SET "
-                        + SQLbank.FNAME + " = @FNAME, "
-                        + SQLbank.MNAME + " = @MNAME, "
-                        + SQLbank.LNAME + " = @LNAME ,"
-                        + SQLbank.USERNAME + " = @USERNAME ";
-
-                    if (lblUploadedPicturePath.Text.Trim().Length > 0)
-                    {
-                        bytePicture = fileToByte(lblUploadedPicturePath.Text.ToString());
-                        cmdText += ", " + SQLbank.PICTURE + " = @PICTURE";
-                        cmd.Parameters.Add("@PICTURE", SqlDbType.VarBinary, bytePicture.Length).Value = bytePicture;
-                        TempHolder.userImage = byteToImage(bytePicture);
-                    }
-                    cmdText+= " WHERE " + SQLbank.ID + "=" + TempHolder.loggedUser_ID;
-
-                 
-                    cmd.Parameters.Add("@FNAME", SqlDbType.VarChar);
-                    cmd.Parameters.Add("@MNAME", SqlDbType.VarChar);
-                    cmd.Parameters.Add("@LNAME", SqlDbType.VarChar);
-                    cmd.Parameters.Add("@USERNAME", SqlDbType.VarChar);
-
-                    cmd.Parameters["@FNAME"].Value = txtFirstname.Text;
-                    cmd.Parameters["@MNAME"].Value = txtMiddleInitial.Text;
-                    cmd.Parameters["@LNAME"].Value = txtLastname.Text;
-                    cmd.Parameters["@USERNAME"].Value = txtUsername.Text;
-
-                    cmd.CommandText = cmdText;
-                    cmd.Connection = conn;
-                    cmd.ExecuteNonQuery();
-
-                    TempHolder.fname = txtFirstname.Text;
-                    TempHolder.mname = txtMiddleInitial.Text;
-                    TempHolder.lname = txtLastname.Text;
-                    TempHolder.username = txtUsername.Text;
-          
-
-                    MessageBox.Show("Update Successfully Saved", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    btnEditCancel.Text = "Edit";
-
-                }
-                catch (Exception ee)
-                {
-                    Console.WriteLine("Saving Exception: " + ee.Message);
-                    MessageBox.Show("An error occured while saving changes", "Failed to save", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-        }
+      
 
         private bool isInputValid()
         {
@@ -344,6 +283,69 @@ namespace HumanResourceManagement
                 //not in edit mode, just close the dialog
                 this.Close();
             }
+        }
+
+        private void attemptToSave()
+        {
+
+            if (isInputValid())
+            {
+                //inputs are valid, save changes
+                try
+                {
+                    enableInputs(false);
+
+                    byte[] bytePicture;
+                    cmd = new SqlCommand();
+
+                    openSQLConnection();
+                    string cmdText = "UPDATE " + SQLbank.TBL_USERS + " SET "
+                        + SQLbank.FNAME + " = @FNAME, "
+                        + SQLbank.MNAME + " = @MNAME, "
+                        + SQLbank.LNAME + " = @LNAME ,"
+                        + SQLbank.USERNAME + " = @USERNAME ";
+
+                    if (lblUploadedPicturePath.Text.Trim().Length > 0)
+                    {
+                        bytePicture = fileToByte(lblUploadedPicturePath.Text.ToString());
+                        cmdText += ", " + SQLbank.PICTURE + " = @PICTURE";
+                        cmd.Parameters.Add("@PICTURE", SqlDbType.VarBinary, bytePicture.Length).Value = bytePicture;
+                        TempHolder.userImage = byteToImage(bytePicture);
+                    }
+                    cmdText += " WHERE " + SQLbank.ID + "=" + TempHolder.loggedUser_ID;
+
+
+                    cmd.Parameters.Add("@FNAME", SqlDbType.VarChar);
+                    cmd.Parameters.Add("@MNAME", SqlDbType.VarChar);
+                    cmd.Parameters.Add("@LNAME", SqlDbType.VarChar);
+                    cmd.Parameters.Add("@USERNAME", SqlDbType.VarChar);
+
+                    cmd.Parameters["@FNAME"].Value = txtFirstname.Text;
+                    cmd.Parameters["@MNAME"].Value = txtMiddleInitial.Text;
+                    cmd.Parameters["@LNAME"].Value = txtLastname.Text;
+                    cmd.Parameters["@USERNAME"].Value = txtUsername.Text;
+
+                    cmd.CommandText = cmdText;
+                    cmd.Connection = conn;
+                    cmd.ExecuteNonQuery();
+
+                    TempHolder.fname = txtFirstname.Text;
+                    TempHolder.mname = txtMiddleInitial.Text;
+                    TempHolder.lname = txtLastname.Text;
+                    TempHolder.username = txtUsername.Text;
+
+
+                    MessageBox.Show("Update Successfully Saved", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnEditCancel.Text = "Edit";
+
+                }
+                catch (Exception ee)
+                {
+                    Console.WriteLine("Saving Exception: " + ee.Message);
+                    MessageBox.Show("An error occured while saving changes", "Failed to save", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
         }
 
         private void txtFirstname_TextChanged(object sender, EventArgs e)

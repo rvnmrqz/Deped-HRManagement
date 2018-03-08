@@ -201,26 +201,32 @@ namespace HumanResourceManagement
 
             if (isFieldsValid())
             {
-                if (TempHolder.mainForm.saveUpdates() == 1)
-                {
                     //save changes
                     try
                     {
                         openSQLConnection();
-                        string updateQry = "UPDATE " + SQLbank.TBL_EMPLOYEES + " SET "
-                            + SQLbank.EMP_LAST_NAME + " = @LASTNAME , "
-                            + SQLbank.EMP_MIDDLE_NAME + " = @MIDDLENAME , "
-                            + SQLbank.EMP_FIRST_NAME + " = @FIRSTNAME , "
-                            + SQLbank.BIRTH_PLACE + " = @BIRTHPLACE, "
-                            + SQLbank.DATE_OF_BIRTH + " = @DATEOFBIRTH , "
-                            + SQLbank.CIVIL_STATUS + "= @CIVILSTATUS , "
-                            + SQLbank.SEX + " = @SEX , "
-                            + SQLbank.PLANTILLA_NO+" = @PLANTILLA, "
-                            + SQLbank.ACCOUNT_NO + "= @ACCOUNTNO , "
-                            + SQLbank.HDMF_NO + " = @HDMFNO , "
-                            + SQLbank.PHIC_NO + " = @PHICNO , "
-                            + SQLbank.BP_NO + " = @BPNO , "
-                            + SQLbank.TIN_NO + "= @TINNO WHERE "
+
+                    string uploadedPicturePath = TempHolder.mainForm.getUploadedPicturePath();
+
+                    Console.WriteLine("Picture Path:" + uploadedPicturePath);
+
+                    string updateQry = "UPDATE " + SQLbank.TBL_EMPLOYEES + " SET "
+                        + SQLbank.EMP_LAST_NAME + " = @LASTNAME , "
+                        + SQLbank.EMP_MIDDLE_NAME + " = @MIDDLENAME , "
+                        + SQLbank.EMP_FIRST_NAME + " = @FIRSTNAME , "
+                        + SQLbank.BIRTH_PLACE + " = @BIRTHPLACE, "
+                        + SQLbank.DATE_OF_BIRTH + " = @DATEOFBIRTH , "
+                        + SQLbank.CIVIL_STATUS + "= @CIVILSTATUS , "
+                        + SQLbank.SEX + " = @SEX , "
+                        + SQLbank.PLANTILLA_NO + " = @PLANTILLA, "
+                        + SQLbank.ACCOUNT_NO + "= @ACCOUNTNO , "
+                        + SQLbank.HDMF_NO + " = @HDMFNO , "
+                        + SQLbank.PHIC_NO + " = @PHICNO , "
+                        + SQLbank.BP_NO + " = @BPNO , ";
+
+                    if (uploadedPicturePath != null) updateQry += SQLbank.PICTURE + " = @PICTURE, ";
+
+                            updateQry+= SQLbank.TIN_NO + "= @TINNO WHERE "
                             + SQLbank.EMP_ID + "=" + emp_id;
 
                         cmd = new SqlCommand(updateQry, conn);
@@ -239,10 +245,12 @@ namespace HumanResourceManagement
                         cmd.Parameters.AddWithValue("@BPNO", txtBp.Text.Trim());
                         cmd.Parameters.AddWithValue("@TINNO", txtTin.Text.Trim());
 
-
-
-                        cmd.ExecuteNonQuery();
-
+                    if (uploadedPicturePath!=null || uploadedPicturePath.Length>0)
+                    {
+                        byte[] bytePicture = fileToByte(uploadedPicturePath);
+                        cmd.Parameters.Add("@PICTURE", SqlDbType.VarBinary, bytePicture.Length).Value = bytePicture;
+                    }
+                    cmd.ExecuteNonQuery();
                         MessageBox.Show("Saving changes successful", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         TempHolder.mainForm.editMode(false);
 
@@ -255,9 +263,7 @@ namespace HumanResourceManagement
                         if (dr == DialogResult.Retry) btnSaveChanges.PerformClick();
 
                     }
-                }
             }
-          
         }
 
         private bool isFieldsValid()
@@ -370,6 +376,23 @@ namespace HumanResourceManagement
 
             return age;
         }
+
+
+        private byte[] fileToByte(string filepath)
+        {
+            byte[] file;
+            using (var stream = new FileStream(filepath, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = new BinaryReader(stream))
+                {
+                    file = reader.ReadBytes((int)stream.Length);
+                }
+            }
+
+            return file;
+        }
+
+
         //****************************************************************************
 
         private void btnRemoveEmpAcc_Click(object sender, EventArgs e)
